@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Clears the sticky 64px header. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-ink;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ink ring-offset-2;
+  }
+  /* Dark bands need a light ring, or the focus outline disappears into the background. */
+  .on-dark :focus-visible {
+    @apply ring-white ring-offset-ink;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto max-w-content px-5 sm:px-8;
+  }
+  .section {
+    @apply py-9 sm:py-16 lg:py-20;
+  }
+  /* Type scale: one family (Outfit). H1/H2 800, H3 700, body 400, labels 500 to 600. */
+  .h2 {
+    @apply font-display text-[1.65rem] font-extrabold leading-[1.12] tracking-[-0.025em] sm:text-4xl;
+  }
+  .h3 {
+    @apply font-display text-[15px] font-bold leading-snug tracking-[-0.01em] text-ink sm:text-[18px];
+  }
+  .body {
+    @apply text-[13.5px] font-normal leading-relaxed text-ink-muted sm:text-[15px];
+  }
+  .eyebrow-text {
+    @apply mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-deep sm:mb-3 sm:text-xs;
+  }
+  .lead {
+    @apply text-[15px] font-normal leading-relaxed text-ink-soft sm:text-[18px];
+  }
+
+  /* Hover changes colour only. No lifts, no growing shadows, no glows. */
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-3 text-[14px] font-semibold tracking-[-0.005em] transition-colors duration-150 sm:px-7 sm:py-3.5 sm:text-[15px];
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-hover;
+  }
+  .btn-ghost {
+    @apply btn border border-ink/15 bg-white text-ink hover:border-ink/35 hover:bg-mist;
+  }
+  .btn-on-ink {
+    @apply btn border border-white/25 text-white hover:border-white/50 hover:bg-white/10;
+  }
+
+  .card {
+    @apply rounded-2xl border border-ink/[0.08] bg-white sm:rounded-3xl;
+  }
+  .card-hover {
+    @apply transition-colors duration-150 hover:border-ink/25;
+  }
+  /* Neutral outlined icon tile (never coloured). */
+  .icon-tile {
+    @apply grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-ink/[0.08] bg-mist text-ink sm:h-12 sm:w-12 sm:rounded-2xl;
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink underline decoration-ink/20 underline-offset-4 transition-colors duration-150 hover:decoration-ink sm:text-[15px];
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-ink/10 bg-mist px-2.5 py-1 text-[12px] font-medium text-ink-soft sm:text-[13px];
+  }
+
+  .grid-backdrop {
+    background-image:
+      linear-gradient(to right, rgba(10, 10, 15, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 10, 15, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+  }
+
+  /* Same grid on the dark hero band, drawn in white at low opacity. */
+  .grid-backdrop-dark {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 80%);
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 80%);
+  }
+
+  /* Tints the white Healiam logo mark to brand pink, same filter as healiam.com. */
+  /* Healiam's panel icons ship as black line art; the dark band needs them white. */
+  .icon-white {
+    filter: brightness(0) invert(1);
+  }
+
+  .logo-tint {
+    filter: brightness(0) saturate(1) invert(0.36) sepia(0.89) saturate(17.68) hue-rotate(322deg) brightness(0.95) contrast(0.92);
+  }
+
+  /* Crops the hero phones softly at the bottom. */
+  .fade-bottom {
+    -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 98%);
+    mask-image: linear-gradient(to bottom, #000 74%, transparent 98%);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

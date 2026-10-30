@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "healiam-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:clean"],
+      "port": 3001,
+      "autoPort": true
+    },
+    {
+      "name": "healiam-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start", "--", "-p", "3107"],
+      "port": 3107
+    }
+  ]
+}

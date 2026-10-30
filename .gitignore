@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build output
+.next/
+out/
+*.tsbuildinfo
+
+# Environment: never commit real values. .env.example documents the keys.
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
