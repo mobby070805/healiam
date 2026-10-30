@@ -55,6 +55,12 @@ npm run typecheck   # tsc --noEmit
 
 Copy `.env.example` to `.env.local`. Both values are optional and the site runs without them.
 
+## Dependencies
+
+`npm audit` reports zero vulnerabilities. The `overrides` entry in `package.json` pins postcss
+forward, because Next vendors an older copy of it; `docs/PROJECT-NOTES.md` explains why and when
+to remove it.
+
 ## Decisions and open items
 
 `docs/PROJECT-NOTES.md` is the running log: every design decision, why it was made, and

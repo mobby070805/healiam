@@ -180,6 +180,16 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 - **Repeated CTAs:** at most one button pair per section, and never two sections in a row with the
   same pair. The "What you learn" section ends in a plain text link, not a second "Book for $95".
 
+- **postcss is pinned forward with an `overrides` entry in package.json.** Next 15.5.28 vendors its
+  own copy of postcss, pinned to 8.4.31, which carries four published advisories. npm's only
+  offered fix was `next@16`, a major upgrade we are not doing before client review, so the override
+  forces every postcss in the tree to ^8.5.28 instead. The advisories all concern parsing untrusted
+  CSS; ours is authored in this repo and only runs at build time, so they were never exploitable
+  here. The override exists so `npm install` reports zero vulnerabilities rather than handing a
+  reviewer a critical-severity warning. Verified after the change: typecheck clean, all 22 pages
+  build, 693 CSS rules compile, no console errors, /demo still hydrates. Remove the override once
+  Next ships a postcss bump of its own.
+
 ## Open items
 
 - **Source the "80% of medical decisions" hero stat.** It came from the owner's approved design, not
@@ -203,4 +213,6 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 - **healiam.com still advertises at-home visits** ("At-home visits are an extra $40" in its FAQ,
   and an at-home option on the booking flow). This site no longer does. The live site and the
   booking flow need the same correction.
-- Do not push or deploy until the owner says "push and deploy".
+- **Pushed, not deployed.** The owner authorised publishing to GitHub on 30 Oct 2026, so the code
+  lives at `madheshg1813/healiam-site` (private) for client review. Deployment is still not
+  authorised: do not deploy until the owner says so.
