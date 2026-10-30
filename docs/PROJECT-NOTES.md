@@ -42,7 +42,9 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 
 ## Decisions
 
-- **Price:** $95 for the full panel (changed from $99 in Oct 2026). One price, no add-ons.
+- **Price:** $95 for the full panel. One price, no add-ons. Confirmed final by the owner on
+  30 Oct 2026: the price was changed to $95, so the $94.99 still shown on healiam.com is the
+  stale figure, not this one.
 - **Font:** Outfit only, site-wide (SOP "one consistent font family"). This overrides the playbook's Sora + Inter.
 - **Colours:** pink `#E83656` for primary CTA buttons only; Healiam black `#0A0A0F` for dark accents
   (phone frame, price block, final CTA band, step dots); green `#168A4C` for the one H1 accent word and ticks.
@@ -188,8 +190,6 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 - **Re-check the App Store rating before each release.** The homepage prints "4.9 from 183
   ratings" from `site.app.rating`; it was true on 29 Oct 2026 and it moves.
 - Compare against an approved design and run the senior/team design review (SOP final review).
-- **healiam.com lists the panel at $94.99; this site says $95** (the owner's rounding, recorded
-  under Decisions). Worth confirming the rounded figure is what should appear.
 - **/contact has no form endpoint.** Set `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` to a form handler and
   the page swaps its email panel for a real form; until then it does not show a form that cannot
   deliver.
