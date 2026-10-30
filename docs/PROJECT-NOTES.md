@@ -209,6 +209,10 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
   panel has "6+ markers". Both are wrong; our /demo says fairs only and the real count.
 - **Decide whether AI crawlers should be allowed.** robots.txt currently allows every bot,
   GPTBot and friends included. Blocking them is a business call, not a default.
+- **/texas/blood-test ships 55 kB of JS against 2 kB for every other page** (158 kB vs 105 kB first
+  load). Same cause as the /demo regression fixed earlier: an icon component inside a client
+  boundary pulls in the whole of lucide-react. The fix is named imports plus a local icon map, as
+  done in the demo. Raised with the owner on 30 Oct 2026, who chose to leave it for now.
 - No Google Business Profile section yet (no profile found on healiam.com).
 - **healiam.com still advertises at-home visits** ("At-home visits are an extra $40" in its FAQ,
   and an at-home option on the booking flow). This site no longer does. The live site and the
