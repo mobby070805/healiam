@@ -156,7 +156,7 @@ this repo as it stands would turn all of those into 404s. Needs a decision befor
 
 | Page | URL | Status | SEO | Responsive | Build checks |
 |---|---|---|---|---|---|
-| Texas hub | `/texas/blood-test` (URL change deferred by owner, 31 Oct) | Existing page kept as is | Done (earlier) | Done (earlier) | Pass |
+| Texas hub | `/texas/blood-testing` (moved from `/texas/blood-test` on 1 Nov 2026, 301) | Content unchanged | Done | Done | Pass |
 | Plano | TBD (scheme) | Planned | — | — | — |
 | Colorado hub | `/colorado/blood-testing` | **Built 31 Oct 2026** (Texas design, Colorado availability content, v4), not deployed | Done | 1440 and 390 checked, no overflow | tsc, build pass (23 pages, 158 kB first load, same as Texas) |
 | Denver | TBD | Blocked: recurrence | — | — | — |

@@ -11,8 +11,11 @@ const nextConfig = {
     : {
         async redirects() {
           return [
-            { source: "/texas", destination: "/texas/blood-test", permanent: true },
-            { source: "/texas/blood-test/", destination: "/texas/blood-test", permanent: true },
+            // The Texas page moved from /texas/blood-test to /texas/blood-testing on 1 Nov 2026,
+            // matching /colorado/blood-testing. The old URL keeps working through a permanent redirect.
+            { source: "/texas", destination: "/texas/blood-testing", permanent: true },
+            { source: "/texas/blood-test", destination: "/texas/blood-testing", permanent: true },
+            { source: "/texas/blood-test/", destination: "/texas/blood-testing", permanent: true },
           ];
         },
       }),

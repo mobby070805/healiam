@@ -25,7 +25,8 @@ Then open http://localhost:3001.
 | `/employer` | For employers: workplace fairs |
 | `/about` | Team and mission |
 | `/contact` | Phone, email, host a fair, message form |
-| `/texas/blood-test` | Texas landing page |
+| `/texas/blood-testing` | Texas landing page (old `/texas/blood-test` redirects here) |
+| `/colorado/blood-testing` | Colorado landing page |
 
 Also generated: `/sitemap.xml`, `/robots.txt`, `/llms.txt`, and Open Graph images.
 

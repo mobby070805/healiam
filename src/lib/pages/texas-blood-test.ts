@@ -1,4 +1,5 @@
-// Content for /texas/blood-test. Components only lay this out.
+// Content for /texas/blood-testing. Components only lay this out.
+// (Was /texas/blood-test until 1 Nov 2026; the old path redirects here.)
 // Every fact comes from healiam.com (home, tests, fairs, FAQ and about pages).
 
 import { site } from "@/lib/site";
@@ -10,7 +11,7 @@ const texasFairs = fairs.filter((f) => f.region === "TX");
 const texasCities = texasFairs.map((f) => f.locality).join(" and ");
 
 export const page = {
-  path: "/texas/blood-test",
+  path: "/texas/blood-testing",
   keyword: "Blood Test in Texas",
   meta: {
     title: `Blood Test in Texas for ${site.price.display} | 50+ Markers | Healiam`,

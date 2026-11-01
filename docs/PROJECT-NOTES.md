@@ -10,7 +10,7 @@ Next.js 15 (App Router) + TypeScript + Tailwind 3 site for healiam.com (preventi
 | Route | What |
 |---|---|
 | `/` | Homepage, built to the homepage SOP |
-| `/texas/blood-test` | Landing page, keyword "Blood Test in Texas" |
+| `/texas/blood-testing` | Landing page, keyword "Blood Test in Texas". Moved from `/texas/blood-test` on 1 Nov 2026 (301) |
 | `/colorado/blood-testing` | Colorado state hub, keyword "blood testing in Colorado". See `docs/LOCATION-PAGES-AUDIT.md` |
 
 ## Run it
@@ -228,7 +228,7 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
   "Healiam_Fair_City_Pages" Google Sheets. One page per day, each approved before it starts.
 - **No city-name-swap pages.** A location page exists only if it answers a question the others cannot.
   Nearby-town pages are not being built; towns go into a "closest for" line on the fair city instead.
-- **URL changes deferred (owner, 31 Oct 2026).** `/texas/blood-test` stays as it is for now. The two sheets
+- **Texas URL (owner, 1 Nov 2026):** moved to `/texas/blood-testing` to match `/colorado/blood-testing`; `/texas`, `/texas/blood-test` and `/texas/blood-test/` redirect there permanently (`next.config.mjs` and `public/_redirects`). The two sheets
   disagree on the city-page URL scheme; decide before the first city page.
 - **The fair-city sheet's $94.99 prices are stale.** Use `site.price` ($95) everywhere.
 - **Location facts come from `lib/fairs.ts` only,** so a hub page and the `/fairs/<slug>` pages cannot disagree.
