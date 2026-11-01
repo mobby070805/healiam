@@ -245,7 +245,7 @@ export const georgia = {
   // Links to Georgia fair cities only, with the towns near each.
   cities: {
     eyebrow: "Georgia cities",
-    title: "Blood testing near Lawrenceville, Georgia",
+    title: "Blood testing in Georgia cities",
     sub: "Lawrenceville is Healiam's Georgia city, in Gwinnett County. Grayson and Snellville are within about 5 miles.",
     linkLead: "Blood testing in",
     nearLabel: "Also close to:",
@@ -304,7 +304,7 @@ export const georgia = {
   },
 
   finalCta: {
-    title: "Book your Georgia blood test in Lawrenceville",
+    title: "Book your Georgia blood test",
     sub: `Park free on Longleaf Blvd in Lawrenceville, Georgia, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },

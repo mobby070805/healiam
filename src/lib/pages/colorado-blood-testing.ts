@@ -245,7 +245,7 @@ export const colorado = {
   // Links to Colorado fair cities only, with the towns near each.
   cities: {
     eyebrow: "Colorado cities",
-    title: "Blood testing near Denver and other Colorado cities",
+    title: "Blood testing in Colorado cities",
     sub: "Healiam tests in two Denver-metro cities in Colorado. Open yours for the venue, parking and date.",
     linkLead: "Blood testing in",
     nearLabel: "Also close to:",

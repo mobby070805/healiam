@@ -243,7 +243,7 @@ export const newJersey = {
   // Links to New Jersey fair cities only, with the towns near each.
   cities: {
     eyebrow: "New Jersey cities",
-    title: "Blood testing near Rahway, New Jersey",
+    title: "Blood testing in New Jersey cities",
     sub: "Rahway is Healiam's New Jersey city. These Union and Middlesex County towns are within about 4 miles of the venue.",
     linkLead: "Blood testing in",
     nearLabel: "Also close to:",
@@ -302,7 +302,7 @@ export const newJersey = {
   },
 
   finalCta: {
-    title: "Book your New Jersey blood test in Rahway",
+    title: "Book your New Jersey blood test",
     sub: `Take NJ Transit or park on Irving Street in Rahway, New Jersey, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },

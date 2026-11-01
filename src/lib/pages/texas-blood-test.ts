@@ -235,7 +235,7 @@ export const page = {
   // Links to Texas fair cities only, with the towns near each.
   cities: {
     eyebrow: "Texas cities",
-    title: "Blood testing near Plano and other Texas cities",
+    title: "Blood testing in Texas cities",
     sub: "Healiam tests in two North Texas cities. Open yours for the venue, parking and the next date.",
     linkLead: "Blood testing in",
     nearLabel: "Also close to:",
