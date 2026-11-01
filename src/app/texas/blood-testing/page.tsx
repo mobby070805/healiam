@@ -14,6 +14,8 @@ import { Process } from "@/components/sections/Process";
 import { Benefits } from "@/components/sections/Benefits";
 import { Panel } from "@/components/sections/Panel";
 import { Locations } from "@/components/sections/Locations";
+import { CityLinks } from "@/components/sections/CityLinks";
+import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 
@@ -49,6 +51,8 @@ export default function TexasBloodTestPage() {
         <Benefits />
         <Panel />
         <Locations />
+        <CityLinks cities={page.cities} />
+        <AppDownload app={page.app} />
         <Faq faq={page.faq} />
         <FinalCta finalCta={page.finalCta} />
       </main>

@@ -1,13 +1,15 @@
 import { Check, Star } from "lucide-react";
 import { site } from "@/lib/site";
 import { home } from "@/lib/pages/home";
+import type { Widen } from "@/lib/types";
+
+export type AppDownloadData = Widen<typeof home.app>;
 import { SectionHeading } from "@/components/SectionHeading";
 
 // Dark band, like the hero, so the black store badges sit on white cards instead of
 // fighting a white page. QR codes are for desktop visitors, who cannot scan their own
-// screen on a phone, so phones get the badges alone.
-export function AppDownload() {
-  const { app } = home;
+// screen on a phone, so phones get the badges alone. State pages pass their own copy.
+export function AppDownload({ app = home.app }: { app?: AppDownloadData }) {
   const { rating } = site.app;
 
   return (

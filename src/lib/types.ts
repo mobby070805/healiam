@@ -7,6 +7,7 @@ export type IconItem = { readonly icon: string; readonly label: string };
 export type FaqData = {
   readonly eyebrow: string;
   readonly title: string;
+  readonly sub?: string;
   readonly items: readonly { readonly q: string; readonly a: string }[];
   readonly help: { readonly title: string; readonly secondary: CtaLink; readonly email: CtaLink };
 };

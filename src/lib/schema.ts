@@ -154,7 +154,7 @@ export function texasBloodTestGraph() {
   const service = {
     "@type": "Service",
     "@id": `${url}#service`,
-    name: texas.keyword,
+    name: "Blood testing in Texas",
     serviceType: "Preventive blood test panel",
     description: texas.meta.description,
     provider: { "@id": orgId },

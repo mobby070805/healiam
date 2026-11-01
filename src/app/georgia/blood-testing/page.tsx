@@ -14,6 +14,8 @@ import { Process } from "@/components/sections/Process";
 import { Benefits } from "@/components/sections/Benefits";
 import { Panel } from "@/components/sections/Panel";
 import { Locations } from "@/components/sections/Locations";
+import { CityLinks } from "@/components/sections/CityLinks";
+import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 
@@ -51,6 +53,8 @@ export default function GeorgiaBloodTestingPage() {
         <Benefits benefits={georgia.benefits} />
         <Panel panel={georgia.panel} />
         <Locations locations={georgia.locations} />
+        <CityLinks cities={georgia.cities} />
+        <AppDownload app={georgia.app} />
         <Faq faq={georgia.faq} />
         <FinalCta finalCta={georgia.finalCta} />
       </main>

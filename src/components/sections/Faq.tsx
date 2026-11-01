@@ -11,7 +11,7 @@ export function Faq({ faq }: { faq: FaqData }) {
   return (
     <section id="faq" className="section bg-white" aria-labelledby="faq-title">
       <div className="shell">
-        <SectionHeading id="faq-title" eyebrow={faq.eyebrow} title={faq.title} />
+        <SectionHeading id="faq-title" eyebrow={faq.eyebrow} title={faq.title} sub={faq.sub} />
         <div className="mx-auto grid max-w-5xl gap-2.5 sm:gap-3 md:grid-cols-2 md:gap-4">
           {columns.map((col, c) => (
             <div key={c} className="space-y-2.5 sm:space-y-3">

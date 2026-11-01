@@ -4,7 +4,8 @@
 
 import { site } from "@/lib/site";
 import { panelCategories, labCategoryCount } from "@/lib/panel";
-import { fairHours, fairs } from "@/lib/fairs";
+import { fairHours, fairs, stateCityLinks } from "@/lib/fairs";
+import { home } from "@/lib/pages/home";
 import type { Widen } from "@/lib/types";
 
 const texasFairs = fairs.filter((f) => f.region === "TX");
@@ -12,11 +13,13 @@ const texasCities = texasFairs.map((f) => f.locality).join(" and ");
 
 export const page = {
   path: "/texas/blood-testing",
-  keyword: "Blood Test in Texas",
+  // Client's SEO sheet: primary "blood testing in Texas"; secondary "blood tests in Texas",
+  // "blood testing appointments Texas", "blood testing near Plano".
+  keyword: "blood testing in Texas",
   meta: {
-    title: `Blood Test in Texas for ${site.price.display} | 50+ Markers | Healiam`,
+    title: `Blood Testing in Texas for ${site.price.display} | 50+ Markers | Healiam`,
     description:
-      `Get a full blood test in Texas for ${site.price.display}. 50+ markers including thyroid, cholesterol, Vitamin D and HbA1c. No referral or insurance. Results in 4 to 5 days.`,
+      `Blood testing in Texas for ${site.price.display} at Healiam health fairs near Plano and Grand Prairie. Book online: 50+ markers, no referral or insurance.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -26,13 +29,13 @@ export const page = {
   ],
   breadcrumb: [
     { name: "Home", href: site.url },
-    { name: "Blood test in Texas" },
+    { name: "Blood testing in Texas" },
   ],
 
   hero: {
     titleLead: "Your complete blood test in Texas for",
     titleAccent: site.price.display,
-    sub: "No doctor's referral, no insurance, no surprise bills. One draw checks 50+ markers, from thyroid and cholesterol to Vitamin D and HbA1c.",
+    sub: "Blood testing in Texas with no doctor's referral, no insurance and no surprise bills. One draw at a Texas health fair checks 50+ markers, from thyroid and cholesterol to Vitamin D and HbA1c.",
     primary: { label: `Book for ${site.price.display}`, href: site.bookingUrl },
     secondary: { label: "What's tested", href: "#panel" },
     ticks: ["No referral", "No insurance", "Results in 4-5 days"],
@@ -79,8 +82,8 @@ export const page = {
 
   challenges: {
     eyebrow: "Sound familiar?",
-    title: "A simple blood test shouldn't be this hard",
-    sub: "Most people put off blood work for these reasons. One Healiam test fixes all six.",
+    title: "Blood testing in Texas shouldn't be this hard",
+    sub: "Most Texans put off blood work for one of these six reasons. One Healiam blood test in Texas fixes all of them.",
     items: [
       "Seeing a doctor just to get a lab order",
       "Surprise bills after the test",
@@ -97,8 +100,8 @@ export const page = {
 
   comparison: {
     eyebrow: "Compare",
-    title: "Why choose Healiam",
-    sub: "The usual route to blood work, next to ours.",
+    title: "Why choose Healiam in Texas",
+    sub: "The usual route to blood tests in Texas, side by side with a Healiam health fair.",
     usualLabel: "The usual route",
     oursLabel: "Healiam",
     badge: "CLIA-certified",
@@ -163,7 +166,8 @@ export const page = {
 
   process: {
     eyebrow: "Simple process",
-    title: "How it works",
+    title: "How blood testing in Texas works",
+    sub: "Book a Texas fair online, fast overnight, and read your results in the app.",
     steps: [
       { title: "Book a nearby fair", sub: "Pick a Texas fair online" },
       { title: "Visit on your date", sub: "At your chosen fair" },
@@ -179,7 +183,8 @@ export const page = {
 
   benefits: {
     eyebrow: "What you get",
-    title: "Benefits of testing with Healiam",
+    title: "Benefits of blood testing with Healiam in Texas",
+    sub: "What every Texas visit includes, from the draw to the report your doctor can use.",
     items: [
       { icon: "ScanSearch", title: "Catch issues early", line: "Screens for thyroid issues, anemia, diabetes risk and kidney function." },
       { icon: "FileCheck", title: "Doctor-ready results", line: "Lab reports your own doctor can use." },
@@ -198,8 +203,8 @@ export const page = {
 
   panel: {
     eyebrow: "What's included",
-    title: `Everything in your ${site.price.display} panel`,
-    sub: `50+ lab measurements across ${labCategoryCount} categories, all from one blood draw.`,
+    title: `Everything in your ${site.price.display} Texas blood test`,
+    sub: `50+ lab measurements across ${labCategoryCount} categories, all from one blood draw at a Texas fair.`,
     categories: panelCategories,
     priceCard: {
       label: "Complete panel",
@@ -212,8 +217,8 @@ export const page = {
 
   locations: {
     eyebrow: "Texas locations",
-    title: "Get tested at a Texas health fair",
-    sub: "Fairs run 8:00 to 10:00 AM, so you can test while fasting and still make it to work. Walk-ins welcome.",
+    title: "Blood testing appointments in Texas",
+    sub: "Book a morning slot at a Texas health fair. Fairs run 8:00 to 10:00 AM, so you can test while fasting and still make it to work. Walk-ins welcome.",
     fairs: texasFairs,
     hours: fairHours,
     noFair: {
@@ -227,57 +232,58 @@ export const page = {
     },
   },
 
+  // Links to Texas fair cities only, with the towns near each.
+  cities: {
+    eyebrow: "Texas cities",
+    title: "Blood testing near Plano and other Texas cities",
+    sub: "Healiam tests in two North Texas cities. Open yours for the venue, parking and the next date.",
+    linkLead: "Blood testing in",
+    nearLabel: "Also close to:",
+    items: stateCityLinks("TX"),
+  },
+
+  app: {
+    eyebrow: "The Healiam app",
+    title: "Your Texas blood test results, in the Healiam app",
+    sub: "Free on iPhone and Android. Scan a code to install it before your Texas fair.",
+    points: [
+      "Every Texas result shown against its range.",
+      "Book your next Texas fair in a few taps.",
+      "Download a PDF to share with your doctor.",
+    ],
+    scanNote: home.app.scanNote,
+    stores: home.app.stores,
+  },
+
+  // Six questions: three about blood testing in Texas, three about Healiam (client, 1 Nov 2026).
   faq: {
     eyebrow: "FAQ",
-    title: "Questions about your Texas blood test",
+    title: "Blood testing in Texas: your questions",
+    sub: "Three questions about blood tests in Texas, and three about Healiam.",
     items: [
       {
-        q: "How much does a blood test in Texas cost with Healiam?",
-        a: `${site.price.display} for the full panel of 50+ markers, at any Texas health fair. There are no visit fees or surprise lab bills.`,
+        q: "Where can I get blood testing in Texas?",
+        a: `At Healiam's health fairs in ${texasCities}, North Texas. Each runs ${fairHours.label}. Check the fairs page for the latest Texas dates, and tell us if you need one closer to you.`,
       },
       {
-        q: "Do I need a doctor's referral?",
-        a: "No. You book the test yourself online. No doctor's order or prescription is needed.",
+        q: "How much do blood tests in Texas cost with Healiam?",
+        a: `${site.price.display} for the full panel of 50+ markers at any Texas fair. There are no visit fees, no copays and no surprise lab bills.`,
       },
       {
-        q: "Do you accept insurance?",
-        a: "No. We accept regular credit cards and HSA cards. For many people the panel costs less than an insurance copay on a hospital panel.",
+        q: "How do I book a blood testing appointment in Texas?",
+        a: "Book online or in the Healiam app with a free account, pick a Texas fair and a time, and pay by card or HSA card. No doctor's referral is needed, and walk-ins are welcome.",
       },
       {
-        q: "What does the panel test for?",
-        a: "50+ measurements across CBC, thyroid (TSH, Free T4, Total T3), lipids, diabetes (glucose and HbA1c), kidney, liver, electrolytes, iron, pancreas, Vitamin D, LDH and carbon dioxide.",
+        q: "What is Healiam?",
+        a: "Healiam runs morning health fairs where a licensed phlebotomist draws two vials for a 50+ marker preventive panel. Results arrive in the Healiam app in 4 to 5 business days.",
       },
       {
-        q: "Can my doctor use these results?",
-        a: "Yes. Our partner labs are CLIA certified, so your doctor can use the results. You can download your report as a PDF to share.",
+        q: "Which labs test samples from Healiam's Texas fairs?",
+        a: "Healiam's partner labs, Rocky Mountain Labs and Bhoomi Ventures. Both are CLIA certified and use FDA-approved equipment, so your doctor can use the results.",
       },
       {
-        q: "Which labs process my sample?",
-        a: "Samples go to Rocky Mountain Labs and Bhoomi Ventures. Both are CLIA certified and use FDA-approved equipment.",
-      },
-      {
-        q: "Do I need to fast before the test?",
-        a: "Yes, for 8 to 12 hours. Water is fine, but skip coffee, tea, juice and gum. Drink plenty of water and avoid hard exercise for 24 hours before.",
-      },
-      {
-        q: "How long do results take?",
-        a: "Results are ready in 4 to 5 business days. You see them in the Healiam app with ranges and graphs for each marker.",
-      },
-      {
-        q: "Where can I get tested in Texas?",
-        a: `At our ${texasCities} health fair. Check the fairs page for the latest dates, and tell us if you need one closer to you.`,
-      },
-      {
-        q: "How long does the blood draw take?",
-        a: "Two vials, usually less than seven minutes. A licensed phlebotomist does the draw in a private setting.",
-      },
-      {
-        q: "Is my health data private?",
-        a: "Yes. We and our partner labs follow HIPAA standards, and your data is protected in transit and at rest. We do not share your information or results with any third party.",
-      },
-      {
-        q: "What should I bring to the fair?",
-        a: "Your phone with the Healiam app installed and a credit card or HSA card. No insurance card is needed.",
+        q: "Does Healiam keep my Texas test results private?",
+        a: "Yes. Healiam and its partner labs follow HIPAA standards, and your results are never shared with an employer or any third party.",
       },
     ],
     help: {
@@ -289,7 +295,7 @@ export const page = {
 
   finalCta: {
     title: `Book your ${site.price.display} blood test in Texas`,
-    sub: "Pick a fair, fast overnight, and see your results in the app within 4 to 5 business days.",
+    sub: "Pick a Texas fair, fast overnight, and see your results in the app within 4 to 5 business days.",
     primary: { label: `Book for ${site.price.display}`, href: site.bookingUrl },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

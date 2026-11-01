@@ -8,7 +8,7 @@ const getTested = [
   { label: "Health fairs", href: site.links.fairs },
   { label: "What's tested", href: site.links.tests },
   { label: "See a sample report", href: site.links.sampleReport },
-  { label: "Blood test in Texas", href: "/texas/blood-testing" },
+  { label: "Blood testing in Texas", href: "/texas/blood-testing" },
 ];
 
 const company = [

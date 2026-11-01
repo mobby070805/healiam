@@ -20,6 +20,8 @@ export type Fair = {
   readonly intro: string;
   readonly parking: string;
   readonly venueNote: string;
+  /** Towns near the venue, closest first, from the Healiam_Fair_City_Pages sheet (within 10 km). */
+  readonly nearbyTowns?: readonly string[];
 };
 
 /** Google Maps search link for a fair's address. */
@@ -52,6 +54,7 @@ export const fairs: readonly Fair[] = [
       "Free surface parking in front of the building. Look for suite 270A on the upper level. ADA-accessible spots are nearest the main doors.",
     venueNote:
       "Our Plano fair is in the Coit Crossing professional plaza on the second floor. Draws are done by licensed phlebotomists in a private setting, and results reach your Healiam portal within 4 to 5 business days.",
+    nearbyTowns: ["Frisco", "Far North Dallas", "Allen"],
   },
   {
     slug: "arlington-tx",
@@ -92,6 +95,7 @@ export const fairs: readonly Fair[] = [
       "Free street parking along Irving St, with a public lot one block east. It is a short walk from the Rahway NJ Transit station, and the entrance is ADA-accessible at street level.",
     venueNote:
       "Our Rahway fair is a street-level location on Irving Street, minutes from the train station. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+    nearbyTowns: ["Linden", "Clark", "Carteret", "Roselle", "Woodbridge", "Cranford", "Garwood", "Roselle Park"],
   },
   {
     slug: "denver-co",
@@ -111,6 +115,7 @@ export const fairs: readonly Fair[] = [
       "Free parking in the lot adjacent to the building. ADA-accessible parking sits nearest the main entrance.",
     venueNote:
       "Our Denver fair is on Irving Street in the Berkeley neighborhood. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+    nearbyTowns: ["Edgewater", "Wheat Ridge", "Arvada", "Westminster", "Lakewood", "Commerce City", "Federal Heights"],
   },
   {
     slug: "centennial-co",
@@ -150,8 +155,22 @@ export const fairs: readonly Fair[] = [
       "Free parking on site. ADA-accessible parking sits nearest the entrance.",
     venueNote:
       "Our Lawrenceville fair is on Longleaf Blvd in the heart of Gwinnett County. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+    nearbyTowns: ["Grayson", "Snellville"],
   },
 ];
+
+/** A state's fair cities for the same-state links section on its state page. */
+export function stateCityLinks(region: string) {
+  return fairs
+    .filter((f) => f.region === region)
+    .map((f) => ({
+      city: f.city.replace(/,\s*[A-Z]{2}$/, ""),
+      href: f.detailsUrl,
+      dateLabel: f.dateLabel.replace(/,\s*\d{4}$/, ""),
+      place: [f.venue, f.locality].filter(Boolean).join(", "),
+      near: f.nearbyTowns ?? [],
+    }));
+}
 
 /** "Texas, New Jersey, Colorado and Georgia" style list of states with an upcoming fair. */
 export function fairStatesList(list: readonly Fair[] = fairs): string {

@@ -11,7 +11,7 @@ export function Process({ process = page.process }: { process?: StateLandingPage
   return (
     <section id="how-it-works" className="section bg-white" aria-labelledby="process-title">
       <div className="shell">
-        <SectionHeading id="process-title" eyebrow={process.eyebrow} title={process.title} />
+        <SectionHeading id="process-title" eyebrow={process.eyebrow} title={process.title} sub={process.sub} />
         <div className="card mx-auto max-w-4xl overflow-hidden !bg-mist">
           <div className="relative px-5 py-6 sm:px-10 sm:pb-10 sm:pt-11">
             <span

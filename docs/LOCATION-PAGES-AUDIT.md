@@ -324,3 +324,25 @@ sample must be a marker whose values fall. Colorado's rising Vitamin D trend was
 1.8 to match.
 
 **Still open:** venue name for 755 Longleaf Blvd; no Georgia date after Nov 21 is known.
+
+## Client feedback applied to all four state pages (1 Nov 2026)
+
+Client's notes on the Texas page, applied to Texas, Colorado, New Jersey and Georgia:
+
+1. **Keywords.** Each page now targets the SEO sheet's keywords: primary "blood testing in <State>" in the
+   title, meta description, hero sub and several H2s; secondary "blood tests in <State>", "blood testing
+   appointments <State>" and "blood testing near <city>" in H2s, descriptions and FAQs. Texas had been
+   targeting "Blood test in Texas"; its title is now "Blood Testing in Texas for $95 | 50+ Markers | Healiam".
+2. **App Store and Google Play QR section.** The home page's `AppDownload` section, reused with state copy
+   (`app` in each page file). QR codes show on tablet and desktop; phones get the store badges.
+3. **FAQs: six per page**, three about blood testing in the state and three about Healiam, each worded for
+   that state so no question repeats across pages.
+4. **Same-state city links.** New `CityLinks` section ("Blood testing near Plano and other Texas cities"),
+   linking only to that state's fair city pages, each with the nearby towns from the fair-city sheet
+   (`nearbyTowns` in `lib/fairs.ts`).
+5. **H2s and the line under each** (client's chat: "Why Choose Healiam at Texas" style): every H2 and its
+   description names the state, written as "in Texas". Checked: 10 H2s per page, all with the state, and no
+   H2 or description repeated across the four pages. Process, Benefits and FAQ gained a description line.
+
+New section order: ... Panel > Locations > City links > App > FAQ > Final CTA. Build passes (25 pages,
+163 kB first load).

@@ -5,7 +5,8 @@
 // Dates, venues and parking come from lib/fairs.ts. See docs/LOCATION-PAGES-AUDIT.md.
 
 import { site } from "@/lib/site";
-import { fairs, fairHours } from "@/lib/fairs";
+import { fairs, fairHours, stateCityLinks } from "@/lib/fairs";
+import { home } from "@/lib/pages/home";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
@@ -23,10 +24,12 @@ const shortDates = coloradoFairs.map((f) => `${f.locality} ${f.dateLabel.replace
 
 export const colorado = {
   path: "/colorado/blood-testing",
+  // Client's SEO sheet: primary "blood testing in Colorado"; secondary "blood tests in Colorado",
+  // "blood testing appointments Colorado", "blood testing near Denver".
   keyword: "blood testing in Colorado",
   meta: {
-    title: "Blood Testing in Colorado: Dates & Booking | Healiam",
-    description: `Where Healiam offers blood testing in Colorado: scheduled Denver-metro mornings, a ${price} panel with ${labMeasurementCount} lab measurements, and how to book.`,
+    title: `Blood Testing in Colorado for ${price} | Denver Metro | Healiam`,
+    description: `Blood testing in Colorado for ${price} at Healiam fairs near Denver and in Centennial. Book online: ${labMeasurementCount} lab measurements, no referral or insurance.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -89,8 +92,8 @@ export const colorado = {
   // Texas uses this section for pain points; Colorado uses it for the before-you-go checklist.
   challenges: {
     eyebrow: "Before you go",
-    title: "The night before and the morning of",
-    sub: "Six things that make a Colorado testing morning go smoothly.",
+    title: "Before your Colorado blood test",
+    sub: "Six things that make a blood testing morning in Colorado go smoothly, from the night before to the draw.",
     items: [
       "Stop eating 8 to 12 hours before your draw",
       "Water is fine; skip coffee, juice and gum",
@@ -107,8 +110,8 @@ export const colorado = {
 
   comparison: {
     eyebrow: "Compare",
-    title: "Healiam or the clinic route",
-    sub: "Six ways a Healiam testing morning in Colorado differs from going through a clinic.",
+    title: "Why choose Healiam in Colorado",
+    sub: "Six ways a Healiam testing morning in Colorado differs from getting blood tests through a clinic.",
     usualLabel: "Clinic route",
     oursLabel: "Healiam",
     badge: "CLIA-certified",
@@ -174,6 +177,7 @@ export const colorado = {
   process: {
     eyebrow: "Booking",
     title: "Book a Colorado blood test in four steps",
+    sub: "Blood testing appointments in Colorado take a few minutes, online or in the Healiam app.",
     steps: [
       { title: "Create an account", sub: "In the app or online" },
       { title: "Add who's tested", sub: "You or your family" },
@@ -189,7 +193,8 @@ export const colorado = {
 
   benefits: {
     eyebrow: "After your draw",
-    title: "Your numbers, 4 to 5 business days later",
+    title: "Your Colorado results, 4 to 5 business days later",
+    sub: "What arrives after a draw in Colorado, including a note on reading results at altitude.",
     items: [
       { icon: "Smartphone", title: "Results in the app", line: "Each marker shown against its reference range." },
       { icon: "FileDown", title: "A PDF for your doctor", line: "Download the report and share it in one tap." },
@@ -208,7 +213,7 @@ export const colorado = {
 
   panel: {
     eyebrow: "The panel",
-    title: `One draw, ${labMeasurementCount} lab measurements`,
+    title: `One Colorado draw, ${labMeasurementCount} lab measurements`,
     sub: `The same panel runs at every Colorado date: ${labMeasurementCount} lab measurements across ${labCategoryCount} categories, plus biometrics you log yourself.`,
     categories: panelCategories,
     priceCard: {
@@ -222,7 +227,7 @@ export const colorado = {
 
   locations: {
     eyebrow: "Current Colorado dates",
-    title: "Blood testing near Denver, on two mornings",
+    title: "Blood testing appointments in Colorado, on two mornings",
     sub: `Denver suits the north and west suburbs, Centennial the south metro, and the two are ${daysApart} days apart. These are the only Colorado dates on the schedule right now.`,
     fairs: coloradoFairs,
     hours: fairHours,
@@ -237,45 +242,58 @@ export const colorado = {
     },
   },
 
+  // Links to Colorado fair cities only, with the towns near each.
+  cities: {
+    eyebrow: "Colorado cities",
+    title: "Blood testing near Denver and other Colorado cities",
+    sub: "Healiam tests in two Denver-metro cities in Colorado. Open yours for the venue, parking and date.",
+    linkLead: "Blood testing in",
+    nearLabel: "Also close to:",
+    items: stateCityLinks("CO"),
+  },
+
+  app: {
+    eyebrow: "The Healiam app",
+    title: "Your Colorado blood test results, in the Healiam app",
+    sub: "Free on iPhone and Android. Install it before your Colorado testing morning.",
+    points: [
+      "Every Colorado result, each against its range.",
+      "A trend for each marker when you retest.",
+      "Book the next Colorado date from your phone.",
+    ],
+    scanNote: home.app.scanNote,
+    stores: home.app.stores,
+  },
+
+  // Six questions: three about blood testing in Colorado, three about Healiam (client, 1 Nov 2026).
   faq: {
     eyebrow: "Colorado questions",
     title: "Blood testing in Colorado, answered",
+    sub: "Three questions about blood tests in Colorado, and three about Healiam.",
     items: [
       {
         q: "Can I get blood tests in Colorado outside the Denver metro?",
         a: "Not at the moment. Healiam's current Colorado dates are in Denver and Centennial. Send us your town and we will let you know if a date is planned nearby.",
       },
       {
-        q: "Is the price the same in Colorado?",
-        a: `Yes, ${price} for the full panel of ${labMeasurementCount} lab measurements, with no separate visit fee.`,
+        q: "How do I book a blood testing appointment in Colorado?",
+        a: `Book online or in the Healiam app with a free account, choose Denver or Centennial, and pay ${price} by card or HSA card. You can also walk in during the ${fairHours.label} window, Mountain Time.`,
       },
       {
-        q: "Do I need an appointment, or can I walk in?",
-        a: `You can book a time online, which needs a free Healiam account. You can also walk in during the ${fairHours.label} window; booking just means less waiting.`,
-      },
-      {
-        q: "Which date should I choose if I live in Arvada, Lakewood or Westminster?",
-        a: "Usually Denver. Edgewater, Wheat Ridge, Arvada, Westminster, Lakewood, Federal Heights and Commerce City are all within about 6 miles of the Irving Street venue in a straight line. In the south metro, compare the drive to Centennial.",
-      },
-      {
-        q: "What time zone are the hours in?",
-        a: `Mountain Time. Both dates run ${fairHours.label}, so plan your fast from the night before.`,
-      },
-      {
-        q: "Does living at altitude change my results?",
+        q: "Does living at altitude in Colorado change my results?",
         a: "It can. People who live at higher elevations tend to have higher hemoglobin and hematocrit, because the body makes more red blood cells when there is less oxygen. Mention where you live when you review those two markers with your doctor.",
       },
       {
-        q: "Can I use my HSA card in Colorado?",
-        a: "Yes. Pay with an HSA card or any regular credit card. Insurance is not used, so there is no claim to file.",
+        q: "What is Healiam, and how does it work in Colorado?",
+        a: `Healiam runs scheduled morning health fairs. At each Colorado date a licensed phlebotomist draws two vials, and all ${labMeasurementCount} lab results reach the Healiam app 4 to 5 business days later.`,
       },
       {
-        q: "What happens when these dates pass?",
-        a: "New dates appear on the fairs page when they are scheduled. If none is listed for Colorado, request one for your area.",
+        q: "Can my Colorado doctor use Healiam results?",
+        a: "Yes. Healiam's partner labs are CLIA certified, and you can download the full report as a PDF to share with any doctor.",
       },
       {
-        q: "Is the Sunday date in Centennial any different?",
-        a: "No. Same panel, same price, same licensed phlebotomists. Only the day and place change.",
+        q: "Does Healiam take HSA cards in Colorado?",
+        a: "Yes. Pay with an HSA card or any regular credit card. Healiam does not bill insurance, so there is no claim to file.",
       },
     ],
     help: {
@@ -287,7 +305,7 @@ export const colorado = {
 
   finalCta: {
     title: "Book your Colorado testing morning",
-    sub: `Pick Denver or Centennial, fast overnight, and see all ${labMeasurementCount} lab results in the app 4 to 5 business days later.`,
+    sub: `Pick Denver or Centennial, Colorado, fast overnight, and see all ${labMeasurementCount} lab results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

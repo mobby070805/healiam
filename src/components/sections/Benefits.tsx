@@ -10,7 +10,7 @@ export function Benefits({ benefits = page.benefits }: { benefits?: StateLanding
   return (
     <section id="benefits" className="section bg-mist" aria-labelledby="benefits-title">
       <div className="shell">
-        <SectionHeading id="benefits-title" eyebrow={benefits.eyebrow} title={benefits.title} />
+        <SectionHeading id="benefits-title" eyebrow={benefits.eyebrow} title={benefits.title} sub={benefits.sub} />
         <Reveal>
           <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {benefits.items.map((item) => (
