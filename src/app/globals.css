@@ -86,8 +86,9 @@
   .icon-tile {
     @apply grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-ink/[0.08] bg-mist text-ink sm:h-12 sm:w-12 sm:rounded-2xl;
   }
+  /* 36px tall on phones so a standalone text link is easy to tap; desktop keeps the text height. */
   .btn-link {
-    @apply inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink underline decoration-ink/20 underline-offset-4 transition-colors duration-150 hover:decoration-ink sm:text-[15px];
+    @apply inline-flex min-h-[36px] items-center gap-1.5 text-[14px] sm:min-h-0 font-semibold text-ink underline decoration-ink/20 underline-offset-4 transition-colors duration-150 hover:decoration-ink sm:text-[15px];
   }
   .chip {
     @apply inline-flex items-center rounded-full border border-ink/10 bg-mist px-2.5 py-1 text-[12px] font-medium text-ink-soft sm:text-[13px];

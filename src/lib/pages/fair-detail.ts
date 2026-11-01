@@ -3,7 +3,7 @@
 
 import { site } from "@/lib/site";
 import { fairHours, type Fair } from "@/lib/fairs";
-import { labMeasurementCount } from "@/lib/panel";
+import { labCategoryCount, labMeasurementCount } from "@/lib/panel";
 
 const price = site.price.display;
 
@@ -59,7 +59,7 @@ export const fairDetail = {
       "An empty stomach: fast 8 to 12 hours, water is fine",
     ],
     panelLabel: "What's measured",
-    panelLine: `${labMeasurementCount} measurements from two vials, across ${"11"} categories.`,
+    panelLine: `${labMeasurementCount} lab measurements from two vials, across ${labCategoryCount} categories, plus biometrics you log in the app.`,
     panelCta: { label: "See every marker", href: site.links.tests },
   },
 

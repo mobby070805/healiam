@@ -1,12 +1,11 @@
 import { Scale } from "lucide-react";
 import { site } from "@/lib/site";
-import { page } from "@/lib/pages/texas-blood-test";
+import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LucideByName } from "@/components/LucideByName";
 import { PanelCategory } from "@/components/sections/PanelCategory";
 
-export function Panel() {
-  const { panel } = page;
+export function Panel({ panel = page.panel }: { panel?: StateLandingPage["panel"] }) {
   const { priceCard } = panel;
   return (
     <section id="panel" className="section bg-white" aria-labelledby="panel-title">

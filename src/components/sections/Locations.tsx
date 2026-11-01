@@ -1,10 +1,9 @@
 import { ArrowRight, ArrowUpRight, CalendarDays, CalendarPlus, Clock, MapPin } from "lucide-react";
-import { page } from "@/lib/pages/texas-blood-test";
+import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionCta } from "@/components/SectionCta";
 
-export function Locations() {
-  const { locations } = page;
+export function Locations({ locations = page.locations }: { locations?: StateLandingPage["locations"] }) {
   // Works for any number of fairs: with an odd count the request card fills the last half row on phones.
   const odd = locations.fairs.length % 2 === 1;
   const lgCols = locations.fairs.length + 1 >= 3 ? "max-w-5xl lg:grid-cols-3" : "max-w-3xl";

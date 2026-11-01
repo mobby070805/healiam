@@ -1,4 +1,4 @@
-import { page } from "@/lib/pages/texas-blood-test";
+import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionCta } from "@/components/SectionCta";
 import { LucideByName } from "@/components/LucideByName";
@@ -6,8 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { NoBreak } from "@/components/NoBreak";
 
 // Two rows of four on desktop, two per row on phones. Icon + title (+ one line on desktop).
-export function Benefits() {
-  const { benefits } = page;
+export function Benefits({ benefits = page.benefits }: { benefits?: StateLandingPage["benefits"] }) {
   return (
     <section id="benefits" className="section bg-mist" aria-labelledby="benefits-title">
       <div className="shell">

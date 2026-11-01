@@ -125,3 +125,6 @@ export const panelCategories: readonly PanelCategory[] = [
 export const labMeasurementCount = panelCategories
   .filter((c) => !c.selfLogged)
   .reduce((n, c) => n + c.markers.length, 0);
+
+/** Categories the lab measures (10). Biometrics are logged in the app, so they are not counted. */
+export const labCategoryCount = panelCategories.filter((c) => !c.selfLogged).length;

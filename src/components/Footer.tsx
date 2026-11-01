@@ -33,15 +33,15 @@ export function Footer() {
         <div className="col-span-2 lg:col-span-1">
           <Logo />
           <p className="mt-3 text-[14px] text-ink-muted">{site.tagline}</p>
-          <ul className="mt-4 space-y-2 text-[14px] text-ink-soft">
+          <ul className="mt-3 text-[14px] text-ink-soft sm:mt-4 sm:space-y-2">
             <li>
-              <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-ink">
+              <a href={site.phoneHref} className="inline-flex min-h-[36px] items-center gap-2 hover:text-ink sm:min-h-0">
                 <Phone className="h-4 w-4" strokeWidth={1.7} aria-hidden="true" />
                 {site.phone}
               </a>
             </li>
             <li>
-              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-ink">
+              <a href={`mailto:${site.email}`} className="inline-flex min-h-[36px] items-center gap-2 hover:text-ink sm:min-h-0">
                 <Mail className="h-4 w-4" strokeWidth={1.7} aria-hidden="true" />
                 {site.email}
               </a>
@@ -82,31 +82,32 @@ export function Footer() {
 
       <nav aria-label="Fairs by city" className="shell mt-9 border-t border-ink/[0.07] pt-6">
         <p className="font-display text-[14px] font-bold text-ink">Fairs by city</p>
-        <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[14px] text-ink-soft">
+        <ul className="mt-2 flex flex-wrap gap-x-5 text-[14px] text-ink-soft sm:mt-3 sm:gap-y-2">
           {fairs.map((fair) => (
             <li key={fair.slug}>
-              <a href={fair.detailsUrl} className="hover:text-ink">
+              <a href={fair.detailsUrl} className="inline-flex min-h-[36px] items-center hover:text-ink sm:min-h-0">
                 {fair.city}
               </a>
             </li>
           ))}
           <li>
-            <a href={site.links.fairs} className="font-semibold text-ink hover:text-ink-soft">
+            <a href={site.links.fairs} className="inline-flex min-h-[36px] items-center font-semibold text-ink hover:text-ink-soft sm:min-h-0">
               All fairs
             </a>
           </li>
         </ul>
       </nav>
 
-      <div className="shell mt-8 flex flex-col gap-3 border-t border-ink/[0.07] pt-6 text-[13px] text-ink-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="shell mt-8 flex flex-col gap-1 border-t border-ink/[0.07] pt-6 text-[13px] text-ink-muted sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {new Date().getFullYear()} {site.name}. All rights reserved.
         </p>
+        {/* Phones: 36px tap height on every footer link; the text size and look are unchanged. */}
         <div className="flex gap-5">
-          <a href={site.links.terms} className="hover:text-ink">
+          <a href={site.links.terms} className="inline-flex min-h-[36px] items-center hover:text-ink sm:min-h-0">
             Terms &amp; Conditions
           </a>
-          <a href={site.links.privacy} className="hover:text-ink">
+          <a href={site.links.privacy} className="inline-flex min-h-[36px] items-center hover:text-ink sm:min-h-0">
             Privacy Policy
           </a>
         </div>
@@ -119,10 +120,10 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
   return (
     <nav aria-label={title}>
       <p className="font-display text-[14px] font-bold text-ink">{title}</p>
-      <ul className="mt-3 space-y-2 text-[14px] text-ink-soft">
+      <ul className="mt-2 text-[14px] text-ink-soft sm:mt-3 sm:space-y-2">
         {links.map((l) => (
           <li key={l.label}>
-            <a href={l.href} className="hover:text-ink">
+            <a href={l.href} className="inline-flex min-h-[36px] items-center hover:text-ink sm:min-h-0">
               {l.label}
             </a>
           </li>

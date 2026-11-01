@@ -1,9 +1,16 @@
 import { Check } from "lucide-react";
-import { page } from "@/lib/pages/texas-blood-test";
+import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { HeroVisual } from "@/components/sections/HeroVisual";
 
-export function Hero() {
-  const { hero, breadcrumb } = page;
+export function Hero({
+  hero = page.hero,
+  breadcrumb = page.breadcrumb,
+  heroVisual = page.heroVisual,
+}: {
+  hero?: StateLandingPage["hero"];
+  breadcrumb?: StateLandingPage["breadcrumb"];
+  heroVisual?: StateLandingPage["heroVisual"];
+}) {
   return (
     <section id="hero" className="relative overflow-hidden bg-white">
       <div className="grid-backdrop pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -53,7 +60,7 @@ export function Hero() {
           </ul>
         </div>
 
-        <HeroVisual data={page.heroVisual} />
+        <HeroVisual data={heroVisual} />
       </div>
     </section>
   );

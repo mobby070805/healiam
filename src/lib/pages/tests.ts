@@ -2,7 +2,7 @@
 // House style: US English, no em or en dashes, no invented numbers.
 
 import { site } from "@/lib/site";
-import { panelCategories, labMeasurementCount } from "@/lib/panel";
+import { labCategoryCount, labMeasurementCount } from "@/lib/panel";
 
 const price = site.price.display;
 const book = site.bookingUrl;
@@ -43,7 +43,7 @@ export const tests = {
     sub: "A clear breakdown of categories and measurements.",
     stats: [
       { value: `${labMeasurementCount}`, label: "measurements" },
-      { value: `${panelCategories.length}`, label: "categories" },
+      { value: `${labCategoryCount}`, label: "lab categories" },
       { value: "1", label: "simple panel" },
     ],
     browseLabel: "Browse a category",

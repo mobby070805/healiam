@@ -2,9 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
-import { BadgeCheck, CircleDollarSign, CreditCard, Layers, MapPin, Stethoscope, Timer, type LucideIcon } from "lucide-react";
+import {
+  BadgeCheck,
+  CalendarDays,
+  ChartLine,
+  CircleDollarSign,
+  CreditCard,
+  Layers,
+  MapPin,
+  Stethoscope,
+  Timer,
+  type LucideIcon,
+} from "lucide-react";
 import { site } from "@/lib/site";
-import { page } from "@/lib/pages/texas-blood-test";
+import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 
 // Explicit imports keep the client bundle small (no full icon map).
@@ -15,6 +26,8 @@ const factorIcons: Record<string, LucideIcon> = {
   Layers,
   Timer,
   MapPin,
+  CalendarDays,
+  ChartLine,
 };
 
 const AUTO_MS = 2500;
@@ -22,8 +35,7 @@ const PAUSE_MS = 6000;
 
 // Fixed layout: factor tabs on the left, two panels with animated bars,
 // badge top-right of "ours", one centred CTA whose label changes per factor.
-export function Comparison() {
-  const { comparison } = page;
+export function Comparison({ comparison = page.comparison }: { comparison?: StateLandingPage["comparison"] }) {
   const factors = comparison.factors;
   const [active, setActive] = useState(0);
   const factor = factors[active];

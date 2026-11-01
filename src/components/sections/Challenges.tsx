@@ -1,12 +1,11 @@
-import { page } from "@/lib/pages/texas-blood-test";
+import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionCta } from "@/components/SectionCta";
 import { Reveal } from "@/components/Reveal";
 import { NoBreak } from "@/components/NoBreak";
 
 // Fixed layout: number + dark title only. 2 per row on phones, 3 on desktop.
-export function Challenges() {
-  const { challenges } = page;
+export function Challenges({ challenges = page.challenges }: { challenges?: StateLandingPage["challenges"] }) {
   return (
     <section className="section bg-white" aria-labelledby="challenges-title">
       <div className="shell">

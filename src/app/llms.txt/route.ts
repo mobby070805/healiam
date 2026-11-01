@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 import { fairs, fairHours, fairStatesList } from "@/lib/fairs";
-import { panelCategories, labMeasurementCount } from "@/lib/panel";
+import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import { home } from "@/lib/pages/home";
 import { tests } from "@/lib/pages/tests";
 import { fairsPage } from "@/lib/pages/fairs";
@@ -9,12 +9,13 @@ import { demo } from "@/lib/pages/demo";
 import { employer } from "@/lib/pages/employer";
 import { contact } from "@/lib/pages/contact";
 import { page as texas } from "@/lib/pages/texas-blood-test";
+import { colorado } from "@/lib/pages/colorado-blood-testing";
 
 export const dynamic = "force-static";
 
 // /llms.txt, per llmstxt.org: a plain summary of the site for language models.
 // Generated from the same data files as the pages, so it cannot drift from them.
-const pages = [home, tests, fairsPage, demo, employer, about, contact, texas];
+const pages = [home, tests, fairsPage, demo, employer, about, contact, texas, colorado];
 
 function line(path: string, title: string, description: string) {
   return `- [${title}](${site.url}${path}): ${description}`;
@@ -47,7 +48,7 @@ ${fairs
 
 ## What the panel measures
 
-${labMeasurementCount} lab measurements across ${panelCategories.length} categories, from a single draw:
+${labMeasurementCount} lab measurements across ${labCategoryCount} lab categories, plus biometrics logged in the app, from a single draw:
 
 ${panelCategories
   .map((cat) => `- ${cat.name}${cat.selfLogged ? " (logged by the customer in the app, not measured by the lab)" : ""}: ${cat.markers.join(", ")}.`)

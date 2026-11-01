@@ -130,7 +130,7 @@ export const fairs: readonly Fair[] = [
     parking:
       "Free parking in the lot in front of the building. ADA-accessible parking sits nearest the entrance.",
     venueNote:
-      "Our Centennial fair is on South Eagle Street near the Streets of SouthGlenn. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+      "Our Centennial fair is at the Centennial Public Works building on South Eagle Street. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
   },
   {
     slug: "lawrenceville-ga",

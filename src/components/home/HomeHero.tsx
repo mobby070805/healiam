@@ -38,7 +38,7 @@ export function HomeHero() {
 
           <a
             href={hero.watch.href}
-            className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-white/85 transition-colors duration-150 hover:text-white sm:mt-8 sm:text-[15px]"
+            className="mt-3.5 inline-flex min-h-[36px] items-center gap-2 text-[14px] font-semibold text-white/85 transition-colors duration-150 hover:text-white sm:mt-8 sm:min-h-0 sm:text-[15px]"
           >
             <CirclePlay className="h-[18px] w-[18px]" strokeWidth={1.6} aria-hidden="true" />
             {hero.watch.label}

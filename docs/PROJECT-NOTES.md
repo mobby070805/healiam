@@ -11,6 +11,7 @@ Next.js 15 (App Router) + TypeScript + Tailwind 3 site for healiam.com (preventi
 |---|---|
 | `/` | Homepage, built to the homepage SOP |
 | `/texas/blood-test` | Landing page, keyword "Blood Test in Texas" |
+| `/colorado/blood-testing` | Colorado state hub, keyword "blood testing in Colorado". See `docs/LOCATION-PAGES-AUDIT.md` |
 
 ## Run it
 
@@ -220,3 +221,30 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 - **Pushed, not deployed.** The owner authorised publishing to GitHub on 30 Oct 2026, so the code
   lives at `madheshg1813/healiam-site` (private) for client review. Deployment is still not
   authorised: do not deploy until the owner says so.
+
+## Location pages (from 31 Oct 2026)
+
+- **Plan and tracker live in `docs/LOCATION-PAGES-AUDIT.md`.** Sources: the "Healiam SEO URLs" and
+  "Healiam_Fair_City_Pages" Google Sheets. One page per day, each approved before it starts.
+- **No city-name-swap pages.** A location page exists only if it answers a question the others cannot.
+  Nearby-town pages are not being built; towns go into a "closest for" line on the fair city instead.
+- **URL changes deferred (owner, 31 Oct 2026).** `/texas/blood-test` stays as it is for now. The two sheets
+  disagree on the city-page URL scheme; decide before the first city page.
+- **The fair-city sheet's $94.99 prices are stale.** Use `site.price` ($95) everywhere.
+- **Location facts come from `lib/fairs.ts` only,** so a hub page and the `/fairs/<slug>` pages cannot disagree.
+- **State pages use the Texas page's sections (owner, 31 Oct 2026).** The components in
+  `components/sections/` take their content as props and default to Texas. A new state page fills
+  `StateLandingPage` (in `lib/pages/texas-blood-test.ts`) with its own copy; same design, different words.
+
+- **Mobile check, all 15 pages (31 Oct 2026).** At 375px and 430px: no horizontal overflow anywhere, no
+  console errors. Fixed: footer links, `.btn-link` text links and the homepage "See how it works" link were
+  18 to 21px tall on phones; they now get a 36px tap height below `sm` (desktop unchanged). Left as is:
+  the logo (29px tall but 101px wide), the `/tests` jump chips (28px, above the 24px minimum), and the
+  small text inside the illustrated phone mockups.
+- **Copy fixes from that check (31 Oct 2026).** Category count: `labCategoryCount` (10) in `lib/panel.ts`
+  is now the one source; fair pages, /tests ("10 lab categories"), Texas, Colorado and llms.txt all read it,
+  and say biometrics are logged in the app. Previously fair pages and /tests said 11 next to the 56 lab
+  measurements, which mixed two counts. Texas price card now says "Every marker in the panel" (it sits above
+  the list on phones). Centennial venue note no longer says "near the Streets of SouthGlenn"; it now says
+  the fair is at the Centennial Public Works building on South Eagle Street. The live healiam.com page
+  still carries the SouthGlenn line.

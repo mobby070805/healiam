@@ -2,8 +2,9 @@
 // Every fact comes from healiam.com (home, tests, fairs, FAQ and about pages).
 
 import { site } from "@/lib/site";
-import { panelCategories } from "@/lib/panel";
+import { panelCategories, labCategoryCount } from "@/lib/panel";
 import { fairHours, fairs } from "@/lib/fairs";
+import type { Widen } from "@/lib/types";
 
 const texasFairs = fairs.filter((f) => f.region === "TX");
 const texasCities = texasFairs.map((f) => f.locality).join(" and ");
@@ -135,7 +136,7 @@ export const page = {
         icon: "Layers",
         bar: "Markers covered",
         usual: { value: "A few ordered tests", note: "Narrow panels can miss the real cause.", level: 26 },
-        ours: { value: "50+ markers", note: "10 categories from one blood draw.", level: 100 },
+        ours: { value: "50+ markers", note: `${labCategoryCount} categories from one blood draw.`, level: 100 },
         cta: { label: "See all 50+ markers", href: "#panel" },
       },
       {
@@ -197,11 +198,11 @@ export const page = {
   panel: {
     eyebrow: "What's included",
     title: `Everything in your ${site.price.display} panel`,
-    sub: "50+ lab measurements across 10 categories, all from one blood draw.",
+    sub: `50+ lab measurements across ${labCategoryCount} categories, all from one blood draw.`,
     categories: panelCategories,
     priceCard: {
       label: "Complete panel",
-      line: "Every marker above, one draw, one price.",
+      line: "Every marker in the panel, one draw, one price.",
       compare: "Usual route: $100 to $800+ for a visit plus labs",
       fine: "Card or HSA accepted, with or without insurance.",
       cta: { label: `Book for ${site.price.display}`, href: site.bookingUrl },
@@ -300,3 +301,9 @@ export const page = {
 } as const;
 
 export type TexasBloodTestPage = typeof page;
+
+/**
+ * Shape of a state landing page built from the Texas page's sections. Other state pages
+ * (Colorado) fill the same shape with their own copy; the section components default to Texas.
+ */
+export type StateLandingPage = Widen<TexasBloodTestPage>;

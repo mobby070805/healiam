@@ -1,13 +1,12 @@
 import { Droplets } from "lucide-react";
-import { page } from "@/lib/pages/texas-blood-test";
+import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionCta } from "@/components/SectionCta";
 import { NoBreak } from "@/components/NoBreak";
 
 // Phones: vertical stepper, dots down the left joined by a line, text beside each dot.
 // Tablet and up: compact single-view stepper, black numbered dots on one line.
-export function Process() {
-  const { process } = page;
+export function Process({ process = page.process }: { process?: StateLandingPage["process"] }) {
   const last = process.steps.length - 1;
   return (
     <section id="how-it-works" className="section bg-white" aria-labelledby="process-title">

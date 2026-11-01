@@ -10,6 +10,7 @@ import { contact } from "@/lib/pages/contact";
 import { demo } from "@/lib/pages/demo";
 import { fairDetail } from "@/lib/pages/fair-detail";
 import { employer } from "@/lib/pages/employer";
+import { colorado, coloradoFairs } from "@/lib/pages/colorado-blood-testing";
 
 import { fairs as allFairs } from "@/lib/fairs";
 import { panelCategories, labMeasurementCount } from "@/lib/panel";
@@ -416,5 +417,54 @@ export function employerGraph() {
   return {
     "@context": "https://schema.org",
     "@graph": [organization(), website(), webPage, breadcrumbList(url, employer.breadcrumb), service],
+  };
+}
+
+// Colorado page: an availability and booking guide, so the real dated events are the main
+// entity, with the panel as the service. areaServed is the Denver metro, where draws actually
+// happen, not the whole state. No LocalBusiness: Healiam has no permanent Colorado location.
+export function coloradoGraph() {
+  const url = `${site.url}${colorado.path}`;
+
+  const service = {
+    "@type": ["Service", "MedicalTest"],
+    "@id": `${url}#service`,
+    name: "Comprehensive preventive blood panel in Colorado",
+    serviceType: "Preventive blood test panel",
+    description: colorado.meta.description,
+    provider: { "@id": orgId },
+    areaServed: { "@type": "AdministrativeArea", name: "Denver metropolitan area, Colorado" },
+    url,
+    offers: panelOffer(),
+  };
+
+  const dates = {
+    "@type": "ItemList",
+    "@id": `${url}#dates`,
+    name: "Healiam blood testing dates in Colorado",
+    numberOfItems: coloradoFairs.length,
+    itemListElement: coloradoFairs.map((fair, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: { ...fairEvent(fair), url: `${site.url}${fair.detailsUrl}` },
+    })),
+  };
+
+  const webPage = {
+    "@type": "WebPage",
+    "@id": url,
+    url,
+    name: colorado.meta.title,
+    description: colorado.meta.description,
+    isPartOf: { "@id": siteId },
+    about: { "@id": `${url}#service` },
+    mainEntity: { "@id": `${url}#dates` },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+    inLanguage: "en-US",
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [organization(), website(), webPage, breadcrumbList(url, colorado.breadcrumb), service, dates, faqPage(url, colorado.faq.items)],
   };
 }
