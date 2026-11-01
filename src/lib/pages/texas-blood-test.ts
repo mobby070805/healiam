@@ -21,7 +21,7 @@ export const page = {
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "How it works", href: "#how-it-works" },
-    { label: "Locations", href: "#locations" },
+    { label: "Texas fairs", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [

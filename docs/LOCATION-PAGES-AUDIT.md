@@ -162,7 +162,7 @@ this repo as it stands would turn all of those into 404s. Needs a decision befor
 | Denver | TBD | Blocked: recurrence | — | — | — |
 | Rahway | TBD | Blocked: recurrence | — | — | — |
 | Lawrenceville | TBD | Blocked: recurrence | — | — | — |
-| New Jersey hub | — | On hold | — | — | — |
+| New Jersey hub | `/new-jersey/blood-testing` | **Built 1 Nov 2026** (owner asked; Texas design, Rahway content), not deployed | Done | 1024 and 375 checked, no overflow | tsc, build pass (24 pages) |
 | Georgia hub | — | On hold | — | — | — |
 | Nearby-town pages | — | Not building (folded into city pages) | — | — | — |
 
@@ -275,3 +275,29 @@ Texas components in the Texas order. The v3 content was moved into them:
 | Final CTA, sticky bar | Book your Colorado testing morning; both dates |
 
 Rule for every future state page: same Texas components, same order, new copy only.
+
+## Completed: New Jersey page (1 Nov 2026)
+
+`/new-jersey/blood-testing`, keyword "blood testing in New Jersey". Built on the owner's request; the audit had
+it on hold because New Jersey has one fair location, so the page is written around that one location instead
+of implying statewide service. Copy in `src/lib/pages/new-jersey-blood-testing.ts`; schema `newJerseyGraph()`
+(shared `statePageGraph` with Colorado; areaServed "Rahway and Union County, New Jersey"). In the sitemap,
+llms.txt and the header Locations menu.
+
+**Angle:** getting to Rahway Pharmacy, 1421 Irving St, a short walk from the Rahway NJ Transit station; free
+street parking and a public lot one block east; street-level, ADA-accessible entrance (all from
+`lib/fairs.ts`). Nearby towns (Linden, Clark, Carteret, Roselle, Woodbridge, Avenel, Colonia) are within about
+3.5 miles in a straight line, from the fair-city sheet. Eastern Time. Staten Island is left out: booking for
+New York residents is unverified.
+
+**Sections (Texas design):** hero with its own mockup (HDL low, cholesterol, LDL, TSH, glucose trend) >
+trust strip (incl. "Near NJ Transit", "Step-free entrance") > Getting to the Rahway fair (6 cards) > Rahway
+fair or a clinic visit (Getting there, Price, Referral, Coverage, Results, Payment) > From booking to results >
+What one Rahway visit gives you > the panel > Testing in Rahway, Union County > 8 New Jersey FAQs > final CTA.
+
+**Hero mockups now differ on each state page** (same component and design): Texas HbA1c, Colorado iron and
+Vitamin D, New Jersey lipids and glucose. Keep mockup filter chips short; a long one ("Diabetes") is clipped
+on a 375px phone.
+
+**Still open:** no Rahway date after Nov 14 is known; the venue's own name for itself is "Rahway Pharmacy" per
+healiam.com.

@@ -11,6 +11,7 @@ import { demo } from "@/lib/pages/demo";
 import { fairDetail } from "@/lib/pages/fair-detail";
 import { employer } from "@/lib/pages/employer";
 import { colorado, coloradoFairs } from "@/lib/pages/colorado-blood-testing";
+import { newJersey, newJerseyFairs } from "@/lib/pages/new-jersey-blood-testing";
 
 import { fairs as allFairs } from "@/lib/fairs";
 import { panelCategories, labMeasurementCount } from "@/lib/panel";
@@ -420,20 +421,31 @@ export function employerGraph() {
   };
 }
 
-// Colorado page: an availability and booking guide, so the real dated events are the main
-// entity, with the panel as the service. areaServed is the Denver metro, where draws actually
-// happen, not the whole state. No LocalBusiness: Healiam has no permanent Colorado location.
-export function coloradoGraph() {
-  const url = `${site.url}${colorado.path}`;
+// State landing pages (Colorado, New Jersey): the panel as the Service, limited to the area where
+// draws actually happen (never the whole state), plus the state's real dated fairs as Events.
+// No LocalBusiness: Healiam has no permanent location in these states.
+function statePageGraph(
+  data: {
+    readonly path: string;
+    readonly meta: { readonly title: string; readonly description: string };
+    readonly breadcrumb: readonly { readonly name: string; readonly href?: string }[];
+    readonly faq: { readonly items: readonly { readonly q: string; readonly a: string }[] };
+  },
+  stateFairs: readonly Fair[],
+  serviceName: string,
+  areaServed: string,
+  datesName: string,
+) {
+  const url = `${site.url}${data.path}`;
 
   const service = {
     "@type": ["Service", "MedicalTest"],
     "@id": `${url}#service`,
-    name: "Comprehensive preventive blood panel in Colorado",
+    name: serviceName,
     serviceType: "Preventive blood test panel",
-    description: colorado.meta.description,
+    description: data.meta.description,
     provider: { "@id": orgId },
-    areaServed: { "@type": "AdministrativeArea", name: "Denver metropolitan area, Colorado" },
+    areaServed: { "@type": "AdministrativeArea", name: areaServed },
     url,
     offers: panelOffer(),
   };
@@ -441,9 +453,9 @@ export function coloradoGraph() {
   const dates = {
     "@type": "ItemList",
     "@id": `${url}#dates`,
-    name: "Healiam blood testing dates in Colorado",
-    numberOfItems: coloradoFairs.length,
-    itemListElement: coloradoFairs.map((fair, i) => ({
+    name: datesName,
+    numberOfItems: stateFairs.length,
+    itemListElement: stateFairs.map((fair, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: { ...fairEvent(fair), url: `${site.url}${fair.detailsUrl}` },
@@ -454,8 +466,8 @@ export function coloradoGraph() {
     "@type": "WebPage",
     "@id": url,
     url,
-    name: colorado.meta.title,
-    description: colorado.meta.description,
+    name: data.meta.title,
+    description: data.meta.description,
     isPartOf: { "@id": siteId },
     about: { "@id": `${url}#service` },
     mainEntity: { "@id": `${url}#dates` },
@@ -465,6 +477,26 @@ export function coloradoGraph() {
 
   return {
     "@context": "https://schema.org",
-    "@graph": [organization(), website(), webPage, breadcrumbList(url, colorado.breadcrumb), service, dates, faqPage(url, colorado.faq.items)],
+    "@graph": [organization(), website(), webPage, breadcrumbList(url, data.breadcrumb), service, dates, faqPage(url, data.faq.items)],
   };
+}
+
+export function coloradoGraph() {
+  return statePageGraph(
+    colorado,
+    coloradoFairs,
+    "Comprehensive preventive blood panel in Colorado",
+    "Denver metropolitan area, Colorado",
+    "Healiam blood testing dates in Colorado",
+  );
+}
+
+export function newJerseyGraph() {
+  return statePageGraph(
+    newJersey,
+    newJerseyFairs,
+    "Comprehensive preventive blood panel in New Jersey",
+    "Rahway and Union County, New Jersey",
+    "Healiam blood testing dates in New Jersey",
+  );
 }

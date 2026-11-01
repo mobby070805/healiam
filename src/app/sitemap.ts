@@ -12,9 +12,10 @@ import { demo } from "@/lib/pages/demo";
 import { fairs } from "@/lib/fairs";
 import { employer } from "@/lib/pages/employer";
 import { colorado } from "@/lib/pages/colorado-blood-testing";
+import { newJersey } from "@/lib/pages/new-jersey-blood-testing";
 
 // Only live pages. Add new landing pages from their data files here.
-const livePages = [home, tests, fairsPage, about, demo, employer, contact, page, colorado];
+const livePages = [home, tests, fairsPage, about, demo, employer, contact, page, colorado, newJersey];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

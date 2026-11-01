@@ -12,6 +12,7 @@ Next.js 15 (App Router) + TypeScript + Tailwind 3 site for healiam.com (preventi
 | `/` | Homepage, built to the homepage SOP |
 | `/texas/blood-testing` | Landing page, keyword "Blood Test in Texas". Moved from `/texas/blood-test` on 1 Nov 2026 (301) |
 | `/colorado/blood-testing` | Colorado state hub, keyword "blood testing in Colorado". See `docs/LOCATION-PAGES-AUDIT.md` |
+| `/new-jersey/blood-testing` | New Jersey state page, keyword "blood testing in New Jersey" (Rahway). See `docs/LOCATION-PAGES-AUDIT.md` |
 
 ## Run it
 
@@ -248,3 +249,25 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
   the list on phones). Centennial venue note no longer says "near the Streets of SouthGlenn"; it now says
   the fair is at the Centennial Public Works building on South Eagle Street. The live healiam.com page
   still carries the SouthGlenn line.
+
+- **Header Locations menu (owner, 1 Nov 2026).** A "Locations" menu, like a services menu, sits beside
+  Book now on every page and at every width (`components/LocationsMenu.tsx`, data in `lib/locations.ts`).
+  Grouped by state: the state page where one exists (Texas, Colorado), then each fair city with its date,
+  then "All upcoming fairs". Built from `lib/fairs.ts`, so new fairs appear automatically; add a new state
+  page to `statePages` in `lib/locations.ts`. Phones: full-width panel under the one-row header. Closes on
+  Escape (focus returns to the button), outside click and link click. Adds about 1 kB of JS per page.
+  This replaces the 29 Oct "logo and Book now only" header on phones with logo, Locations and Book now.
+- **Header breakpoints changed with it:** page section links now show from lg (1024px), not md, because at
+  768px they wrapped onto two lines once Locations joined; the phone number shows from xl (1280px). The
+  Texas page's "Locations" section link is renamed "Texas fairs" so it does not clash with the menu.
+- **Locations menu, polished (1 Nov 2026).** Three levels: state as a small muted label with a hairline;
+  the state SEO page as a bold link with a green arrow; each fair city as a row with a compact date on the
+  right. A green dot marks a fair whose date is today or later, judged in the visitor's browser after load
+  (never the build date); a past fair shows "Ended" instead of a date. City names drop the ", TX" suffix
+  because the state label already says it. Summary line "N health fairs across N states". State labels are
+  styled text, not headings, so the header never adds headings above a page's H1.
+  Layout: one column on phones (full width under the header), two columns from sm, a 600px card anchored
+  to the button from md (capped at 100vw - 4rem). Open and close: 150ms fade and 4px lift via CSS, no
+  library; closed panel is `inert` and invisible. Keyboard: Arrow Down on the button opens and focuses the
+  first link; Up, Down, Home, End move through links (wrapping); Escape closes and refocuses the button;
+  tabbing out closes. Header is now z-50 so the panel sits above the phone sticky bar (z-40).

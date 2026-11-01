@@ -1,30 +1,36 @@
 import { Phone } from "lucide-react";
 import { site } from "@/lib/site";
 import { Logo } from "@/components/Logo";
+import { LocationsMenu } from "@/components/LocationsMenu";
+import { allFairsLink, locationGroups } from "@/lib/locations";
 import type { NavItem } from "@/lib/types";
 
-// Each page passes its own in-page section links. They show from md up; on phones the header
-// stays a single row (logo and Book now), and the page is read by scrolling.
+// Each page passes its own in-page section links; they show from lg up (at tablet width they wrapped
+// once Locations joined the header). The Locations menu shows at every width beside Book now, so phones
+// and tablets keep a single row (logo, Locations, Book now). The phone number shows from xl up.
 export function Header({ nav }: { nav: readonly NavItem[] }) {
+  // z-50: one above the phone sticky bar (z-40), so an open Locations panel is never covered by it.
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/[0.07] bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-ink/[0.07] bg-white/90 backdrop-blur-md">
       <div className="shell flex h-16 items-center justify-between gap-4">
         <Logo />
-        <nav aria-label="Page sections" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Page sections" className="hidden items-center gap-6 lg:flex xl:gap-7">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-[14px] font-medium text-ink-soft transition-colors duration-150 hover:text-ink"
+              className="whitespace-nowrap text-[14px] font-medium text-ink-soft transition-colors duration-150 hover:text-ink"
             >
               {item.label}
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-5">
+        {/* Locations sits beside Book now at every width, so phones keep a single header row. */}
+        <div className="flex items-center gap-1.5 sm:gap-3 xl:gap-5">
+          <LocationsMenu groups={locationGroups()} allFairs={allFairsLink} />
           <a
             href={site.phoneHref}
-            className="hidden items-center gap-1.5 text-[14px] font-semibold text-ink transition-colors duration-150 hover:text-ink-soft lg:inline-flex"
+            className="hidden items-center gap-1.5 text-[14px] font-semibold text-ink transition-colors duration-150 hover:text-ink-soft xl:inline-flex"
           >
             <Phone className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
             {site.phone}
