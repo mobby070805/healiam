@@ -163,7 +163,7 @@ this repo as it stands would turn all of those into 404s. Needs a decision befor
 | Rahway | TBD | Blocked: recurrence | — | — | — |
 | Lawrenceville | TBD | Blocked: recurrence | — | — | — |
 | New Jersey hub | `/new-jersey/blood-testing` | **Built 1 Nov 2026** (owner asked; Texas design, Rahway content), not deployed | Done | 1024 and 375 checked, no overflow | tsc, build pass (24 pages) |
-| Georgia hub | — | On hold | — | — | — |
+| Georgia hub | `/georgia/blood-testing` | **Built 1 Nov 2026** (owner asked; Texas design, Lawrenceville content), not deployed | Done | Desktop and 375 checked, no overflow | tsc, build pass (25 pages, 160 kB first load) |
 | Nearby-town pages | — | Not building (folded into city pages) | — | — | — |
 
 ## Completed: Colorado page (31 Oct 2026)
@@ -301,3 +301,26 @@ on a 375px phone.
 
 **Still open:** no Rahway date after Nov 14 is known; the venue's own name for itself is "Rahway Pharmacy" per
 healiam.com.
+
+## Completed: Georgia page (1 Nov 2026)
+
+`/georgia/blood-testing`, keyword "blood testing in Georgia". Built on the owner's request, the same way as New
+Jersey: Georgia has one fair location, so the page is written around it. Copy in
+`src/lib/pages/georgia-blood-testing.ts`; schema `georgiaGraph()` (areaServed "Lawrenceville and Gwinnett
+County, Georgia"). In the sitemap, llms.txt and the header Locations menu.
+
+**Angle:** 755 Longleaf Blvd, Lawrenceville, Gwinnett County, Sat Nov 21, 8 to 10 AM Eastern; free parking on
+site with ADA parking nearest the entrance (all from `lib/fairs.ts`; the venue has no published name, so none
+is used). Nearby towns from the fair-city sheet: Grayson 5.9 km and Snellville 8.1 km, written as "within about
+5 miles in a straight line". Dacula (10.8 km) is outside the sheet's 10 km rule and left out.
+
+**Hero mockup:** calcium flagged low, creatinine, ALT, potassium, triglycerides; ALT trend 48 > 34 > 22.
+
+**State page H1s (owner, 1 Nov 2026):** every state page uses the Texas H1, "Your complete blood test in
+<State> for $95", with no city in it. Changed Colorado and New Jersey to match.
+
+**Trend card:** the hero trend line is drawn falling into the green normal band whatever the values, so the
+sample must be a marker whose values fall. Colorado's rising Vitamin D trend was swapped for TSH 4.8 > 3.1 >
+1.8 to match.
+
+**Still open:** venue name for 755 Longleaf Blvd; no Georgia date after Nov 21 is known.

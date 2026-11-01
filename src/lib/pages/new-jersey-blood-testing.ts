@@ -37,8 +37,8 @@ export const newJersey = {
   ],
 
   hero: {
-    titleLead: "Blood testing in New Jersey,",
-    titleAccent: "near Rahway station",
+    titleLead: "Your complete blood test in New Jersey for",
+    titleAccent: price,
     sub: `Healiam's New Jersey testing morning is at Rahway Pharmacy on Irving Street, a short walk from the NJ Transit station. One ${price} panel, two vials, and no doctor's order or insurance card.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "See the Rahway date", href: "#locations" },

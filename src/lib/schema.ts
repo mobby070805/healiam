@@ -12,6 +12,7 @@ import { fairDetail } from "@/lib/pages/fair-detail";
 import { employer } from "@/lib/pages/employer";
 import { colorado, coloradoFairs } from "@/lib/pages/colorado-blood-testing";
 import { newJersey, newJerseyFairs } from "@/lib/pages/new-jersey-blood-testing";
+import { georgia, georgiaFairs } from "@/lib/pages/georgia-blood-testing";
 
 import { fairs as allFairs } from "@/lib/fairs";
 import { panelCategories, labMeasurementCount } from "@/lib/panel";
@@ -498,5 +499,15 @@ export function newJerseyGraph() {
     "Comprehensive preventive blood panel in New Jersey",
     "Rahway and Union County, New Jersey",
     "Healiam blood testing dates in New Jersey",
+  );
+}
+
+export function georgiaGraph() {
+  return statePageGraph(
+    georgia,
+    georgiaFairs,
+    "Comprehensive preventive blood panel in Georgia",
+    "Lawrenceville and Gwinnett County, Georgia",
+    "Healiam blood testing dates in Georgia",
   );
 }

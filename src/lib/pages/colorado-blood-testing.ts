@@ -40,8 +40,8 @@ export const colorado = {
   ],
 
   hero: {
-    titleLead: "Blood testing in Colorado:",
-    titleAccent: "where we test and how to book",
+    titleLead: "Your complete blood test in Colorado for",
+    titleAccent: price,
     sub: `Healiam runs scheduled testing mornings in the Denver metro, not a walk-in lab. Here are the current Colorado dates, what the ${price} panel covers, and how to book a draw without a doctor's order or insurance.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "See Colorado dates", href: "#locations" },
@@ -52,7 +52,7 @@ export const colorado = {
   // deliberately different markers from the Texas mockup. pos = dot on a low | normal | high bar.
   heroVisual: {
     ariaLabel:
-      "Sample Healiam results screen: iron flagged low, hemoglobin, TSH, HDL and Vitamin D in range, with a results-ready alert and a Vitamin D trend over three tests.",
+      "Sample Healiam results screen: iron flagged low, hemoglobin, TSH, HDL and Vitamin D in range, with a results-ready alert and a TSH trend falling into range over three tests.",
     screen: {
       title: "Results",
       sub: "Sample · 50+ markers",
@@ -68,13 +68,13 @@ export const colorado = {
     },
     notification: { app: "Healiam", time: "now", title: "Results ready", line: `${labMeasurementCount} measurements` },
     trend: {
-      name: "Vitamin D",
+      name: "TSH",
       sub: "Over 3 tests",
       chip: "In range",
       points: [
-        { label: "Test 1", value: "21" },
-        { label: "Test 2", value: "27" },
-        { label: "Test 3", value: "32" },
+        { label: "Test 1", value: "4.8" },
+        { label: "Test 2", value: "3.1" },
+        { label: "Test 3", value: "1.8" },
       ],
     },
   },

@@ -13,6 +13,7 @@ Next.js 15 (App Router) + TypeScript + Tailwind 3 site for healiam.com (preventi
 | `/texas/blood-testing` | Landing page, keyword "Blood Test in Texas". Moved from `/texas/blood-test` on 1 Nov 2026 (301) |
 | `/colorado/blood-testing` | Colorado state hub, keyword "blood testing in Colorado". See `docs/LOCATION-PAGES-AUDIT.md` |
 | `/new-jersey/blood-testing` | New Jersey state page, keyword "blood testing in New Jersey" (Rahway). See `docs/LOCATION-PAGES-AUDIT.md` |
+| `/georgia/blood-testing` | Georgia state page, keyword "blood testing in Georgia" (Lawrenceville). See `docs/LOCATION-PAGES-AUDIT.md` |
 
 ## Run it
 

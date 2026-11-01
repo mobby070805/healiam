@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import { page as texas } from "@/lib/pages/texas-blood-test";
 import { colorado } from "@/lib/pages/colorado-blood-testing";
 import { newJersey } from "@/lib/pages/new-jersey-blood-testing";
+import { georgia } from "@/lib/pages/georgia-blood-testing";
 
 export type LocationLink = { readonly label: string; readonly href: string };
 export type LocationCity = LocationLink & {
@@ -25,6 +26,7 @@ const statePages: Record<string, LocationLink> = {
   TX: { label: "Blood testing in Texas", href: texas.path },
   CO: { label: "Blood testing in Colorado", href: colorado.path },
   NJ: { label: "Blood testing in New Jersey", href: newJersey.path },
+  GA: { label: "Blood testing in Georgia", href: georgia.path },
 };
 
 /** States in the order they first appear in the fair list. */
