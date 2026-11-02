@@ -8,24 +8,30 @@ import { SectionHeading } from "@/components/SectionHeading";
 
 // Dark band, like the hero, so the black store badges sit on white cards instead of
 // fighting a white page. QR codes are for desktop visitors, who cannot scan their own
-// screen on a phone, so phones get the badges alone. State pages pass their own copy.
+// screen on a phone, so phones get the badges alone. State pages pass their own copy with no
+// points, which centres the codes under the heading (client, 2 Nov 2026).
 export function AppDownload({ app = home.app }: { app?: AppDownloadData }) {
   const { rating } = site.app;
+  const hasPoints = app.points.length > 0;
 
   return (
     <section id="app" className="on-dark section max-sm:!py-8 bg-ink" aria-labelledby="app-title">
       <div className="shell">
         <SectionHeading id="app-title" eyebrow={app.eyebrow} title={app.title} sub={app.sub} onDark compact />
 
-        <div className="mx-auto grid max-w-4xl gap-6 sm:gap-11 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
-          <ul className="space-y-2.5 sm:space-y-6">
-            {app.points.map((point) => (
-              <li key={point} className="flex gap-2.5 sm:gap-3">
-                <Check className="mt-[3px] h-4 w-4 shrink-0 text-brand sm:h-[18px] sm:w-[18px]" strokeWidth={2.4} aria-hidden="true" />
-                <span className="text-[14px] leading-[1.5] text-white/80 sm:text-[15.5px] sm:leading-[1.55]">{point}</span>
-              </li>
-            ))}
-          </ul>
+        <div
+          className={`mx-auto grid max-w-4xl gap-6 sm:gap-11 ${hasPoints ? "lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16" : ""}`}
+        >
+          {hasPoints && (
+            <ul className="space-y-2.5 sm:space-y-6">
+              {app.points.map((point) => (
+                <li key={point} className="flex gap-2.5 sm:gap-3">
+                  <Check className="mt-[3px] h-4 w-4 shrink-0 text-brand sm:h-[18px] sm:w-[18px]" strokeWidth={2.4} aria-hidden="true" />
+                  <span className="text-[14px] leading-[1.5] text-white/80 sm:text-[15.5px] sm:leading-[1.55]">{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
 
           {/* Capped, or the pair stretches into two near-empty cards on a tablet. */}
           <div className="mx-auto w-full max-w-[400px]">

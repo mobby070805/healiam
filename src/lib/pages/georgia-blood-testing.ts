@@ -256,11 +256,8 @@ export const georgia = {
     eyebrow: "The Healiam app",
     title: "Your Georgia blood test results, in the Healiam app",
     sub: "Free on iPhone and Android. Install it before your Georgia testing morning.",
-    points: [
-      "Every Georgia result, each against its range.",
-      "Flags show which markers to ask about.",
-      "Book the next Georgia date in a few taps.",
-    ],
+    // No bullet points: the codes sit centred under the heading (client, 2 Nov 2026).
+    points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
   },
@@ -308,6 +305,15 @@ export const georgia = {
     sub: `Park free on Longleaf Blvd in Lawrenceville, Georgia, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.
+  otherFairs: {
+    eyebrow: "Other states",
+    title: "Healiam fairs outside Georgia",
+    sub: "Family outside Georgia? Point them to one of these Healiam fairs, with the same panel and price.",
+    linkLead: "Blood testing in",
+    exclude: "Georgia",
   },
 
   sticky: {

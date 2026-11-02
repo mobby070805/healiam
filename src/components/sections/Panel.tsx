@@ -1,5 +1,6 @@
 import { Scale } from "lucide-react";
 import { site } from "@/lib/site";
+import { markerGuideUrl, testGuideName, testGuideUrl } from "@/lib/panel";
 import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LucideByName } from "@/components/LucideByName";
@@ -20,7 +21,8 @@ export function Panel({ panel = page.panel }: { panel?: StateLandingPage["panel"
                 icon={<LucideByName name={cat.icon} className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />}
                 name={cat.name}
                 line={cat.line}
-                markers={cat.markers}
+                markers={cat.markers.map((m) => ({ name: m, href: markerGuideUrl(cat, m) }))}
+                guide={{ label: `Open the ${testGuideName(cat)} guide`, href: testGuideUrl(cat) }}
                 wide={i === 0}
               />
             ))}

@@ -18,6 +18,7 @@ import { CityLinks } from "@/components/sections/CityLinks";
 import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { OtherStateFairs } from "@/components/sections/OtherStateFairs";
 
 const url = `${site.url}${georgia.path}`;
 
@@ -57,6 +58,7 @@ export default function GeorgiaBloodTestingPage() {
         <AppDownload app={georgia.app} />
         <Faq faq={georgia.faq} />
         <FinalCta finalCta={georgia.finalCta} />
+        <OtherStateFairs otherFairs={georgia.otherFairs} />
       </main>
       <Footer />
       <StickyCta sticky={georgia.sticky} />

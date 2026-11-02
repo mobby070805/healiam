@@ -246,11 +246,8 @@ export const page = {
     eyebrow: "The Healiam app",
     title: "Your Texas blood test results, in the Healiam app",
     sub: "Free on iPhone and Android. Scan a code to install it before your Texas fair.",
-    points: [
-      "Every Texas result shown against its range.",
-      "Book your next Texas fair in a few taps.",
-      "Download a PDF to share with your doctor.",
-    ],
+    // No bullet points: the codes sit centred under the heading (client, 2 Nov 2026).
+    points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
   },
@@ -298,6 +295,15 @@ export const page = {
     sub: "Pick a Texas fair, fast overnight, and see your results in the app within 4 to 5 business days.",
     primary: { label: `Book for ${site.price.display}`, href: site.bookingUrl },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.
+  otherFairs: {
+    eyebrow: "Other states",
+    title: "Healiam fairs outside Texas",
+    sub: "Testing for family in another state? These Healiam fairs are outside Texas, with the same panel and price.",
+    linkLead: "Blood testing in",
+    exclude: "Texas",
   },
 
   sticky: {

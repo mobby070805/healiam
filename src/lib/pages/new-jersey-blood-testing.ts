@@ -254,11 +254,8 @@ export const newJersey = {
     eyebrow: "The Healiam app",
     title: "Your New Jersey blood test results, in the Healiam app",
     sub: "Free on iPhone and Android. Install it before your New Jersey testing morning.",
-    points: [
-      "Every New Jersey result, each against its range.",
-      "A PDF report for your New Jersey doctor.",
-      "See the next Rahway date as soon as it is posted.",
-    ],
+    // No bullet points: the codes sit centred under the heading (client, 2 Nov 2026).
+    points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
   },
@@ -306,6 +303,15 @@ export const newJersey = {
     sub: `Take NJ Transit or park on Irving Street in Rahway, New Jersey, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.
+  otherFairs: {
+    eyebrow: "Other states",
+    title: "Healiam fairs outside New Jersey",
+    sub: "Not in New Jersey on the day? These Healiam fairs in other states run the same 8 to 10 AM mornings.",
+    linkLead: "Blood testing in",
+    exclude: "New Jersey",
   },
 
   sticky: {

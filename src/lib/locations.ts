@@ -2,7 +2,7 @@
 // cities. Built from lib/fairs.ts and the state page data, so a new fair or state page shows up here
 // without touching the menu.
 
-import { fairs } from "@/lib/fairs";
+import { fairPhoto, fairs, type FairPhoto } from "@/lib/fairs";
 import { site } from "@/lib/site";
 import { page as texas } from "@/lib/pages/texas-blood-test";
 import { colorado } from "@/lib/pages/colorado-blood-testing";
@@ -15,6 +15,8 @@ export type LocationCity = LocationLink & {
   readonly dateLabel: string;
   /** ISO date of the fair, so the menu can tell upcoming from past in the visitor's browser. */
   readonly date: string;
+  /** Venue photo, or null until the Google Maps key is set. */
+  readonly photo: FairPhoto | null;
 };
 export type LocationGroup = {
   readonly state: string;
@@ -42,6 +44,7 @@ export function locationGroups(): readonly LocationGroup[] {
         href: f.detailsUrl,
         dateLabel: f.dateLabel.replace(/,\s*\d{4}$/, ""),
         date: f.date,
+        photo: fairPhoto(f),
       })),
     };
   });

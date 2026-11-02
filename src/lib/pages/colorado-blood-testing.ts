@@ -256,11 +256,8 @@ export const colorado = {
     eyebrow: "The Healiam app",
     title: "Your Colorado blood test results, in the Healiam app",
     sub: "Free on iPhone and Android. Install it before your Colorado testing morning.",
-    points: [
-      "Every Colorado result, each against its range.",
-      "A trend for each marker when you retest.",
-      "Book the next Colorado date from your phone.",
-    ],
+    // No bullet points: the codes sit centred under the heading (client, 2 Nov 2026).
+    points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
   },
@@ -308,6 +305,15 @@ export const colorado = {
     sub: `Pick Denver or Centennial, Colorado, fast overnight, and see all ${labMeasurementCount} lab results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.
+  otherFairs: {
+    eyebrow: "Other states",
+    title: "Healiam fairs outside Colorado",
+    sub: "Booking for someone outside Colorado? Healiam runs the same morning fairs in these states too.",
+    linkLead: "Blood testing in",
+    exclude: "Colorado",
   },
 
   sticky: {

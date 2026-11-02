@@ -28,6 +28,9 @@ export const site = {
   // Where /contact posts its message form (Formspree, Basin, your own handler...).
   // Left empty, the page shows the email panel instead of a form that goes nowhere.
   contactFormEndpoint: process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? "",
+  // Google Maps key for the venue photos (Street View Static API), the same images
+  // healiam.com/fairs shows. The client adds it; left empty, venues show a map-pin tile.
+  googleMapsKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? "",
   price: {
     // Panel price (changed to $95 in Oct 2026). Every page reads it from here.
     panel: 95,

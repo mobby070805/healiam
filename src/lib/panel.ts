@@ -2,6 +2,8 @@
 // Shared by every page so the marker list never drifts. Order matches healiam.com/tests.
 // Icons are Healiam's own line art, copied from healiam.com/images/icon-*.png.
 
+import { site } from "@/lib/site";
+
 export type PanelCategory = {
   readonly slug: string;
   readonly icon: string;
@@ -128,3 +130,26 @@ export const labMeasurementCount = panelCategories
 
 /** Categories the lab measures (10). Biometrics are logged in the app, so they are not counted. */
 export const labCategoryCount = panelCategories.filter((c) => !c.selfLogged).length;
+
+// Test guides on healiam.com: one per category (/tests/cbc) and one per marker (/tests/cbc/wbc).
+// Slugs checked against the live /tests page on 2 Nov 2026; ALT and AST use their short names.
+const markerSlugOverrides: Record<string, string> = {
+  "ALT (alanine aminotransferase)": "alt",
+  "AST (aspartate aminotransferase)": "ast",
+};
+
+export function testGuideUrl(category: PanelCategory): string {
+  return `${site.url}/tests/${category.slug}`;
+}
+
+export function markerGuideUrl(category: PanelCategory, marker: string): string {
+  const slug =
+    markerSlugOverrides[marker] ??
+    marker.toLowerCase().replace(/[()]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return `${testGuideUrl(category)}/${slug}`;
+}
+
+/** "CBC", "Thyroid", "Other tests": the name used in "Open the CBC guide". */
+export function testGuideName(category: PanelCategory): string {
+  return category.slug === "other" ? "Other tests" : (category.tile ?? category.name);
+}

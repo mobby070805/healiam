@@ -18,6 +18,7 @@ import { CityLinks } from "@/components/sections/CityLinks";
 import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { OtherStateFairs } from "@/components/sections/OtherStateFairs";
 
 const url = `${site.url}${colorado.path}`;
 
@@ -57,6 +58,7 @@ export default function ColoradoBloodTestingPage() {
         <AppDownload app={colorado.app} />
         <Faq faq={colorado.faq} />
         <FinalCta finalCta={colorado.finalCta} />
+        <OtherStateFairs otherFairs={colorado.otherFairs} />
       </main>
       <Footer />
       <StickyCta sticky={colorado.sticky} />
