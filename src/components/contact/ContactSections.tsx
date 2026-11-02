@@ -4,6 +4,7 @@ import { contact } from "@/lib/pages/contact";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LucideByName } from "@/components/LucideByName";
+import { SocialLogo } from "@/components/SocialLogo";
 
 export function ContactHero() {
   const { hero, breadcrumb } = contact;
@@ -75,8 +76,7 @@ export function ContactMethods() {
                   className="grid h-10 w-10 place-items-center rounded-full border border-ink/10 bg-white transition-colors duration-150 hover:border-ink/30"
                   aria-label={social.name}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={social.logo} alt="" width={18} height={18} className="h-[18px] w-[18px]" />
+                  <SocialLogo name={social.name} className="h-[18px] w-[18px]" />
                 </a>
               </li>
             ))}

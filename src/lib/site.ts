@@ -49,9 +49,9 @@ export const site = {
     sampleReport: "https://healiam.com/faq/sample_results.pdf",
   },
   socials: [
-    { name: "Facebook", href: "https://www.facebook.com/profile.php?id=100087373955181", logo: "/logos/facebook.svg" },
-    { name: "Instagram", href: "https://www.instagram.com/healiamhealth/", logo: "/logos/instagram.svg" },
-    { name: "LinkedIn", href: "https://www.linkedin.com/company/healiam", logo: "/logos/linkedin.svg" },
+    { name: "Facebook", href: "https://www.facebook.com/profile.php?id=100087373955181" },
+    { name: "Instagram", href: "https://www.instagram.com/healiamhealth/" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/healiam" },
   ],
 } as const;
 

@@ -2,6 +2,7 @@ import { Mail, Phone } from "lucide-react";
 import { site } from "@/lib/site";
 import { fairs } from "@/lib/fairs";
 import { Logo } from "@/components/Logo";
+import { SocialLogo } from "@/components/SocialLogo";
 
 const getTested = [
   { label: "Book an appointment", href: site.bookingUrl },
@@ -57,8 +58,7 @@ export function Footer() {
                   aria-label={`${site.name} on ${s.name}`}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white transition-colors duration-150 hover:border-ink/30"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={s.logo} alt="" width={20} height={20} loading="lazy" className="h-5 w-5" />
+                  <SocialLogo name={s.name} className="h-5 w-5" />
                 </a>
               </li>
             ))}
