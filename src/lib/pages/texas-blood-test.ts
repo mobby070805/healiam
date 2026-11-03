@@ -4,7 +4,7 @@
 
 import { site } from "@/lib/site";
 import { panelCategories, labCategoryCount } from "@/lib/panel";
-import { fairHours, fairs, stateCityLinks } from "@/lib/fairs";
+import { fairHours, fairs } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
 import type { Widen } from "@/lib/types";
 
@@ -232,16 +232,6 @@ export const page = {
     },
   },
 
-  // Links to Texas fair cities only, with the towns near each.
-  cities: {
-    eyebrow: "Texas cities",
-    title: "Blood testing in Texas cities",
-    sub: "Healiam tests in two North Texas cities. Open yours for the venue, parking and the next date.",
-    linkLead: "Blood testing in",
-    nearLabel: "Also close to:",
-    items: stateCityLinks("TX"),
-  },
-
   app: {
     eyebrow: "The Healiam app",
     title: "Your Texas blood test results, in the Healiam app",
@@ -252,11 +242,12 @@ export const page = {
     stores: home.app.stores,
   },
 
-  // Six questions: three about blood testing in Texas, three about Healiam (client, 1 Nov 2026).
+  // Six questions: three about blood testing in Texas, three about Healiam's own fairs in the state (client, 1 Nov 2026). Generic brand
+  // questions (what is Healiam, labs, privacy) belong on the home page, not here (owner, 3 Nov 2026).
   faq: {
     eyebrow: "FAQ",
     title: "Blood testing in Texas: your questions",
-    sub: "Three questions about blood tests in Texas, and three about Healiam.",
+    sub: "Three questions about blood tests in Texas, and three about Healiam's Plano and Arlington fairs.",
     items: [
       {
         q: "Where can I get blood testing in Texas?",
@@ -271,16 +262,16 @@ export const page = {
         a: "Book online or in the Healiam app with a free account, pick a Texas fair and a time, and pay by card or HSA card. No doctor's referral is needed, and walk-ins are welcome.",
       },
       {
-        q: "What is Healiam?",
-        a: "Healiam runs morning health fairs where a licensed phlebotomist draws two vials for a 50+ marker preventive panel. Results arrive in the Healiam app in 4 to 5 business days.",
+        q: "Where is Healiam's Plano fair, and how do I find it?",
+        a: "At Brightway Insurance, 6832 Coit Rd, Suite 270A, in the Coit Crossing professional plaza. The suite is on the second floor. Park free in front of the building; the ADA spaces are nearest the main doors.",
       },
       {
-        q: "Which labs test samples from Healiam's Texas fairs?",
-        a: "Healiam's partner labs, Rocky Mountain Labs and Bhoomi Ventures. Both are CLIA certified and use FDA-approved equipment, so your doctor can use the results.",
+        q: "Where is Healiam's Arlington-area fair?",
+        a: "At Goldmine Enterprise, 1106 N Watson Rd, Suite 318, in Grand Prairie. Take the elevator from the main lobby to the third floor. Parking is free in the building's lot, with ADA spaces near the entrance.",
       },
       {
-        q: "Does Healiam keep my Texas test results private?",
-        a: "Yes. Healiam and its partner labs follow HIPAA standards, and your results are never shared with an employer or any third party.",
+        q: "When are Healiam's next Texas fairs?",
+        a: `${texasFairs.map((f) => `${f.city.replace(/,\s*TX$/, "")} on ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" and ")}, both ${fairHours.label} Central Time. Later Texas dates are posted on the fairs page as they are scheduled.`,
       },
     ],
     help: {

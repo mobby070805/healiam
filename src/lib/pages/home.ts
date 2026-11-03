@@ -285,6 +285,10 @@ export const home = {
     title: "Frequently asked",
     items: [
       {
+        q: "What is Healiam?",
+        a: `Healiam runs morning health fairs where a licensed phlebotomist draws two vials for a 50+ marker preventive panel, for ${price} with no referral or insurance. Results arrive in the Healiam app in 4 to 5 business days.`,
+      },
+      {
         q: "How much does a test cost?",
         a: `We charge ${price} for our panel.`,
       },

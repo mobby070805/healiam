@@ -6,7 +6,7 @@
 // See docs/LOCATION-PAGES-AUDIT.md.
 
 import { site } from "@/lib/site";
-import { fairs, fairHours, stateCityLinks } from "@/lib/fairs";
+import { fairs, fairHours } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
@@ -240,16 +240,6 @@ export const newJersey = {
     },
   },
 
-  // Links to New Jersey fair cities only, with the towns near each.
-  cities: {
-    eyebrow: "New Jersey cities",
-    title: "Blood testing in New Jersey cities",
-    sub: "Rahway is Healiam's New Jersey city. These Union and Middlesex County towns are within about 4 miles of the venue.",
-    linkLead: "Blood testing in",
-    nearLabel: "Also close to:",
-    items: stateCityLinks("NJ"),
-  },
-
   app: {
     eyebrow: "The Healiam app",
     title: "Your New Jersey blood test results, in the Healiam app",
@@ -260,11 +250,12 @@ export const newJersey = {
     stores: home.app.stores,
   },
 
-  // Six questions: three about blood testing in New Jersey, three about Healiam (client, 1 Nov 2026).
+  // Six questions: three about blood testing in New Jersey, three about Healiam's own fairs in the state (client, 1 Nov 2026). Generic brand
+  // questions (what is Healiam, labs, privacy) belong on the home page, not here (owner, 3 Nov 2026).
   faq: {
     eyebrow: "New Jersey questions",
     title: "Blood testing in New Jersey, answered",
-    sub: "Three questions about blood tests in New Jersey, and three about Healiam.",
+    sub: "Three questions about blood tests in New Jersey, and three about Healiam's Rahway fair.",
     items: [
       {
         q: "Is Rahway the only place for blood testing in New Jersey?",
@@ -279,16 +270,16 @@ export const newJersey = {
         a: "Both. The fair is a short walk from the Rahway NJ Transit station. Drivers can use free street parking on Irving Street or the public lot one block east.",
       },
       {
-        q: "Who draws my blood at Healiam's New Jersey fair?",
-        a: "A licensed phlebotomist, in a private space. It takes two vials and usually under seven minutes, and the entrance is step-free at street level.",
+        q: "What is Healiam's Rahway venue like?",
+        a: "It is Rahway Pharmacy on Irving Street, with a street-level, ADA-accessible entrance. A licensed phlebotomist draws two vials in a private space, usually in under seven minutes.",
       },
       {
-        q: "Can my New Jersey doctor use Healiam results?",
-        a: "Yes. Healiam's partner labs are CLIA certified and use FDA-approved equipment. Download the report as a PDF and share it with any doctor.",
+        q: "When is Healiam's next New Jersey date?",
+        a: `Saturday, November 14, ${fairHours.label} Eastern Time. Later Rahway dates are posted on the fairs page; if none is listed, send us your town and we will let you know.`,
       },
       {
-        q: "Does Healiam bill insurance in New Jersey?",
-        a: `No. Healiam charges one price, ${price} for all ${labMeasurementCount} lab measurements, paid by credit card or HSA card, with nothing billed afterwards.`,
+        q: "Can I bring my family to Healiam's Rahway fair?",
+        a: `Yes. Add each person who is getting tested when you book, and each pays the same ${price} for the full panel. Everyone needs to fast for 8 to 12 hours first.`,
       },
     ],
     help: {

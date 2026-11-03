@@ -6,7 +6,7 @@
 // (straight-line distances: Grayson 5.9 km, Snellville 8.1 km). See docs/LOCATION-PAGES-AUDIT.md.
 
 import { site } from "@/lib/site";
-import { fairs, fairHours, stateCityLinks } from "@/lib/fairs";
+import { fairs, fairHours } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
@@ -242,16 +242,6 @@ export const georgia = {
     },
   },
 
-  // Links to Georgia fair cities only, with the towns near each.
-  cities: {
-    eyebrow: "Georgia cities",
-    title: "Blood testing in Georgia cities",
-    sub: "Lawrenceville is Healiam's Georgia city, in Gwinnett County. Grayson and Snellville are within about 5 miles.",
-    linkLead: "Blood testing in",
-    nearLabel: "Also close to:",
-    items: stateCityLinks("GA"),
-  },
-
   app: {
     eyebrow: "The Healiam app",
     title: "Your Georgia blood test results, in the Healiam app",
@@ -262,11 +252,12 @@ export const georgia = {
     stores: home.app.stores,
   },
 
-  // Six questions: three about blood testing in Georgia, three about Healiam (client, 1 Nov 2026).
+  // Six questions: three about blood testing in Georgia, three about Healiam's own fairs in the state (client, 1 Nov 2026). Generic brand
+  // questions (what is Healiam, labs, privacy) belong on the home page, not here (owner, 3 Nov 2026).
   faq: {
     eyebrow: "Georgia questions",
     title: "Blood testing in Georgia, answered",
-    sub: "Three questions about blood tests in Georgia, and three about Healiam.",
+    sub: "Three questions about blood tests in Georgia, and three about Healiam's Lawrenceville fair.",
     items: [
       {
         q: "Is Lawrenceville the only place for blood testing in Georgia?",
@@ -274,23 +265,23 @@ export const georgia = {
       },
       {
         q: "How do I book a blood testing appointment in Georgia?",
-        a: `Book online or in the Healiam app with a free account, then pick a time on Saturday, November 21. You can also walk in between ${fairHours.label} Eastern; booking just means a shorter wait.`,
+        a: `Book online or in the Healiam app with a free account, then pick a time at the Lawrenceville fair. You can also walk in between ${fairHours.label} Eastern; booking just means a shorter wait.`,
       },
       {
         q: "Where do I park at the Lawrenceville fair?",
         a: "Parking is free on site, and the ADA-accessible spaces are the ones nearest the entrance.",
       },
       {
-        q: "How fast does Healiam return Georgia results?",
-        a: "In 4 to 5 business days. Every marker appears in the Healiam app against its reference range, with a PDF you can download.",
+        q: "When is Healiam's Georgia fair?",
+        a: `Saturday, November 21, ${fairHours.label} Eastern Time, at 755 Longleaf Blvd in Lawrenceville. Later Georgia dates are posted on the fairs page as they are scheduled.`,
       },
       {
-        q: "Which labs process Healiam samples from Georgia?",
-        a: "Healiam's partner labs, Rocky Mountain Labs and Bhoomi Ventures. Both are CLIA certified and use FDA-approved equipment.",
+        q: "Which towns is Healiam's Lawrenceville fair close to?",
+        a: "Grayson and Snellville are both within about 5 miles of the venue in a straight line, and the fair sits in the heart of Gwinnett County.",
       },
       {
-        q: "Does Healiam take insurance in Georgia?",
-        a: `No. Healiam charges one price, ${price} for all ${labMeasurementCount} lab measurements, paid by credit card or HSA card, with no visit fee.`,
+        q: "What should I bring to Healiam's Lawrenceville fair?",
+        a: "Your phone with the Healiam app and a credit card or HSA card. No insurance card is needed. Fast for 8 to 12 hours before you arrive; water is fine.",
       },
     ],
     help: {

@@ -5,7 +5,7 @@
 // Dates, venues and parking come from lib/fairs.ts. See docs/LOCATION-PAGES-AUDIT.md.
 
 import { site } from "@/lib/site";
-import { fairs, fairHours, stateCityLinks } from "@/lib/fairs";
+import { fairs, fairHours } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
@@ -242,16 +242,6 @@ export const colorado = {
     },
   },
 
-  // Links to Colorado fair cities only, with the towns near each.
-  cities: {
-    eyebrow: "Colorado cities",
-    title: "Blood testing in Colorado cities",
-    sub: "Healiam tests in two Denver-metro cities in Colorado. Open yours for the venue, parking and date.",
-    linkLead: "Blood testing in",
-    nearLabel: "Also close to:",
-    items: stateCityLinks("CO"),
-  },
-
   app: {
     eyebrow: "The Healiam app",
     title: "Your Colorado blood test results, in the Healiam app",
@@ -262,11 +252,12 @@ export const colorado = {
     stores: home.app.stores,
   },
 
-  // Six questions: three about blood testing in Colorado, three about Healiam (client, 1 Nov 2026).
+  // Six questions: three about blood testing in Colorado, three about Healiam's own fairs in the state (client, 1 Nov 2026). Generic brand
+  // questions (what is Healiam, labs, privacy) belong on the home page, not here (owner, 3 Nov 2026).
   faq: {
     eyebrow: "Colorado questions",
     title: "Blood testing in Colorado, answered",
-    sub: "Three questions about blood tests in Colorado, and three about Healiam.",
+    sub: "Three questions about blood tests in Colorado, and three about Healiam's Denver and Centennial fairs.",
     items: [
       {
         q: "Can I get blood tests in Colorado outside the Denver metro?",
@@ -281,16 +272,16 @@ export const colorado = {
         a: "It can. People who live at higher elevations tend to have higher hemoglobin and hematocrit, because the body makes more red blood cells when there is less oxygen. Mention where you live when you review those two markers with your doctor.",
       },
       {
-        q: "What is Healiam, and how does it work in Colorado?",
-        a: `Healiam runs scheduled morning health fairs. At each Colorado date a licensed phlebotomist draws two vials, and all ${labMeasurementCount} lab results reach the Healiam app 4 to 5 business days later.`,
+        q: "Where is Healiam's Denver fair?",
+        a: "At 3955 Irving St in the Berkeley neighborhood, on Saturday, November 14. Parking is free in the lot next to the building, with ADA spaces nearest the main entrance.",
       },
       {
-        q: "Can my Colorado doctor use Healiam results?",
-        a: "Yes. Healiam's partner labs are CLIA certified, and you can download the full report as a PDF to share with any doctor.",
+        q: "Where is Healiam's Centennial fair?",
+        a: "At Centennial Public Works, 7272 S Eagle Street, on Sunday, November 22. Park free in the lot in front of the building; the ADA spaces are nearest the entrance.",
       },
       {
-        q: "Does Healiam take HSA cards in Colorado?",
-        a: "Yes. Pay with an HSA card or any regular credit card. Healiam does not bill insurance, so there is no claim to file.",
+        q: "Is Healiam's Centennial date any different from Denver?",
+        a: `No. Same panel, same ${price} price, same licensed phlebotomists and the same ${fairHours.label} Mountain Time window. Only the day and the place change, so pick the side of the metro that suits you.`,
       },
     ],
     help: {

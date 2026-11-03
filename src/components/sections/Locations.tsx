@@ -3,8 +3,8 @@ import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionCta } from "@/components/SectionCta";
 
-// Date cards book the date. Links to the city pages live only in the CityLinks section, so the
-// two sections do not repeat the same cards and links (client, 2 Nov 2026).
+// Each date card links its city name to that city's fair page (the same-state interlink, since the
+// separate cities section was removed, client 3 Nov 2026) and "Book this date" to booking.
 export function Locations({ locations = page.locations }: { locations?: StateLandingPage["locations"] }) {
   const book = locations.cta.primary.href;
   // Works for any number of fairs: with an odd count the request card fills the last half row on phones.
@@ -18,15 +18,15 @@ export function Locations({ locations = page.locations }: { locations?: StateLan
         <ul className={`mx-auto grid grid-cols-2 gap-3 sm:gap-4 ${lgCols}`}>
           {locations.fairs.map((fair) => (
             <li key={fair.city}>
-              <a
-                href={book}
-                className="card card-hover group flex h-full flex-col p-4 sm:p-6"
-                aria-label={`Book the ${fair.city} date, ${fair.dateLabel}`}
-              >
+              <div className="card card-hover flex h-full flex-col p-4 sm:p-6">
                 <span className="icon-tile">
                   <MapPin className="h-5 w-5 sm:h-[22px] sm:w-[22px]" strokeWidth={1.7} aria-hidden="true" />
                 </span>
-                <h3 className="h3 mt-3.5 sm:mt-5 sm:!text-[20px]">{fair.city}</h3>
+                <h3 className="h3 mt-3.5 sm:mt-5 sm:!text-[20px]">
+                  <a href={fair.detailsUrl} className="underline-offset-4 hover:text-brand hover:underline">
+                    {fair.city}
+                  </a>
+                </h3>
                 {fair.venue && <p className="mt-1 text-[13px] font-semibold text-ink-soft sm:text-[15px]">{fair.venue}</p>}
                 <p className="body mt-1 flex-1 !text-[12.5px] sm:!text-[14px]">
                   {fair.street}, {fair.locality}, {fair.region} {fair.postalCode}
@@ -41,11 +41,15 @@ export function Locations({ locations = page.locations }: { locations?: StateLan
                     {locations.hours.label}
                   </p>
                 </div>
-                <span className="mt-3.5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand sm:mt-4 sm:text-[14px]">
+                <a
+                  href={book}
+                  className="group mt-3.5 inline-flex min-h-[32px] items-center gap-1.5 self-start text-[13px] font-semibold text-brand sm:mt-4 sm:min-h-0 sm:text-[14px]"
+                  aria-label={`Book the ${fair.city} date, ${fair.dateLabel}`}
+                >
                   Book this date
                   <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" strokeWidth={2} aria-hidden="true" />
-                </span>
-              </a>
+                </a>
+              </div>
             </li>
           ))}
 

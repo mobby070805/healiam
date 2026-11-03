@@ -14,7 +14,6 @@ import { Process } from "@/components/sections/Process";
 import { Benefits } from "@/components/sections/Benefits";
 import { Panel } from "@/components/sections/Panel";
 import { Locations } from "@/components/sections/Locations";
-import { CityLinks } from "@/components/sections/CityLinks";
 import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
@@ -54,7 +53,6 @@ export default function NewJerseyBloodTestingPage() {
         <Benefits benefits={newJersey.benefits} />
         <Panel panel={newJersey.panel} />
         <Locations locations={newJersey.locations} />
-        <CityLinks cities={newJersey.cities} />
         <AppDownload app={newJersey.app} />
         <Faq faq={newJersey.faq} />
         <FinalCta finalCta={newJersey.finalCta} />

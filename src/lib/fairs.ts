@@ -190,20 +190,6 @@ export const fairs: readonly Fair[] = [
   },
 ];
 
-/** A state's fair cities for the same-state links section on its state page. */
-export function stateCityLinks(region: string) {
-  return fairs
-    .filter((f) => f.region === region)
-    .map((f) => ({
-      city: f.city.replace(/,\s*[A-Z]{2}$/, ""),
-      href: f.detailsUrl,
-      dateLabel: f.dateLabel.replace(/,\s*\d{4}$/, ""),
-      place: [f.venue, f.locality].filter(Boolean).join(", "),
-      near: f.nearbyTowns ?? [],
-      photo: fairPhoto(f),
-    }));
-}
-
 /** "Texas, New Jersey, Colorado and Georgia" style list of states with an upcoming fair. */
 export function fairStatesList(list: readonly Fair[] = fairs): string {
   const states = [...new Set(list.map((f) => f.state))];
