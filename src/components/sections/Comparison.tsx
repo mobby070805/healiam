@@ -30,7 +30,7 @@ const factorIcons: Record<string, LucideIcon> = {
   ChartLine,
 };
 
-const AUTO_MS = 2500;
+const AUTO_MS = 3000;
 const PAUSE_MS = 6000;
 
 // Fixed layout: factor tabs on the left, two panels with animated bars,
@@ -44,15 +44,17 @@ export function Comparison({ comparison = page.comparison }: { comparison?: Stat
   const stripRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const pausedUntil = useRef(0);
+  const hovering = useRef(false);
   const inView = useInView(sectionRef, { amount: 0.4 });
   const reduced = useReducedMotion();
 
-  // Phones only: auto-advance while on screen, pause after a tap.
+  // Every screen size (client, 3 Nov 2026): auto-advance every 3s while on screen. A click
+  // pauses it for a while, and it holds still while the pointer is over the section so
+  // desktop visitors can read a panel or reach the CTA.
   useEffect(() => {
     if (!inView || reduced) return;
-    const phone = window.matchMedia("(max-width: 767px)");
     const id = window.setInterval(() => {
-      if (!phone.matches || Date.now() < pausedUntil.current) return;
+      if (hovering.current || Date.now() < pausedUntil.current) return;
       setActive((i) => (i + 1) % factors.length);
     }, AUTO_MS);
     return () => window.clearInterval(id);
@@ -76,7 +78,15 @@ export function Comparison({ comparison = page.comparison }: { comparison?: Stat
       <div className="shell">
         <SectionHeading id="why-title" eyebrow={comparison.eyebrow} title={comparison.title} sub={comparison.sub} />
 
-        <div className="mx-auto grid max-w-5xl gap-4 sm:gap-6 md:grid-cols-[220px_1fr] lg:grid-cols-[250px_1fr]">
+        <div
+          className="mx-auto grid max-w-5xl gap-4 sm:gap-6 md:grid-cols-[220px_1fr] lg:grid-cols-[250px_1fr]"
+          onPointerEnter={(e) => {
+            if (e.pointerType === "mouse") hovering.current = true;
+          }}
+          onPointerLeave={() => {
+            hovering.current = false;
+          }}
+        >
           <div
             ref={stripRef}
             role="tablist"
