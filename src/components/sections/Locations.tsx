@@ -2,9 +2,11 @@ import { ArrowRight, CalendarDays, CalendarPlus, Clock, MapPin } from "lucide-re
 import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionCta } from "@/components/SectionCta";
+import { cityPages } from "@/lib/city-pages";
 
 // Each date card links its city name to that city's fair page (the same-state interlink, since the
-// separate cities section was removed, client 3 Nov 2026) and "Book this date" to booking.
+// separate cities section was removed, client 3 Nov 2026) and "Book this date" to booking. Fairs with a
+// city page also get a link to it (owner, 5 Nov 2026).
 export function Locations({ locations = page.locations }: { locations?: StateLandingPage["locations"] }) {
   const book = locations.cta.primary.href;
   // Works for any number of fairs: with an odd count the request card fills the last half row on phones.
@@ -16,7 +18,9 @@ export function Locations({ locations = page.locations }: { locations?: StateLan
         <SectionHeading id="locations-title" eyebrow={locations.eyebrow} title={locations.title} sub={locations.sub} />
 
         <ul className={`mx-auto grid grid-cols-2 gap-3 sm:gap-4 ${lgCols}`}>
-          {locations.fairs.map((fair) => (
+          {locations.fairs.map((fair) => {
+            const cityPage = cityPages[fair.slug];
+            return (
             <li key={fair.city}>
               <div className="card card-hover flex h-full flex-col p-4 sm:p-6">
                 <span className="icon-tile">
@@ -41,6 +45,15 @@ export function Locations({ locations = page.locations }: { locations?: StateLan
                     {locations.hours.label}
                   </p>
                 </div>
+                {cityPage && (
+                  <a
+                    href={cityPage.href}
+                    className="mt-3.5 inline-flex min-h-[32px] items-center gap-1.5 self-start text-[13px] font-semibold text-ink underline-offset-4 hover:underline sm:mt-4 sm:min-h-0 sm:text-[14px]"
+                  >
+                    {cityPage.label}
+                    <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+                  </a>
+                )}
                 <a
                   href={book}
                   className="group mt-3.5 inline-flex min-h-[32px] items-center gap-1.5 self-start text-[13px] font-semibold text-brand sm:mt-4 sm:min-h-0 sm:text-[14px]"
@@ -51,7 +64,8 @@ export function Locations({ locations = page.locations }: { locations?: StateLan
                 </a>
               </div>
             </li>
-          ))}
+            );
+          })}
 
           <li className={odd ? "" : "col-span-2 lg:col-span-1"}>
             <a

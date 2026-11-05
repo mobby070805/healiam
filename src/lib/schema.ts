@@ -13,6 +13,10 @@ import { employer } from "@/lib/pages/employer";
 import { colorado, coloradoFairs } from "@/lib/pages/colorado-blood-testing";
 import { newJersey, newJerseyFairs } from "@/lib/pages/new-jersey-blood-testing";
 import { georgia, georgiaFairs } from "@/lib/pages/georgia-blood-testing";
+import { plano, planoFair } from "@/lib/pages/plano-blood-testing";
+import { denver, denverFair } from "@/lib/pages/denver-blood-testing";
+import { rahway, rahwayFair } from "@/lib/pages/rahway-blood-testing";
+import { lawrenceville, lawrencevilleFair } from "@/lib/pages/lawrenceville-blood-testing";
 
 import { fairs as allFairs } from "@/lib/fairs";
 import { panelCategories, labMeasurementCount } from "@/lib/panel";
@@ -509,5 +513,80 @@ export function georgiaGraph() {
     "Comprehensive preventive blood panel in Georgia",
     "Lawrenceville and Gwinnett County, Georgia",
     "Healiam blood testing dates in Georgia",
+  );
+}
+
+// City fair page: one city and its fair. Service for the city, the fair as the page's main Event,
+// breadcrumb through the state page, and the page FAQ.
+function cityFairGraph(
+  data: {
+    readonly path: string;
+    readonly meta: { readonly title: string; readonly description: string };
+    readonly breadcrumb: readonly { readonly name: string; readonly href?: string }[];
+    readonly faq: { readonly items: readonly { readonly q: string; readonly a: string }[] };
+  },
+  fair: Fair,
+  serviceName: string,
+  areaServed: string,
+) {
+  const url = `${site.url}${data.path}`;
+
+  const service = {
+    "@type": ["Service", "MedicalTest"],
+    "@id": `${url}#service`,
+    name: serviceName,
+    serviceType: "Preventive blood test panel",
+    description: data.meta.description,
+    provider: { "@id": orgId },
+    areaServed: { "@type": "City", name: areaServed },
+    url,
+    offers: panelOffer(),
+  };
+
+  const webPage = {
+    "@type": "WebPage",
+    "@id": url,
+    url,
+    name: data.meta.title,
+    description: data.meta.description,
+    isPartOf: { "@id": siteId },
+    about: { "@id": `${url}#service` },
+    mainEntity: { "@id": `${url}#event` },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+    inLanguage: "en-US",
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      organization(),
+      website(),
+      webPage,
+      breadcrumbList(url, data.breadcrumb),
+      service,
+      { ...fairEvent(fair), "@id": `${url}#event`, url },
+      faqPage(url, data.faq.items),
+    ],
+  };
+}
+
+export function planoGraph() {
+  return cityFairGraph(plano, planoFair, "Preventive blood testing in Plano, Texas", "Plano, Texas");
+}
+
+export function denverGraph() {
+  return cityFairGraph(denver, denverFair, "Preventive blood testing in Denver, Colorado", "Denver, Colorado");
+}
+
+export function rahwayGraph() {
+  return cityFairGraph(rahway, rahwayFair, "Preventive blood testing in Rahway, New Jersey", "Rahway, New Jersey");
+}
+
+export function lawrencevilleGraph() {
+  return cityFairGraph(
+    lawrenceville,
+    lawrencevilleFair,
+    "Preventive blood testing in Lawrenceville, Georgia",
+    "Lawrenceville, Georgia",
   );
 }

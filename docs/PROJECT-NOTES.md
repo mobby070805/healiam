@@ -14,6 +14,10 @@ Next.js 15 (App Router) + TypeScript + Tailwind 3 site for healiam.com (preventi
 | `/colorado/blood-testing` | Colorado state hub, keyword "blood testing in Colorado". See `docs/LOCATION-PAGES-AUDIT.md` |
 | `/new-jersey/blood-testing` | New Jersey state page, keyword "blood testing in New Jersey" (Rahway). See `docs/LOCATION-PAGES-AUDIT.md` |
 | `/georgia/blood-testing` | Georgia state page, keyword "blood testing in Georgia" (Lawrenceville). See `docs/LOCATION-PAGES-AUDIT.md` |
+| `/texas/blood-testing-in-plano` | Plano city fair page, keyword "blood testing in Plano TX". `/fairs/` page for the same fair stays as it is. See `docs/LOCATION-PAGES-AUDIT.md` |
+| `/colorado/blood-testing-in-denver` | Denver city fair page, keyword "blood testing in Denver CO". `/fairs/` page for the same fair stays as it is. See `docs/LOCATION-PAGES-AUDIT.md` |
+| `/new-jersey/blood-testing-in-rahway` | Rahway city fair page, keyword "blood testing in Rahway NJ". `/fairs/` page for the same fair stays as it is. See `docs/LOCATION-PAGES-AUDIT.md` |
+| `/georgia/blood-testing-in-lawrenceville` | Lawrenceville city fair page, keyword "blood testing in Lawrenceville GA". `/fairs/` page for the same fair stays as it is. See `docs/LOCATION-PAGES-AUDIT.md` |
 
 ## Run it
 

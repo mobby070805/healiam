@@ -157,11 +157,11 @@ this repo as it stands would turn all of those into 404s. Needs a decision befor
 | Page | URL | Status | SEO | Responsive | Build checks |
 |---|---|---|---|---|---|
 | Texas hub | `/texas/blood-testing` (moved from `/texas/blood-test` on 1 Nov 2026, 301) | Content unchanged | Done | Done | Pass |
-| Plano | TBD (scheme) | Planned | — | — | — |
+| Plano | `/texas/blood-testing-in-plano` (SEO-sheet scheme) | **Built 5 Nov 2026**, not deployed | Done | 1280, 768 and 375 checked, no overflow | tsc, build pass (25 pages, 108 kB first load) |
 | Colorado hub | `/colorado/blood-testing` | **Built 31 Oct 2026** (Texas design, Colorado availability content, v4), not deployed | Done | 1440 and 390 checked, no overflow | tsc, build pass (23 pages, 158 kB first load, same as Texas) |
-| Denver | TBD | Blocked: recurrence | — | — | — |
-| Rahway | TBD | Blocked: recurrence | — | — | — |
-| Lawrenceville | TBD | Blocked: recurrence | — | — | — |
+| Denver | `/colorado/blood-testing-in-denver` | **Built 5 Nov 2026**, not deployed | Done | 1280, 768 and 375 checked, no overflow | tsc, build pass (25 pages, 108 kB first load) |
+| Rahway | `/new-jersey/blood-testing-in-rahway` | **Built 5 Nov 2026**, not deployed | Done | 1280, 768 and 375 checked, no overflow | tsc, build pass (25 pages, 108 kB first load) |
+| Lawrenceville | `/georgia/blood-testing-in-lawrenceville` | **Built 5 Nov 2026**, not deployed | Done | 1280, 768 and 375 checked, no overflow | tsc, build pass (25 pages, 108 kB first load) |
 | New Jersey hub | `/new-jersey/blood-testing` | **Built 1 Nov 2026** (owner asked; Texas design, Rahway content), not deployed | Done | 1024 and 375 checked, no overflow | tsc, build pass (24 pages) |
 | Georgia hub | `/georgia/blood-testing` | **Built 1 Nov 2026** (owner asked; Texas design, Lawrenceville content), not deployed | Done | Desktop and 375 checked, no overflow | tsc, build pass (25 pages, 160 kB first load) |
 | Nearby-town pages | — | Not building (folded into city pages) | — | — | — |
@@ -346,3 +346,122 @@ Client's notes on the Texas page, applied to Texas, Colorado, New Jersey and Geo
 
 New section order: ... Panel > Locations > City links > App > FAQ > Final CTA. Build passes (25 pages,
 163 kB first load).
+
+## City fair pages (from 5 Nov 2026)
+
+Four P1 "core city" pages from the SEO sheet, built one at a time: Plano, Denver, Rahway, Lawrenceville.
+URLs follow the SEO sheet (`/<state>/blood-testing-in-<city>`), chosen by the owner on 5 Nov 2026. The
+`/fairs/<slug>` pages stay exactly as they are, with no redirect to the city pages (owner, 5 Nov 2026: "keep
+the fair pages as it is, don't redirect to these"). Site links to fairs still go to `/fairs/<slug>`. The
+city pages are separate, in the sitemap and llms.txt, and linked from the state pages' date cards.
+
+City pages are **city pages first and fair pages second** (owner, 5 Nov 2026): they open with blood
+testing in the city and its nearby towns, what the panel covers and how it works, then the next fair
+(date, venue, getting there), the FAQs (city questions first) and booking. The hero's right-hand card is
+"Blood testing in <city> at a glance" (price, tests, results) with the next fair as one row. Titles and
+descriptions lead with the city, not the date. Each page has its own H2 wording; check that no H2 pattern
+repeats across city pages with only the name changed. Statewide coverage stays on the state page. Each city page has its own layout from the shared design
+system (not the state-page template), its own copy, and an "Upcoming / this date has passed" status
+decided in the visitor's browser.
+
+### Completed: Plano (5 Nov 2026)
+
+`/texas/blood-testing-in-plano`, keyword "blood testing in Plano TX". Copy in
+`src/lib/pages/plano-blood-testing.ts`; components in `src/components/city/`; schema `planoGraph()`
+(Service + MedicalTest for Plano, the Nov 14 Event as main entity, FAQ, breadcrumb via the Texas page).
+
+**Sections:** dark event hero with the date, hours and venue card > trust strip > Finding the Plano fair at
+Coit Crossing (four arrival steps, venue photo tile, map link) > a Plano testing morning (fasting plan) >
+coming from nearby (East Frisco, Far North Dallas, Allen in miles; the Grand Prairie Nov 21 fair as the
+backup; the 12 Jul 2026 Gurukul fair as evidence Healiam returns) > the panel with test guide links > app
+QR codes > 6 FAQs (3 about blood testing in Plano, 3 about the Coit Rd fair) > final CTA.
+
+**Checked:** no sentence shared with the Texas, Colorado, New Jersey, Georgia, home or Arlington fair pages;
+title 55 characters, description 156; canonical; site links, footer, Locations menu, fairs list and state
+date cards all point at the new URL; sitemap and llms.txt list it; `/fairs/plano-tx` redirects.
+
+**Still open:** walk-ins confirmed for Plano only (healiam.com/fairs/plano-tx); one shared booking URL that
+needs a login, so per-date availability is unverified; the venue photo shows once the Google Maps key is set.
+
+### Completed: Denver (5 Nov 2026)
+
+`/colorado/blood-testing-in-denver`, keyword "blood testing in Denver CO". Copy in
+`src/lib/pages/denver-blood-testing.ts`; schema `denverGraph()`. Layout differs from Plano: hero > trust
+strip > Denver on Saturday, or Centennial on Sunday? (two venue cards, `CityDayChoice`) > getting ready for
+the Denver draw > how far the suburbs are (bar chart of straight-line miles, `CityDistances`) > the panel,
+with the altitude note on hemoglobin and hematocrit > app QR codes > 6 FAQs > final CTA.
+
+**Facts:** 3955 Irving St, 80211, Berkeley; no published venue name; free lot beside the building, ADA
+spaces nearest the main entrance; Sat Nov 14, 8 to 10 AM MT. healiam.com/fairs/denver-co says nothing about
+walk-ins, so this page doesn't claim them. Centennial (Sun Nov 22, Centennial Public Works) is the south
+metro option, 8 days later.
+
+**Checked:** no sentence or FAQ text shared with Plano, Colorado, Texas, New Jersey, Georgia, home or the
+Centennial fair page; title 56 characters, description 155; all site links point at the new URL;
+`/fairs/denver-co` redirects. Fixed during testing: a button pair overflowed a 375px phone.
+
+**Overlap to decide:** the Colorado state page has a "Where is Healiam's Denver fair?" FAQ that this page now
+answers in full. Changing it needs the owner's OK.
+
+### Completed: Rahway (5 Nov 2026)
+
+`/new-jersey/blood-testing-in-rahway`, keyword "blood testing in Rahway NJ". Copy in
+`src/lib/pages/rahway-blood-testing.ts`; schema `rahwayGraph()`. Layout: hero > trust strip > reaching the
+Rahway fair on Irving Street (train, car, step-free cards beside the venue card, `CityWays`) > before your
+Rahway draw > towns within reach, grouped Union County and Middlesex County (`CityTownGroups`) > the panel
+> app QR codes > 6 FAQs > final CTA.
+
+**Facts:** Rahway Pharmacy, 1421 Irving St, 07065; short walk from the Rahway NJ Transit station; free street
+parking on Irving St and a public lot one block east; street-level ADA entrance; Sat Nov 14, 8 to 10 AM ET.
+healiam.com/fairs/rahway-nj says nothing about walk-ins, so this page doesn't claim them. Staten Island is
+left out (booking for New York residents unverified).
+
+**Checked:** no sentence or FAQ text shared with the New Jersey page or any other page; title 57
+characters, description 150; all site links point at the new URL; `/fairs/rahway-nj` redirects.
+
+**To decide:** the New Jersey state page is almost entirely about Rahway, and its booking FAQ says you can
+walk in at Rahway, which the live site does not confirm. Changing that finished page needs the owner's OK.
+
+### Revised: city first, fair second (5 Nov 2026)
+
+Plano, Denver and Rahway were reworked on the owner's request ("treat these pages as first city pages then
+about fairs"). New order on all three: city-led hero with the at-a-glance card > trust strip > the city and
+nearby towns > the panel > how it works (light band) > the next fair (Plano's suite steps, Denver's Saturday
+or Sunday cards, Rahway's train, car and step-free cards) > app > FAQs > booking. New titles: "Blood Testing
+in Plano, TX | $95, No Referral", "Blood Testing in Denver, CO | Saturday Fairs, $95", "Blood Testing in
+Rahway, NJ | Near the Train, $95". Checked: no repeated sentence or H2 pattern across the three pages or the
+state pages; no sideways scroll at 375px; build passes.
+
+### Completed: Lawrenceville (5 Nov 2026)
+
+`/georgia/blood-testing-in-lawrenceville`, keyword "blood testing in Lawrenceville GA". Copy in
+`src/lib/pages/lawrenceville-blood-testing.ts`; schema `lawrencevilleGraph()`. Built city-first: hero with
+the at-a-glance card (price, tests, parking, next fair) > trust strip > Lawrenceville blood testing for
+nearby Gwinnett towns (Grayson 3.7 mi, Snellville 5.0 mi, Dacula 6.7 mi, plus a request card,
+`CityCoverage`) > the panel > your visit, start to finish > the next fair as one event card
+(`CityEventCard`) > app > 6 FAQs > booking.
+
+**Facts:** 755 Longleaf Blvd, 30046, Gwinnett County; no published venue name; free parking on site, ADA
+spaces nearest the entrance; Sat Nov 21, 8 to 10 AM ET. healiam.com/fairs/lawrenceville-ga says nothing
+about walk-ins, so this page doesn't claim them. Dacula's 10.8 km comes from the fair-city sheet's notes.
+
+**Checked:** no sentence, FAQ text or H2 pattern shared with the other three city pages, the Georgia page
+or any other page; title 60 characters, description 153; all site links point at the new URL;
+`/fairs/lawrenceville-ga` redirects. Only Arlington and Centennial remain under `/fairs/<slug>`.
+
+**To decide:** the Georgia state page's booking FAQ says you can walk in at Lawrenceville, which the live
+site does not confirm, and its FAQs overlap this page. Changing that finished page needs the owner's OK.
+
+### Revised: fair pages kept, no redirects (5 Nov 2026)
+
+On the owner's instruction the four redirects were removed and the fairs' `detailsUrl` values went back to
+`/fairs/<slug>`; `next.config.mjs`, `public/_redirects`, `src/lib/fairs.ts` and `src/app/fairs/[slug]/page.tsx`
+match the last commit again. All six fair pages and all four city pages load (build: 29 pages).
+
+**Linked from the state pages (owner, 5 Nov 2026):** each state page's date card for Plano, Denver, Rahway
+and Lawrenceville now has a "Blood testing in <city>" link to the city page (`src/lib/city-pages.ts`), between
+the date box and "Book this date". The card's city name still opens the `/fairs/<slug>` page. Arlington and
+Centennial have no city page, so their cards are unchanged.
+
+**Still open:** each city has two pages for a similar search (`/fairs/plano-tx` and
+`/texas/blood-testing-in-plano`).

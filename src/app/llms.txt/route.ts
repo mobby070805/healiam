@@ -12,12 +12,16 @@ import { page as texas } from "@/lib/pages/texas-blood-test";
 import { colorado } from "@/lib/pages/colorado-blood-testing";
 import { newJersey } from "@/lib/pages/new-jersey-blood-testing";
 import { georgia } from "@/lib/pages/georgia-blood-testing";
+import { plano } from "@/lib/pages/plano-blood-testing";
+import { denver } from "@/lib/pages/denver-blood-testing";
+import { rahway } from "@/lib/pages/rahway-blood-testing";
+import { lawrenceville } from "@/lib/pages/lawrenceville-blood-testing";
 
 export const dynamic = "force-static";
 
 // /llms.txt, per llmstxt.org: a plain summary of the site for language models.
 // Generated from the same data files as the pages, so it cannot drift from them.
-const pages = [home, tests, fairsPage, demo, employer, about, contact, texas, colorado, newJersey, georgia];
+const pages = [home, tests, fairsPage, demo, employer, about, contact, texas, colorado, newJersey, georgia, plano, denver, rahway, lawrenceville];
 
 function line(path: string, title: string, description: string) {
   return `- [${title}](${site.url}${path}): ${description}`;
