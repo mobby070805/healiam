@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
-import { denver, denverFair } from "@/lib/pages/denver-blood-testing";
+import { denver } from "@/lib/pages/denver-blood-testing";
 import { denverGraph } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
+import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
+import { Challenges } from "@/components/sections/Challenges";
+import { Comparison } from "@/components/sections/Comparison";
 import { Process } from "@/components/sections/Process";
+import { Benefits } from "@/components/sections/Benefits";
 import { Panel } from "@/components/sections/Panel";
+import { Locations } from "@/components/sections/Locations";
+import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { AppDownload } from "@/components/home/AppDownload";
-import { CityHero } from "@/components/city/CityHero";
-import { CityDayChoice } from "@/components/city/CityDayChoice";
-import { CityDistances } from "@/components/city/CityDistances";
+import { OtherStateFairs } from "@/components/sections/OtherStateFairs";
 
 const url = `${site.url}${denver.path}`;
 
@@ -34,23 +37,26 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// City page first, fair second (owner, 5 Nov 2026): blood testing in Denver and the suburbs, what it
-// covers and how it works, then the next Denver fair with the Sunday Centennial option.
+// Design: the state pages' sections, in the state-page order (owner, 5 Nov 2026). Only the content is
+// Denver's own, written city first and fair second.
 export default function DenverBloodTestingPage() {
   return (
     <>
       <JsonLd data={denverGraph()} />
       <Header nav={denver.nav} />
       <main>
-        <CityHero page={denver} fair={denverFair} />
+        <Hero hero={denver.hero} breadcrumb={denver.breadcrumb} heroVisual={denver.heroVisual} />
         <TrustStrip items={denver.trust} />
-        <CityDistances nearby={denver.nearby} />
+        <Challenges challenges={denver.challenges} />
+        <Comparison comparison={denver.comparison} />
+        <Process process={denver.process} />
+        <Benefits benefits={denver.benefits} />
         <Panel panel={denver.panel} />
-        <Process process={denver.process} tone="mist" />
-        <CityDayChoice day={denver.day} tone="white" />
+        <Locations locations={denver.locations} currentPath={denver.path} cityOnly />
         <AppDownload app={denver.app} />
         <Faq faq={denver.faq} />
         <FinalCta finalCta={denver.finalCta} />
+        <OtherStateFairs otherFairs={denver.otherFairs} />
       </main>
       <Footer />
       <StickyCta sticky={denver.sticky} />

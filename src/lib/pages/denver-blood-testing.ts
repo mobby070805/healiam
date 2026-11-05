@@ -1,17 +1,18 @@
 // Content for /colorado/blood-testing-in-denver, keyword "blood testing in Denver CO" (SEO sheet, P1
-// core city). A city page first and a fair page second (owner, 5 Nov 2026): it opens with blood
-// testing in Denver, the west and north suburbs it serves and reading results at altitude, then the
-// next fair (Sat, Nov 14 at 3955 Irving St, Berkeley) with Centennial on Sunday as the other option. Statewide coverage stays on
-// /colorado/blood-testing. Replaces /fairs/denver-co, which redirects here.
+// core city). Design: the state pages' sections in the state-page order (owner, 5 Nov 2026). A city
+// page first and a fair page second: blood testing in Denver and its west and north suburbs, then the
+// next fair (Sat, Nov 14), with Centennial on Sunday for the south metro. Only the city is named, never
+// the venue: it can change from fair to fair (owner, 5 Nov 2026).
+// Each fact is stated once, in the section it belongs to. /fairs/denver-co stays as it is.
 //
-// Facts: address, neighborhood, parking and date from lib/fairs.ts (matches healiam.com/fairs/denver-co,
-// which does not mention walk-ins, so this page doesn't either); the venue has no published name;
-// nearby towns and straight-line distances from the Healiam_Fair_City_Pages sheet.
+// Facts: date from lib/fairs.ts (healiam.com/fairs/denver-co does not mention walk-ins, so neither does
+// this page); nearby towns from the Healiam_Fair_City_Pages sheet.
 
 import { site } from "@/lib/site";
 import { fairs, fairHours, type Fair } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
+import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
@@ -26,7 +27,6 @@ export const denverFair = fairBySlug("denver-co");
 const centennialFair = fairBySlug("centennial-co");
 
 const short = (f: Fair) => f.dateLabel.replace(/,\s*\d{4}$/, ""); // "Sat, Nov 14"
-const daysApart = Math.round((Date.parse(centennialFair.date) - Date.parse(denverFair.date)) / 86_400_000);
 const kidneyCount = panelCategories.find((c) => c.slug === "kidney")?.markers.length ?? 0;
 const cbcCount = panelCategories.find((c) => c.slug === "cbc")?.markers.length ?? 0;
 
@@ -35,12 +35,12 @@ export const denver = {
   keyword: "blood testing in Denver CO",
   meta: {
     title: `Blood Testing in Denver, CO | Saturday Fairs, ${price} | Healiam`,
-    description: `Blood testing in Denver, CO: a ${price} panel of ${labMeasurementCount} lab measurements, no referral. Next Denver fair ${short(denverFair)} on Irving St in Berkeley, free parking.`,
+    description: `Blood testing in Denver, CO: a ${price} panel of ${labMeasurementCount} lab measurements, no referral. Next Denver fair ${short(denverFair)}, ${fairHours.label}.`,
   },
   nav: [
-    { label: "Suburbs", href: "#nearby" },
     { label: "What's tested", href: "#panel" },
-    { label: "Next fair", href: "#day" },
+    { label: "Your visit", href: "#how-it-works" },
+    { label: "Denver date", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -50,129 +50,221 @@ export const denver = {
   ],
 
   hero: {
-    eyebrow: "Denver, Colorado",
-    title: "Blood testing in Denver, CO",
-    sub: `Blood testing in Denver on a Saturday morning: one ${price} panel of ${labMeasurementCount} lab measurements with no doctor's order or insurance, drawn by a licensed phlebotomist and read in the Healiam app.`,
-    primary: { label: `Book for ${price}`, short: "Book now", href: book },
-    secondary: { label: "Next Denver fair", href: "#day" },
-    glance: {
-      title: "Blood testing in Denver at a glance",
+    titleLead: "Blood testing in Denver, CO for",
+    titleAccent: price,
+    sub: "A Saturday morning at Healiam's Denver fair: two vials, a licensed phlebotomist, and nothing to clear with a doctor or an insurer beforehand.",
+    primary: { label: `Book for ${price}`, href: book },
+    secondary: { label: "See the Denver date", href: "#locations" },
+    ticks: [`${labCategoryCount} lab categories`, "Book online or in the app", "Report in 4 to 5 business days"],
+  },
+
+  // Hero phone mockup: the state pages' design with Denver's own sample, and a booking card for the Denver
+  // fair in place of the state pages' trend card, so the hero names the city (owner, 5 Nov 2026).
+  // Labelled "Sample"; not a real customer.
+  heroVisual: {
+    ariaLabel: `Sample Healiam results screen from a Denver fair: phosphorus flagged low, hemoglobin, hematocrit, TSH and uric acid in range, with a results-ready alert and a Denver, CO booking for ${denverFair.dateLabel}.`,
+    screen: {
+      title: "Results",
+      sub: "Denver fair · Sample",
+      summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
+      filters: ["All", "CBC", "Kidney", "Thyroid"],
       rows: [
-        { icon: "CircleDollarSign", label: "Price", value: `${price} per person`, note: "No visit fee, no insurance claim" },
-        { icon: "FlaskConical", label: "What's tested", value: `${labMeasurementCount} lab measurements`, note: `CBC, kidney, thyroid and ${labCategoryCount - 3} more categories` },
-        { icon: "Mountain", label: "Good to know", value: "Altitude affects two markers", note: "Hemoglobin and hematocrit can read higher" },
+        { name: "Phosphorus", value: "2.3", unit: "mg/dL", low: true, pos: 16 },
+        { name: "Hemoglobin", value: "16.2", unit: "g/dL", low: false, pos: 64 },
+        { name: "Hematocrit", value: "47", unit: "%", low: false, pos: 62 },
+        { name: "TSH", value: "2.2", unit: "mIU/L", low: false, pos: 48 },
+        { name: "Uric acid", value: "5.8", unit: "mg/dL", low: false, pos: 52 },
       ],
-      nextLabel: "Next Denver fair",
-      nextNote: `${fairHours.label} MT · 3955 Irving St, Berkeley`,
-      walkIn: "Book a slot online before you go. It takes a free Healiam account and a few minutes.",
-      upcoming: "Upcoming",
-      ended: "This Denver date has passed. New Colorado dates appear on the fairs page as they are scheduled.",
-      endedCta: { label: "See upcoming fairs", href: site.links.fairs },
+    },
+    notification: { app: "Healiam", time: "now", title: "Results ready", line: `${labMeasurementCount} measurements` },
+    booking: {
+      title: "Denver fair",
+      chip: "Booked",
+      lines: [
+        { icon: "CalendarDays", label: denverFair.dateLabel.replace(/,\s*\d{4}$/, "") },
+        { icon: "Clock", label: fairHours.label },
+        { icon: "MapPin", label: "Denver, CO" },
+      ],
     },
   },
 
   trust: [
     { icon: "BadgeCheck", label: "CLIA-certified labs" },
-    { icon: "CalendarDays", label: "Saturday morning" },
-    { icon: "Car", label: "Free lot next door" },
+    { icon: "Microscope", label: "FDA-approved equipment" },
+    { icon: "ShieldCheck", label: "HIPAA compliant" },
     { icon: "CreditCard", label: "Card or HSA card" },
   ],
 
-  // Denver's own section: the two Colorado mornings side by side.
-  day: {
-    eyebrow: "Next Denver fair",
-    title: "The next Denver fair, and a Sunday option",
-    sub: `Denver's next fair is on a Saturday. If the south metro suits you better, Centennial follows ${daysApart} days later on a Sunday.`,
-    options: [
+  challenges: {
+    eyebrow: "Sound familiar?",
+    title: "What makes blood work in Denver a chore",
+    sub: "Six familiar hurdles for Denver residents. A Saturday Healiam fair in the city clears every one.",
+    items: [
+      "Draw sites that keep weekday hours",
+      "An office visit before any labs",
+      "Prices you only learn afterwards",
+      "A basic panel that misses a lot",
+      "Results scattered across portals",
+      "Nobody mentioning the altitude",
+    ],
+    cta: {
+      primary: { label: `Book for ${price}`, href: book },
+      secondary: { label: "See the Denver date", href: "#locations" },
+    },
+  },
+
+  comparison: {
+    eyebrow: "Compare",
+    title: "Healiam or a Denver clinic: the differences",
+    sub: "Six ways the Denver fair differs from getting blood work ordered through a clinic in town.",
+    usualLabel: "Clinic in town",
+    oursLabel: "Denver fair",
+    badge: "CLIA-certified",
+    note: "The bars are a rough side by side guide, not measurements. Clinic prices are typical US visit plus lab fees.",
+    factors: [
       {
-        tag: "This page",
-        name: "Denver",
-        dateLabel: denverFair.dateLabel,
-        place: `${denverFair.street}, ${denverFair.locality} ${denverFair.postalCode}`,
-        line: "Free parking in the lot beside the building. The ADA-accessible spaces are nearest the main entrance.",
-        cta: { label: `Book Denver for ${price}`, href: book },
-        fair: denverFair,
-        primary: true,
+        id: "day",
+        tab: "Day",
+        icon: "CalendarDays",
+        bar: "Time off work",
+        usual: { value: "A weekday slot", note: "Many draw sites keep office hours only.", level: 80 },
+        ours: { value: "A Saturday", note: "Two morning hours on the weekend, nothing to take off for.", level: 14 },
+        cta: { label: "See the Denver date", href: "#locations" },
       },
       {
-        tag: "South metro",
-        name: "Centennial",
-        dateLabel: centennialFair.dateLabel,
-        place: `${centennialFair.venue}, ${centennialFair.street}`,
-        line: "Free parking in the lot in front of the building. Same panel and price, a Sunday instead of a Saturday.",
-        cta: { label: "See the Centennial fair", href: centennialFair.detailsUrl },
-        fair: centennialFair,
-        primary: false,
+        id: "cost",
+        tab: "Cost",
+        icon: "CircleDollarSign",
+        bar: "Cost",
+        usual: { value: "$100 to $800+", note: "An office visit first, lab fees on top.", level: 100 },
+        ours: { value: price, note: "A single price per person, set before you arrive.", level: 14 },
+        cta: { label: `Book for ${price}`, href: book },
+      },
+      {
+        id: "ordering",
+        tab: "Ordering",
+        icon: "Stethoscope",
+        bar: "Steps before a draw",
+        usual: { value: "Order from a provider", note: "Labs are requested on your behalf after a visit.", level: 80 },
+        ours: { value: "You choose", note: "Book the panel directly, online or in the app.", level: 16 },
+        cta: { label: "Book without an order", href: book },
+      },
+      {
+        id: "breadth",
+        tab: "Breadth",
+        icon: "Layers",
+        bar: "Markers covered",
+        usual: { value: "A handful", note: "Usually a basic metabolic or lipid set.", level: 26 },
+        ours: { value: `${labMeasurementCount} measurements`, note: "From CBC and thyroid to Vitamin D and iron.", level: 100 },
+        cta: { label: "See the full panel", href: "#panel" },
+      },
+      {
+        id: "tracking",
+        tab: "Tracking",
+        icon: "ChartLine",
+        bar: "Effort to follow changes",
+        usual: { value: "Separate portals", note: "Each provider keeps its own copy of your numbers.", level: 74 },
+        ours: { value: "One timeline", note: "Every retest adds to the same chart in the app.", level: 20 },
+        cta: { label: "Book my test", href: book },
+      },
+      {
+        id: "results",
+        tab: "Results",
+        icon: "Timer",
+        bar: "Wait to see numbers",
+        usual: { value: "A follow-up call", note: "Numbers are often read out at a later appointment.", level: 72 },
+        ours: { value: "Straight to the app", note: "Each marker arrives with its own range beside it.", level: 22 },
+        cta: { label: "See the Denver date", href: "#locations" },
       },
     ],
   },
 
   process: {
-    eyebrow: "How it works",
-    title: "Preparing for blood testing in Denver",
-    sub: "Four things between booking and leaving Irving Street with your draw done.",
+    eyebrow: "Your visit",
+    title: "From booking to results in Denver",
+    sub: "Four steps, most of them done from home.",
     steps: [
-      { title: `Book ${short(denverFair)}`, sub: "In the app or online" },
-      { title: "Stop eating the night before", sub: "8 to 12 hours ahead" },
-      { title: "Keep drinking water", sub: "Water is fine while fasting" },
-      { title: "8 to 10 AM, Irving St", sub: "Two vials, about 7 min" },
+      { title: "Pick Saturday", sub: "Online or in the app" },
+      { title: "No food from the evening", sub: "8 to 12 hours" },
+      { title: "Saturday draw in Denver", sub: "Two vials, about 7 min" },
+      { title: "Open your results", sub: "4 to 5 business days" },
     ],
-    tip: "No hard workouts in the 24 hours before. Your report arrives in the Healiam app 4 to 5 business days after the draw.",
+    tip: "Keep drinking water while you fast, and skip hard exercise the day before your Denver draw.",
     cta: {
       primary: { label: "Book the Denver date", href: book },
-      secondary: { label: "Next fair", href: "#day" },
+      secondary: { label: "See every marker", href: "#panel" },
     },
   },
 
-  nearby: {
-    eyebrow: "Denver and the suburbs",
-    title: "Blood testing for Denver and its west and north suburbs",
-    sub: "Healiam's Denver fair sits in northwest Denver, close to these suburbs. Straight-line miles from the Irving St venue, closest first; the drive will be a little longer.",
-    // From the Healiam_Fair_City_Pages sheet (km, converted to miles).
-    towns: [
-      { name: "Edgewater", miles: 2.2 },
-      { name: "Wheat Ridge", miles: 2.5 },
-      { name: "Arvada", miles: 3.7 },
-      { name: "Westminster (south)", miles: 4.1 },
-      { name: "Lakewood", miles: 5.3 },
-      { name: "Commerce City", miles: 5.7 },
-      { name: "Federal Heights", miles: 5.8 },
+  benefits: {
+    eyebrow: "What you get",
+    title: "What a Denver draw gives you",
+    sub: "Beyond the two vials, here is what you get to keep.",
+    items: [
+      { icon: "Mountain", title: "Altitude-aware reading", line: "Hemoglobin and hematocrit can run higher a mile up." },
+      { icon: "Gauge", title: "Colour-coded ranges", line: "Low, normal or high, marker by marker." },
+      { icon: "FileCheck", title: "Lab-grade results", line: "Processed by CLIA-certified partner labs." },
+      { icon: "ChartLine", title: "Movement over time", line: "Retest and watch each marker change." },
+      { icon: "Share2", title: "Easy to pass on", line: "Send the PDF to whichever doctor you see." },
+      { icon: "Users", title: "Household booking", line: "Reserve for everyone in one go." },
+      { icon: "HeartPulse", title: "Vitals alongside", line: "Add heart rate and blood pressure yourself." },
+      { icon: "Lock", title: "Kept to you", line: "No employer or third party sees your results." },
     ],
-    stateLink: { label: "Blood testing across Colorado", href: "/colorado/blood-testing" },
+    cta: {
+      primary: { label: `Book for ${price}`, href: book },
+      secondary: { label: "See a sample report", href: site.links.sampleReport, newTab: true },
+    },
   },
 
   panel: {
     eyebrow: "The panel",
     title: "Inside a Denver blood test",
-    sub: `${labMeasurementCount} lab measurements across ${labCategoryCount} categories, from ${kidneyCount} kidney function markers to a ${cbcCount}-measurement CBC. Living a mile up can push hemoglobin and hematocrit higher, so mention your elevation when you go over those two.`,
+    sub: `${labCategoryCount} lab categories from one Saturday draw, with a ${kidneyCount}-marker kidney function test and a ${cbcCount}-measurement CBC among them, plus biometrics you log in the app.`,
     categories: panelCategories,
     priceCard: {
       label: "Denver fair",
-      line: "Every marker in one Saturday draw on Irving St.",
-      compare: "Usual route: $100 to $800+ for a visit plus labs",
-      fine: "Credit card or HSA card. No insurance card needed.",
+      line: "Every marker below, from one Denver draw.",
+      compare: "Clinic in town: $100 to $800+ for a visit plus labs",
+      fine: "Credit card or HSA card accepted.",
       cta: { label: `Book for ${price}`, href: book },
+    },
+  },
+
+  locations: {
+    eyebrow: "Denver date",
+    title: "Book a Denver blood testing slot",
+    sub: "The Denver date also suits Edgewater, Wheat Ridge, Arvada, Westminster, Lakewood, Commerce City and Federal Heights.",
+    fairs: [denverFair],
+    hours: fairHours,
+    noFair: {
+      title: "In the south metro?",
+      line: `Centennial's fair runs the next day, ${short(centennialFair)}.`,
+      cta: { label: "See the Centennial fair", href: centennialFair.detailsUrl },
+    },
+    cta: {
+      primary: { label: `Book for ${price}`, href: book },
+      secondary: { label: "Blood testing across Colorado", href: "/colorado/blood-testing" },
     },
   },
 
   app: {
     eyebrow: "The Healiam app",
     title: "Denver results land in the Healiam app",
-    sub: "Free on iPhone and Android. Your Denver report lands there 4 to 5 business days after the draw.",
+    sub: "Free on iPhone and Android. Scan a code and book the Denver date from your phone.",
     points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
   },
 
-  // Six questions: three about blood testing in Denver, three about Healiam's Irving St fair.
+  // Six questions: three about blood testing in Denver, three about Healiam's Denver fair.
   faq: {
     eyebrow: "Denver questions",
     title: "Denver blood testing questions, answered",
-    sub: "Three questions about blood testing in Denver, and three about Healiam's Irving St fair.",
+    sub: "Three questions about blood testing in Denver, and three about Healiam's Denver fair.",
     items: [
       {
         q: "Where can I get blood testing in Denver, CO?",
-        a: `At Healiam's Saturday fair at ${denverFair.street}, Denver ${denverFair.postalCode}, in the Berkeley neighborhood, on ${denverFair.dateLabel}, ${fairHours.label} Mountain Time. Healiam tests at scheduled fairs, not at a lab that is open every day.`,
+        a: `At Healiam's Saturday fair in Denver on ${denverFair.dateLabel}, ${fairHours.label} Mountain Time. Healiam tests at scheduled fairs, not at a lab that is open every day.`,
       },
       {
         q: "What does blood testing in Denver cost with Healiam?",
@@ -183,12 +275,12 @@ export const denver = {
         a: `Yes. Every Denver draw runs the full panel, which includes ${kidneyCount} kidney function markers and a ${cbcCount}-measurement complete blood count, so there is no add-on to choose.`,
       },
       {
-        q: "Is there parking at the Denver fair?",
-        a: "Yes, free parking in the lot next to the building at 3955 Irving St. The ADA-accessible spaces are the ones nearest the main entrance.",
+        q: "Does living in Denver affect my hemoglobin result?",
+        a: "It can. People who live at altitude often have higher hemoglobin and hematocrit, so mention that you live in Denver when you go over those two markers with your doctor.",
       },
       {
         q: "I live in the south metro. Should I still come to Denver?",
-        a: `You may find Centennial easier. Healiam's Centennial fair is at ${centennialFair.venue}, ${centennialFair.street}, on ${centennialFair.dateLabel}, with the same panel and price.`,
+        a: `You may find Centennial easier. Healiam's Centennial fair is on ${centennialFair.dateLabel}, with the same panel and price.`,
       },
       {
         q: "How do I book the Denver date?",
@@ -204,9 +296,17 @@ export const denver = {
 
   finalCta: {
     title: "Book Saturday blood testing in Denver",
-    sub: `Saturday morning on Irving St, a free lot next door, and all ${labMeasurementCount} results on your phone 4 to 5 business days later.`,
+    sub: "Two morning hours on a Denver Saturday, and your report the following week.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  otherFairs: {
+    eyebrow: "Other states",
+    title: "Fairs for family outside Denver and Colorado",
+    sub: "Healiam runs the same morning fairs in these states, with the same panel and price.",
+    linkLead: "Blood testing in",
+    exclude: "Colorado",
   },
 
   sticky: {
@@ -214,4 +314,4 @@ export const denver = {
     sub: `Next fair ${short(denverFair)} · ${price}`,
     cta: { label: "Book now", href: book },
   },
-} as const;
+} as const satisfies StateLandingPage;

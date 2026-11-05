@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 import { panelCategories, labCategoryCount } from "@/lib/panel";
 import { fairHours, fairs } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
-import type { Widen } from "@/lib/types";
+import type { HeroVisualData, Widen } from "@/lib/types";
 
 const texasFairs = fairs.filter((f) => f.region === "TX");
 const texasCities = texasFairs.map((f) => f.locality).join(" and ");
@@ -310,4 +310,7 @@ export type TexasBloodTestPage = typeof page;
  * Shape of a state landing page built from the Texas page's sections. Other state pages
  * (Colorado) fill the same shape with their own copy; the section components default to Texas.
  */
-export type StateLandingPage = Widen<TexasBloodTestPage>;
+export type StateLandingPage = Omit<Widen<TexasBloodTestPage>, "heroVisual"> & {
+  /** Any mockup the hero can draw: a trend card (state pages) or a booking card (city pages). */
+  readonly heroVisual: HeroVisualData;
+};

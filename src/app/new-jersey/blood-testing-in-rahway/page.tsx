@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
-import { rahway, rahwayFair } from "@/lib/pages/rahway-blood-testing";
+import { rahway } from "@/lib/pages/rahway-blood-testing";
 import { rahwayGraph } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
+import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
+import { Challenges } from "@/components/sections/Challenges";
+import { Comparison } from "@/components/sections/Comparison";
 import { Process } from "@/components/sections/Process";
+import { Benefits } from "@/components/sections/Benefits";
 import { Panel } from "@/components/sections/Panel";
+import { Locations } from "@/components/sections/Locations";
+import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { AppDownload } from "@/components/home/AppDownload";
-import { CityHero } from "@/components/city/CityHero";
-import { CityWays } from "@/components/city/CityWays";
-import { CityTownGroups } from "@/components/city/CityTownGroups";
+import { OtherStateFairs } from "@/components/sections/OtherStateFairs";
 
 const url = `${site.url}${rahway.path}`;
 
@@ -34,23 +37,26 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// City page first, fair second (owner, 5 Nov 2026): blood testing in Rahway and nearby towns, what it
-// covers and how it works, then the next Rahway fair and the ways to reach it.
+// Design: the state pages' sections, in the state-page order (owner, 5 Nov 2026). Only the content is
+// Rahway's own, written city first and fair second.
 export default function RahwayBloodTestingPage() {
   return (
     <>
       <JsonLd data={rahwayGraph()} />
       <Header nav={rahway.nav} />
       <main>
-        <CityHero page={rahway} fair={rahwayFair} />
+        <Hero hero={rahway.hero} breadcrumb={rahway.breadcrumb} heroVisual={rahway.heroVisual} />
         <TrustStrip items={rahway.trust} />
-        <CityTownGroups nearby={rahway.nearby} />
+        <Challenges challenges={rahway.challenges} />
+        <Comparison comparison={rahway.comparison} />
+        <Process process={rahway.process} />
+        <Benefits benefits={rahway.benefits} />
         <Panel panel={rahway.panel} />
-        <Process process={rahway.process} tone="mist" />
-        <CityWays ways={rahway.ways} fair={rahwayFair} tone="white" />
+        <Locations locations={rahway.locations} currentPath={rahway.path} cityOnly />
         <AppDownload app={rahway.app} />
         <Faq faq={rahway.faq} />
         <FinalCta finalCta={rahway.finalCta} />
+        <OtherStateFairs otherFairs={rahway.otherFairs} />
       </main>
       <Footer />
       <StickyCta sticky={rahway.sticky} />

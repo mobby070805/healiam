@@ -1,17 +1,20 @@
 // Content for /texas/blood-testing-in-plano, keyword "blood testing in Plano TX" (SEO sheet, P1 core
-// city). A city page first and a fair page second (owner, 5 Nov 2026): it opens with blood testing in
-// Plano and the towns around it, then the next fair (Brightway Insurance, Coit Crossing, Sat Nov 14)
-// and how to find it. Statewide coverage stays on /texas/blood-testing. Replaces /fairs/plano-tx,
-// which redirects here.
+// city). Design: the state pages' sections in the state-page order (owner, 5 Nov 2026: "design should be
+// like the state pages"). A city page first and a fair page second: blood testing in Plano, then the
+// next Plano fair (Sat Nov 14). Only the city is named, never the venue: it can change from fair to
+// fair (owner, 5 Nov 2026). Each fact is stated once, in the
+// section it belongs to, so the hero, bullets and cards don't repeat each other (owner, 5 Nov 2026).
+// /fairs/plano-tx stays as it is; this page is separate.
 //
-// Facts: venue, suite, floor, parking, date and walk-ins from lib/fairs.ts (matches healiam.com/fairs/
-// plano-tx); the 12 Jul 2026 Plano fair from healiam.com/fairs/plano-gurukul-tx; nearby towns and
-// straight-line distances from the Healiam_Fair_City_Pages sheet. See docs/LOCATION-PAGES-AUDIT.md.
+// Facts: date and walk-ins from lib/fairs.ts (matches healiam.com/fairs/
+// plano-tx); the 12 Jul 2026 Plano fair from healiam.com/fairs/plano-gurukul-tx; nearby towns
+// from the Healiam_Fair_City_Pages sheet.
 
 import { site } from "@/lib/site";
 import { fairs, fairHours, type Fair } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
+import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
@@ -25,22 +28,21 @@ function fairBySlug(slug: string): Fair {
 export const planoFair = fairBySlug("plano-tx");
 const grandPrairieFair = fairBySlug("arlington-tx");
 
+const short = (f: Fair) => f.dateLabel.replace(/,\s*\d{4}$/, ""); // "Sat, Nov 14"
+const kidneyCount = panelCategories.find((c) => c.slug === "kidney")?.markers.length ?? 0;
 const cbcCount = panelCategories.find((c) => c.slug === "cbc")?.markers.length ?? 0;
-const kidneyMarkers = panelCategories.find((c) => c.slug === "kidney")?.markers ?? [];
-
-const dateShort = planoFair.dateLabel.replace(/,\s*\d{4}$/, ""); // "Sat, Nov 14"
 
 export const plano = {
   path: "/texas/blood-testing-in-plano",
   keyword: "blood testing in Plano TX",
   meta: {
     title: `Blood Testing in Plano, TX | ${price}, No Referral | Healiam`,
-    description: `Blood testing in Plano, TX for ${price}: ${labMeasurementCount} lab measurements, no referral or insurance. Next Plano fair ${dateShort} on Coit Rd. Walk-ins welcome.`,
+    description: `Blood testing in Plano, TX for ${price}: ${labMeasurementCount} lab measurements, no referral or insurance. Next Plano fair ${short(planoFair)}. Walk-ins welcome.`,
   },
   nav: [
-    { label: "Nearby towns", href: "#nearby" },
     { label: "What's tested", href: "#panel" },
-    { label: "Next fair", href: "#arrival" },
+    { label: "Your visit", href: "#how-it-works" },
+    { label: "Plano date", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -50,120 +52,221 @@ export const plano = {
   ],
 
   hero: {
-    eyebrow: "Plano, Texas",
-    title: "Blood testing in Plano, TX",
-    sub: `Preventive blood work in Plano without a doctor's order or an insurance claim: one ${price} panel of ${labMeasurementCount} lab measurements, drawn at a Healiam morning fair and read in the Healiam app.`,
-    primary: { label: `Book for ${price}`, short: "Book now", href: book },
-    secondary: { label: "Next Plano fair", href: "#arrival" },
-    glance: {
-      title: "Blood testing in Plano at a glance",
+    titleLead: "Blood testing in Plano, TX for",
+    titleAccent: price,
+    sub: "For Plano and southern Collin County: a full preventive panel drawn at a Healiam Saturday morning fair in Plano, with no doctor's order to arrange first.",
+    primary: { label: `Book for ${price}`, href: book },
+    secondary: { label: "See the Plano date", href: "#locations" },
+    ticks: ["Walk-ins welcome", `${labMeasurementCount} lab measurements`, "Results in the app"],
+  },
+
+  // Hero phone mockup: the state pages' design with Plano's own sample, and a booking card for the Plano
+  // fair in place of the state pages' trend card, so the hero names the city (owner, 5 Nov 2026).
+  // Labelled "Sample"; not a real customer.
+  heroVisual: {
+    ariaLabel: `Sample Healiam results screen from a Plano fair: magnesium flagged low, LDL, TSH, creatinine and hemoglobin in range, with a results-ready alert and a Plano, TX booking for ${planoFair.dateLabel}.`,
+    screen: {
+      title: "Results",
+      sub: "Plano fair · Sample",
+      summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
+      filters: ["All", "Lipids", "Kidney", "CBC"],
       rows: [
-        { icon: "CircleDollarSign", label: "Price", value: `${price} for the full panel`, note: "Card or HSA card, no insurance" },
-        { icon: "FlaskConical", label: "What's tested", value: `${labMeasurementCount} lab measurements`, note: `${labCategoryCount} categories from one draw` },
-        { icon: "Timer", label: "Results", value: "4 to 5 business days", note: "Every marker in the Healiam app" },
+        { name: "Magnesium", value: "1.6", unit: "mg/dL", low: true, pos: 17 },
+        { name: "LDL", value: "99", unit: "mg/dL", low: false, pos: 55 },
+        { name: "TSH", value: "1.9", unit: "mIU/L", low: false, pos: 45 },
+        { name: "Creatinine", value: "1.0", unit: "mg/dL", low: false, pos: 50 },
+        { name: "Hemoglobin", value: "13.8", unit: "g/dL", low: false, pos: 47 },
       ],
-      nextLabel: "Next Plano fair",
-      nextNote: `${fairHours.label} CT · Brightway Insurance, Coit Rd`,
-      walkIn: "Walk-ins welcome. Booking a slot online just means less waiting.",
-      upcoming: "Upcoming",
-      ended: "This date has passed. New Plano dates appear on the fairs page as they are scheduled.",
-      endedCta: { label: "See upcoming fairs", href: site.links.fairs },
+    },
+    notification: { app: "Healiam", time: "now", title: "Results ready", line: `${labMeasurementCount} measurements` },
+    booking: {
+      title: "Plano fair",
+      chip: "Booked",
+      lines: [
+        { icon: "CalendarDays", label: planoFair.dateLabel.replace(/,\s*\d{4}$/, "") },
+        { icon: "Clock", label: fairHours.label },
+        { icon: "MapPin", label: "Plano, TX" },
+      ],
     },
   },
 
   trust: [
     { icon: "BadgeCheck", label: "CLIA-certified labs" },
-    { icon: "Footprints", label: "Walk-ins welcome" },
-    { icon: "Car", label: "Free parking out front" },
-    { icon: "CreditCard", label: "Card or HSA card" },
+    { icon: "UserCheck", label: "Licensed phlebotomists" },
+    { icon: "ShieldCheck", label: "HIPAA compliant" },
+    { icon: "CreditCard", label: "HSA cards accepted" },
   ],
 
-  arrival: {
-    eyebrow: "Next Plano fair",
-    title: "The next Plano fair, upstairs at Coit Crossing",
-    sub: `${planoFair.dateLabel}, ${fairHours.label} Central Time, at Brightway Insurance. The fair is on the second floor of a professional plaza, so here is how to find it.`,
-    steps: [
-      { title: "Head for 6832 Coit Rd", line: "The Coit Crossing professional plaza, Plano 75023." },
-      { title: "Park in front of the building", line: "Surface parking is free. The ADA-accessible spots are nearest the main doors." },
-      { title: "Go up to the second floor", line: "Look for Brightway Insurance, Suite 270A, on the upper level." },
-      { title: "Check in and sit down", line: "A licensed phlebotomist draws two vials in a private setting, usually in under seven minutes." },
+  challenges: {
+    eyebrow: "Sound familiar?",
+    title: "Why blood work in Plano gets put off",
+    sub: "Six things that keep Plano residents from booking a blood test. The Saturday fair takes each one away.",
+    items: [
+      "A doctor's visit just to get the order",
+      "Lab hours that clash with the workweek",
+      "A bill that turns up weeks later",
+      "Only a few markers checked at a time",
+      "Unsure what insurance will cover",
+      "A second visit to hear the numbers",
     ],
-    mapsLabel: "Open in Google Maps",
-    cta: { label: `Book for ${price}`, href: book },
+    cta: {
+      primary: { label: `Book for ${price}`, href: book },
+      secondary: { label: "See the Plano date", href: "#locations" },
+    },
   },
 
-  // The shared Process component, used here for a fasting plan around an 8 AM draw.
-  process: {
-    eyebrow: "How it works",
-    title: "How blood testing works in Plano",
-    sub: "Fairs open at 8 AM. A simple plan keeps the fast short and gets you to work on time.",
-    steps: [
-      { title: "The night before", sub: "Last meal 8 to 12 hours ahead" },
-      { title: "When you wake up", sub: "Water only, no coffee or gum" },
-      { title: "8 to 10 AM on Coit Rd", sub: "Two vials, under 7 min" },
-      { title: "Straight after", sub: "Eat breakfast, then on with your day" },
+  comparison: {
+    eyebrow: "Compare",
+    title: "Why Plano residents test with Healiam",
+    sub: "How a Saturday morning at the Plano fair compares with arranging blood work through a doctor and a separate lab.",
+    usualLabel: "Doctor and lab",
+    oursLabel: "Plano fair",
+    badge: "CLIA-certified",
+    note: "The bars are a rough side by side guide, not measurements. Doctor-and-lab prices are typical US visit plus lab fees.",
+    factors: [
+      {
+        id: "schedule",
+        tab: "Schedule",
+        icon: "CalendarDays",
+        bar: "Time off work",
+        usual: { value: "Weekday hours", note: "Lab draws are often fitted around the working week.", level: 80 },
+        ours: { value: "Saturday morning", note: `${fairHours.label}, then the rest of the weekend is yours.`, level: 14 },
+        cta: { label: "See the Plano date", href: "#locations" },
+      },
+      {
+        id: "price",
+        tab: "Price",
+        icon: "CircleDollarSign",
+        bar: "Cost",
+        usual: { value: "$100 to $800+", note: "Visit, draw and lab charges can arrive as separate bills.", level: 100 },
+        ours: { value: price, note: "One payment at booking covers everything below.", level: 14 },
+        cta: { label: `Book for ${price}`, href: book },
+      },
+      {
+        id: "order",
+        tab: "Order",
+        icon: "Stethoscope",
+        bar: "Steps before a draw",
+        usual: { value: "Appointment, then order", note: "You see a doctor so the labs can be requested.", level: 82 },
+        ours: { value: "Straight to booking", note: "Choose the panel yourself; no order is needed.", level: 16 },
+        cta: { label: "Book without an order", href: book },
+      },
+      {
+        id: "scope",
+        tab: "Scope",
+        icon: "Layers",
+        bar: "Markers covered",
+        usual: { value: "A short list", note: "Only the tests that were requested get run.", level: 26 },
+        ours: { value: `${labCategoryCount} lab categories`, note: "Thyroid, lipids, kidney, liver, iron and more, together.", level: 100 },
+        cta: { label: "See the full panel", href: "#panel" },
+      },
+      {
+        id: "follow-up",
+        tab: "Follow-up",
+        icon: "Timer",
+        bar: "Wait to see numbers",
+        usual: { value: "Another visit", note: "Results are often explained at a second appointment.", level: 76 },
+        ours: { value: "On your phone", note: "Every marker, with its range, in 4 to 5 business days.", level: 30 },
+        cta: { label: "Book my test", href: book },
+      },
+      {
+        id: "payment",
+        tab: "Payment",
+        icon: "CreditCard",
+        bar: "Coverage questions",
+        usual: { value: "Copays, deductibles", note: "What you owe depends on your plan and the codes billed.", level: 70 },
+        ours: { value: "Card or HSA card", note: "No insurance claim, so there is nothing to check first.", level: 14 },
+        cta: { label: "See the Plano date", href: "#locations" },
+      },
     ],
-    tip: "Skip hard workouts for 24 hours before the draw. Results reach the Healiam app in 4 to 5 business days.",
+  },
+
+  process: {
+    eyebrow: "Your visit",
+    title: "How a Plano blood test works",
+    sub: "From reserving a time to reading every marker on your phone.",
+    steps: [
+      { title: "Reserve a time", sub: "Or simply walk in" },
+      { title: "Stop eating overnight", sub: "8 to 12 hours, water allowed" },
+      { title: "Two vials in Plano", sub: "About seven minutes" },
+      { title: "Read your report", sub: "4 to 5 business days" },
+    ],
+    tip: "Skip hard workouts in the 24 hours before your Plano draw; they can shift a few markers.",
     cta: {
-      primary: { label: "Book my Plano slot", href: book },
-      secondary: { label: "Next Plano fair", href: "#arrival" },
+      primary: { label: "Reserve a Plano time", href: book },
+      secondary: { label: "See every marker", href: "#panel" },
+    },
+  },
+
+  benefits: {
+    eyebrow: "What you get",
+    title: "What you leave the Plano fair with",
+    sub: "The draw takes minutes; this is what follows from it.",
+    items: [
+      { icon: "Gauge", title: "Ranges at a glance", line: "Each result sits on a low, normal and high bar." },
+      { icon: "FileText", title: "A report for your doctor", line: "Lab results from CLIA-certified partners." },
+      { icon: "ChartLine", title: "A baseline for next time", line: "Retest later and every marker gets a trend line." },
+      { icon: "FileDown", title: "A PDF copy", line: "Keep it, print it, or send it on." },
+      { icon: "Users", title: "One booking for the family", line: "Add each person when you reserve." },
+      { icon: "HeartPulse", title: "Room for vitals", line: "Log blood pressure and weight beside your labs." },
+      { icon: "Lock", title: "Private by default", line: "Not shared with an employer or anyone else." },
+      { icon: "CalendarCheck", title: "A fair that returns", line: "Healiam tested in Plano in July 2026 too." },
+    ],
+    cta: {
+      primary: { label: `Book for ${price}`, href: book },
+      secondary: { label: "See a sample report", href: site.links.sampleReport, newTab: true },
     },
   },
 
   panel: {
     eyebrow: "The panel",
     title: "What a Plano blood test covers",
-    sub: `${labMeasurementCount} lab measurements across ${labCategoryCount} categories, including the kidney function tests and the complete blood count (CBC), plus biometrics you log in the app.`,
+    sub: `${labMeasurementCount} lab measurements in ${labCategoryCount} categories, including a kidney function test (${kidneyCount} markers) and a CBC (${cbcCount} measurements), plus biometrics you add in the app.`,
     categories: panelCategories,
     priceCard: {
       label: "Plano fair",
-      line: "The whole panel at the Coit Rd fair, one draw, one price.",
-      compare: "Usual route: $100 to $800+ for a visit plus labs",
-      fine: "Credit card or HSA card. No insurance card needed.",
+      line: "The full panel at the Plano fair, at one price.",
+      compare: "Doctor and lab: $100 to $800+ for a visit plus labs",
+      fine: "Pay by credit card or HSA card.",
       cta: { label: `Book for ${price}`, href: book },
     },
   },
 
-  nearby: {
-    eyebrow: "Plano and nearby",
-    title: "Blood testing for Plano and nearby towns",
-    sub: "Healiam's Plano fairs also suit people in nearby towns. Distances are in a straight line from the Coit Rd venue, so the drive will be a little longer.",
-    townsTitle: "Nearby towns",
-    towns: [
-      { name: "East Frisco", distance: "about 4.8 miles" },
-      { name: "Far North Dallas", distance: "about 5.2 miles" },
-      { name: "Allen", distance: "about 6.2 miles" },
-    ],
-    backup: {
-      title: `Can't make ${dateShort}?`,
-      line: `Healiam's other North Texas fair is a week later, ${grandPrairieFair.dateLabel.replace(/,\s*\d{4}$/, "")}, at ${grandPrairieFair.venue} in ${grandPrairieFair.locality}. Same panel, same price.`,
+  locations: {
+    eyebrow: "Plano date",
+    title: "Pick a Plano blood testing appointment",
+    sub: "The Plano date also suits East Frisco, Far North Dallas and Allen.",
+    fairs: [planoFair],
+    hours: fairHours,
+    noFair: {
+      title: `Can't make ${short(planoFair).replace(/^\w+,\s*/, "")}?`,
+      line: `Healiam's Grand Prairie fair is a week later, ${short(grandPrairieFair)}.`,
       cta: { label: "See the Grand Prairie fair", href: grandPrairieFair.detailsUrl },
     },
-    history: {
-      title: "Healiam has tested in Plano before",
-      line: "Healiam held a Plano fair on 12 July 2026 at Shree Swaminarayan Gurukul on Park Vista Rd, and is back in Plano on Coit Rd in November.",
+    cta: {
+      primary: { label: `Book for ${price}`, href: book },
+      secondary: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
     },
-    stateLink: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
   },
 
   app: {
     eyebrow: "The Healiam app",
-    title: "Your Plano results, in the Healiam app",
-    sub: "Install it before November 14 so check-in at Coit Rd is quick. Free on iPhone and Android.",
+    title: "Plano results arrive in the Healiam app",
+    sub: "Free on iPhone and Android. Scan a code to install it before Saturday.",
     points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
   },
 
-  // Six questions: three about blood testing in Plano, three about Healiam's Coit Rd fair.
+  // Six questions: three about blood testing in Plano, three about Healiam's Plano fair.
   faq: {
     eyebrow: "Plano questions",
     title: "Blood testing in Plano, TX: your questions",
-    sub: "Three questions about blood testing in Plano, and three about Healiam's Coit Rd fair.",
+    sub: "Three questions about blood testing in Plano, and three about Healiam's Plano fair.",
     items: [
       {
         q: "Where can I get blood testing in Plano, TX?",
-        a: `At Healiam's fair at Brightway Insurance, 6832 Coit Rd, Suite 270A, on ${planoFair.dateLabel}, ${fairHours.label} Central Time. Healiam tests at scheduled morning fairs rather than a lab that is open every day.`,
+        a: `At Healiam's Plano fair on ${planoFair.dateLabel}, ${fairHours.label} Central Time. Healiam tests at scheduled morning fairs rather than a lab that is open every day.`,
       },
       {
         q: "How much does a blood test cost in Plano with Healiam?",
@@ -171,19 +274,19 @@ export const plano = {
       },
       {
         q: "Can I get a kidney function test or a CBC in Plano?",
-        a: `Yes, both are part of the one panel. The kidney measurements are ${kidneyMarkers.join(", ").toLowerCase().replace(/, ([^,]*)$/, " and $1")}, and the CBC covers ${cbcCount} measurements of red cells, white cells and platelets. There is nothing extra to order.`,
+        a: `Yes, both are part of the one panel: ${kidneyCount} kidney markers, including creatinine and urea nitrogen, and a CBC of ${cbcCount} measurements of red cells, white cells and platelets. There is nothing extra to order.`,
       },
       {
         q: "Do I need to book, or can I walk in at the Plano fair?",
         a: `Walk-ins are welcome any time between ${fairHours.label}. Booking a slot online, which needs a free Healiam account, just means less waiting.`,
       },
       {
-        q: "How do I find suite 270A?",
-        a: "Park free in front of the Coit Crossing professional plaza at 6832 Coit Rd, then go up to the second floor and look for Brightway Insurance, Suite 270A. The ADA-accessible parking spots are nearest the main doors.",
+        q: "What should I do before the Plano fair?",
+        a: "Stop eating 8 to 12 hours before your draw; water is fine. Skip hard workouts the day before, as they can shift a few markers. The draw itself is two vials and takes about seven minutes.",
       },
       {
-        q: "What if I can't make the Plano date?",
-        a: `Healiam's Grand Prairie fair runs a week later, on ${grandPrairieFair.dateLabel}, at ${grandPrairieFair.venue}, ${grandPrairieFair.street}. New Plano dates are posted on the fairs page as they are scheduled.`,
+        q: "Has Healiam held fairs in Plano before?",
+        a: "Yes. Healiam ran a Plano fair on 12 July 2026. New Plano dates are posted on the fairs page as they are scheduled.",
       },
     ],
     help: {
@@ -194,17 +297,23 @@ export const plano = {
   },
 
   finalCta: {
-    title: "Book your Plano blood test",
-    sub: `Park in front of Coit Crossing, head up to suite 270A, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
+    title: "Book a Saturday blood test in Plano",
+    sub: "One Saturday morning in Plano, then your report on your phone the following week.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
 
+  otherFairs: {
+    eyebrow: "Other states",
+    title: "Healiam fairs beyond Plano and Texas",
+    sub: "Know someone outside Texas? These Healiam fairs run the same panel at the same price.",
+    linkLead: "Blood testing in",
+    exclude: "Texas",
+  },
+
   sticky: {
     label: "Blood testing in Plano",
-    sub: `Next fair ${dateShort} · ${price}`,
+    sub: `Next fair ${short(planoFair)} · ${price}`,
     cta: { label: "Book now", href: book },
   },
-} as const;
-
-export type CityFairPage = typeof plano;
+} as const satisfies StateLandingPage;

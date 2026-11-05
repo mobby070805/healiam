@@ -7,7 +7,17 @@ import { cityPages } from "@/lib/city-pages";
 // Each date card links its city name to that city's fair page (the same-state interlink, since the
 // separate cities section was removed, client 3 Nov 2026) and "Book this date" to booking. Fairs with a
 // city page also get a link to it (owner, 5 Nov 2026).
-export function Locations({ locations = page.locations }: { locations?: StateLandingPage["locations"] }) {
+export function Locations({
+  locations = page.locations,
+  currentPath,
+  cityOnly = false,
+}: {
+  locations?: StateLandingPage["locations"];
+  /** The page showing the cards, so a city page doesn't link to itself. */
+  currentPath?: string;
+  /** City pages show only the city: the venue inside a city changes from fair to fair (owner, 5 Nov 2026). */
+  cityOnly?: boolean;
+}) {
   const book = locations.cta.primary.href;
   // Works for any number of fairs: with an odd count the request card fills the last half row on phones.
   const odd = locations.fairs.length % 2 === 1;
@@ -19,7 +29,8 @@ export function Locations({ locations = page.locations }: { locations?: StateLan
 
         <ul className={`mx-auto grid grid-cols-2 gap-3 sm:gap-4 ${lgCols}`}>
           {locations.fairs.map((fair) => {
-            const cityPage = cityPages[fair.slug];
+            const linked = cityPages[fair.slug];
+            const cityPage = linked && linked.href !== currentPath ? linked : undefined;
             return (
             <li key={fair.city}>
               <div className="card card-hover flex h-full flex-col p-4 sm:p-6">
@@ -31,10 +42,14 @@ export function Locations({ locations = page.locations }: { locations?: StateLan
                     {fair.city}
                   </a>
                 </h3>
-                {fair.venue && <p className="mt-1 text-[13px] font-semibold text-ink-soft sm:text-[15px]">{fair.venue}</p>}
-                <p className="body mt-1 flex-1 !text-[12.5px] sm:!text-[14px]">
-                  {fair.street}, {fair.locality}, {fair.region} {fair.postalCode}
-                </p>
+                {!cityOnly && fair.venue && <p className="mt-1 text-[13px] font-semibold text-ink-soft sm:text-[15px]">{fair.venue}</p>}
+                {cityOnly ? (
+                  <div className="flex-1" />
+                ) : (
+                  <p className="body mt-1 flex-1 !text-[12.5px] sm:!text-[14px]">
+                    {fair.street}, {fair.locality}, {fair.region} {fair.postalCode}
+                  </p>
+                )}
                 <div className="mt-4 space-y-1.5 rounded-xl bg-mist px-3 py-2.5 text-[12px] font-semibold text-ink sm:mt-5 sm:px-4 sm:py-3 sm:text-[14px]">
                   <p className="flex items-center gap-2 whitespace-nowrap">
                     <CalendarDays className="hidden h-4 w-4 shrink-0 sm:block" strokeWidth={1.8} aria-hidden="true" />

@@ -387,7 +387,17 @@ export function fairDetailGraph(fair: Fair) {
       website(),
       webPage,
       breadcrumbList(url, fairDetail.breadcrumb(fair)),
-      { ...fairEvent(fair), "@id": `${url}#event`, url },
+      {
+        ...fairEvent(fair),
+        "@id": `${url}#event`,
+        url,
+        // City only: the venue inside a city changes from fair to fair (owner, 5 Nov 2026).
+        location: {
+          "@type": "Place",
+          name: `${fair.locality}, ${fair.region}`,
+          address: { "@type": "PostalAddress", addressLocality: fair.locality, addressRegion: fair.region, addressCountry: "US" },
+        },
+      },
     ],
   };
 }
@@ -564,7 +574,17 @@ function cityFairGraph(
       webPage,
       breadcrumbList(url, data.breadcrumb),
       service,
-      { ...fairEvent(fair), "@id": `${url}#event`, url },
+      {
+        ...fairEvent(fair),
+        "@id": `${url}#event`,
+        url,
+        // City only: the venue inside a city changes from fair to fair (owner, 5 Nov 2026).
+        location: {
+          "@type": "Place",
+          name: `${fair.locality}, ${fair.region}`,
+          address: { "@type": "PostalAddress", addressLocality: fair.locality, addressRegion: fair.region, addressCountry: "US" },
+        },
+      },
       faqPage(url, data.faq.items),
     ],
   };
