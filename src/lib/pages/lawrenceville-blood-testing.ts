@@ -264,11 +264,11 @@ export const lawrenceville = {
   faq: {
     eyebrow: "Lawrenceville questions",
     title: "Lawrenceville blood testing: common questions",
-    sub: "Three questions about blood testing in Lawrenceville, and three about Healiam's Lawrenceville fair.",
+    sub: "Lawrenceville and Gwinnett questions, answered before you book.",
     items: [
       {
-        q: "Where can I get blood testing in Lawrenceville, GA?",
-        a: `At Healiam's Lawrenceville fair on ${lawrencevilleFair.dateLabel}, ${fairHours.label} local time. Healiam runs scheduled fairs rather than a lab that opens every day.`,
+        q: "How does blood testing in Lawrenceville, GA work?",
+        a: `It happens at a scheduled Healiam fair rather than a lab that opens every day. The next one is ${lawrencevilleFair.dateLabel}, ${fairHours.label} local time.`,
       },
       {
         q: "How much is blood testing in Lawrenceville with Healiam?",

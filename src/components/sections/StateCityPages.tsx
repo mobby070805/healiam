@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { fairs } from "@/lib/fairs";
-import { cityPages } from "@/lib/city-pages";
+import { cityPageList, type CityPage } from "@/lib/city-pages";
 import { SectionHeading } from "@/components/SectionHeading";
 
 export type StateCityPagesData = {
@@ -12,25 +12,22 @@ export type StateCityPagesData = {
 };
 
 // A state page's own city pages, just above the other-states list (owner, 6 Nov 2026). Built from
-// lib/fairs.ts and lib/city-pages.ts, so a new city page in the state appears here without an edit.
+// lib/city-pages.ts, so a new city page in the state appears here without an edit. A fair city shows
+// its next date; a nearby city shows its closest fair and the distance.
 export function StateCityPages({ data }: { data: StateCityPagesData }) {
-  const links = fairs
-    .filter((f) => f.region === data.region && cityPages[f.slug])
-    .map((f) => ({ ...cityPages[f.slug], fair: f }));
+  const links = cityPageList.filter((c) => c.region === data.region);
   if (links.length === 0) return null;
   return (
     <section id="city-pages" className="section border-t border-ink/10 bg-white" aria-labelledby="city-pages-title">
       <div className="shell">
         <SectionHeading id="city-pages-title" eyebrow={data.eyebrow} title={data.title} sub={data.sub} />
         <ul className="mx-auto grid max-w-3xl gap-2.5 sm:grid-cols-2 sm:gap-4">
-          {links.map(({ label, href, fair }) => (
+          {links.map(({ label, href, ...page }) => (
             <li key={href}>
               <a href={href} className="card card-hover flex h-full items-center gap-3 p-4 sm:p-5">
                 <span className="min-w-0 flex-1">
                   <span className="block text-[15px] font-semibold text-ink sm:text-[16px]">{label}</span>
-                  <span className="mt-0.5 block text-[13px] text-ink-muted">
-                    {fair.venue ?? fair.street}, {fair.dateLabel.replace(/,\s*\d{4}$/, "")}
-                  </span>
+                  <span className="mt-0.5 block text-[13px] text-ink-muted">{cityNote({ label, href, ...page })}</span>
                 </span>
                 <ArrowRight className="h-4 w-4 shrink-0 text-ink" strokeWidth={2} aria-hidden="true" />
               </a>
@@ -40,4 +37,15 @@ export function StateCityPages({ data }: { data: StateCityPagesData }) {
       </div>
     </section>
   );
+}
+
+/** "Healiam fair city, Sat, Nov 14" or "Closest fair: Grand Prairie, about 6 miles". */
+function cityNote(page: CityPage): string {
+  if (page.fair) {
+    const fair = fairs.find((f) => f.slug === page.fair);
+    return fair ? `Healiam fair city, ${fair.dateLabel.replace(/,\s*\d{4}$/, "")}` : "Healiam fair city";
+  }
+  const [slug, miles] = Object.entries(page.miles ?? {}).sort((a, b) => a[1] - b[1])[0] ?? [];
+  const fair = fairs.find((f) => f.slug === slug);
+  return fair ? `Closest fair: ${fair.locality}, about ${miles} miles` : "Near a Healiam fair";
 }

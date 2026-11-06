@@ -12,6 +12,7 @@ export function Locations({
   currentPath,
   cityOnly = false,
   cityLinks = true,
+  distanceFrom,
 }: {
   locations?: StateLandingPage["locations"];
   /** The page showing the cards, so a city page doesn't link to itself. */
@@ -20,6 +21,11 @@ export function Locations({
   cityOnly?: boolean;
   /** Off where the page lists its city pages in their own section instead (Texas, owner 6 Nov 2026). */
   cityLinks?: boolean;
+  /**
+   * Nearby city pages: the city the visitor searched for, and straight-line miles from it to each fair.
+   * Each card then names the fair's real locality and shows the distance (owner, 6 Nov 2026).
+   */
+  distanceFrom?: { readonly city: string; readonly miles: Readonly<Record<string, number>> };
 }) {
   const book = locations.cta.primary.href;
   // Works for any number of fairs: with an odd count the request card fills the last half row on phones.
@@ -42,9 +48,14 @@ export function Locations({
                 </span>
                 <h3 className="h3 mt-3.5 sm:mt-5 sm:!text-[20px]">
                   <a href={fair.detailsUrl} className="underline-offset-4 hover:text-brand hover:underline">
-                    {fair.city}
+                    {distanceFrom ? `${fair.locality}, ${fair.region}` : fair.city}
                   </a>
                 </h3>
+                {distanceFrom?.miles[fair.slug] !== undefined && (
+                  <p className="mt-1 text-[13px] font-semibold text-green-deep sm:text-[14px]">
+                    About {distanceFrom.miles[fair.slug]} miles from {distanceFrom.city}
+                  </p>
+                )}
                 {!cityOnly && fair.venue && <p className="mt-1 text-[13px] font-semibold text-ink-soft sm:text-[15px]">{fair.venue}</p>}
                 {cityOnly ? (
                   <div className="flex-1" />

@@ -312,3 +312,50 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 - The homepage's "Health fairs" section link is gone from the middle of the bar; the Fairs menu replaces it.
 - Phones: menu labels, button and logo are a little smaller below 640px so logo, Fairs, Locations and
   Book now fit one row down to 360px. Desktop sizes are unchanged.
+
+## Nearby city pages: Garland, Dallas, Irving, Arlington, Fort Worth (6 Nov 2026)
+
+- **What they are** (owner, 6 Nov 2026): city pages for DFW cities with no Healiam fair of their own, at
+  `/texas/blood-testing-in-<city>`. Same design as the fair-city pages; the locations section shows both
+  DFW fairs, **soonest first** (owner: "whichever happens first goes first"), each card with the distance
+  from the city ("About 8 miles from Garland") and the fair's real locality (Grand Prairie, not the
+  "Arlington" label).
+- **Distances** are straight-line miles between city centers from OpenStreetMap coordinates, checked
+  6 Nov 2026, rounded, stored once in `lib/city-pages.ts` (`miles`). Pages say "straight-line miles
+  between city centers". Not driving distances.
+- **One list of city pages:** `lib/city-pages.ts` `cityPageList` holds fair cities (`fair`) and nearby
+  cities (`miles`). The state page's city section, the header Locations menu and the fair cards all read
+  it. State page city cards now show "Healiam fair city, <date>" or "Closest fair: <town>, about N miles"
+  instead of the venue name.
+- **Shared facts only** in `lib/pages/nearby-city.ts` (`dfwFairs`, `dfwDates`, `nearby()`); every sentence
+  is written per city. Schema: `nearbyCityGraph()` (Service for the city, both fairs as Events with city-only
+  locations, breadcrumb, FAQ).
+- **No walk-in claims** on these pages: walk-ins are confirmed for Plano only, and each page covers both fairs.
+- Weekday wording is neutral ("weekend morning"), since fair days vary.
+
+## New York state page (6 Nov 2026)
+
+- `/new-york/blood-testing`, keyword "blood testing in New York" (owner, 6 Nov 2026). State-page design.
+  Healiam has no fair in New York, so the page says so and is about reaching the nearest one, Rahway, NJ:
+  NJ Transit from Penn Station, a short walk from Rahway station; Staten Island across the Arthur Kill.
+- Distances (straight line, OpenStreetMap, 6 Nov 2026): lower Manhattan to Rahway 16 miles (matches the
+  client's sheet, 26 km), Staten Island to Rahway 7 miles. The fair card shows "About 16 miles from New
+  York City".
+- The header Locations menu now lists states that have a page but no fair (`statesWithoutFairs` in
+  `lib/locations.ts`). The page's city section is empty until New York city pages exist.
+- **To confirm before publishing:** that New York residents can book the Rahway fair (open since
+  31 Oct 2026). The page assumes they can.
+
+## More nearby city pages, and how distances are measured (6 Nov 2026)
+
+- **New pages:** `/new-jersey/blood-testing-in-newark`, `/new-jersey/blood-testing-in-jersey-city`,
+  `/new-york/blood-testing-in-new-york-city`, `/colorado/blood-testing-in-aurora`,
+  `/georgia/blood-testing-in-atlanta`, from the client's city list. Each written for its own city (Newark:
+  NJ Transit from Newark Penn; Jersey City: PATH then NJ Transit, or the Turnpike; New York City: borough by
+  borough; Aurora: Denver or Centennial, on different days; Atlanta: honest about the 26-mile drive).
+- **Distances now measure from the city center to the fair's address**, which is how the client's city sheet
+  measures (it matched within 2 km everywhere checked). The five Texas pages were updated to match
+  (Garland 13 mi to Plano, was 8 from city center to city center). Exception: the Grand Prairie fair address
+  isn't in OpenStreetMap or the Census geocoder, so its ZIP (75050) center stands in for it.
+- New York City's borough distances (Staten Island 7, Brooklyn 17, Manhattan 18, Queens 25, Bronx 27 miles)
+  live in its page file. **Still to confirm before publishing:** that New York residents can book Rahway.

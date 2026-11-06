@@ -14,13 +14,24 @@ import { employer } from "@/lib/pages/employer";
 import { colorado } from "@/lib/pages/colorado-blood-testing";
 import { newJersey } from "@/lib/pages/new-jersey-blood-testing";
 import { georgia } from "@/lib/pages/georgia-blood-testing";
+import { newYork } from "@/lib/pages/new-york-blood-testing";
 import { plano } from "@/lib/pages/plano-blood-testing";
 import { denver } from "@/lib/pages/denver-blood-testing";
 import { rahway } from "@/lib/pages/rahway-blood-testing";
 import { lawrenceville } from "@/lib/pages/lawrenceville-blood-testing";
+import { garland } from "@/lib/pages/garland-blood-testing";
+import { dallas } from "@/lib/pages/dallas-blood-testing";
+import { irving } from "@/lib/pages/irving-blood-testing";
+import { arlington } from "@/lib/pages/arlington-blood-testing";
+import { fortWorth } from "@/lib/pages/fort-worth-blood-testing";
+import { newark } from "@/lib/pages/newark-blood-testing";
+import { jerseyCity } from "@/lib/pages/jersey-city-blood-testing";
+import { newYorkCity } from "@/lib/pages/new-york-city-blood-testing";
+import { aurora } from "@/lib/pages/aurora-blood-testing";
+import { atlanta } from "@/lib/pages/atlanta-blood-testing";
 
 // Only live pages. Add new landing pages from their data files here.
-const livePages = [home, tests, fairsPage, about, demo, employer, contact, page, colorado, newJersey, georgia, plano, denver, rahway, lawrenceville];
+const livePages = [home, tests, fairsPage, about, demo, employer, contact, page, colorado, newJersey, georgia, newYork, plano, denver, rahway, lawrenceville, garland, dallas, irving, arlington, fortWorth, newark, jerseyCity, newYorkCity, aurora, atlanta];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

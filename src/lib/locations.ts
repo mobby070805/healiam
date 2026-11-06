@@ -4,11 +4,12 @@
 
 import { fairPhoto, fairs, type FairPhoto } from "@/lib/fairs";
 import { site } from "@/lib/site";
-import { cityPages } from "@/lib/city-pages";
+import { cityPageList } from "@/lib/city-pages";
 import { page as texas } from "@/lib/pages/texas-blood-test";
 import { colorado } from "@/lib/pages/colorado-blood-testing";
 import { newJersey } from "@/lib/pages/new-jersey-blood-testing";
 import { georgia } from "@/lib/pages/georgia-blood-testing";
+import { newYork } from "@/lib/pages/new-york-blood-testing";
 
 export type LocationLink = { readonly label: string; readonly href: string };
 export type LocationCity = LocationLink & {
@@ -30,7 +31,11 @@ const statePages: Record<string, LocationLink> = {
   CO: { label: "Blood testing in Colorado", href: colorado.path },
   NJ: { label: "Blood testing in New Jersey", href: newJersey.path },
   GA: { label: "Blood testing in Georgia", href: georgia.path },
+  NY: { label: "Blood testing in New York", href: newYork.path },
 };
+
+/** States with a page but no Healiam fair of their own (owner, 6 Nov 2026). */
+const statesWithoutFairs: Record<string, string> = { NY: "New York" };
 
 /** States in the order they first appear in the fair list. */
 export function locationGroups(): readonly LocationGroup[] {
@@ -73,7 +78,7 @@ export type HeaderMenuData = {
 };
 
 const regions = () => [...new Set(fairs.map((f) => f.region))];
-const stateOf = (region: string) => fairs.find((f) => f.region === region)!.state;
+const stateOf = (region: string) => fairs.find((f) => f.region === region)?.state ?? statesWithoutFairs[region] ?? region;
 
 /** Fairs menu: every fair, by state, linking to its /fairs/<slug> page. */
 export function fairsMenu(): HeaderMenuData {
@@ -93,14 +98,14 @@ export function fairsMenu(): HeaderMenuData {
 
 /** Locations menu: each state's page, then its city pages. No fair pages, no dates. */
 export function locationsMenu(): HeaderMenuData {
-  const groups = regions().map((region) => {
+  // Fair states first, then states with a page but no fair yet (New York).
+  const allRegions = [...new Set([...regions(), ...Object.keys(statePages)])];
+  const groups = allRegions.map((region) => {
     const statePage = statePages[region];
-    const cities = fairs
-      .filter((f) => f.region === region && cityPages[f.slug])
-      .map((f) => ({ label: f.city, href: cityPages[f.slug].href }));
+    const cities = cityPageList.filter((c) => c.region === region).map((c) => ({ label: c.city, href: c.href }));
     return { state: stateOf(region), items: [...(statePage ? [{ ...statePage, strong: true }] : []), ...cities] };
   }).filter((g) => g.items.length > 0);
-  const cityCount = fairs.filter((f) => cityPages[f.slug]).length;
+  const cityCount = cityPageList.length;
   return {
     label: "Locations",
     summary: `Blood testing in ${groups.length} states and ${cityCount} cities`,

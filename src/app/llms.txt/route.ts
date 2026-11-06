@@ -12,16 +12,27 @@ import { page as texas } from "@/lib/pages/texas-blood-test";
 import { colorado } from "@/lib/pages/colorado-blood-testing";
 import { newJersey } from "@/lib/pages/new-jersey-blood-testing";
 import { georgia } from "@/lib/pages/georgia-blood-testing";
+import { newYork } from "@/lib/pages/new-york-blood-testing";
 import { plano } from "@/lib/pages/plano-blood-testing";
 import { denver } from "@/lib/pages/denver-blood-testing";
 import { rahway } from "@/lib/pages/rahway-blood-testing";
 import { lawrenceville } from "@/lib/pages/lawrenceville-blood-testing";
+import { garland } from "@/lib/pages/garland-blood-testing";
+import { dallas } from "@/lib/pages/dallas-blood-testing";
+import { irving } from "@/lib/pages/irving-blood-testing";
+import { arlington } from "@/lib/pages/arlington-blood-testing";
+import { fortWorth } from "@/lib/pages/fort-worth-blood-testing";
+import { newark } from "@/lib/pages/newark-blood-testing";
+import { jerseyCity } from "@/lib/pages/jersey-city-blood-testing";
+import { newYorkCity } from "@/lib/pages/new-york-city-blood-testing";
+import { aurora } from "@/lib/pages/aurora-blood-testing";
+import { atlanta } from "@/lib/pages/atlanta-blood-testing";
 
 export const dynamic = "force-static";
 
 // /llms.txt, per llmstxt.org: a plain summary of the site for language models.
 // Generated from the same data files as the pages, so it cannot drift from them.
-const pages = [home, tests, fairsPage, demo, employer, about, contact, texas, colorado, newJersey, georgia, plano, denver, rahway, lawrenceville];
+const pages = [home, tests, fairsPage, demo, employer, about, contact, texas, colorado, newJersey, georgia, newYork, plano, denver, rahway, lawrenceville, garland, dallas, irving, arlington, fortWorth, newark, jerseyCity, newYorkCity, aurora, atlanta];
 
 function line(path: string, title: string, description: string) {
   return `- [${title}](${site.url}${path}): ${description}`;

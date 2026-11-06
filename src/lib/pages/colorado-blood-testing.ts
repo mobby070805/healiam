@@ -247,8 +247,8 @@ export const colorado = {
 
   app: {
     eyebrow: "The Healiam app",
-    title: "Your Colorado blood test results, in the Healiam app",
-    sub: "Free on iPhone and Android. Install it before your Colorado testing morning.",
+    title: "Colorado results, straight to the app",
+    sub: "Free on iPhone and Android. Get it ready before you drive to Denver or Centennial.",
     // No bullet points: the codes sit centred under the heading (client, 2 Nov 2026).
     points: [],
     scanNote: home.app.scanNote,
@@ -260,15 +260,15 @@ export const colorado = {
   faq: {
     eyebrow: "Colorado questions",
     title: "Blood testing in Colorado, answered",
-    sub: "Three questions about blood tests in Colorado, and three about Healiam's Denver and Centennial fairs.",
+    sub: "Coloradans ask about altitude, the two metro fairs and how booking works. Here are the answers.",
     items: [
       {
         q: "Can I get blood tests in Colorado outside the Denver metro?",
         a: `Not at the moment. Healiam's current Colorado dates are in Denver and Centennial. ${link("Send us your town", site.links.contact)} and we will let you know if a date is planned nearby.`,
       },
       {
-        q: "How do I book a blood testing appointment in Colorado?",
-        a: `${link("Book online", book)} or in the ${link("Healiam app", "#app")} with a free account, choose ${link("Denver or Centennial", "#locations")}, and pay ${price} by card or HSA card.`,
+        q: "What's the process for a blood testing appointment in Colorado?",
+        a: `Pick ${link("Denver or Centennial", "#locations")}, reserve a time ${link("online", book)} or in the ${link("Healiam app", "#app")} with a free account, and pay ${price} by card or HSA card.`,
       },
       {
         q: "Does living at altitude in Colorado change my results?",
@@ -306,7 +306,7 @@ export const colorado = {
   cityLinks: {
     eyebrow: "Colorado cities",
     title: "Blood testing by Colorado city",
-    sub: "Directions, parking and the next date for each Colorado city with a Healiam fair.",
+    sub: "Denver and nearby Aurora, each with its own page and the distance to the fairs.",
     region: "CO",
   },
 

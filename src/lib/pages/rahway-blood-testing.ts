@@ -263,11 +263,11 @@ export const rahway = {
   faq: {
     eyebrow: "Rahway questions",
     title: "Questions about blood testing in Rahway",
-    sub: "Three questions about blood testing in Rahway, and three about Healiam's Rahway fair.",
+    sub: "Short answers for Rahway and the Union County towns around it.",
     items: [
       {
-        q: "Where can I get blood testing in Rahway, NJ?",
-        a: `At Healiam's Rahway fair on ${rahwayFair.dateLabel}, ${fairHours.label} local time. Outside fair dates Healiam has no lab of its own in Rahway.`,
+        q: "When does blood testing in Rahway, NJ happen?",
+        a: `On fair days only. Rahway's next is ${rahwayFair.dateLabel}, ${fairHours.label} local time; between fairs, Healiam has no lab of its own in Rahway.`,
       },
       {
         q: "What does a blood test in Rahway cost with Healiam?",

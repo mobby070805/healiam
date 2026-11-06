@@ -43,10 +43,10 @@ export const georgia = {
   hero: {
     titleLead: "Your complete blood test in Georgia for",
     titleAccent: price,
-    sub: `Healiam's Georgia testing morning is on Longleaf Blvd in Lawrenceville, Gwinnett County, with free parking on site. One ${price} panel, two vials, and no doctor's order or insurance card.`,
+    sub: `Healiam's Georgia testing morning is on Longleaf Blvd in Lawrenceville, Gwinnett County, with free parking on site. A single ${price} panel covers every test, with no doctor's order to get and no insurance card to bring.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "See the Georgia date", href: "#locations" },
-    ticks: ["Free parking on site", "8 to 10 AM local time", "No referral or insurance"],
+    ticks: ["Free parking on site", "Mornings, 8 to 10 local time", "No referral, no insurance card"],
   },
 
   // Hero phone mockup: same design as every state page, a different illustrative sample on each
@@ -95,7 +95,7 @@ export const georgia = {
   // Texas uses this section for pain points; Georgia uses it for planning the visit.
   challenges: {
     eyebrow: "Getting there",
-    title: "Getting to your Georgia blood test",
+    title: "Before you drive to Lawrenceville",
     sub: "Six things to know before you drive to Longleaf Blvd in Lawrenceville, Georgia.",
     items: [
       "Head to 755 Longleaf Blvd",
@@ -103,7 +103,7 @@ export const georgia = {
       "Park free on site",
       "ADA parking nearest the entrance",
       "Saturday, November 21",
-      "Arrive between 8 and 10 AM",
+      "Your slot falls between 8 and 10 AM",
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
@@ -114,11 +114,11 @@ export const georgia = {
   comparison: {
     eyebrow: "Compare",
     title: "Why choose Healiam in Georgia",
-    sub: "Six practical differences between the Lawrenceville fair and getting blood tests in Georgia through a doctor's office.",
-    usualLabel: "Clinic visit",
+    sub: "How a morning at the Gwinnett County fair stacks up against blood work ordered through a Georgia doctor.",
+    usualLabel: "Doctor's office",
     oursLabel: "Lawrenceville fair",
     badge: "CLIA-certified",
-    note: "The bars are an approximate side by side guide, not measured values. Clinic prices are what a US doctor visit plus lab fees typically cost.",
+    note: "These bars are a simple visual, not measured data. Office figures reflect what a US doctor visit plus lab work usually costs.",
     factors: [
       {
         id: "travel",
@@ -179,15 +179,15 @@ export const georgia = {
 
   process: {
     eyebrow: "Your visit",
-    title: "How blood testing in Georgia works",
-    sub: "Book the Georgia date online, fast overnight, and read your results in the app.",
+    title: "Four steps to a Georgia blood test",
+    sub: "Reserve the Lawrenceville date, stop eating the night before, and check the app later that week.",
     steps: [
       { title: "Book online", sub: "Or in the app" },
       { title: "Fast overnight", sub: "8 to 12 hours" },
       { title: "Draw in Lawrenceville", sub: "Two vials, under 7 min" },
       { title: "Results in the app", sub: "4 to 5 business days" },
     ],
-    tip: "Water is fine while you fast. Parking is free on site, so there is no meter to watch while you wait.",
+    tip: "Plain water is fine during the fast. Parking is free on site, so there's no meter to feed while you wait.",
     cta: {
       primary: { label: "Book my visit", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -196,16 +196,16 @@ export const georgia = {
 
   benefits: {
     eyebrow: "What you get",
-    title: "What your Georgia blood test includes",
+    title: "Everything a Gwinnett visit gives you",
     sub: "Everything that comes with one visit to Healiam's Lawrenceville fair in Gwinnett County, Georgia.",
     items: [
-      { icon: "FileCheck", title: "Reports a doctor can use", line: "From CLIA-certified partner labs." },
-      { icon: "Gauge", title: "Every range shown", line: "Each marker plotted against its reference range." },
-      { icon: "ChartLine", title: "Change over time", line: "Test again and each marker builds a trend." },
-      { icon: "FileDown", title: "Share in one tap", line: "Download the full report as a PDF." },
-      { icon: "Lock", title: "Yours alone", line: "Never shared with an employer or any third party." },
-      { icon: "Users", title: "Bring the household", line: "Add each person who is getting tested when you book." },
-      { icon: "HeartPulse", title: "Vitals next to labs", line: "Log blood pressure and heart rate in the app." },
+      { icon: "FileCheck", title: "Reports to take to your doctor", line: "Tested by CLIA-certified partner labs." },
+      { icon: "Gauge", title: "Every range shown", line: "Results set against the normal range for each marker." },
+      { icon: "ChartLine", title: "Change over time", line: "Your next test adds to each marker's history." },
+      { icon: "FileDown", title: "Share in one tap", line: "Save the PDF or send it to your doctor." },
+      { icon: "Lock", title: "Yours alone", line: "Kept from employers and third parties." },
+      { icon: "Users", title: "Bring the household", line: "Put everyone on the same booking." },
+      { icon: "HeartPulse", title: "Vitals next to labs", line: "Track blood pressure and pulse beside your results." },
       { icon: "Car", title: "Park and walk in", line: "Free parking on site, ADA spaces by the door." },
     ],
     cta: {
@@ -216,13 +216,13 @@ export const georgia = {
 
   panel: {
     eyebrow: "The panel",
-    title: `${labMeasurementCount} measurements from one Georgia draw`,
-    sub: `${labMeasurementCount} lab measurements across ${labCategoryCount} categories at the Lawrenceville fair in Georgia, plus biometrics you log in the app.`,
+    title: "The full panel, drawn in Gwinnett County",
+    sub: `Every test below comes from the same two vials: ${labMeasurementCount} lab measurements in ${labCategoryCount} categories, plus biometrics you add yourself.`,
     categories: panelCategories,
     priceCard: {
       label: "Lawrenceville fair",
       line: site.price.panelLine,
-      compare: "Clinic visit: $100 to $800+ for a visit plus labs",
+      compare: "Doctor's office: $100 to $800+ for a visit plus labs",
       fine: "Credit card or HSA card. No insurance card needed.",
       cta: { label: `Book for ${price}`, href: book },
     },
@@ -236,7 +236,7 @@ export const georgia = {
     hours: fairHours,
     noFair: {
       title: "Elsewhere in Georgia?",
-      line: "Lawrenceville is our only Georgia location right now. Tell us your town and we will let you know if a fair is planned.",
+      line: "Lawrenceville is Healiam's one Georgia fair so far. Let us know where you live and we'll tell you if another is coming.",
       cta: { label: "Ask for a fair", href: site.links.contact },
     },
     cta: {
@@ -247,8 +247,8 @@ export const georgia = {
 
   app: {
     eyebrow: "The Healiam app",
-    title: "Your Georgia blood test results, in the Healiam app",
-    sub: "Free on iPhone and Android. Install it before your Georgia testing morning.",
+    title: "Georgia results, delivered to your phone",
+    sub: "Free on iPhone and Android. Set it up before your Lawrenceville morning.",
     // No bullet points: the codes sit centred under the heading (client, 2 Nov 2026).
     points: [],
     scanNote: home.app.scanNote,
@@ -260,15 +260,15 @@ export const georgia = {
   faq: {
     eyebrow: "Georgia questions",
     title: "Blood testing in Georgia, answered",
-    sub: "Three questions about blood tests in Georgia, and three about Healiam's Lawrenceville fair.",
+    sub: "What Georgia residents ask most, from booking a slot to parking at the fair.",
     items: [
       {
-        q: "Is Lawrenceville the only place for blood testing in Georgia?",
-        a: `Yes, for now. Healiam's Georgia fair is at 755 Longleaf Blvd, Lawrenceville, in Gwinnett County. ${link("Send us your town", site.links.contact)} if you need one closer, and we will let you know if a fair is planned.`,
+        q: "Does Healiam do blood testing anywhere else in Georgia?",
+        a: `Not yet. Lawrenceville, in Gwinnett County, is the only Georgia fair for now. ${link("Tell us your town", site.links.contact)} and we'll say if one is planned nearer to you.`,
       },
       {
-        q: "How do I book a blood testing appointment in Georgia?",
-        a: `${link("Book online", book)} or in the ${link("Healiam app", "#app")} with a free account, then pick a time at the ${link("Lawrenceville fair", "#locations")}.`,
+        q: "Can I book a Georgia blood testing appointment online?",
+        a: `Yes. Set up a free account ${link("online", book)} or in the ${link("Healiam app", "#app")}, choose the ${link("Lawrenceville date", "#locations")} and a time, and you're done.`,
       },
       {
         q: "Where do I park at the Lawrenceville fair?",
@@ -276,7 +276,7 @@ export const georgia = {
       },
       {
         q: "When is Healiam's Georgia fair?",
-        a: `Saturday, November 21, ${fairHours.label} local time, at 755 Longleaf Blvd in Lawrenceville. Later Georgia dates are posted on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
+        a: `Saturday, November 21, ${fairHours.label} local time, at 755 Longleaf Blvd in Lawrenceville. New Georgia dates appear on the ${link("fairs page", site.links.fairs)} once they're set.`,
       },
       {
         q: "Which towns is Healiam's Lawrenceville fair close to?",
@@ -306,7 +306,7 @@ export const georgia = {
   cityLinks: {
     eyebrow: "Georgia cities",
     title: "Blood testing by Georgia city",
-    sub: "Directions, parking and the next date for each Georgia city with a Healiam fair.",
+    sub: "Pages for Lawrenceville and the Georgia cities around it, with the drive to the fair from each.",
     region: "GA",
   },
 

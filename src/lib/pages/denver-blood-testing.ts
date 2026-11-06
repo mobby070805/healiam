@@ -263,11 +263,11 @@ export const denver = {
   faq: {
     eyebrow: "Denver questions",
     title: "Denver blood testing questions, answered",
-    sub: "Three questions about blood testing in Denver, and three about Healiam's Denver fair.",
+    sub: "From altitude to the south-metro option, what Denver people want to know before booking.",
     items: [
       {
-        q: "Where can I get blood testing in Denver, CO?",
-        a: `At Healiam's Saturday fair in Denver on ${denverFair.dateLabel}, ${fairHours.label} local time. Healiam tests at scheduled fairs, not at a lab that is open every day.`,
+        q: "Is there a lab for blood testing in Denver, CO, or is it a fair?",
+        a: `It's a fair. Healiam has no lab that opens every day; the next Denver date is ${denverFair.dateLabel}, ${fairHours.label} local time.`,
       },
       {
         q: "What does blood testing in Denver cost with Healiam?",

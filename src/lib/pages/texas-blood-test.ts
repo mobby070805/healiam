@@ -238,7 +238,7 @@ export const page = {
 
   app: {
     eyebrow: "The Healiam app",
-    title: "Your Texas blood test results, in the Healiam app",
+    title: "Texas results, ready in the Healiam app",
     sub: "Free on iPhone and Android. Scan a code to install it before your Texas fair.",
     // No bullet points: the codes sit centred under the heading (client, 2 Nov 2026).
     points: [],
@@ -251,7 +251,7 @@ export const page = {
   faq: {
     eyebrow: "FAQ",
     title: "Blood testing in Texas: your questions",
-    sub: "Three questions about blood tests in Texas, and three about Healiam's Plano and Arlington fairs.",
+    sub: "Texans ask where the fairs are, what it costs and how to book. Start here.",
     items: [
       {
         q: "Where can I get blood testing in Texas?",
@@ -263,7 +263,7 @@ export const page = {
       },
       {
         q: "How do I book a blood testing appointment in Texas?",
-        a: `${link("Book online", site.bookingUrl)} or in the ${link("Healiam app", "#app")} with a free account, pick a ${link("Texas fair", "#locations")} and a time, and pay by card or HSA card.`,
+        a: `Choose a ${link("Texas fair", "#locations")}, then reserve a time ${link("online", site.bookingUrl)} or in the ${link("Healiam app", "#app")} with a free account. Payment is by card or HSA card.`,
       },
       {
         q: "Where is Healiam's Plano fair, and how do I find it?",
@@ -275,7 +275,7 @@ export const page = {
       },
       {
         q: "When are Healiam's next Texas fairs?",
-        a: `${texasFairs.map((f) => `${f.city.replace(/,\s*TX$/, "")} on ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" and ")}, both ${fairHours.label} local time. Later Texas dates are posted on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
+        a: `${texasFairs.map((f) => `${f.city.replace(/,\s*TX$/, "")} on ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" and ")}, both ${fairHours.label} local time. New Texas dates go up on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
       },
     ],
     help: {
@@ -296,7 +296,7 @@ export const page = {
   cityLinks: {
     eyebrow: "Texas cities",
     title: "Blood testing by Texas city",
-    sub: "Directions, parking and the next date for each Texas city with a Healiam fair.",
+    sub: "Plano and the DFW cities around it, from Garland to Fort Worth, each with its own page.",
     region: "TX",
   },
 

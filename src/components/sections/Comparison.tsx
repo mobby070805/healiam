@@ -3,31 +3,56 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import {
+  Activity,
   BadgeCheck,
+  Bean,
   CalendarDays,
+  Car,
   ChartLine,
   CircleDollarSign,
   CreditCard,
+  Droplet,
+  FolderOpen,
+  Gauge,
+  Hourglass,
   Layers,
+  Magnet,
   MapPin,
+  Repeat,
+  Smartphone,
   Stethoscope,
+  Sun,
   Timer,
+  TrainFront,
   type LucideIcon,
 } from "lucide-react";
 import { site } from "@/lib/site";
 import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { SectionHeading } from "@/components/SectionHeading";
 
-// Explicit imports keep the client bundle small (no full icon map).
+// Explicit imports keep the client bundle small (no full icon map). Every comparison tab has an icon:
+// add a new name here when a page uses one, or development throws (below) instead of showing a bare tab.
 const factorIcons: Record<string, LucideIcon> = {
-  CircleDollarSign,
-  Stethoscope,
-  CreditCard,
-  Layers,
-  Timer,
-  MapPin,
+  Activity,
+  Bean,
   CalendarDays,
+  Car,
   ChartLine,
+  CircleDollarSign,
+  CreditCard,
+  Droplet,
+  FolderOpen,
+  Gauge,
+  Hourglass,
+  Layers,
+  Magnet,
+  MapPin,
+  Repeat,
+  Smartphone,
+  Stethoscope,
+  Sun,
+  Timer,
+  TrainFront,
 };
 
 const AUTO_MS = 3000;
@@ -95,6 +120,9 @@ export function Comparison({ comparison = page.comparison }: { comparison?: Stat
           >
             {factors.map((f, i) => {
               const Icon = factorIcons[f.icon];
+              if (!Icon && process.env.NODE_ENV !== "production") {
+                throw new Error(`Comparison: no icon "${f.icon}" in factorIcons (tab "${f.tab}")`);
+              }
               const selected = i === active;
               return (
                 <button

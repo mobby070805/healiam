@@ -265,7 +265,7 @@ export const plano = {
   faq: {
     eyebrow: "Plano questions",
     title: "Blood testing in Plano, TX: your questions",
-    sub: "Three questions about blood testing in Plano, and three about Healiam's Plano fair.",
+    sub: "Plano residents' usual questions: where, how much, what's tested and how to get ready.",
     items: [
       {
         q: "Where can I get blood testing in Plano, TX?",
