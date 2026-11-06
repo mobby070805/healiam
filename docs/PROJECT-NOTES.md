@@ -359,3 +359,16 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
   isn't in OpenStreetMap or the Census geocoder, so its ZIP (75050) center stands in for it.
 - New York City's borough distances (Staten Island 7, Brooklyn 17, Manhattan 18, Queens 25, Bronx 27 miles)
   live in its page file. **Still to confirm before publishing:** that New York residents can book Rahway.
+
+## Fair pages rewritten (6 Nov 2026, client approved)
+
+- Each `/fairs/<slug>` page now has its own copy. Intro, parking and venue note in `lib/fairs.ts`;
+  section headings, hero note, "What to bring", panel line, nearby-town label, meta line and closing CTA in
+  `lib/pages/fair-pages.ts` (`fairPageCopy(slug)` throws if a fair has no copy). Similarity between fair
+  pages went from 45 to 76% down to 15% or less, with no shared sentence.
+- **Walk-ins:** only Plano says walk-ins are welcome (confirmed on healiam.com). The old shared "Walk-ins
+  welcome" line on every fair page is gone.
+- Design within the same sections: H1 "Blood testing fair in <City>" with the city in brand pink (as the
+  home hero), venue line with a pin, icon tiles on the "What to expect" cards, nearby-town chips in the
+  parking card, and "Other upcoming fairs" ordered same state first, then soonest.
+- A new fair needs an entry in `lib/fairs.ts` and in `lib/pages/fair-pages.ts`.

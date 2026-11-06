@@ -1,9 +1,9 @@
-// Shared content for every /fairs/<slug> page. The fair-specific parts (intro, parking,
-// venue note, address, date) live on the fair itself in lib/fairs.ts.
+// Shared labels for every /fairs/<slug> page. Everything a visitor reads as prose is per fair: intro,
+// parking and venue note in lib/fairs.ts, headings, notes and the closing lines in lib/pages/fair-pages.ts.
 
 import { site } from "@/lib/site";
 import { fairHours, type Fair } from "@/lib/fairs";
-import { labCategoryCount, labMeasurementCount } from "@/lib/panel";
+import { fairPageCopy } from "@/lib/pages/fair-pages";
 
 const price = site.price.display;
 
@@ -15,8 +15,8 @@ export const fairDetail = {
   ],
 
   meta: (fair: Fair) => ({
-    title: `Blood Testing Fair in ${fair.city} | ${fair.dateLabel} | Healiam`,
-    description: `Healiam preventive blood testing fair in ${fair.city} on ${fair.dateLabel}, ${fairHours.label}. One ${price} screening panel with every test included, no referral or insurance. ${fair.venue ? `${fair.venue}, ` : ""}${fair.street}.`,
+    title: `Blood Testing Fair in ${fair.city} | ${fair.dateLabel.replace(/^\w+,\s*/, "")} | Healiam`,
+    description: `Healiam blood testing fair in ${fair.city}, ${fair.dateLabel}, ${fairHours.label}: one ${price} panel with every test included. ${fairPageCopy(fair.slug).metaLine}`,
   }),
 
   breadcrumb: (fair: Fair) => [
@@ -27,6 +27,7 @@ export const fairDetail = {
 
   hero: {
     eyebrow: "Health fair",
+    titleLead: "Blood testing fair in",
     // One primary action and one secondary. "Get directions" belongs beside the address,
     // not as a third button of equal weight in the hero.
     primary: { label: `Book for ${price}`, short: "Book now", href: site.bookingUrl },
@@ -37,7 +38,6 @@ export const fairDetail = {
     label: "Dates and hours",
     hoursLabel: "Hours",
     dateLabel: "Date",
-    walkIn: "Walk-ins welcome. Booking a slot just means less waiting.",
   },
 
   directions: {
@@ -45,7 +45,7 @@ export const fairDetail = {
     title: "How to find us",
     locationLabel: "Location",
     mapsLabel: "Open in Google Maps",
-    parkingLabel: "Parking",
+    parkingLabel: "Parking and access",
   },
 
   expect: {
@@ -53,13 +53,7 @@ export const fairDetail = {
     title: "On the day",
     venueLabel: "The venue",
     bringLabel: "What to bring",
-    bring: [
-      "Your phone with the Healiam app installed",
-      "A credit card or HSA card, no insurance needed",
-      "An empty stomach: fast 8 to 12 hours, water is fine",
-    ],
     panelLabel: "What's measured",
-    panelLine: `${labMeasurementCount} lab measurements from two vials, across ${labCategoryCount} categories, plus biometrics you log in the app.`,
     panelCta: { label: "See every marker", href: site.links.tests },
   },
 
@@ -68,12 +62,11 @@ export const fairDetail = {
     cta: { label: "See all fairs", href: "/fairs" },
   },
 
-  finalCta: {
-    title: "Blood testing made easy",
-    sub: `One ${price} panel with every test included, and results in the app in 4 to 5 business days.`,
+  finalCta: (fair: Fair) => ({
+    ...fairPageCopy(fair.slug).finalCta,
     primary: { label: `Book for ${price}`, href: site.bookingUrl },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
-  },
+  }),
 
   sticky: (fair: Fair) => ({
     label: `${fair.city}, ${fair.dateLabel.replace(/^\w+,\s*/, "")}`,

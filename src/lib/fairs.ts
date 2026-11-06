@@ -18,7 +18,7 @@ export type Fair = {
   /** Local UTC offset on the fair date (for schema.org Event times). */
   readonly utcOffset: string;
   readonly detailsUrl: string;
-  /** Detail page copy, from healiam.com/fairs/<slug>. */
+  /** Detail page copy, rewritten per fair (client approved, 6 Nov 2026); facts from healiam.com/fairs/<slug>. */
   readonly intro: string;
   readonly parking: string;
   readonly venueNote: string;
@@ -72,11 +72,11 @@ export const fairs: readonly Fair[] = [
     utcOffset: "-06:00",
     detailsUrl: "/fairs/plano-tx",
     intro:
-      "Join Healiam in Plano, Texas for a community preventive blood testing fair. The panel covers CBC, thyroid, kidney, Vitamin D, iron and HbA1c, with no doctor's referral or insurance required.",
+      "A morning of preventive blood testing in west Plano, upstairs at Brightway Insurance in the Coit Crossing plaza. One panel covers thyroid, cholesterol, kidney, liver, iron and Vitamin D, and you book it yourself with no doctor's order.",
     parking:
-      "Free surface parking in front of the building. Look for suite 270A on the upper level. ADA-accessible spots are nearest the main doors.",
+      "Park free in the surface lot out front. Suite 270A is on the upper level, and the ADA spaces are closest to the main doors.",
     venueNote:
-      "Our Plano fair is in the Coit Crossing professional plaza on the second floor. Draws are done by licensed phlebotomists in a private setting, and results reach your Healiam portal within 4 to 5 business days.",
+      "The fair runs from a professional office on the second floor of Coit Crossing. A licensed phlebotomist takes two vials in a private room, and your report lands in the Healiam app 4 to 5 business days later.",
     nearbyTowns: ["Frisco", "Far North Dallas", "Allen"],
     photoAlt: "Street view of Plano, TX blood testing fair location",
   },
@@ -94,11 +94,11 @@ export const fairs: readonly Fair[] = [
     utcOffset: "-06:00",
     detailsUrl: "/fairs/arlington-tx",
     intro:
-      "Healiam brings affordable preventive blood testing to the Arlington and Grand Prairie area. The panel covers CBC, thyroid, kidney, Vitamin D, iron and HbA1c, with no referral or insurance required.",
+      "Healiam's fair for Arlington and Grand Prairie, on the third floor of the Watson Road professional building. Book the full preventive panel online; you won't need a referral or an insurance card.",
     parking:
-      "Free on-site parking in the building's lot. Enter the main lobby and take the elevator to suite 318. ADA-accessible parking sits near the entrance.",
+      "There's a free lot at the building. Go through the main lobby and take the elevator up to suite 318. ADA parking is beside the entrance.",
     venueNote:
-      "Our Arlington-area fair sits in the Watson Road professional building, suite 318 on the third floor. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+      "Goldmine Enterprise hosts the fair in suite 318. Your draw is two vials with a licensed phlebotomist, and results follow in the app within 4 to 5 business days.",
     photoAlt: "Street view of Arlington, TX blood testing fair location",
   },
   {
@@ -115,11 +115,11 @@ export const fairs: readonly Fair[] = [
     utcOffset: "-05:00",
     detailsUrl: "/fairs/rahway-nj",
     intro:
-      "Healiam's Rahway, New Jersey fair brings affordable preventive blood testing to the community. The panel covers CBC, thyroid, kidney, Vitamin D, iron and HbA1c, with no referral or insurance required.",
+      "Healiam sets up at Rahway Pharmacy on Irving Street, a few minutes' walk from the NJ Transit station. Come for one preventive panel covering blood count, thyroid, cholesterol, kidneys and more, with no referral needed.",
     parking:
-      "Free street parking along Irving St, with a public lot one block east. It is a short walk from the Rahway NJ Transit station, and the entrance is ADA-accessible at street level.",
+      "Street parking on Irving Street is free, and there's a public lot a block to the east. By train, it's a short walk from Rahway station. The entrance is at street level and step-free.",
     venueNote:
-      "Our Rahway fair is a street-level location on Irving Street, minutes from the train station. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+      "The draw happens inside Rahway Pharmacy, in a private space with a licensed phlebotomist. Two vials, a few minutes, and you're back on Irving Street; results reach the app in 4 to 5 business days.",
     nearbyTowns: ["Linden", "Clark", "Carteret", "Roselle", "Woodbridge", "Cranford", "Garwood", "Roselle Park"],
     photoAlt: "Street view of Rahway, NJ blood testing fair location",
   },
@@ -136,11 +136,11 @@ export const fairs: readonly Fair[] = [
     utcOffset: "-07:00",
     detailsUrl: "/fairs/denver-co",
     intro:
-      "Healiam's Denver, Colorado fair offers an affordable, comprehensive preventive blood panel covering CBC, thyroid, kidney, Vitamin D, iron and HbA1c. No doctor's referral or insurance required.",
+      "A preventive blood testing morning on Irving Street in Denver's Berkeley neighborhood. The panel takes in thyroid, kidney, iron, Vitamin D, HbA1c and a full blood count, and there's no doctor's order or insurance involved.",
     parking:
-      "Free parking in the lot adjacent to the building. ADA-accessible parking sits nearest the main entrance.",
+      "The lot right next to the building is free. ADA spaces are the ones closest to the main entrance.",
     venueNote:
-      "Our Denver fair is on Irving Street in the Berkeley neighborhood. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+      "Healiam's licensed phlebotomists run the Denver fair at 3955 Irving St. Expect two vials and a few minutes in a private setting; results show up in your app 4 to 5 business days afterwards.",
     nearbyTowns: ["Edgewater", "Wheat Ridge", "Arvada", "Westminster", "Lakewood", "Commerce City", "Federal Heights"],
     streetView: { pano: "5xH2ktceGjdc3HxNCcK7jg", heading: 177.85 },
     photoAlt: "Street view of 3955 Irving St, Denver, CO",
@@ -159,11 +159,11 @@ export const fairs: readonly Fair[] = [
     utcOffset: "-07:00",
     detailsUrl: "/fairs/centennial-co",
     intro:
-      "Healiam's Centennial, Colorado fair offers an affordable, comprehensive preventive blood panel covering CBC, thyroid, kidney, Vitamin D, iron and HbA1c. No doctor's referral or insurance required.",
+      "Healiam's south-metro fair, held at the Centennial Public Works building on South Eagle Street. One panel checks your blood count, thyroid, kidneys, iron and more, with no referral or insurance to sort out first.",
     parking:
-      "Free parking in the lot in front of the building. ADA-accessible parking sits nearest the entrance.",
+      "Use the free lot in front of the building. Accessible spaces sit closest to the door.",
     venueNote:
-      "Our Centennial fair is at the Centennial Public Works building on South Eagle Street. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+      "The draw takes place inside the Public Works building with a licensed phlebotomist: two vials, then you're on your way. Your report follows in the app 4 to 5 business days later.",
     streetView: { pano: "G_NtunpMcU52YxXg6_WF4w", heading: 86.15 },
     photoAlt: "City of Centennial Public Works building",
   },
@@ -180,11 +180,11 @@ export const fairs: readonly Fair[] = [
     utcOffset: "-05:00",
     detailsUrl: "/fairs/lawrenceville-ga",
     intro:
-      "Healiam's Lawrenceville, Georgia fair offers an affordable, comprehensive preventive blood panel covering CBC, thyroid, kidney, Vitamin D, iron and HbA1c. No doctor's referral or insurance required.",
+      "Healiam's Georgia fair, on Longleaf Blvd in Lawrenceville, the Gwinnett County seat. Book a preventive panel covering blood count, thyroid, kidney, liver, iron and Vitamin D, without a doctor's order.",
     parking:
-      "Free parking on site. ADA-accessible parking sits nearest the entrance.",
+      "Parking on site costs nothing, and the ADA-accessible spaces are right by the entrance.",
     venueNote:
-      "Our Lawrenceville fair is on Longleaf Blvd in the heart of Gwinnett County. Staffed by licensed phlebotomists, with results returned through the Healiam portal in 4 to 5 business days.",
+      "Licensed phlebotomists handle every draw at 755 Longleaf Blvd. It's two vials in a private setting, and the report lands in your Healiam app 4 to 5 business days on.",
     nearbyTowns: ["Grayson", "Snellville"],
     photoAlt: "Street view of Lawrenceville, GA blood testing fair location",
   },

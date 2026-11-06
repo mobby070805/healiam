@@ -1,6 +1,7 @@
-import { ArrowRight, ArrowUpRight, CalendarDays, Car, Check, Clock, MapPin, Navigation } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Building2, CalendarDays, Car, Check, Clock, FlaskConical, ListChecks, MapPin, Navigation } from "lucide-react";
 import { fairs, fairHours, fairMapsUrl, type Fair } from "@/lib/fairs";
 import { fairDetail } from "@/lib/pages/fair-detail";
+import { fairPageCopy } from "@/lib/pages/fair-pages";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export function FairDetailHero({ fair }: { fair: Fair }) {
@@ -23,11 +24,12 @@ export function FairDetailHero({ fair }: { fair: Fair }) {
             </span>
 
             <h1 className="mt-4 text-[2.05rem] font-extrabold leading-[1.05] tracking-[-0.03em] text-white sm:mt-5 sm:text-[2.9rem] sm:leading-[1.04]">
-              {fair.city}
+              {hero.titleLead} <span className="text-brand">{fair.city}</span>
             </h1>
-            {fair.venue && (
-              <p className="mt-1.5 text-[15px] font-semibold text-brand sm:text-[18px]">{fair.venue}</p>
-            )}
+            <p className="mt-2.5 flex items-start gap-1.5 text-[14px] font-semibold text-white/80 sm:text-[16px]">
+              <MapPin className="mt-[3px] h-4 w-4 shrink-0 text-brand" strokeWidth={2} aria-hidden="true" />
+              {fair.venue ? `${fair.venue}, ${fair.locality}` : `${fair.street}, ${fair.locality}`}
+            </p>
 
             <p className="mt-3.5 max-w-[34rem] text-[15px] leading-[1.6] text-white/70 sm:mt-4 sm:text-[16.5px] sm:leading-relaxed">
               {fair.intro}
@@ -75,7 +77,7 @@ export function FairDetailHero({ fair }: { fair: Fair }) {
             </div>
 
             <p className="mt-4 border-t border-white/10 pt-4 text-[13px] leading-snug text-white/60 sm:text-[14px]">
-              {fairDetail.when.walkIn}
+              {fairPageCopy(fair.slug).whenNote}
             </p>
           </dl>
         </div>
@@ -92,7 +94,7 @@ export function FairDirections({ fair }: { fair: Fair }) {
         <div className="max-w-xl">
           <span className="eyebrow-text">{directions.eyebrow}</span>
           <h2 id="directions-title" className="h2">
-            {directions.title}
+            {fairPageCopy(fair.slug).directionsTitle}
           </h2>
         </div>
 
@@ -136,6 +138,20 @@ export function FairDirections({ fair }: { fair: Fair }) {
               <div className="min-w-0">
                 <h3 className="h3">{directions.parkingLabel}</h3>
                 <p className="body mt-1.5 !text-[13.5px] sm:!text-[15px]">{fair.parking}</p>
+                {fair.nearbyTowns && fair.nearbyTowns.length > 0 && (
+                  <div className="mt-3.5 border-t border-ink/[0.07] pt-3">
+                    <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+                      {fairPageCopy(fair.slug).nearbyLabel}
+                    </p>
+                    <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Nearby towns">
+                      {fair.nearbyTowns.map((town) => (
+                        <li key={town} className="chip">
+                          {town}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -147,35 +163,53 @@ export function FairDirections({ fair }: { fair: Fair }) {
 
 export function FairExpect({ fair }: { fair: Fair }) {
   const { expect } = fairDetail;
+  const copy = fairPageCopy(fair.slug);
   return (
     <section id="expect" className="section bg-mist" aria-labelledby="expect-title">
       <div className="shell">
         <div className="max-w-xl">
           <span className="eyebrow-text">{expect.eyebrow}</span>
           <h2 id="expect-title" className="h2">
-            {expect.title}
+            {copy.expectTitle}
           </h2>
         </div>
 
         <div className="mt-6 grid gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="card p-4 sm:p-6">
-            <h3 className="h3">{expect.venueLabel}</h3>
-            <p className="body mt-2 sm:!text-[15.5px]">{fair.venueNote}</p>
+            <div className="flex items-start gap-3.5">
+              <span className="icon-tile">
+                <Building2 className="h-5 w-5 sm:h-[22px] sm:w-[22px]" strokeWidth={1.7} aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+                <h3 className="h3">{expect.venueLabel}</h3>
+                <p className="body mt-1.5 sm:!text-[15.5px]">{fair.venueNote}</p>
+              </div>
+            </div>
 
-            <div className="mt-5 border-t border-ink/[0.07] pt-4">
-              <h3 className="h3">{expect.panelLabel}</h3>
-              <p className="body mt-1.5 !text-[13.5px] sm:!text-[15px]">{expect.panelLine}</p>
-              <a href={expect.panelCta.href} className="btn-link mt-2.5">
-                {expect.panelCta.label}
-                <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
-              </a>
+            <div className="mt-5 flex items-start gap-3.5 border-t border-ink/[0.07] pt-4">
+              <span className="icon-tile">
+                <FlaskConical className="h-5 w-5 sm:h-[22px] sm:w-[22px]" strokeWidth={1.7} aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+                <h3 className="h3">{expect.panelLabel}</h3>
+                <p className="body mt-1.5 !text-[13.5px] sm:!text-[15px]">{copy.panelLine}</p>
+                <a href={expect.panelCta.href} className="btn-link mt-2.5">
+                  {expect.panelCta.label}
+                  <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+                </a>
+              </div>
             </div>
           </div>
 
           <div className="card p-4 sm:p-6">
-            <h3 className="h3">{expect.bringLabel}</h3>
-            <ul className="mt-3 space-y-3">
-              {expect.bring.map((item) => (
+            <div className="flex items-center gap-3.5">
+              <span className="icon-tile">
+                <ListChecks className="h-5 w-5 sm:h-[22px] sm:w-[22px]" strokeWidth={1.7} aria-hidden="true" />
+              </span>
+              <h3 className="h3">{expect.bringLabel}</h3>
+            </div>
+            <ul className="mt-4 space-y-3">
+              {copy.bring.map((item) => (
                 <li key={item} className="flex gap-2.5 text-[13.5px] leading-snug text-ink-soft sm:text-[15px]">
                   <Check className="mt-[3px] h-[18px] w-[18px] shrink-0 text-green" strokeWidth={2.4} aria-hidden="true" />
                   {item}
@@ -190,7 +224,11 @@ export function FairExpect({ fair }: { fair: Fair }) {
 }
 
 export function OtherFairs({ current }: { current: Fair }) {
-  const others = fairs.filter((f) => f.slug !== current.slug).slice(0, 3);
+  // Same-state fairs first, then the soonest, so the most useful alternatives come up (owner, 6 Nov 2026).
+  const others = fairs
+    .filter((f) => f.slug !== current.slug)
+    .toSorted((a, b) => Number(b.region === current.region) - Number(a.region === current.region) || a.date.localeCompare(b.date))
+    .slice(0, 3);
   if (others.length === 0) return null;
 
   return (
@@ -212,7 +250,7 @@ export function OtherFairs({ current }: { current: Fair }) {
               <a href={fair.detailsUrl} className="card card-hover flex h-full flex-col p-4 sm:p-5">
                 <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-green/15 bg-green-tint px-2.5 py-1 text-[11.5px] font-semibold text-green-deep">
                   <MapPin className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden="true" />
-                  {fair.region}
+                  {fair.state}
                 </span>
                 <h3 className="h3 mt-3">{fair.city}</h3>
                 <p className="body mt-1 flex-1 !text-[12.5px] sm:!text-[14px]">{fair.dateLabel}</p>

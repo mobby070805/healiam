@@ -55,7 +55,7 @@ export default async function FairDetailPage({ params }: Params) {
         <FairDirections fair={fair} />
         <FairExpect fair={fair} />
         <OtherFairs current={fair} />
-        <FinalCta finalCta={fairDetail.finalCta} />
+        <FinalCta finalCta={fairDetail.finalCta(fair)} />
       </main>
       <Footer />
       <StickyCta sticky={fairDetail.sticky(fair)} />
