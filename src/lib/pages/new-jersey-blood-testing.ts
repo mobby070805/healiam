@@ -53,11 +53,13 @@ export const newJersey = {
   // (Texas: HbA1c, Colorado: iron and Vitamin D, New Jersey: lipids and glucose). Labelled "Sample",
   // not a real customer. pos = dot on a low | normal | high bar (normal is roughly 28% to 72%).
   heroVisual: {
+    // The state in bold on the trend card, as on the city pages (owner, 6 Nov 2026).
+    place: "New Jersey",
     ariaLabel:
       "Sample Healiam results screen: HDL flagged low, total cholesterol, LDL, TSH and glucose in range, with a results-ready alert and a glucose trend over three tests.",
     screen: {
       title: "Results",
-      sub: "Sample · 50+ markers",
+      sub: "New Jersey · Sample",
       summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
       filters: ["All", "Lipids", "Thyroid", "Iron"],
       rows: [

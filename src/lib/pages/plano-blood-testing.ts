@@ -65,10 +65,11 @@ export const plano = {
   // fair in place of the state pages' trend card, so the hero names the city (owner, 5 Nov 2026).
   // Labelled "Sample"; not a real customer.
   heroVisual: {
-    ariaLabel: `Sample Healiam results screen from a Plano fair: magnesium flagged low, LDL, TSH, creatinine and hemoglobin in range, with a results-ready alert and a Plano, TX booking for ${planoFair.dateLabel}.`,
+    place: "Plano",
+    ariaLabel: `Sample Healiam results screen for Plano, TX: magnesium flagged low, LDL, TSH, creatinine and hemoglobin in range, with a results-ready alert and a Plano card: ${price} for every test.`,
     screen: {
       title: "Results",
-      sub: "Plano fair · Sample",
+      sub: "Plano · Sample",
       summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
       filters: ["All", "Lipids", "Kidney", "CBC"],
       rows: [
@@ -80,13 +81,14 @@ export const plano = {
       ],
     },
     notification: { app: "Healiam", time: "now", title: "Results ready", line: `${labMeasurementCount} measurements` },
+    // No fair details on the card: dates and venues change from fair to fair (owner, 6 Nov 2026).
     booking: {
-      title: "Plano fair",
-      chip: "Booked",
+      title: "Blood testing in Texas",
+      chip: "Testing available",
       lines: [
-        { icon: "CalendarDays", label: planoFair.dateLabel.replace(/,\s*\d{4}$/, "") },
-        { icon: "Clock", label: fairHours.label },
-        { icon: "MapPin", label: "Plano, TX" },
+        { icon: "CircleDollarSign", label: `${price}, every test` },
+        { icon: "Timer", label: "Results in 4-5 days" },
+        { icon: "Users", label: "Family bookings" },
       ],
     },
   },

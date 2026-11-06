@@ -63,10 +63,11 @@ export const denver = {
   // fair in place of the state pages' trend card, so the hero names the city (owner, 5 Nov 2026).
   // Labelled "Sample"; not a real customer.
   heroVisual: {
-    ariaLabel: `Sample Healiam results screen from a Denver fair: phosphorus flagged low, hemoglobin, hematocrit, TSH and uric acid in range, with a results-ready alert and a Denver, CO booking for ${denverFair.dateLabel}.`,
+    place: "Denver",
+    ariaLabel: `Sample Healiam results screen for Denver, CO: phosphorus flagged low, hemoglobin, hematocrit, TSH and uric acid in range, with a results-ready alert and a Denver card: ${price} for every test.`,
     screen: {
       title: "Results",
-      sub: "Denver fair · Sample",
+      sub: "Denver · Sample",
       summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
       filters: ["All", "CBC", "Kidney", "Thyroid"],
       rows: [
@@ -78,13 +79,14 @@ export const denver = {
       ],
     },
     notification: { app: "Healiam", time: "now", title: "Results ready", line: `${labMeasurementCount} measurements` },
+    // No fair details on the card: dates and venues change from fair to fair (owner, 6 Nov 2026).
     booking: {
-      title: "Denver fair",
-      chip: "Booked",
+      title: "Blood testing in Colorado",
+      chip: "Testing available",
       lines: [
-        { icon: "CalendarDays", label: denverFair.dateLabel.replace(/,\s*\d{4}$/, "") },
-        { icon: "Clock", label: fairHours.label },
-        { icon: "MapPin", label: "Denver, CO" },
+        { icon: "CircleDollarSign", label: `${price}, every test` },
+        { icon: "Layers", label: `${labMeasurementCount} lab measurements` },
+        { icon: "Users", label: "Family bookings" },
       ],
     },
   },

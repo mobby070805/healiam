@@ -300,3 +300,15 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 - **FAQ box is booking-first.** "Still have a question? Talk to a person before you book." is gone. Every
   FAQ ends with "Ready when you are", a Book now button, and call/email as quiet text links. The client
   does not want people to call before booking.
+
+## Header: Fairs and Locations menus (6 Nov 2026)
+
+- **Two menus side by side, Fairs then Locations** (owner, 6 Nov 2026), both from `components/HeaderMenu.tsx`
+  with data from `fairsMenu()` and `locationsMenu()` in `lib/locations.ts`.
+  - **Fairs:** every fair by state, with its date and an upcoming dot or "Ended", linking to `/fairs/<slug>`,
+    plus "All upcoming fairs". This is what the old Locations menu showed.
+  - **Locations:** each state page (bold, green arrow), then that state's city pages from `lib/city-pages.ts`.
+    No fair pages and no dates. A fair without a city page (Arlington, Centennial) is not listed here.
+- The homepage's "Health fairs" section link is gone from the middle of the bar; the Fairs menu replaces it.
+- Phones: menu labels, button and logo are a little smaller below 640px so logo, Fairs, Locations and
+  Book now fit one row down to 360px. Desktop sizes are unchanged.

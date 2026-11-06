@@ -55,11 +55,13 @@ export const georgia = {
   // roughly 28% to 72%). The trend card always draws a line falling into the normal band, so pick a
   // marker whose sample values fall.
   heroVisual: {
+    // The state in bold on the trend card, as on the city pages (owner, 6 Nov 2026).
+    place: "Georgia",
     ariaLabel:
       "Sample Healiam results screen: calcium flagged low, creatinine, ALT, potassium and triglycerides in range, with a results-ready alert and an ALT trend falling into range over three tests.",
     screen: {
       title: "Results",
-      sub: "Sample · 50+ markers",
+      sub: "Georgia · Sample",
       summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
       filters: ["All", "Kidney", "Liver", "Lipids"],
       rows: [

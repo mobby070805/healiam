@@ -23,6 +23,8 @@ export type StickyData = { readonly label: string; readonly sub: string; readonl
 
 export type HeroVisualData = {
   readonly ariaLabel: string;
+  /** City or state shown in bold at the top of the floating card ("Plano, TX", "Texas"). */
+  readonly place?: string;
   readonly screen: {
     readonly title: string;
     readonly sub: string;

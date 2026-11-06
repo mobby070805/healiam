@@ -17,7 +17,6 @@ export const home = {
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "How it works", href: "#how-it-works" },
-    { label: "Health fairs", href: "#fairs" },
     { label: "FAQ", href: "#faq" },
   ],
 

@@ -55,11 +55,13 @@ export const colorado = {
   // Hero phone mockup. Illustrative sample only (labelled "Sample"), not a real customer, and
   // deliberately different markers from the Texas mockup. pos = dot on a low | normal | high bar.
   heroVisual: {
+    // The state in bold on the trend card, as on the city pages (owner, 6 Nov 2026).
+    place: "Colorado",
     ariaLabel:
       "Sample Healiam results screen: iron flagged low, hemoglobin, TSH, HDL and Vitamin D in range, with a results-ready alert and a TSH trend falling into range over three tests.",
     screen: {
       title: "Results",
-      sub: "Sample · 50+ markers",
+      sub: "Colorado · Sample",
       summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
       filters: ["All", "Iron", "CBC", "Lipids"],
       rows: [

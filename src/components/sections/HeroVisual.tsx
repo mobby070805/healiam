@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, MapPin } from "lucide-react";
 import { site } from "@/lib/site";
 import type { HeroVisualData } from "@/lib/types";
 import { LucideByName } from "@/components/LucideByName";
@@ -31,7 +31,7 @@ export function HeroVisual({ data }: { data: HeroVisualData }) {
         <Notification notification={data.notification} />
       </div>
       <div className={`absolute left-0 top-[50%] z-10 w-[14em] text-[9.5px] sm:w-[15em] ${secondCardOffset} sm:left-auto sm:right-[calc(50%-270px)] sm:top-auto sm:text-[11.5px] lg:right-[calc(50%-244px)] lg:text-[10.5px] xl:right-[calc(50%-269px)] xl:text-[11px]`}>
-        {data.trend ? <Trend trend={data.trend} /> : data.booking ? <Booking booking={data.booking} /> : null}
+        {data.trend ? <Trend trend={data.trend} place={data.place} /> : data.booking ? <Booking booking={data.booking} place={data.place} /> : null}
       </div>
     </div>
   );
@@ -181,7 +181,17 @@ function Notification({ notification }: { notification: HeroVisualData["notifica
   );
 }
 
-function Trend({ trend }: { trend: NonNullable<HeroVisualData["trend"]> }) {
+// The page's city or state, bold so it stands apart from the rest of the card (owner, 6 Nov 2026).
+function Place({ place }: { place: string }) {
+  return (
+    <p className="flex items-center gap-[0.4em] whitespace-nowrap text-[1.45em] font-extrabold leading-tight tracking-[-0.01em] text-ink">
+      <MapPin className="h-[0.85em] w-[0.85em] shrink-0 text-brand" strokeWidth={2.4} aria-hidden="true" />
+      {place}
+    </p>
+  );
+}
+
+function Trend({ trend, place }: { trend: NonNullable<HeroVisualData["trend"]>; place?: string }) {
   // Lower HbA1c is better; the shaded band marks the normal range under 5.7%.
   const pts = [
     { x: 14, y: 14 },
@@ -191,6 +201,11 @@ function Trend({ trend }: { trend: NonNullable<HeroVisualData["trend"]> }) {
   const line = pts.map((p) => `${p.x},${p.y}`).join(" ");
   return (
     <div className="rounded-[1.4em] border border-ink/10 bg-white/95 p-[1.1em] shadow-[0_24px_44px_-22px_rgba(10,10,15,0.4)] backdrop-blur-md">
+      {place && (
+        <div className="mb-[0.7em] border-b border-ink/[0.07] pb-[0.6em]">
+          <Place place={place} />
+        </div>
+      )}
       <div className="flex items-start justify-between gap-[0.5em]">
         <div>
           <p className="text-[1.3em] font-semibold leading-tight text-ink">{trend.name}</p>
@@ -225,11 +240,18 @@ function Trend({ trend }: { trend: NonNullable<HeroVisualData["trend"]> }) {
   );
 }
 
-function Booking({ booking }: { booking: NonNullable<HeroVisualData["booking"]> }) {
+function Booking({ booking, place }: { booking: NonNullable<HeroVisualData["booking"]>; place?: string }) {
   return (
     <div className="rounded-[1.4em] border border-ink/10 bg-white/95 p-[1.1em] shadow-[0_24px_44px_-22px_rgba(10,10,15,0.4)] backdrop-blur-md">
       <div className="flex items-center justify-between gap-[0.5em]">
-        <p className="whitespace-nowrap text-[1.3em] font-semibold leading-tight text-ink">{booking.title}</p>
+        {place ? (
+          <div className="min-w-0">
+            <Place place={place} />
+            <p className="mt-[0.2em] text-[1.05em] text-ink-muted">{booking.title}</p>
+          </div>
+        ) : (
+          <p className="whitespace-nowrap text-[1.3em] font-semibold leading-tight text-ink">{booking.title}</p>
+        )}
         <span className="grid h-[1.9em] w-[1.9em] shrink-0 place-items-center rounded-full bg-green-tint text-green" title={booking.chip}>
           <Check className="h-[1.1em] w-[1.1em]" strokeWidth={3} aria-hidden="true" />
           <span className="sr-only">{booking.chip}</span>

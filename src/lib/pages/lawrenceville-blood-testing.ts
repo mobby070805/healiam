@@ -64,10 +64,11 @@ export const lawrenceville = {
   // fair in place of the state pages' trend card, so the hero names the city (owner, 5 Nov 2026).
   // Labelled "Sample"; not a real customer.
   heroVisual: {
-    ariaLabel: `Sample Healiam results screen from a Lawrenceville fair: ferritin flagged low, cholesterol, Vitamin D, ALT and white cell count in range, with a results-ready alert and a Lawrenceville, GA booking for ${lawrencevilleFair.dateLabel}.`,
+    place: "Lawrenceville",
+    ariaLabel: `Sample Healiam results screen for Lawrenceville, GA: ferritin flagged low, cholesterol, Vitamin D, ALT and white cell count in range, with a results-ready alert and a Lawrenceville card: ${price} for every test.`,
     screen: {
       title: "Results",
-      sub: "Lawrenceville fair · Sample",
+      sub: "Lawrenceville · Sample",
       summary: { inRange: 4, total: 5, label: "4 of 5 in range", review: "1 to review" },
       filters: ["All", "Iron", "Lipids", "Liver"],
       rows: [
@@ -79,13 +80,14 @@ export const lawrenceville = {
       ],
     },
     notification: { app: "Healiam", time: "now", title: "Results ready", line: `${labMeasurementCount} measurements` },
+    // No fair details on the card: dates and venues change from fair to fair (owner, 6 Nov 2026).
     booking: {
-      title: "Lawrenceville",
-      chip: "Booked",
+      title: "Blood testing in Georgia",
+      chip: "Testing available",
       lines: [
-        { icon: "CalendarDays", label: lawrencevilleFair.dateLabel.replace(/,\s*\d{4}$/, "") },
-        { icon: "Clock", label: fairHours.label },
-        { icon: "MapPin", label: "Lawrenceville, GA" },
+        { icon: "CircleDollarSign", label: `${price}, every test` },
+        { icon: "CreditCard", label: "No insurance needed" },
+        { icon: "Users", label: "Family bookings" },
       ],
     },
   },
