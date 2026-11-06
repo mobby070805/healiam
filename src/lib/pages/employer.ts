@@ -15,7 +15,7 @@ export const employer = {
   path: "/employer",
   meta: {
     title: "Preventive Blood Testing for Your Team | Healiam for Employers",
-    description: `Bring a Healiam health fair to your workplace. One ${price} panel with ${labMeasurementCount} measurements per person, licensed phlebotomists on site, no insurance and no referral.`,
+    description: `Bring a Healiam health fair to your workplace. One ${price} screening panel per person with every test included, licensed phlebotomists on site, no insurance and no referral.`,
   },
   nav: [
     { label: "Why it works", href: "#benefits" },
@@ -115,7 +115,7 @@ export const employer = {
 
   finalCta: {
     title: "Bring preventive testing to your team",
-    sub: `One ${price} panel, ${labMeasurementCount} measurements, at your workplace. No insurance and no prescription.`,
+    sub: `One ${price} panel per person with every test included, at your workplace.`,
     primary: { label: "Talk to us", href: hostMail },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

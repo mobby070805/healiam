@@ -35,9 +35,11 @@ export function Panel({ panel = page.panel }: { panel?: StateLandingPage["panel"
           >
             <div className="flex items-center justify-between gap-3">
               <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-muted">{priceCard.label}</p>
-              <span className="rounded-full bg-green-tint px-2.5 py-1 text-[12px] font-semibold text-green">50+ markers</span>
+              <span className="rounded-full bg-green-tint px-2.5 py-1 text-[12px] font-semibold text-green-deep">All tests included</span>
             </div>
-            <div className="mt-3 flex items-end gap-2">
+            {/* The panel is the offer: named once, one price (client, 6 Nov 2026). */}
+            <p className="h3 mt-3">{site.price.panelName}</p>
+            <div className="mt-2 flex items-end gap-2">
               <p className="font-display text-[3.25rem] font-extrabold leading-none tracking-[-0.03em] text-ink sm:text-[3.75rem]">
                 {site.price.display}
               </p>

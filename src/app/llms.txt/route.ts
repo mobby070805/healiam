@@ -30,7 +30,7 @@ function line(path: string, title: string, description: string) {
 export function GET() {
   const body = `# ${site.name}
 
-> ${site.tagline} Affordable preventive blood testing in the United States: one comprehensive panel of ${labMeasurementCount} lab measurements for ${site.price.display}, with no doctor's referral and no insurance required.
+> ${site.tagline} Affordable preventive blood testing in the United States: one comprehensive screening panel, every test included, for ${site.price.display}, with no doctor's referral and no insurance required.
 
 Healiam runs morning health fairs where a licensed phlebotomist draws two vials. Samples go to CLIA-certified partner labs, and results reach the customer's Healiam app in 4 to 5 business days. Testing is at health fairs only; Healiam does not offer at-home draws.
 

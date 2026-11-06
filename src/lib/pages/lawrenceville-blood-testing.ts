@@ -12,6 +12,7 @@
 import { site } from "@/lib/site";
 import { fairs, fairHours, type Fair } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
+import { link } from "@/lib/rich-text";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
@@ -36,7 +37,7 @@ export const lawrenceville = {
   keyword: "blood testing in Lawrenceville GA",
   meta: {
     title: `Blood Testing in Lawrenceville, GA | ${price}, Gwinnett | Healiam`,
-    description: `Blood testing in Lawrenceville, GA for ${price}: ${labMeasurementCount} lab measurements, no referral or insurance. Next Lawrenceville fair ${dayShort}, ${fairHours.label} Eastern.`,
+    description: `Blood testing in Lawrenceville, GA: one ${price} screening panel with every test included, no referral or insurance. Next fair ${dayShort}, ${fairHours.label} local time.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -224,7 +225,7 @@ export const lawrenceville = {
     categories: panelCategories,
     priceCard: {
       label: "Lawrenceville fair",
-      line: "One Lawrenceville draw covers every marker listed here.",
+      line: site.price.panelLine,
       compare: "Usual lab route: $100 to $800+ for a visit plus labs",
       fine: "Credit card or HSA card.",
       cta: { label: `Book for ${price}`, href: book },
@@ -265,11 +266,11 @@ export const lawrenceville = {
     items: [
       {
         q: "Where can I get blood testing in Lawrenceville, GA?",
-        a: `At Healiam's Lawrenceville fair on ${lawrencevilleFair.dateLabel}, ${fairHours.label} Eastern Time. Healiam runs scheduled fairs rather than a lab that opens every day.`,
+        a: `At Healiam's Lawrenceville fair on ${lawrencevilleFair.dateLabel}, ${fairHours.label} local time. Healiam runs scheduled fairs rather than a lab that opens every day.`,
       },
       {
         q: "How much is blood testing in Lawrenceville with Healiam?",
-        a: `${price} per person for all ${labMeasurementCount} lab measurements, paid by credit card or HSA card. Healiam doesn't take insurance, so there is no copay or bill afterwards.`,
+        a: `${price} for the ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price. Pay by credit card or HSA card. Healiam doesn't take insurance, so there is no copay or bill afterwards.`,
       },
       {
         q: "Are a kidney function test and a CBC included in Lawrenceville?",
@@ -285,11 +286,11 @@ export const lawrenceville = {
       },
       {
         q: `What if I can't make ${monthDay}?`,
-        a: "No other Georgia date is listed yet. New dates go up on the fairs page as soon as they are set, and you can ask us for one in your area.",
+        a: `No other Georgia date is listed yet. New dates go up on the ${link("fairs page", site.links.fairs)} as soon as they are set, and you can ${link("ask us for one in your area", site.links.contact)}.`,
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },

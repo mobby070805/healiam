@@ -5,7 +5,8 @@ export const site = {
   name: "Healiam",
   tagline: "Health should be simple.",
   url: "https://healiam.com",
-  phone: "720-761-7869",
+  // Shown with the country code (client, 6 Nov 2026).
+  phone: "+1 720-761-7869",
   phoneHref: "tel:+17207617869",
   email: "heal@healiam.com",
   // White logo mark from healiam.com; tinted in the header with a CSS filter, like the live site.
@@ -36,6 +37,10 @@ export const site = {
     panel: 95,
     display: "$95",
     currency: "USD",
+    // How the price is framed: one integrated panel at one price, not "$95 for 50+ tests"
+    // (client, 6 Nov 2026). Use these wherever the price is presented as the offer.
+    panelName: "Comprehensive Health Screening Panel",
+    panelLine: "One complete panel covering all included tests for a single, transparent price.",
   },
   links: {
     // Pages that live on this site use a path; the rest still point at healiam.com.

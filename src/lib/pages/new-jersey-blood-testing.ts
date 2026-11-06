@@ -8,6 +8,7 @@
 import { site } from "@/lib/site";
 import { fairs, fairHours } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
+import { link } from "@/lib/rich-text";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
@@ -26,7 +27,7 @@ export const newJersey = {
   keyword: "blood testing in New Jersey",
   meta: {
     title: `Blood Testing in New Jersey for ${price} | Rahway | Healiam`,
-    description: `Blood testing in New Jersey for ${price} at Healiam's Rahway fair, a walk from NJ Transit. Book online: ${labMeasurementCount} lab measurements, no referral.`,
+    description: `Blood testing in New Jersey for ${price} at Healiam's Rahway fair, a walk from NJ Transit. One ${price} screening panel with every test included.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -45,7 +46,7 @@ export const newJersey = {
     sub: `Healiam's New Jersey testing morning is at Rahway Pharmacy on Irving Street, a short walk from the NJ Transit station. One ${price} panel, two vials, and no doctor's order or insurance card.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "See the Rahway date", href: "#locations" },
-    ticks: ["Walk from the train", "8 to 10 AM Eastern", "No referral or insurance"],
+    ticks: ["Walk from the train", "8 to 10 AM local time", "No referral or insurance"],
   },
 
   // Hero phone mockup: same design as every state page, a different illustrative sample on each
@@ -177,7 +178,7 @@ export const newJersey = {
     title: "How blood testing in New Jersey works",
     sub: "Book the New Jersey date online, fast overnight, and read your results in the app.",
     steps: [
-      { title: "Book online", sub: "No doctor's order" },
+      { title: "Book online", sub: "Or in the app" },
       { title: "Fast overnight", sub: "8 to 12 hours" },
       { title: "Draw in Rahway", sub: "Two vials, under 7 min" },
       { title: "Results in the app", sub: "4 to 5 business days" },
@@ -216,7 +217,7 @@ export const newJersey = {
     categories: panelCategories,
     priceCard: {
       label: "Rahway fair",
-      line: "One price for the whole panel, every marker included.",
+      line: site.price.panelLine,
       compare: "Clinic visit: $100 to $800+ for a visit plus labs",
       fine: "Credit card or HSA card. No insurance card needed.",
       cta: { label: `Book for ${price}`, href: book },
@@ -226,7 +227,7 @@ export const newJersey = {
   locations: {
     eyebrow: "New Jersey date",
     title: "Blood testing appointments in New Jersey",
-    sub: `Book a slot at Rahway Pharmacy on Irving Street, Rahway, New Jersey, ${fairHours.label} Eastern Time. Linden, Clark, Carteret, Roselle and Woodbridge are all within about 3.5 miles in a straight line.`,
+    sub: `Book a slot at Rahway Pharmacy on Irving Street, Rahway, New Jersey, ${fairHours.label} local time. Linden, Clark, Carteret, Roselle and Woodbridge are all within about 3.5 miles in a straight line.`,
     fairs: newJerseyFairs,
     hours: fairHours,
     noFair: {
@@ -259,11 +260,11 @@ export const newJersey = {
     items: [
       {
         q: "Is Rahway the only place for blood testing in New Jersey?",
-        a: "Yes, for now. Healiam's New Jersey fair is at Rahway Pharmacy, 1421 Irving Street. Send us your town if you need one closer, and we will let you know if a fair is planned.",
+        a: `Yes, for now. Healiam's New Jersey fair is at Rahway Pharmacy, 1421 Irving Street. ${link("Send us your town", site.links.contact)} if you need one closer, and we will let you know if a fair is planned.`,
       },
       {
         q: "How do I book a blood testing appointment in New Jersey?",
-        a: `Book online or in the Healiam app with a free account, then pick a time at the Rahway fair. You can also walk in any time between ${fairHours.label} Eastern; booking just means a shorter wait.`,
+        a: `${link("Book online", book)} or in the ${link("Healiam app", "#app")} with a free account, then pick a time at the ${link("Rahway fair", "#locations")}.`,
       },
       {
         q: "Can I get to the Rahway fair by train or car?",
@@ -275,7 +276,7 @@ export const newJersey = {
       },
       {
         q: "When is Healiam's next New Jersey date?",
-        a: `Saturday, November 14, ${fairHours.label} Eastern Time. Later Rahway dates are posted on the fairs page; if none is listed, send us your town and we will let you know.`,
+        a: `Saturday, November 14, ${fairHours.label} local time. Later Rahway dates are posted on the ${link("fairs page", site.links.fairs)}; if none is listed, ${link("send us your town", site.links.contact)} and we will let you know.`,
       },
       {
         q: "Can I bring my family to Healiam's Rahway fair?",
@@ -283,7 +284,7 @@ export const newJersey = {
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },

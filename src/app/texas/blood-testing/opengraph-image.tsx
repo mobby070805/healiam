@@ -29,7 +29,7 @@ export default function OpengraphImage() {
             {page.hero.titleLead}&nbsp;<span style={{ color: "#168A4C" }}>{page.hero.titleAccent}</span>
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 30, color: "#3F3F46" }}>
-            50+ markers · No referral · No insurance · Results in 4-5 days
+            All tests in one panel · No referral · No insurance · Results in 4-5 days
           </div>
         </div>
         <div style={{ display: "flex" }}>

@@ -73,14 +73,14 @@ export const about = {
 
   finalCta: {
     title: "Blood testing made easy",
-    sub: `No insurance and no prescription. One ${price} panel, ${labMeasurementCount} measurements, results in the app in 4 to 5 business days.`,
+    sub: `One ${price} panel with every test included, and results in the app in 4 to 5 business days.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
 
   sticky: {
-    label: `${price} full blood panel`,
-    sub: "50+ markers, no referral",
+    label: `${price} health screening panel`,
+    sub: "All tests in one panel",
     cta: { label: "Book now", href: book },
   },
 } as const;

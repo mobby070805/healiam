@@ -79,7 +79,7 @@ export const contact = {
 
   finalCta: {
     title: "Blood testing made easy",
-    sub: `One ${price} panel, 50+ markers, no insurance and no prescription. Walk in at a fair or book a slot.`,
+    sub: `One ${price} panel with every test included. Book a slot at a fair near you.`,
     primary: { label: `Book for ${price}`, href: site.bookingUrl },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

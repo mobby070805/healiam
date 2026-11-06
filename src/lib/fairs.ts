@@ -72,7 +72,7 @@ export const fairs: readonly Fair[] = [
     utcOffset: "-06:00",
     detailsUrl: "/fairs/plano-tx",
     intro:
-      "Join Healiam in Plano, Texas for a community preventive blood testing fair. The panel covers CBC, thyroid, kidney, Vitamin D, iron and HbA1c, with no doctor's referral or insurance required. Walk-ins welcome.",
+      "Join Healiam in Plano, Texas for a community preventive blood testing fair. The panel covers CBC, thyroid, kidney, Vitamin D, iron and HbA1c, with no doctor's referral or insurance required.",
     parking:
       "Free surface parking in front of the building. Look for suite 270A on the upper level. ADA-accessible spots are nearest the main doors.",
     venueNote:

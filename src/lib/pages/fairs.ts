@@ -17,7 +17,7 @@ export const fairsPage = {
   path: "/fairs",
   meta: {
     title: "Blood Testing Fairs Near You | No Appointment Needed | Healiam",
-    description: `Upcoming Healiam preventive blood testing fairs in ${fairStatesList()}. A ${price} panel with 50+ markers, ${fairHours.label}, with no appointment, referral or insurance.`,
+    description: `Upcoming Healiam preventive blood testing fairs in ${fairStatesList()}. One ${price} screening panel with every test included, ${fairHours.label}, with no appointment, referral or insurance.`,
   },
   nav: [
     { label: "Upcoming fairs", href: "#upcoming" },
@@ -41,7 +41,7 @@ export const fairsPage = {
     eyebrow: "Upcoming",
     title: "Where we are next",
     sub: (count: number) =>
-      `${count} ${count === 1 ? "fair" : "fairs"} across ${fairStatesList()}. Walk in during opening hours, or book a slot to skip the wait.`,
+      `${count} ${count === 1 ? "fair" : "fairs"} across ${fairStatesList()}. Book a slot to skip the wait.`,
     stateLine: (state: string) => `Upcoming blood testing fairs and blood drives in ${state}.`,
     detailsLabel: "View details",
     empty: "No fairs are scheduled right now. Tell us where you need one and we will let you know when it is booked.",
@@ -62,14 +62,14 @@ export const fairsPage = {
 
   finalCta: {
     title: "Blood testing made easy",
-    sub: `No insurance and no prescription. One ${price} panel, 50+ markers, results in the app in 4 to 5 business days.`,
+    sub: `One ${price} panel with every test included, and results in the app in 4 to 5 business days.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
 
   sticky: {
-    label: `${price} full blood panel`,
-    sub: "50+ markers, no referral",
+    label: `${price} health screening panel`,
+    sub: "All tests in one panel",
     cta: { label: "Book now", href: book },
   },
 } as const;

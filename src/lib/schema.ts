@@ -1,5 +1,6 @@
 // JSON-LD builders. No self-published reviews or ratings, no HowTo.
 import { site } from "@/lib/site";
+import { plainText } from "@/lib/rich-text";
 import { fairHours, type Fair } from "@/lib/fairs";
 import { page as texas } from "@/lib/pages/texas-blood-test";
 import { home } from "@/lib/pages/home";
@@ -32,12 +33,12 @@ export function organization() {
     url: site.url,
     logo: site.logoMark,
     email: site.email,
-    telephone: `+1-${site.phone}`,
+    telephone: site.phone.replace(" ", "-"),
     slogan: site.tagline,
     sameAs: site.socials.map((s) => s.href),
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: `+1-${site.phone}`,
+      telephone: site.phone.replace(" ", "-"),
       email: site.email,
       contactType: "customer service",
       areaServed: "US",
@@ -69,7 +70,7 @@ function fairEvent(fair: Fair) {
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     url: fair.detailsUrl,
-    description: `Preventive blood test panel with 50+ markers for ${site.price.display}. No referral or insurance needed.`,
+    description: `${site.price.panelName}: one preventive blood panel with every test included, for ${site.price.display}. No referral or insurance needed.`,
     organizer: { "@id": orgId },
     location: {
       "@type": "Place",
@@ -107,7 +108,7 @@ function faqPage(url: string, items: readonly { q: string; a: string }[]) {
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
+      acceptedAnswer: { "@type": "Answer", text: plainText(item.a) },
     })),
   };
 }

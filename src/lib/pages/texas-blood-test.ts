@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 import { panelCategories, labCategoryCount } from "@/lib/panel";
 import { fairHours, fairs } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
+import { link } from "@/lib/rich-text";
 import type { HeroVisualData, Widen } from "@/lib/types";
 
 const texasFairs = fairs.filter((f) => f.region === "TX");
@@ -17,9 +18,9 @@ export const page = {
   // "blood testing appointments Texas", "blood testing near Plano".
   keyword: "blood testing in Texas",
   meta: {
-    title: `Blood Testing in Texas for ${site.price.display} | 50+ Markers | Healiam`,
+    title: `Blood Testing in Texas | ${site.price.display} Screening Panel | Healiam`,
     description:
-      `Blood testing in Texas for ${site.price.display} at Healiam health fairs near Plano and Grand Prairie. Book online: 50+ markers, no referral or insurance.`,
+      `Blood testing in Texas at Healiam health fairs near Plano and Grand Prairie. One ${site.price.display} screening panel with every test included, no referral or insurance.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -38,7 +39,8 @@ export const page = {
     sub: "Blood testing in Texas with no doctor's referral, no insurance and no surprise bills. One draw at a Texas health fair checks 50+ markers, from thyroid and cholesterol to Vitamin D and HbA1c.",
     primary: { label: `Book for ${site.price.display}`, href: site.bookingUrl },
     secondary: { label: "What's tested", href: "#panel" },
-    ticks: ["No referral", "No insurance", "Results in 4-5 days"],
+    // The one place this page says no referral and walk-ins welcome (client, 6 Nov 2026).
+    ticks: ["No referral", "Walk-ins welcome", "Results in 4-5 days"],
   },
 
   // Hero phone mockup. Illustrative sample only (clearly labelled "Sample"), not a real customer.
@@ -113,7 +115,7 @@ export const page = {
         icon: "CircleDollarSign",
         bar: "Cost",
         usual: { value: "$100 to $800+", note: "Provider visit plus lab fees, before any treatment starts.", level: 100 },
-        ours: { value: site.price.display, note: "One flat price for the full 50+ marker panel.", level: 14 },
+        ours: { value: site.price.display, note: "One price for the complete screening panel.", level: 14 },
         cta: { label: `Book for ${site.price.display}`, href: site.bookingUrl },
       },
       {
@@ -204,11 +206,11 @@ export const page = {
   panel: {
     eyebrow: "What's included",
     title: `Everything in your ${site.price.display} Texas blood test`,
-    sub: `50+ lab measurements across ${labCategoryCount} categories, all from one blood draw at a Texas fair.`,
+    sub: `One integrated panel across ${labCategoryCount} lab categories. Every test below is included, from one blood draw at a Texas fair.`,
     categories: panelCategories,
     priceCard: {
       label: "Complete panel",
-      line: "Every marker in the panel, one draw, one price.",
+      line: site.price.panelLine,
       compare: "Usual route: $100 to $800+ for a visit plus labs",
       fine: "Card or HSA accepted, with or without insurance.",
       cta: { label: `Book for ${site.price.display}`, href: site.bookingUrl },
@@ -218,7 +220,7 @@ export const page = {
   locations: {
     eyebrow: "Texas locations",
     title: "Blood testing appointments in Texas",
-    sub: "Book a morning slot at a Texas health fair. Fairs run 8:00 to 10:00 AM, so you can test while fasting and still make it to work. Walk-ins welcome.",
+    sub: "Book a morning slot at a Texas health fair. Fairs run 8:00 to 10:00 AM, so you can test while fasting and still make it to work.",
     fairs: texasFairs,
     hours: fairHours,
     noFair: {
@@ -251,15 +253,15 @@ export const page = {
     items: [
       {
         q: "Where can I get blood testing in Texas?",
-        a: `At Healiam's health fairs in ${texasCities}, North Texas. Each runs ${fairHours.label}. Check the fairs page for the latest Texas dates, and tell us if you need one closer to you.`,
+        a: `At Healiam's health fairs in ${texasCities}, North Texas. Each runs ${fairHours.label} local time. Check the ${link("fairs page", site.links.fairs)} for the latest Texas dates, and ${link("tell us if you need one closer to you", site.links.contact)}.`,
       },
       {
         q: "How much do blood tests in Texas cost with Healiam?",
-        a: `${site.price.display} for the full panel of 50+ markers at any Texas fair. There are no visit fees, no copays and no surprise lab bills.`,
+        a: `${site.price.display} for the ${site.price.panelName}, at any Texas fair. It is one complete panel covering all included tests for a single, transparent price, with no visit fees, no copays and no surprise lab bills.`,
       },
       {
         q: "How do I book a blood testing appointment in Texas?",
-        a: "Book online or in the Healiam app with a free account, pick a Texas fair and a time, and pay by card or HSA card. No doctor's referral is needed, and walk-ins are welcome.",
+        a: `${link("Book online", site.bookingUrl)} or in the ${link("Healiam app", "#app")} with a free account, pick a ${link("Texas fair", "#locations")} and a time, and pay by card or HSA card.`,
       },
       {
         q: "Where is Healiam's Plano fair, and how do I find it?",
@@ -271,11 +273,11 @@ export const page = {
       },
       {
         q: "When are Healiam's next Texas fairs?",
-        a: `${texasFairs.map((f) => `${f.city.replace(/,\s*TX$/, "")} on ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" and ")}, both ${fairHours.label} Central Time. Later Texas dates are posted on the fairs page as they are scheduled.`,
+        a: `${texasFairs.map((f) => `${f.city.replace(/,\s*TX$/, "")} on ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" and ")}, both ${fairHours.label} local time. Later Texas dates are posted on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },
@@ -298,8 +300,8 @@ export const page = {
   },
 
   sticky: {
-    label: `${site.price.display} full blood panel`,
-    sub: "50+ markers, no referral",
+    label: `${site.price.display} health screening panel`,
+    sub: "All tests in one panel",
     cta: { label: "Book now", href: site.bookingUrl },
   },
 } as const;

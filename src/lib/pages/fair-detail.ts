@@ -16,7 +16,7 @@ export const fairDetail = {
 
   meta: (fair: Fair) => ({
     title: `Blood Testing Fair in ${fair.city} | ${fair.dateLabel} | Healiam`,
-    description: `Healiam preventive blood testing fair in ${fair.city} on ${fair.dateLabel}, ${fairHours.label}. A ${price} panel with ${labMeasurementCount} measurements, no referral or insurance. ${fair.venue ? `${fair.venue}, ` : ""}${fair.street}.`,
+    description: `Healiam preventive blood testing fair in ${fair.city} on ${fair.dateLabel}, ${fairHours.label}. One ${price} screening panel with every test included, no referral or insurance. ${fair.venue ? `${fair.venue}, ` : ""}${fair.street}.`,
   }),
 
   breadcrumb: (fair: Fair) => [
@@ -70,7 +70,7 @@ export const fairDetail = {
 
   finalCta: {
     title: "Blood testing made easy",
-    sub: `No insurance and no prescription. One ${price} panel, ${labMeasurementCount} measurements, results in the app in 4 to 5 business days.`,
+    sub: `One ${price} panel with every test included, and results in the app in 4 to 5 business days.`,
     primary: { label: `Book for ${price}`, href: site.bookingUrl },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

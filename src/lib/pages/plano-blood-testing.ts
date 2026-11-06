@@ -13,6 +13,7 @@
 import { site } from "@/lib/site";
 import { fairs, fairHours, type Fair } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
+import { link } from "@/lib/rich-text";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
@@ -37,7 +38,7 @@ export const plano = {
   keyword: "blood testing in Plano TX",
   meta: {
     title: `Blood Testing in Plano, TX | ${price}, No Referral | Healiam`,
-    description: `Blood testing in Plano, TX for ${price}: ${labMeasurementCount} lab measurements, no referral or insurance. Next Plano fair ${short(planoFair)}. Walk-ins welcome.`,
+    description: `Blood testing in Plano, TX: one ${price} screening panel with every test included, no referral or insurance. Next Plano fair ${short(planoFair)}. Walk-ins welcome.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -186,7 +187,7 @@ export const plano = {
     title: "How a Plano blood test works",
     sub: "From reserving a time to reading every marker on your phone.",
     steps: [
-      { title: "Reserve a time", sub: "Or simply walk in" },
+      { title: "Reserve a time", sub: "Online or in the app" },
       { title: "Stop eating overnight", sub: "8 to 12 hours, water allowed" },
       { title: "Two vials in Plano", sub: "About seven minutes" },
       { title: "Read your report", sub: "4 to 5 business days" },
@@ -225,7 +226,7 @@ export const plano = {
     categories: panelCategories,
     priceCard: {
       label: "Plano fair",
-      line: "The full panel at the Plano fair, at one price.",
+      line: site.price.panelLine,
       compare: "Doctor and lab: $100 to $800+ for a visit plus labs",
       fine: "Pay by credit card or HSA card.",
       cta: { label: `Book for ${price}`, href: book },
@@ -266,19 +267,19 @@ export const plano = {
     items: [
       {
         q: "Where can I get blood testing in Plano, TX?",
-        a: `At Healiam's Plano fair on ${planoFair.dateLabel}, ${fairHours.label} Central Time. Healiam tests at scheduled morning fairs rather than a lab that is open every day.`,
+        a: `At Healiam's Plano fair on ${planoFair.dateLabel}, ${fairHours.label} local time. Healiam tests at scheduled morning fairs rather than a lab that is open every day.`,
       },
       {
         q: "How much does a blood test cost in Plano with Healiam?",
-        a: `${price} for all ${labMeasurementCount} lab measurements, paid by credit card or HSA card. There is no visit fee, no copay and no bill afterwards, and no insurance is needed.`,
+        a: `${price} for the ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price. Pay by credit card or HSA card. There is no visit fee, no copay and no bill afterwards, and no insurance is needed.`,
       },
       {
         q: "Can I get a kidney function test or a CBC in Plano?",
         a: `Yes, both are part of the one panel: ${kidneyCount} kidney markers, including creatinine and urea nitrogen, and a CBC of ${cbcCount} measurements of red cells, white cells and platelets. There is nothing extra to order.`,
       },
       {
-        q: "Do I need to book, or can I walk in at the Plano fair?",
-        a: `Walk-ins are welcome any time between ${fairHours.label}. Booking a slot online, which needs a free Healiam account, just means less waiting.`,
+        q: "How do I book the Plano fair?",
+        a: `${link("Book online", book)} or in the ${link("Healiam app", "#app")} with a free account, then pick a time at the ${link("Plano fair", "#locations")}.`,
       },
       {
         q: "What should I do before the Plano fair?",
@@ -286,11 +287,11 @@ export const plano = {
       },
       {
         q: "Has Healiam held fairs in Plano before?",
-        a: "Yes. Healiam ran a Plano fair on 12 July 2026. New Plano dates are posted on the fairs page as they are scheduled.",
+        a: `Yes. Healiam ran a Plano fair on 12 July 2026. New Plano dates are posted on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },

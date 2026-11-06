@@ -11,6 +11,7 @@
 import { site } from "@/lib/site";
 import { fairs, fairHours, type Fair } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
+import { link } from "@/lib/rich-text";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
@@ -35,7 +36,7 @@ export const rahway = {
   keyword: "blood testing in Rahway NJ",
   meta: {
     title: `Blood Testing in Rahway, NJ | ${price}, No Insurance | Healiam`,
-    description: `Blood testing in Rahway, NJ: a ${price} panel of ${labMeasurementCount} lab measurements, no referral. Next Rahway fair ${dayShort}, ${fairHours.label} Eastern.`,
+    description: `Blood testing in Rahway, NJ: one ${price} screening panel with every test included, no referral. Next Rahway fair ${dayShort}, ${fairHours.label} local time.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -223,7 +224,7 @@ export const rahway = {
     categories: panelCategories,
     priceCard: {
       label: "Rahway fair",
-      line: "Everything below from one Rahway draw.",
+      line: site.price.panelLine,
       compare: "Medical office: $100 to $800+ for a visit plus labs",
       fine: "Credit card or HSA card.",
       cta: { label: `Book for ${price}`, href: book },
@@ -264,11 +265,11 @@ export const rahway = {
     items: [
       {
         q: "Where can I get blood testing in Rahway, NJ?",
-        a: `At Healiam's Rahway fair on ${rahwayFair.dateLabel}, ${fairHours.label} Eastern Time. Outside fair dates Healiam has no lab of its own in Rahway.`,
+        a: `At Healiam's Rahway fair on ${rahwayFair.dateLabel}, ${fairHours.label} local time. Outside fair dates Healiam has no lab of its own in Rahway.`,
       },
       {
         q: "What does a blood test in Rahway cost with Healiam?",
-        a: `${price} a person for the full panel of ${labMeasurementCount} lab measurements. You pay by credit card or HSA card, so there is no insurance claim to file.`,
+        a: `${price} for the ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price. You pay by credit card or HSA card, so there is no insurance claim to file.`,
       },
       {
         q: "Is a CBC or a kidney function test part of the Rahway panel?",
@@ -284,11 +285,11 @@ export const rahway = {
       },
       {
         q: `Will Healiam come back to Rahway after ${monthDay}?`,
-        a: "New dates go up on the fairs page when they are scheduled, and none after this one is listed yet. Send us a request if you would like another Rahway morning.",
+        a: `New dates go up on the ${link("fairs page", site.links.fairs)} when they are scheduled, and none after this one is listed yet. ${link("Send us a request", site.links.contact)} if you would like another Rahway morning.`,
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },

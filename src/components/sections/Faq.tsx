@@ -1,9 +1,12 @@
-import { Headset, Mail, Phone, Plus } from "lucide-react";
+import { CalendarCheck, Mail, Phone, Plus } from "lucide-react";
+import { site } from "@/lib/site";
 import type { FaqData } from "@/lib/types";
 import { SectionHeading } from "@/components/SectionHeading";
-import { NoBreak } from "@/components/NoBreak";
+import { RichText } from "@/components/RichText";
 
-// Fixed layout: heading centred on top, two columns of questions, help card below.
+// Fixed layout: heading centred on top, two columns of questions, booking card below.
+// The card leads with booking; call and email are quiet links, so nobody is told to call before
+// they book (client, 6 Nov 2026).
 export function Faq({ faq }: { faq: FaqData }) {
   const { help } = faq;
   const half = Math.ceil(faq.items.length / 2);
@@ -27,7 +30,7 @@ export function Faq({ faq }: { faq: FaqData }) {
                     </span>
                   </summary>
                   <p className="mt-1.5 pb-1 pr-8 text-[13.5px] font-normal leading-relaxed text-ink-soft sm:text-[14.5px]">
-                    <NoBreak text={item.a} />
+                    <RichText text={item.a} />
                   </p>
                 </details>
               ))}
@@ -37,22 +40,27 @@ export function Faq({ faq }: { faq: FaqData }) {
 
         <div className="card mx-auto mt-6 flex max-w-5xl flex-col items-center gap-4 !bg-mist p-5 text-center sm:mt-8 sm:flex-row sm:gap-5 sm:p-6 sm:text-left">
           <span className="icon-tile !bg-white">
-            <Headset className="h-5 w-5 sm:h-[22px] sm:w-[22px]" strokeWidth={1.7} aria-hidden="true" />
+            <CalendarCheck className="h-5 w-5 sm:h-[22px] sm:w-[22px]" strokeWidth={1.7} aria-hidden="true" />
           </span>
           <div className="flex-1">
             <h3 className="h3">{help.title}</h3>
-            <p className="body mt-1">Talk to a person before you book.</p>
+            <p className="body mt-1">
+              Book online in minutes. Questions?{" "}
+              <a href={help.secondary.href} className="inline-flex items-center gap-1 font-medium text-ink underline decoration-ink/25 underline-offset-[3px] hover:decoration-ink">
+                <Phone className="h-3.5 w-3.5" strokeWidth={1.8} aria-hidden="true" />
+                {help.secondary.label}
+              </a>{" "}
+              or{" "}
+              <a href={help.email.href} className="inline-flex items-center gap-1 font-medium text-ink underline decoration-ink/25 underline-offset-[3px] hover:decoration-ink">
+                <Mail className="h-3.5 w-3.5" strokeWidth={1.8} aria-hidden="true" />
+                {help.email.label.toLowerCase()}
+              </a>
+              .
+            </p>
           </div>
-          <div className="flex flex-nowrap gap-2.5">
-            <a href={help.secondary.href} className="btn-ghost">
-              <Phone className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-              {help.secondary.label}
-            </a>
-            <a href={help.email.href} className="btn-ghost">
-              <Mail className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-              {help.email.label}
-            </a>
-          </div>
+          <a href={site.bookingUrl} className="btn-primary">
+            Book now
+          </a>
         </div>
       </div>
     </section>

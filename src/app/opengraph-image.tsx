@@ -34,7 +34,7 @@ export default function OpengraphImage() {
             ))}
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 30, color: "rgba(255,255,255,0.65)" }}>
-            {site.price.display} · 50+ markers · No referral · No insurance · Results in 4-5 days
+            {site.price.display} · All tests in one panel · No referral · No insurance · Results in 4-5 days
           </div>
         </div>
         <div style={{ display: "flex" }}>

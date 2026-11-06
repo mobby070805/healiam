@@ -224,9 +224,8 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
 - **healiam.com still advertises at-home visits** ("At-home visits are an extra $40" in its FAQ,
   and an at-home option on the booking flow). This site no longer does. The live site and the
   booking flow need the same correction.
-- **Pushed, not deployed.** The owner authorised publishing to GitHub on 30 Oct 2026, so the code
-  lives at `madheshg1813/healiam-site` (private) for client review. Deployment is still not
-  authorised: do not deploy until the owner says so.
+- **Pushed, not deployed.** The owner authorised publishing to GitHub on 30 Oct 2026 for client
+  review. Deployment is still not authorised: do not deploy until the owner says so.
 
 ## Location pages (from 31 Oct 2026)
 
@@ -276,3 +275,28 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
   library; closed panel is `inert` and invisible. Keyboard: Arrow Down on the button opens and focuses the
   first link; Up, Down, Home, End move through links (wrapping); Escape closes and refocuses the button;
   tabbing out closes. Header is now z-50 so the panel sits above the phone sticky bar (z-40).
+
+## Client feedback round (6 Nov 2026)
+
+- **Phone shows +1.** `site.phone` is now "+1 720-761-7869"; schema derives "+1-720-761-7869" from it.
+- **"Local time", never a zone name.** Fair times say "8:00 to 10:00 AM local time" on every page; no
+  Central, Mountain or Eastern. The one exception is /contact's support hours ("business hours, Mountain
+  Time"), which are Healiam's own office hours, not a fair time, so local time would be wrong there.
+- **Links inside FAQ answers.** Copy strings can carry `[label](href)` links, built with `link()` from
+  `lib/rich-text.ts` and rendered by `components/RichText.tsx`. JSON-LD gets the plain text via
+  `plainText()`. Used for: fairs page, contact ("tell us if you need one closer", "send us your town"),
+  booking, the app (#app) and the fair section (#locations).
+- **Price framing: one panel, one price.** Not "$95 for 50+ tests". `site.price.panelName`
+  ("Comprehensive Health Screening Panel") and `site.price.panelLine` (the client's sentence) are the one
+  source. The price card names the panel, its chip says "All tests included", and every price card line,
+  cost FAQ, page title, meta description, sticky bar and final CTA that tied the price to a marker count
+  was reworded. The marker count stays where it describes the panel's size with no price beside it
+  (/tests, panel section headings, hero mockups, the comparison "Coverage" tab).
+- **No referral / walk-ins said once per page, in the hero.** Removed from FAQ answers, process steps,
+  location intros and final CTAs. Kept on purpose: Google meta descriptions (not on the page), the
+  comparison table's Referral tab and the homepage "No referral needed" reason card (each is the topic of
+  its section). Walk-ins: hero ticks on Texas and Plano; the homepage fairs intro and the fair pages'
+  "When" card are the single mention on those pages.
+- **FAQ box is booking-first.** "Still have a question? Talk to a person before you book." is gone. Every
+  FAQ ends with "Ready when you are", a Book now button, and call/email as quiet text links. The client
+  does not want people to call before booking.

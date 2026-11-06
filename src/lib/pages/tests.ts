@@ -10,7 +10,7 @@ const book = site.bookingUrl;
 export const tests = {
   path: "/tests",
   meta: {
-    title: `What's in the ${price} Blood Panel | ${labMeasurementCount} Measurements | Healiam`,
+    title: `What's in the ${price} Health Screening Panel | Healiam`,
     description: `Every marker in the Healiam panel: CBC, thyroid, electrolytes, lipids, kidney, liver, iron, pancreas, Vitamin D and HbA1c. One ${price} draw, CLIA-certified results in 4 to 5 business days.`,
   },
   nav: [
@@ -81,14 +81,14 @@ export const tests = {
 
   finalCta: {
     title: "Blood testing made easy",
-    sub: `No insurance and no prescription. One ${price} panel, ${labMeasurementCount} measurements, results in the app in 4 to 5 business days.`,
+    sub: `One ${price} panel with every test included, and results in the app in 4 to 5 business days.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
 
   sticky: {
-    label: `${price} full blood panel`,
-    sub: `${labMeasurementCount} lab measurements`,
+    label: `${price} health screening panel`,
+    sub: "All tests in one panel",
     cta: { label: "Book now", href: book },
   },
 } as const;

@@ -7,6 +7,7 @@
 import { site } from "@/lib/site";
 import { fairs, fairHours } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
+import { link } from "@/lib/rich-text";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
@@ -29,7 +30,7 @@ export const colorado = {
   keyword: "blood testing in Colorado",
   meta: {
     title: `Blood Testing in Colorado for ${price} | Denver Metro | Healiam`,
-    description: `Blood testing in Colorado for ${price} at Healiam fairs near Denver and in Centennial. Book online: ${labMeasurementCount} lab measurements, no referral or insurance.`,
+    description: `Blood testing in Colorado for ${price} at Healiam fairs near Denver and in Centennial. One ${price} screening panel with every test included, no referral or insurance.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -48,7 +49,7 @@ export const colorado = {
     sub: `Healiam runs scheduled testing mornings in the Denver metro, not a walk-in lab. Here are the current Colorado dates, what the ${price} panel covers, and how to book a draw without a doctor's order or insurance.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "See Colorado dates", href: "#locations" },
-    ticks: ["Denver metro dates", "8 to 10 AM Mountain Time", "No referral or insurance"],
+    ticks: ["Denver metro dates", "8 to 10 AM local time", "No referral or insurance"],
   },
 
   // Hero phone mockup. Illustrative sample only (labelled "Sample"), not a real customer, and
@@ -98,7 +99,7 @@ export const colorado = {
       "Stop eating 8 to 12 hours before your draw",
       "Water is fine; skip coffee, juice and gum",
       "No hard workouts in the 24 hours before",
-      "Arrive 8 to 10 AM, Mountain Time",
+      "Arrive 8 to 10 AM, local time",
       "Bring the app and a card or HSA card",
       "Two vials, about seven minutes",
     ],
@@ -184,7 +185,7 @@ export const colorado = {
       { title: "Choose a date", sub: "Denver or Centennial" },
       { title: "Pay by card or HSA", sub: `${price}, nothing added later` },
     ],
-    tip: "No appointment needed: you can also walk in during the two hours. Booking ahead just means less waiting.",
+    tip: "Fast for 8 to 12 hours before your draw; water is fine. Booking ahead holds your time.",
     cta: {
       primary: { label: `Book for ${price}`, href: book },
       secondary: { label: "See the walkthrough", href: site.links.demo },
@@ -218,7 +219,7 @@ export const colorado = {
     categories: panelCategories,
     priceCard: {
       label: "Colorado dates",
-      line: "Same price in Denver and Centennial, with every marker included.",
+      line: site.price.panelLine,
       compare: "Clinic route: $100 to $800+ for a visit plus labs",
       fine: "Pay by card or HSA card. No insurance card needed.",
       cta: { label: `Book for ${price}`, href: book },
@@ -261,11 +262,11 @@ export const colorado = {
     items: [
       {
         q: "Can I get blood tests in Colorado outside the Denver metro?",
-        a: "Not at the moment. Healiam's current Colorado dates are in Denver and Centennial. Send us your town and we will let you know if a date is planned nearby.",
+        a: `Not at the moment. Healiam's current Colorado dates are in Denver and Centennial. ${link("Send us your town", site.links.contact)} and we will let you know if a date is planned nearby.`,
       },
       {
         q: "How do I book a blood testing appointment in Colorado?",
-        a: `Book online or in the Healiam app with a free account, choose Denver or Centennial, and pay ${price} by card or HSA card. You can also walk in during the ${fairHours.label} window, Mountain Time.`,
+        a: `${link("Book online", book)} or in the ${link("Healiam app", "#app")} with a free account, choose ${link("Denver or Centennial", "#locations")}, and pay ${price} by card or HSA card.`,
       },
       {
         q: "Does living at altitude in Colorado change my results?",
@@ -281,11 +282,11 @@ export const colorado = {
       },
       {
         q: "Is Healiam's Centennial date any different from Denver?",
-        a: `No. Same panel, same ${price} price, same licensed phlebotomists and the same ${fairHours.label} Mountain Time window. Only the day and the place change, so pick the side of the metro that suits you.`,
+        a: `No. Same panel, same ${price} price, same licensed phlebotomists and the same ${fairHours.label} window, local time. Only the day and the place change, so pick the side of the metro that suits you.`,
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },

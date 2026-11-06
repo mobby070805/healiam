@@ -11,6 +11,7 @@
 import { site } from "@/lib/site";
 import { fairs, fairHours, type Fair } from "@/lib/fairs";
 import { home } from "@/lib/pages/home";
+import { link } from "@/lib/rich-text";
 import { panelCategories, labCategoryCount, labMeasurementCount } from "@/lib/panel";
 import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
@@ -35,7 +36,7 @@ export const denver = {
   keyword: "blood testing in Denver CO",
   meta: {
     title: `Blood Testing in Denver, CO | Saturday Fairs, ${price} | Healiam`,
-    description: `Blood testing in Denver, CO: a ${price} panel of ${labMeasurementCount} lab measurements, no referral. Next Denver fair ${short(denverFair)}, ${fairHours.label}.`,
+    description: `Blood testing in Denver, CO: one ${price} screening panel with every test included, no referral. Next Denver fair ${short(denverFair)}, ${fairHours.label}.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -223,7 +224,7 @@ export const denver = {
     categories: panelCategories,
     priceCard: {
       label: "Denver fair",
-      line: "Every marker below, from one Denver draw.",
+      line: site.price.panelLine,
       compare: "Clinic in town: $100 to $800+ for a visit plus labs",
       fine: "Credit card or HSA card accepted.",
       cta: { label: `Book for ${price}`, href: book },
@@ -264,11 +265,11 @@ export const denver = {
     items: [
       {
         q: "Where can I get blood testing in Denver, CO?",
-        a: `At Healiam's Saturday fair in Denver on ${denverFair.dateLabel}, ${fairHours.label} Mountain Time. Healiam tests at scheduled fairs, not at a lab that is open every day.`,
+        a: `At Healiam's Saturday fair in Denver on ${denverFair.dateLabel}, ${fairHours.label} local time. Healiam tests at scheduled fairs, not at a lab that is open every day.`,
       },
       {
         q: "What does blood testing in Denver cost with Healiam?",
-        a: `${price} per person for all ${labMeasurementCount} lab measurements. Pay by credit card or HSA card; Healiam does not bill insurance, and there is no separate visit fee.`,
+        a: `${price} for the ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price. Pay by credit card or HSA card; Healiam does not bill insurance, and there is no separate visit fee.`,
       },
       {
         q: "Does the Denver panel include a kidney function test and a CBC?",
@@ -284,11 +285,11 @@ export const denver = {
       },
       {
         q: "How do I book the Denver date?",
-        a: `Sign up for a free Healiam account in the app or online, choose ${denverFair.dateLabel} in Denver, add anyone else being tested, and pay ${price} each by card or HSA card.`,
+        a: `Sign up for a free Healiam account in the ${link("app", "#app")} or ${link("online", book)}, choose ${link(`${denverFair.dateLabel} in Denver`, "#locations")}, add anyone else being tested, and pay ${price} each by card or HSA card.`,
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },

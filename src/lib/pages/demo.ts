@@ -106,7 +106,7 @@ export const demo = {
 
   finalCta: {
     title: "Ready to try it for real?",
-    sub: `Book your ${price} panel, or download the app first and look around. No referral and no insurance.`,
+    sub: `Book your ${price} panel, or download the app first and look around.`,
     primary: { label: `Book for ${price}`, href: site.bookingUrl },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

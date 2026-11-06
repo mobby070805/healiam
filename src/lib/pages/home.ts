@@ -11,8 +11,8 @@ const book = site.bookingUrl;
 export const home = {
   path: "/",
   meta: {
-    title: `Preventive Blood Test for ${price} | 50+ Markers | Healiam`,
-    description: `One preventive blood panel for ${price}: 50+ markers incl. thyroid, cholesterol, Vitamin D and HbA1c. No referral or insurance. Results in 4 to 5 days.`,
+    title: `Preventive Blood Test | ${price} Screening Panel | Healiam`,
+    description: `One ${price} screening panel covering thyroid, cholesterol, Vitamin D, HbA1c and more, all tests included. No referral or insurance. Results in 4 to 5 days.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
@@ -31,7 +31,7 @@ export const home = {
       { text: "blood.", accent: true },
     ],
     // One paragraph, not two. The marker list and the lab detail live on /tests.
-    sub: `Affordable preventive blood testing with no doctor's referral and no insurance required. One ${price} panel, 50+ markers, CLIA-certified results in 4 to 5 business days.`,
+    sub: `Affordable preventive blood testing with no doctor's referral and no insurance required. One ${price} panel with every test included, and CLIA-certified results in 4 to 5 business days.`,
     watch: { label: "See how it works", href: "#how-it-works" },
     // short: the label used on phones, where both buttons share one row.
     primary: { label: "Book an appointment", short: "Book now", href: book },
@@ -286,11 +286,11 @@ export const home = {
     items: [
       {
         q: "What is Healiam?",
-        a: `Healiam runs morning health fairs where a licensed phlebotomist draws two vials for a 50+ marker preventive panel, for ${price} with no referral or insurance. Results arrive in the Healiam app in 4 to 5 business days.`,
+        a: `Healiam runs morning health fairs where a licensed phlebotomist draws two vials for one preventive screening panel, with every test included for ${price} and no insurance needed. Results arrive in the Healiam app in 4 to 5 business days.`,
       },
       {
         q: "How much does a test cost?",
-        a: `We charge ${price} for our panel.`,
+        a: `We charge ${price} for our ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price.`,
       },
       {
         q: "Do you accept insurance?",
@@ -314,7 +314,7 @@ export const home = {
       },
     ],
     help: {
-      title: "Still have a question?",
+      title: "Ready when you are",
       secondary: { label: "Call us", href: site.phoneHref },
       email: { label: "Email us", href: `mailto:${site.email}` },
     },
@@ -328,8 +328,8 @@ export const home = {
   },
 
   sticky: {
-    label: `${price} full blood panel`,
-    sub: "50+ markers, no referral",
+    label: `${price} health screening panel`,
+    sub: "All tests in one panel",
     cta: { label: "Book now", href: book },
   },
 } as const;
