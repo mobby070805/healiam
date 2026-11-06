@@ -228,7 +228,7 @@ export const georgia = {
 
   locations: {
     eyebrow: "Georgia date",
-    title: "Blood testing appointments in Georgia",
+    title: "Georgia fair locations",
     sub: `Book a slot at 755 Longleaf Blvd, Lawrenceville, Georgia, ${fairHours.label} local time. Grayson and Snellville are both within about 5 miles in a straight line.`,
     fairs: georgiaFairs,
     hours: fairHours,
@@ -297,6 +297,15 @@ export const georgia = {
     sub: `Park free on Longleaf Blvd in Lawrenceville, Georgia, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  // Georgia city pages, listed just above the other-states section (owner, 6 Nov 2026). Every city
+  // page in the state shows here automatically, from lib/fairs.ts and lib/city-pages.ts.
+  cityLinks: {
+    eyebrow: "Georgia cities",
+    title: "Blood testing by Georgia city",
+    sub: "Directions, parking and the next date for each Georgia city with a Healiam fair.",
+    region: "GA",
   },
 
   // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.

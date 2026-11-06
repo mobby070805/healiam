@@ -228,7 +228,7 @@ export const colorado = {
 
   locations: {
     eyebrow: "Current Colorado dates",
-    title: "Blood testing appointments in Colorado, on two mornings",
+    title: "Colorado fair locations",
     sub: `Denver suits the north and west suburbs, Centennial the south metro, and the two are ${daysApart} days apart. These are the only Colorado dates on the schedule right now.`,
     fairs: coloradoFairs,
     hours: fairHours,
@@ -297,6 +297,15 @@ export const colorado = {
     sub: `Pick Denver or Centennial, Colorado, fast overnight, and see all ${labMeasurementCount} lab results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  // Colorado city pages, listed just above the other-states section (owner, 6 Nov 2026). Every city
+  // page in the state shows here automatically, from lib/fairs.ts and lib/city-pages.ts.
+  cityLinks: {
+    eyebrow: "Colorado cities",
+    title: "Blood testing by Colorado city",
+    sub: "Directions, parking and the next date for each Colorado city with a Healiam fair.",
+    region: "CO",
   },
 
   // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.

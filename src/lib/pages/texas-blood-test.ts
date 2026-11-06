@@ -321,7 +321,7 @@ export type TexasBloodTestPage = typeof page;
  * (Colorado) fill the same shape with their own copy; the section components default to Texas.
  */
 export type StateLandingPage = Omit<Widen<TexasBloodTestPage>, "heroVisual" | "cityLinks"> & {
-  /** Links to the state's own city pages (Texas only for now, pending owner approval). */
+  /** Links to the state's own city pages. State pages set it; city pages leave it out. */
   readonly cityLinks?: Widen<TexasBloodTestPage["cityLinks"]>;
   /** Any mockup the hero can draw: a trend card (state pages) or a booking card (city pages). */
   readonly heroVisual: HeroVisualData;

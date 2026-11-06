@@ -18,6 +18,7 @@ import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { OtherStateFairs } from "@/components/sections/OtherStateFairs";
+import { StateCityPages } from "@/components/sections/StateCityPages";
 
 const url = `${site.url}${georgia.path}`;
 
@@ -52,10 +53,11 @@ export default function GeorgiaBloodTestingPage() {
         <Process process={georgia.process} />
         <Benefits benefits={georgia.benefits} />
         <Panel panel={georgia.panel} />
-        <Locations locations={georgia.locations} />
+        <Locations locations={georgia.locations} cityLinks={false} />
         <AppDownload app={georgia.app} />
         <Faq faq={georgia.faq} />
         <FinalCta finalCta={georgia.finalCta} />
+        <StateCityPages data={georgia.cityLinks} />
         <OtherStateFairs otherFairs={georgia.otherFairs} />
       </main>
       <Footer />

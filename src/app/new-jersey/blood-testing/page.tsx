@@ -18,6 +18,7 @@ import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { OtherStateFairs } from "@/components/sections/OtherStateFairs";
+import { StateCityPages } from "@/components/sections/StateCityPages";
 
 const url = `${site.url}${newJersey.path}`;
 
@@ -52,10 +53,11 @@ export default function NewJerseyBloodTestingPage() {
         <Process process={newJersey.process} />
         <Benefits benefits={newJersey.benefits} />
         <Panel panel={newJersey.panel} />
-        <Locations locations={newJersey.locations} />
+        <Locations locations={newJersey.locations} cityLinks={false} />
         <AppDownload app={newJersey.app} />
         <Faq faq={newJersey.faq} />
         <FinalCta finalCta={newJersey.finalCta} />
+        <StateCityPages data={newJersey.cityLinks} />
         <OtherStateFairs otherFairs={newJersey.otherFairs} />
       </main>
       <Footer />

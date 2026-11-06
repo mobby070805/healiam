@@ -226,7 +226,7 @@ export const newJersey = {
 
   locations: {
     eyebrow: "New Jersey date",
-    title: "Blood testing appointments in New Jersey",
+    title: "New Jersey fair locations",
     sub: `Book a slot at Rahway Pharmacy on Irving Street, Rahway, New Jersey, ${fairHours.label} local time. Linden, Clark, Carteret, Roselle and Woodbridge are all within about 3.5 miles in a straight line.`,
     fairs: newJerseyFairs,
     hours: fairHours,
@@ -295,6 +295,15 @@ export const newJersey = {
     sub: `Take NJ Transit or park on Irving Street in Rahway, New Jersey, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
+  },
+
+  // New Jersey city pages, listed just above the other-states section (owner, 6 Nov 2026). Every city
+  // page in the state shows here automatically, from lib/fairs.ts and lib/city-pages.ts.
+  cityLinks: {
+    eyebrow: "New Jersey cities",
+    title: "Blood testing by New Jersey city",
+    sub: "Directions, parking and the next date for each New Jersey city with a Healiam fair.",
+    region: "NJ",
   },
 
   // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.
