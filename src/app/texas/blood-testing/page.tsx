@@ -18,6 +18,7 @@ import { AppDownload } from "@/components/home/AppDownload";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { OtherStateFairs } from "@/components/sections/OtherStateFairs";
+import { StateCityPages } from "@/components/sections/StateCityPages";
 
 const url = `${site.url}${page.path}`;
 
@@ -50,10 +51,11 @@ export default function TexasBloodTestPage() {
         <Process />
         <Benefits />
         <Panel />
-        <Locations />
+        <Locations cityLinks={false} />
         <AppDownload app={page.app} />
         <Faq faq={page.faq} />
         <FinalCta finalCta={page.finalCta} />
+        <StateCityPages data={page.cityLinks} />
         <OtherStateFairs otherFairs={page.otherFairs} />
       </main>
       <Footer />

@@ -11,12 +11,15 @@ export function Locations({
   locations = page.locations,
   currentPath,
   cityOnly = false,
+  cityLinks = true,
 }: {
   locations?: StateLandingPage["locations"];
   /** The page showing the cards, so a city page doesn't link to itself. */
   currentPath?: string;
   /** City pages show only the city: the venue inside a city changes from fair to fair (owner, 5 Nov 2026). */
   cityOnly?: boolean;
+  /** Off where the page lists its city pages in their own section instead (Texas, owner 6 Nov 2026). */
+  cityLinks?: boolean;
 }) {
   const book = locations.cta.primary.href;
   // Works for any number of fairs: with an odd count the request card fills the last half row on phones.
@@ -30,7 +33,7 @@ export function Locations({
         <ul className={`mx-auto grid grid-cols-2 gap-3 sm:gap-4 ${lgCols}`}>
           {locations.fairs.map((fair) => {
             const linked = cityPages[fair.slug];
-            const cityPage = linked && linked.href !== currentPath ? linked : undefined;
+            const cityPage = cityLinks && linked && linked.href !== currentPath ? linked : undefined;
             return (
             <li key={fair.city}>
               <div className="card card-hover flex h-full flex-col p-4 sm:p-6">

@@ -219,7 +219,7 @@ export const page = {
 
   locations: {
     eyebrow: "Texas locations",
-    title: "Blood testing appointments in Texas",
+    title: "Texas fair locations",
     sub: "Book a morning slot at a Texas health fair. Fairs run 8:00 to 10:00 AM, so you can test while fasting and still make it to work.",
     fairs: texasFairs,
     hours: fairHours,
@@ -290,6 +290,14 @@ export const page = {
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
 
+  // Texas city pages, listed just above the other-states section (owner, 6 Nov 2026).
+  cityLinks: {
+    eyebrow: "Texas cities",
+    title: "Blood testing by Texas city",
+    sub: "Directions, parking and the next date for each Texas city with a Healiam fair.",
+    region: "TX",
+  },
+
   // Last section: fairs in every other state (client, 2 Nov 2026). Links come from lib/fairs.ts.
   otherFairs: {
     eyebrow: "Other states",
@@ -312,7 +320,9 @@ export type TexasBloodTestPage = typeof page;
  * Shape of a state landing page built from the Texas page's sections. Other state pages
  * (Colorado) fill the same shape with their own copy; the section components default to Texas.
  */
-export type StateLandingPage = Omit<Widen<TexasBloodTestPage>, "heroVisual"> & {
+export type StateLandingPage = Omit<Widen<TexasBloodTestPage>, "heroVisual" | "cityLinks"> & {
+  /** Links to the state's own city pages (Texas only for now, pending owner approval). */
+  readonly cityLinks?: Widen<TexasBloodTestPage["cityLinks"]>;
   /** Any mockup the hero can draw: a trend card (state pages) or a booking card (city pages). */
   readonly heroVisual: HeroVisualData;
 };
