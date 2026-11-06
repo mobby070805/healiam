@@ -28,7 +28,7 @@ export const arlington = {
   },
   nav: [
     { label: "What's tested", href: "#panel" },
-    { label: "Your morning", href: "#how-it-works" },
+    { label: "Your visit", href: "#how-it-works" },
     { label: "Nearby fairs", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
@@ -85,7 +85,7 @@ export const arlington = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "The usual reasons Arlington puts off blood work",
-    sub: "Six of them. A morning at the fair next door in Grand Prairie deals with each.",
+    sub: "Six of them. A visit to the fair next door in Grand Prairie deals with each.",
     items: [
       "Thinking the nearest option is a hospital lab",
       "Seeing a doctor just to get tests ordered",
@@ -103,7 +103,7 @@ export const arlington = {
   comparison: {
     eyebrow: "Compare",
     title: "Arlington: doctor's office or Healiam fair?",
-    sub: "Six ways a morning in Grand Prairie compares with getting blood work through a practice in Arlington.",
+    sub: "Six ways a visit to Grand Prairie compares with getting blood work through a practice in Arlington.",
     usualLabel: "Doctor's office",
     oursLabel: "Healiam fair",
     badge: "CLIA-certified",
@@ -167,9 +167,9 @@ export const arlington = {
   },
 
   process: {
-    eyebrow: "Your morning",
-    title: "An Arlington test morning, planned",
-    sub: "Book tonight, fast overnight, and you're done before most of the weekend starts.",
+    eyebrow: "Your visit",
+    title: "An Arlington test day, planned",
+    sub: "Book tonight, fast overnight, and the draw itself takes minutes.",
     steps: [
       { title: "Book tonight", sub: "Online or in the app" },
       { title: "Fast overnight", sub: "8 to 12 hours" },
@@ -254,7 +254,7 @@ export const arlington = {
       },
       {
         q: "Is there another fair if that date doesn't work?",
-        a: `Yes, Plano, about ${near.toPlano} miles away. Same panel, same price, ${fairHours.label} local time. The next dates are ${dfwDates()}.`,
+        a: `Yes, Plano, about ${near.toPlano} miles away, with the same panel and price. Both fairs' upcoming dates are on the ${link("fairs page", site.links.fairs)}.`,
       },
       {
         q: "How much will I pay?",

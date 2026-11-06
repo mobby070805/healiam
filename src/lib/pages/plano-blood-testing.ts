@@ -38,12 +38,12 @@ export const plano = {
   keyword: "blood testing in Plano TX",
   meta: {
     title: `Blood Testing in Plano, TX | ${price}, No Referral | Healiam`,
-    description: `Blood testing in Plano, TX: one ${price} screening panel with every test included, no referral or insurance. Next Plano fair ${short(planoFair)}. Walk-ins welcome.`,
+    description: `Blood testing in Plano, TX: one ${price} screening panel with every test included, no referral or insurance, at Healiam's Plano fair. Walk-ins welcome.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "Your visit", href: "#how-it-works" },
-    { label: "Plano date", href: "#locations" },
+    { label: "Plano fair", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -55,9 +55,9 @@ export const plano = {
   hero: {
     titleLead: "Blood testing in Plano, TX for",
     titleAccent: price,
-    sub: "For Plano and southern Collin County: a full preventive panel drawn at a Healiam Saturday morning fair in Plano, with no doctor's order to arrange first.",
+    sub: "For Plano and southern Collin County: a full preventive panel drawn at Healiam's Plano fair, with no doctor's order to arrange first.",
     primary: { label: `Book for ${price}`, href: book },
-    secondary: { label: "See the Plano date", href: "#locations" },
+    secondary: { label: "See the Plano fair", href: "#locations" },
     ticks: ["Walk-ins welcome", `${labMeasurementCount} lab measurements`, "Results in the app"],
   },
 
@@ -103,7 +103,7 @@ export const plano = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "Why blood work in Plano gets put off",
-    sub: "Six things that keep Plano residents from booking a blood test. The Saturday fair takes each one away.",
+    sub: "Six things that keep Plano residents from booking a blood test. The Plano fair takes each one away.",
     items: [
       "A doctor's visit just to get the order",
       "Lab hours that clash with the workweek",
@@ -114,14 +114,14 @@ export const plano = {
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "See the Plano date", href: "#locations" },
+      secondary: { label: "See the Plano fair", href: "#locations" },
     },
   },
 
   comparison: {
     eyebrow: "Compare",
     title: "Why Plano residents test with Healiam",
-    sub: "How a Saturday morning at the Plano fair compares with arranging blood work through a doctor and a separate lab.",
+    sub: "How a visit to the Plano fair compares with arranging blood work through a doctor and a separate lab.",
     usualLabel: "Doctor and lab",
     oursLabel: "Plano fair",
     badge: "CLIA-certified",
@@ -133,8 +133,8 @@ export const plano = {
         icon: "CalendarDays",
         bar: "Time off work",
         usual: { value: "Weekday hours", note: "Lab draws are often fitted around the working week.", level: 80 },
-        ours: { value: "Saturday morning", note: `${fairHours.label}, then the rest of the weekend is yours.`, level: 14 },
-        cta: { label: "See the Plano date", href: "#locations" },
+        ours: { value: "A slot you choose", note: "Booked around your week, online or in the app.", level: 14 },
+        cta: { label: "See the Plano fair", href: "#locations" },
       },
       {
         id: "price",
@@ -179,7 +179,7 @@ export const plano = {
         bar: "Coverage questions",
         usual: { value: "Copays, deductibles", note: "What you owe depends on your plan and the codes billed.", level: 70 },
         ours: { value: "Card or HSA card", note: "No insurance claim, so there is nothing to check first.", level: 14 },
-        cta: { label: "See the Plano date", href: "#locations" },
+        cta: { label: "See the Plano fair", href: "#locations" },
       },
     ],
   },
@@ -213,7 +213,7 @@ export const plano = {
       { icon: "Users", title: "One booking for the family", line: "Add each person when you reserve." },
       { icon: "HeartPulse", title: "Room for vitals", line: "Log blood pressure and weight beside your labs." },
       { icon: "Lock", title: "Private by default", line: "Not shared with an employer or anyone else." },
-      { icon: "CalendarCheck", title: "A fair that returns", line: "Healiam tested in Plano in July 2026 too." },
+      { icon: "CalendarCheck", title: "A fair that returns", line: "Healiam has held fairs in Plano before." },
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
@@ -242,8 +242,8 @@ export const plano = {
     fairs: [planoFair],
     hours: fairHours,
     noFair: {
-      title: `Can't make ${short(planoFair).replace(/^\w+,\s*/, "")}?`,
-      line: `Healiam's Grand Prairie fair is a week later, ${short(grandPrairieFair)}.`,
+      title: "Plano date not right for you?",
+      line: "Healiam also runs a fair in Grand Prairie, with the same panel and price.",
       cta: { label: "See the Grand Prairie fair", href: grandPrairieFair.detailsUrl },
     },
     cta: {
@@ -255,7 +255,7 @@ export const plano = {
   app: {
     eyebrow: "The Healiam app",
     title: "Plano results arrive in the Healiam app",
-    sub: "Free on iPhone and Android. Scan a code to install it before Saturday.",
+    sub: "Free on iPhone and Android. Scan a code to install it before your visit.",
     points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
@@ -269,7 +269,7 @@ export const plano = {
     items: [
       {
         q: "Where can I get blood testing in Plano, TX?",
-        a: `At Healiam's Plano fair on ${planoFair.dateLabel}, ${fairHours.label} local time. Healiam tests at scheduled morning fairs rather than a lab that is open every day.`,
+        a: `At Healiam's Plano fair. It runs on scheduled dates rather than as a lab that's open every day; the fair card on this page shows the next one.`,
       },
       {
         q: "How much does a blood test cost in Plano with Healiam?",
@@ -289,7 +289,7 @@ export const plano = {
       },
       {
         q: "Has Healiam held fairs in Plano before?",
-        a: `Yes. Healiam ran a Plano fair on 12 July 2026. New Plano dates are posted on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
+        a: `Yes, Plano has hosted Healiam fairs before. New Plano dates are posted on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
       },
     ],
     help: {
@@ -300,8 +300,8 @@ export const plano = {
   },
 
   finalCta: {
-    title: "Book a Saturday blood test in Plano",
-    sub: "One Saturday morning in Plano, then your report on your phone the following week.",
+    title: "Book a blood test in Plano",
+    sub: "One visit to the Plano fair, then your report on your phone the following week.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
@@ -316,7 +316,7 @@ export const plano = {
 
   sticky: {
     label: "Blood testing in Plano",
-    sub: `Next fair ${short(planoFair)} · ${price}`,
+    sub: `One panel · ${price}`,
     cta: { label: "Book now", href: book },
   },
 } as const satisfies StateLandingPage;

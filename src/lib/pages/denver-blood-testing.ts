@@ -35,13 +35,13 @@ export const denver = {
   path: "/colorado/blood-testing-in-denver",
   keyword: "blood testing in Denver CO",
   meta: {
-    title: `Blood Testing in Denver, CO | Saturday Fairs, ${price} | Healiam`,
-    description: `Blood testing in Denver, CO: one ${price} screening panel with every test included, no referral. Next Denver fair ${short(denverFair)}, ${fairHours.label}.`,
+    title: `Blood Testing in Denver, CO | ${price} Panel, No Referral | Healiam`,
+    description: `Blood testing in Denver, CO: one ${price} screening panel with every test included, no referral, at Healiam's Denver fair. Book online in minutes.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "Your visit", href: "#how-it-works" },
-    { label: "Denver date", href: "#locations" },
+    { label: "Denver fair", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -53,9 +53,9 @@ export const denver = {
   hero: {
     titleLead: "Blood testing in Denver, CO for",
     titleAccent: price,
-    sub: "A Saturday morning at Healiam's Denver fair: two vials, a licensed phlebotomist, and nothing to clear with a doctor or an insurer beforehand.",
+    sub: "One visit to Healiam's Denver fair: two vials, a licensed phlebotomist, and nothing to clear with a doctor or an insurer beforehand.",
     primary: { label: `Book for ${price}`, href: book },
-    secondary: { label: "See the Denver date", href: "#locations" },
+    secondary: { label: "See the Denver fair", href: "#locations" },
     ticks: [`${labCategoryCount} lab categories`, "Book online or in the app", "Report in 4 to 5 business days"],
   },
 
@@ -101,7 +101,7 @@ export const denver = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "What makes blood work in Denver a chore",
-    sub: "Six familiar hurdles for Denver residents. A Saturday Healiam fair in the city clears every one.",
+    sub: "Six familiar hurdles for Denver residents. A Healiam fair in the city clears every one.",
     items: [
       "Draw sites that keep weekday hours",
       "An office visit before any labs",
@@ -112,7 +112,7 @@ export const denver = {
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "See the Denver date", href: "#locations" },
+      secondary: { label: "See the Denver fair", href: "#locations" },
     },
   },
 
@@ -131,8 +131,8 @@ export const denver = {
         icon: "CalendarDays",
         bar: "Time off work",
         usual: { value: "A weekday slot", note: "Many draw sites keep office hours only.", level: 80 },
-        ours: { value: "A Saturday", note: "Two morning hours on the weekend, nothing to take off for.", level: 14 },
-        cta: { label: "See the Denver date", href: "#locations" },
+        ours: { value: "Your pick of slot", note: "Reserve a time that fits around work.", level: 14 },
+        cta: { label: "See the Denver fair", href: "#locations" },
       },
       {
         id: "cost",
@@ -177,7 +177,7 @@ export const denver = {
         bar: "Wait to see numbers",
         usual: { value: "A follow-up call", note: "Numbers are often read out at a later appointment.", level: 72 },
         ours: { value: "Straight to the app", note: "Each marker arrives with its own range beside it.", level: 22 },
-        cta: { label: "See the Denver date", href: "#locations" },
+        cta: { label: "See the Denver fair", href: "#locations" },
       },
     ],
   },
@@ -187,9 +187,9 @@ export const denver = {
     title: "From booking to results in Denver",
     sub: "Four steps, most of them done from home.",
     steps: [
-      { title: "Pick Saturday", sub: "Online or in the app" },
+      { title: "Pick your slot", sub: "Online or in the app" },
       { title: "No food from the evening", sub: "8 to 12 hours" },
-      { title: "Saturday draw in Denver", sub: "Two vials, about 7 min" },
+      { title: "Draw in Denver", sub: "Two vials, about 7 min" },
       { title: "Open your results", sub: "4 to 5 business days" },
     ],
     tip: "Keep drinking water while you fast, and skip hard exercise the day before your Denver draw.",
@@ -222,7 +222,7 @@ export const denver = {
   panel: {
     eyebrow: "The panel",
     title: "Inside a Denver blood test",
-    sub: `${labCategoryCount} lab categories from one Saturday draw, with a ${kidneyCount}-marker kidney function test and a ${cbcCount}-measurement CBC among them, plus biometrics you log in the app.`,
+    sub: `${labCategoryCount} lab categories from one draw, with a ${kidneyCount}-marker kidney function test and a ${cbcCount}-measurement CBC among them, plus biometrics you log in the app.`,
     categories: panelCategories,
     priceCard: {
       label: "Denver fair",
@@ -241,7 +241,7 @@ export const denver = {
     hours: fairHours,
     noFair: {
       title: "In the south metro?",
-      line: `Centennial's fair runs the next day, ${short(centennialFair)}.`,
+      line: "Healiam's south-metro fair in Centennial runs the same panel at the same price.",
       cta: { label: "See the Centennial fair", href: centennialFair.detailsUrl },
     },
     cta: {
@@ -267,7 +267,7 @@ export const denver = {
     items: [
       {
         q: "Is there a lab for blood testing in Denver, CO, or is it a fair?",
-        a: `It's a fair. Healiam has no lab that opens every day; the next Denver date is ${denverFair.dateLabel}, ${fairHours.label} local time.`,
+        a: `It's a fair. Healiam has no lab that opens every day; the fair card on this page shows the next Denver date.`,
       },
       {
         q: "What does blood testing in Denver cost with Healiam?",
@@ -283,11 +283,11 @@ export const denver = {
       },
       {
         q: "I live in the south metro. Should I still come to Denver?",
-        a: `You may find Centennial easier. Healiam's Centennial fair is on ${centennialFair.dateLabel}, with the same panel and price.`,
+        a: `You may find Centennial easier. Healiam's Centennial fair runs the same panel at the same price.`,
       },
       {
         q: "How do I book the Denver date?",
-        a: `Sign up for a free Healiam account in the ${link("app", "#app")} or ${link("online", book)}, choose ${link(`${denverFair.dateLabel} in Denver`, "#locations")}, add anyone else being tested, and pay ${price} each by card or HSA card.`,
+        a: `Sign up for a free Healiam account in the ${link("app", "#app")} or ${link("online", book)}, choose the ${link("Denver date", "#locations")}, add anyone else being tested, and pay ${price} each by card or HSA card.`,
       },
     ],
     help: {
@@ -298,8 +298,8 @@ export const denver = {
   },
 
   finalCta: {
-    title: "Book Saturday blood testing in Denver",
-    sub: "Two morning hours on a Denver Saturday, and your report the following week.",
+    title: "Book blood testing in Denver",
+    sub: "A few minutes at the Denver fair, and your report the following week.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
@@ -307,14 +307,14 @@ export const denver = {
   otherFairs: {
     eyebrow: "Other states",
     title: "Fairs for family outside Denver and Colorado",
-    sub: "Healiam runs the same morning fairs in these states, with the same panel and price.",
+    sub: "Healiam runs fairs in these states too, with the same panel and price.",
     linkLead: "Blood testing in",
     exclude: "Colorado",
   },
 
   sticky: {
     label: "Blood testing in Denver",
-    sub: `Next fair ${short(denverFair)} · ${price}`,
+    sub: `${price} · results in the app`,
     cta: { label: "Book now", href: book },
   },
 } as const satisfies StateLandingPage;

@@ -103,7 +103,7 @@ export const dallas = {
   comparison: {
     eyebrow: "Compare",
     title: "How a Healiam fair stacks up against a Dallas lab visit",
-    sub: "The usual Dallas route to blood work, side by side with a morning at a Healiam fair.",
+    sub: "The usual Dallas route to blood work, side by side with a visit to a Healiam fair.",
     usualLabel: "Doctor and lab",
     oursLabel: "Healiam fair",
     badge: "CLIA-certified",
@@ -156,11 +156,11 @@ export const dallas = {
       },
       {
         id: "weekend",
-        tab: "Day",
+        tab: "Scheduling",
         icon: "CalendarDays",
         bar: "Time off work",
         usual: { value: "Weekday hours", note: "Fitted around the working week.", level: 76 },
-        ours: { value: "Weekend mornings", note: `${fairHours.label} local time.`, level: 14 },
+        ours: { value: "Your own slot", note: "Reserve a time that suits you.", level: 14 },
         cta: { label: "Which fair is closer?", href: "#locations" },
       },
     ],
@@ -258,7 +258,7 @@ export const dallas = {
       },
       {
         q: "What about Oak Cliff or west Dallas?",
-        a: `Try Grand Prairie. It's about ${near.toGrandPrairie} miles from downtown and lies west of the city. The next dates are ${dfwDates()}; both are on the ${link("fairs page", site.links.fairs)}.`,
+        a: `Try Grand Prairie. It's about ${near.toGrandPrairie} miles from downtown and lies west of the city. Upcoming dates for both fairs are on the ${link("fairs page", site.links.fairs)}.`,
       },
       {
         q: "What do I pay for a blood test in Dallas?",
@@ -282,7 +282,7 @@ export const dallas = {
 
   finalCta: {
     title: "Book blood testing near Dallas",
-    sub: "Choose north or west, give two vials one weekend morning, and read your report the next week.",
+    sub: "Choose north or west, give two vials, and read your report the next week.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

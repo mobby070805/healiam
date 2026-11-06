@@ -37,12 +37,12 @@ export const lawrenceville = {
   keyword: "blood testing in Lawrenceville GA",
   meta: {
     title: `Blood Testing in Lawrenceville, GA | ${price}, Gwinnett | Healiam`,
-    description: `Blood testing in Lawrenceville, GA: one ${price} screening panel with every test included, no referral or insurance. Next fair ${dayShort}, ${fairHours.label} local time.`,
+    description: `Blood testing in Lawrenceville, GA: one ${price} screening panel with every test included, no referral or insurance, at Healiam's Gwinnett County fair.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "Your visit", href: "#how-it-works" },
-    { label: "Lawrenceville date", href: "#locations" },
+    { label: "Lawrenceville fair", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -54,9 +54,9 @@ export const lawrenceville = {
   hero: {
     titleLead: "Blood testing in Lawrenceville, GA for",
     titleAccent: price,
-    sub: "In the Gwinnett County seat, at a Healiam Saturday morning fair: a preventive panel with no doctor's order to get and no insurer to involve.",
+    sub: "In the Gwinnett County seat, at a Healiam fair: a preventive panel with no doctor's order to get and no insurer to involve.",
     primary: { label: `Book for ${price}`, href: book },
-    secondary: { label: "See the Lawrenceville date", href: "#locations" },
+    secondary: { label: "See the Lawrenceville fair", href: "#locations" },
     ticks: [`${labMeasurementCount} lab measurements`, "HSA cards accepted", "Report sent to your phone"],
   },
 
@@ -109,18 +109,18 @@ export const lawrenceville = {
       "Copays that change with your plan",
       "Routine sets that skip thyroid or iron",
       "Hearing back only at the next visit",
-      "Labs that close on the weekend",
+      "Lab hours that clash with work",
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "See the Lawrenceville date", href: "#locations" },
+      secondary: { label: "See the Lawrenceville fair", href: "#locations" },
     },
   },
 
   comparison: {
     eyebrow: "Compare",
     title: "Lawrenceville fair versus the usual lab route",
-    sub: "Six differences between a Saturday at the Lawrenceville fair and having blood work ordered through a practice.",
+    sub: "Six differences between a visit to the Lawrenceville fair and having blood work ordered through a practice.",
     usualLabel: "Usual lab route",
     oursLabel: "Lawrenceville fair",
     badge: "CLIA-certified",
@@ -133,7 +133,7 @@ export const lawrenceville = {
         bar: "Coverage questions",
         usual: { value: "Insurance first", note: "Coverage and copays get checked before the draw.", level: 70 },
         ours: { value: "Card or HSA card", note: "No claim or explanation of benefits to follow.", level: 12 },
-        cta: { label: "See the Lawrenceville date", href: "#locations" },
+        cta: { label: "See the Lawrenceville fair", href: "#locations" },
       },
       {
         id: "spend",
@@ -172,13 +172,13 @@ export const lawrenceville = {
         cta: { label: "Book my test", href: book },
       },
       {
-        id: "weekend",
-        tab: "Weekend",
+        id: "booking",
+        tab: "Booking",
         icon: "CalendarDays",
         bar: "Time off work",
-        usual: { value: "Weekday hours", note: "Draw sites often close at weekends.", level: 78 },
-        ours: { value: "Saturday, 8 to 10 AM", note: "Testing done before the weekend gets busy.", level: 14 },
-        cta: { label: "See the Lawrenceville date", href: "#locations" },
+        usual: { value: "Weekday hours", note: "Draw sites tend to keep office hours.", level: 78 },
+        ours: { value: "A time you pick", note: "Reserve online or in the app.", level: 14 },
+        cta: { label: "See the Lawrenceville fair", href: "#locations" },
       },
     ],
   },
@@ -203,7 +203,7 @@ export const lawrenceville = {
   benefits: {
     eyebrow: "What you get",
     title: "What comes with a Lawrenceville test",
-    sub: "The pieces that stay useful long after Saturday.",
+    sub: "The pieces that stay useful long after the draw.",
     items: [
       { icon: "Share2", title: "Simple to share", line: "Forward the report to your Gwinnett doctor." },
       { icon: "Gauge", title: "Ranges you can read", line: "Each marker against low, normal and high." },
@@ -268,7 +268,7 @@ export const lawrenceville = {
     items: [
       {
         q: "How does blood testing in Lawrenceville, GA work?",
-        a: `It happens at a scheduled Healiam fair rather than a lab that opens every day. The next one is ${lawrencevilleFair.dateLabel}, ${fairHours.label} local time.`,
+        a: `It happens at a scheduled Healiam fair rather than a lab that opens every day. See the fair card on this page for the next date.`,
       },
       {
         q: "How much is blood testing in Lawrenceville with Healiam?",
@@ -287,8 +287,8 @@ export const lawrenceville = {
         a: "Usually under seven minutes. A licensed phlebotomist takes two vials, and you can leave straight afterwards.",
       },
       {
-        q: `What if I can't make ${monthDay}?`,
-        a: `No other Georgia date is listed yet. New dates go up on the ${link("fairs page", site.links.fairs)} as soon as they are set, and you can ${link("ask us for one in your area", site.links.contact)}.`,
+        q: "What if the Lawrenceville date doesn't suit me?",
+        a: `Keep an eye on the ${link("fairs page", site.links.fairs)}, where new Georgia dates go up as soon as they are set, or ${link("ask us for one in your area", site.links.contact)}.`,
       },
     ],
     help: {
@@ -300,7 +300,7 @@ export const lawrenceville = {
 
   finalCta: {
     title: "Reserve your Lawrenceville blood test",
-    sub: "Choose a Saturday time now and read your report the following week.",
+    sub: "Choose a time now and read your report the following week.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
@@ -315,7 +315,7 @@ export const lawrenceville = {
 
   sticky: {
     label: "Blood testing in Lawrenceville",
-    sub: `Next fair ${dayShort} · ${price}`,
+    sub: `${price} · Gwinnett County`,
     cta: { label: "Book now", href: book },
   },
 } as const satisfies StateLandingPage;

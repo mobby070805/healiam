@@ -45,7 +45,7 @@ export const newYork = {
   hero: {
     titleLead: "Your complete blood test near New York for",
     titleAccent: price,
-    sub: `Healiam doesn't hold fairs in New York yet. The nearest is in Rahway, New Jersey: about ${fromNyc["rahway-nj"]} miles from lower Manhattan, a short walk from the NJ Transit station, with no referral or insurance needed.`,
+    sub: `Healiam doesn't hold fairs in New York yet. The nearest is in Rahway, New Jersey, about ${fromNyc["rahway-nj"]} miles from lower Manhattan and reachable by NJ Transit, with no referral or insurance needed.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "See the nearest fair", href: "#locations" },
     ticks: ["By train from Penn Station", `${labMeasurementCount} lab measurements`, "Results in 4-5 days"],
@@ -84,14 +84,14 @@ export const newYork = {
   trust: [
     { icon: "BadgeCheck", label: "CLIA-certified labs" },
     { icon: "ShieldCheck", label: "HIPAA compliant" },
-    { icon: "TrainFront", label: "Near Rahway station" },
+    { icon: "UserCheck", label: "Licensed phlebotomists" },
     { icon: "CreditCard", label: "Card or HSA card" },
   ],
 
   challenges: {
     eyebrow: "Sound familiar?",
     title: "Why New Yorkers put off blood work",
-    sub: "Six things that keep a blood test on the to-do list in New York. A morning in Rahway clears them.",
+    sub: "Six things that keep a blood test on the to-do list in New York. One trip to Rahway clears them.",
     items: [
       "Waiting on a doctor's appointment first",
       "An order needed before any lab will draw",
@@ -121,7 +121,7 @@ export const newYork = {
         icon: "TrainFront",
         bar: "Distance",
         usual: { value: "Around the corner", note: "A city lab is the shorter trip.", level: 18 },
-        ours: { value: `About ${fromNyc["rahway-nj"]} miles`, note: "NJ Transit from Penn Station to Rahway, then a short walk.", level: 52 },
+        ours: { value: `About ${fromNyc["rahway-nj"]} miles`, note: "NJ Transit from Penn Station to Rahway.", level: 52 },
         cta: { label: "See the nearest fair", href: "#locations" },
       },
       {
@@ -182,7 +182,7 @@ export const newYork = {
       { title: "Train to Rahway", sub: "From Penn Station" },
       { title: "Read your results", sub: "4 to 5 business days" },
     ],
-    tip: `Coming from Staten Island? Rahway is about ${fromStatenIsland} miles away, across the Arthur Kill. Check the NJ Transit timetable before you go, since the fair runs ${fairHours.label} local time.`,
+    tip: `Coming from Staten Island? Rahway is about ${fromStatenIsland} miles away, across the Arthur Kill. Check the NJ Transit timetable against your booked slot before you set off.`,
     cta: {
       primary: { label: "Book a time", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -194,7 +194,7 @@ export const newYork = {
     title: "What New Yorkers get from one trip",
     sub: "Two vials in New Jersey, and all of this back on your phone.",
     items: [
-      { icon: "TrainFront", title: "No car needed", line: "Rahway's station is a short walk from the fair." },
+      { icon: "TrainFront", title: "No car needed", line: "Rahway is on NJ Transit from Penn Station." },
       { icon: "Zap", title: "Electrolytes in the mix", line: "Potassium, sodium and chloride, every time." },
       { icon: "Gauge", title: "Readable ranges", line: "Each result placed between low and high." },
       { icon: "FileText", title: "Reports for your doctor", line: "From CLIA-certified labs." },
@@ -268,7 +268,7 @@ export const newYork = {
       },
       {
         q: "How do I get to Rahway from Manhattan?",
-        a: "Take NJ Transit from New York Penn Station to Rahway. The fair is a short walk from the station, so there's no need to drive.",
+        a: "Take NJ Transit from New York Penn Station to Rahway, so there's no need to drive. Check the fair card for the venue address.",
       },
       {
         q: "Is Staten Island closer?",

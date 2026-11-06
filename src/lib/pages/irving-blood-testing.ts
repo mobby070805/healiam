@@ -169,7 +169,7 @@ export const irving = {
   process: {
     eyebrow: "The visit",
     title: "Booking from Irving, start to finish",
-    sub: "A few minutes online, one early morning, then you wait for the app to ping.",
+    sub: "A few minutes online, one quick visit, then you wait for the app to ping.",
     steps: [
       { title: "Reserve a slot", sub: "Online or in the app" },
       { title: "Skip breakfast", sub: "Fast 8 to 12 hours" },
@@ -194,7 +194,7 @@ export const irving = {
       { icon: "FileText", title: "Lab reports a doctor can use", line: "Run by CLIA-certified partner labs." },
       { icon: "ChartLine", title: "Progress you can see", line: "Retest and watch each marker move." },
       { icon: "FileDown", title: "Yours to keep", line: "Download the PDF whenever you need it." },
-      { icon: "Users", title: "Family, same morning", line: "Add each person to the booking." },
+      { icon: "Users", title: "Family, same booking", line: "Add each person when you reserve." },
       { icon: "Lock", title: "Nobody else sees it", line: "Never shared with an employer." },
     ],
     cta: {
@@ -250,11 +250,11 @@ export const irving = {
     items: [
       {
         q: "Where's the nearest Healiam fair to Irving?",
-        a: `Grand Prairie, about ${near.toGrandPrairie} miles from the center of Irving in a straight line. Plano is the other option, about ${near.toPlano} miles away. Coming up: ${dfwDates()}.`,
+        a: `Grand Prairie, about ${near.toGrandPrairie} miles from the center of Irving in a straight line. Plano is the other option, about ${near.toPlano} miles away.`,
       },
       {
         q: "I work in Las Colinas. Can I fit this in?",
-        a: `The DFW fairs are on weekend mornings, ${fairHours.label} local time, so there's no need to take time off. Pick whichever date suits you on the ${link("fairs page", site.links.fairs)}.`,
+        a: `Yes. You book a slot that suits you rather than fitting around office hours. Upcoming dates are on the ${link("fairs page", site.links.fairs)}.`,
       },
       {
         q: "What does it cost?",
@@ -282,7 +282,7 @@ export const irving = {
 
   finalCta: {
     title: "Book your blood test from Irving",
-    sub: "A short drive south one weekend morning, and a full report on your phone the week after.",
+    sub: "A short drive south, and a full report on your phone the week after.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

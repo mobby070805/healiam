@@ -372,3 +372,16 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
   home hero), venue line with a pin, icon tiles on the "What to expect" cards, nearby-town chips in the
   parking card, and "Other upcoming fairs" ordered same state first, then soonest.
 - A new fair needs an entry in `lib/fairs.ts` and in `lib/pages/fair-pages.ts`.
+
+## No fair timing or venue on city and state pages (owner, 6 Nov 2026)
+
+- Fair dates, days (Saturday, weekend), hours (8 to 10 AM), venue names, street addresses, suites,
+  floors, parking and "short walk from the station" never appear in the copy of state or city pages:
+  they change from fair to fair. This covers hero text, ticks, trust strip, comparison tabs, process,
+  benefits, FAQs, final CTA, sticky bar, page titles and meta descriptions.
+- The only place fair details appear on these pages is the fair cards in the "fair locations" section,
+  built from `lib/fairs.ts`, so they update when the fair list does. On state pages those cards are now
+  `cityOnly` too (town, date and hours, no venue or street). The other-states list shows no dates or
+  venue photos; the state pages' city list shows no dates.
+- City-level facts stay: the fair's town, distances to it, and getting to the town (NJ Transit to Rahway).
+- Fair pages (`/fairs/<slug>`) are the one place for venue, address, parking and timing.

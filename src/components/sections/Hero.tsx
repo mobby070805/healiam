@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Check } from "lucide-react";
 import { page, type StateLandingPage } from "@/lib/pages/texas-blood-test";
 import { HeroVisual } from "@/components/sections/HeroVisual";
@@ -11,6 +12,7 @@ export function Hero({
   breadcrumb?: StateLandingPage["breadcrumb"];
   heroVisual?: StateLandingPage["heroVisual"];
 }) {
+  const cityTitle = splitCityTitle(hero.titleLead);
   return (
     <section id="hero" className="relative overflow-hidden bg-white">
       <div className="grid-backdrop pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -35,9 +37,23 @@ export function Hero({
             </ol>
           </nav>
 
-          <h1 className="max-w-[14ch] text-[2.1rem] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-5xl lg:text-[3.6rem] xl:text-[4.1rem]">
-            {hero.titleLead} <span className="text-green">{hero.titleAccent}</span>
-          </h1>
+          {cityTitle ? (
+            // City pages on phones: two even lines, "Blood testing in Plano, TX" / "for $95" (owner, 6 Nov 2026).
+            // The phone size scales to the city name so line one fits; from sm up it is the usual H1.
+            <h1
+              style={{ "--h1-fit": cityTitle.fit } as CSSProperties}
+              className="text-[length:var(--h1-fit)] font-extrabold leading-[1.08] tracking-[-0.03em] max-sm:[text-wrap:wrap] sm:max-w-[14ch] sm:text-5xl sm:leading-[1.06] lg:text-[3.6rem] xl:text-[4.1rem]"
+            >
+              <span className="max-sm:whitespace-nowrap">{cityTitle.main}</span>{" "}
+              <span className="max-sm:whitespace-nowrap">
+                for <span className="text-green">{hero.titleAccent}</span>
+              </span>
+            </h1>
+          ) : (
+            <h1 className="max-w-[14ch] text-[2.1rem] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-5xl lg:text-[3.6rem] xl:text-[4.1rem]">
+              {hero.titleLead} <span className="text-green">{hero.titleAccent}</span>
+            </h1>
+          )}
 
           <p className="lead mt-4 max-w-[34rem] sm:mt-6">{hero.sub}</p>
 
@@ -64,4 +80,17 @@ export function Hero({
       </div>
     </section>
   );
+}
+
+/**
+ * "Blood testing in Plano, TX for" -> main "Blood testing in Plano, TX", plus a phone font size that fits it on
+ * one line (measured: about 0.43em per character in this heading, 0.44 leaves a margin; never above the
+ * usual 2.1rem or below 1.3rem).
+ * State pages ("Your complete blood test in Texas for") return null and keep their usual H1.
+ */
+function splitCityTitle(lead: string): { main: string; fit: string } | null {
+  const m = lead.match(/^(Blood testing in .+?)\s+for$/);
+  if (!m) return null;
+  const main = m[1];
+  return { main, fit: `clamp(1.3rem, calc((100vw - 2.5rem) / ${(main.length * 0.44).toFixed(2)}), 2.1rem)` };
 }

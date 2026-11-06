@@ -162,7 +162,7 @@ export const page = {
         icon: "MapPin",
         bar: "Time away from work",
         usual: { value: "Clinic hours", note: "Time off work for a separate lab visit.", level: 76 },
-        ours: { value: "Morning Texas fairs", note: "Fairs run 8:00 to 10:00 AM, so you test before work rather than taking a day off.", level: 24 },
+        ours: { value: "Pick your slot", note: "Choose a fair and a time that suits you, online or in the app.", level: 24 },
         cta: { label: "Find a Texas fair", href: "#locations" },
       },
     ],
@@ -222,7 +222,7 @@ export const page = {
   locations: {
     eyebrow: "Texas locations",
     title: "Texas fair locations",
-    sub: "Book a morning slot at a Texas health fair. Fairs run 8:00 to 10:00 AM, so you can test while fasting and still make it to work.",
+    sub: "Choose a Texas health fair and reserve a slot; the draw itself takes just a few minutes.",
     fairs: texasFairs,
     hours: fairHours,
     noFair: {
@@ -255,7 +255,7 @@ export const page = {
     items: [
       {
         q: "Where can I get blood testing in Texas?",
-        a: `At Healiam's health fairs in ${texasCities}, North Texas. Each runs ${fairHours.label} local time. Check the ${link("fairs page", site.links.fairs)} for the latest Texas dates, and ${link("tell us if you need one closer to you", site.links.contact)}.`,
+        a: `At Healiam's health fairs in ${texasCities}, North Texas. The ${link("fairs page", site.links.fairs)} shows what's coming up, and you can ${link("tell us if you need one closer to you", site.links.contact)}.`,
       },
       {
         q: "How much do blood tests in Texas cost with Healiam?",
@@ -266,16 +266,16 @@ export const page = {
         a: `Choose a ${link("Texas fair", "#locations")}, then reserve a time ${link("online", site.bookingUrl)} or in the ${link("Healiam app", "#app")} with a free account. Payment is by card or HSA card.`,
       },
       {
-        q: "Where is Healiam's Plano fair, and how do I find it?",
-        a: "At Brightway Insurance, 6832 Coit Rd, Suite 270A, in the Coit Crossing professional plaza. The suite is on the second floor. Park free in front of the building; the ADA spaces are nearest the main doors.",
+        q: "Plano or Grand Prairie: which fair should I choose?",
+        a: `Whichever is nearer, or whose date suits you. Both run the same panel at the same price. The ${link("Plano page", "/texas/blood-testing-in-plano")} has more on blood testing there.`,
       },
       {
-        q: "Where is Healiam's Arlington-area fair?",
-        a: "At Goldmine Enterprise, 1106 N Watson Rd, Suite 318, in Grand Prairie. Take the elevator from the main lobby to the third floor. Parking is free in the building's lot, with ADA spaces near the entrance.",
+        q: "I live in Dallas or Fort Worth. Can I still test?",
+        a: `Yes. There's no fair inside either city yet, but the ${link("Dallas", "/texas/blood-testing-in-dallas")} and ${link("Fort Worth", "/texas/blood-testing-in-fort-worth")} pages show the nearest fairs and how far each one is.`,
       },
       {
-        q: "When are Healiam's next Texas fairs?",
-        a: `${texasFairs.map((f) => `${f.city.replace(/,\s*TX$/, "")} on ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" and ")}, both ${fairHours.label} local time. New Texas dates go up on the ${link("fairs page", site.links.fairs)} as they are scheduled.`,
+        q: "Where do I find upcoming Texas dates?",
+        a: `In the Texas fair cards on this page and on the ${link("fairs page", site.links.fairs)}. New dates go up as they're scheduled.`,
       },
     ],
     help: {

@@ -53,7 +53,7 @@ export default function ColoradoBloodTestingPage() {
         <Process process={colorado.process} />
         <Benefits benefits={colorado.benefits} />
         <Panel panel={colorado.panel} />
-        <Locations locations={colorado.locations} cityLinks={false} />
+        <Locations locations={colorado.locations} cityOnly cityLinks={false} />
         <AppDownload app={colorado.app} />
         <Faq faq={colorado.faq} />
         <FinalCta finalCta={colorado.finalCta} />

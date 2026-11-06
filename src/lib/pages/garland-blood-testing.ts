@@ -86,7 +86,7 @@ export const garland = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "Why Garland blood work keeps slipping",
-    sub: "Six reasons a blood test drops down the list in Garland. A morning at the Plano fair sorts out every one.",
+    sub: "Six reasons a blood test drops down the list in Garland. A visit to the Plano fair sorts out every one.",
     items: [
       "Not knowing there's a fair nearby",
       "Booking a doctor just to order labs",
@@ -139,11 +139,11 @@ export const garland = {
       },
       {
         id: "day",
-        tab: "Day",
+        tab: "Scheduling",
         icon: "CalendarDays",
         bar: "Time off work",
         usual: { value: "A weekday", note: "Most draw sites keep office hours.", level: 78 },
-        ours: { value: "A weekend morning", note: `${fairHours.label} local time, before the day gets going.`, level: 14 },
+        ours: { value: "A slot you choose", note: "Booked around your week, not office hours.", level: 14 },
         cta: { label: "See the nearest fairs", href: "#locations" },
       },
       {
@@ -177,7 +177,7 @@ export const garland = {
       { title: "Drive to Plano", sub: `About ${near.toPlano} miles` },
       { title: "Read your report", sub: "4 to 5 business days" },
     ],
-    tip: `The fair runs ${fairHours.label} local time, so you can leave Garland after a glass of water and still be fasting when you arrive.`,
+    tip: "Have a glass of water before you leave Garland. You can drink water while fasting, and it makes the draw easier.",
     cta: {
       primary: { label: "Pick a time", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -238,7 +238,7 @@ export const garland = {
   app: {
     eyebrow: "The Healiam app",
     title: "Garland results show up in the app",
-    sub: "Free on iPhone and Android. Install it before your morning in Plano.",
+    sub: "Free on iPhone and Android. Install it before your trip to Plano.",
     points: [],
     scanNote: home.app.scanNote,
     stores: home.app.stores,
@@ -255,7 +255,7 @@ export const garland = {
       },
       {
         q: "Which fair is easier from Garland, Plano or Grand Prairie?",
-        a: `Plano, for most of the city: about ${near.toPlano} miles against about ${near.toGrandPrairie}. Both run the same panel at the same price, ${fairHours.label} local time. The next dates are ${dfwDates()}, listed on the ${link("fairs page", site.links.fairs)}.`,
+        a: `Plano, for most of the city: about ${near.toPlano} miles against about ${near.toGrandPrairie}. Both run the same panel at the same price, and upcoming dates are on the ${link("fairs page", site.links.fairs)}.`,
       },
       {
         q: "What does a blood test cost for someone in Garland?",
@@ -282,7 +282,7 @@ export const garland = {
   },
 
   finalCta: {
-    title: "Book a Plano morning from Garland",
+    title: "Book the Plano fair from Garland",
     sub: `About ${near.toPlano} miles to the fair, then your full report on your phone the week after.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },

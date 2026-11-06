@@ -39,11 +39,11 @@ export function StateCityPages({ data }: { data: StateCityPagesData }) {
   );
 }
 
-/** "Healiam fair city, Sat, Nov 14" or "Closest fair: Grand Prairie, about 6 miles". */
+/** "Healiam fair city" or "Closest fair: Grand Prairie, about 6 miles". */
 function cityNote(page: CityPage): string {
   if (page.fair) {
-    const fair = fairs.find((f) => f.slug === page.fair);
-    return fair ? `Healiam fair city, ${fair.dateLabel.replace(/,\s*\d{4}$/, "")}` : "Healiam fair city";
+    // No date here: fair dates change, and the fair cards above already show them (owner, 6 Nov 2026).
+    return "Healiam fair city";
   }
   const [slug, miles] = Object.entries(page.miles ?? {}).sort((a, b) => a[1] - b[1])[0] ?? [];
   const fair = fairs.find((f) => f.slug === slug);

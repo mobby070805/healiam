@@ -36,12 +36,12 @@ export const rahway = {
   keyword: "blood testing in Rahway NJ",
   meta: {
     title: `Blood Testing in Rahway, NJ | ${price}, No Insurance | Healiam`,
-    description: `Blood testing in Rahway, NJ: one ${price} screening panel with every test included, no referral. Next Rahway fair ${dayShort}, ${fairHours.label} local time.`,
+    description: `Blood testing in Rahway, NJ: one ${price} screening panel with every test included, no referral, at Healiam's Rahway fair in Union County.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "Your visit", href: "#how-it-works" },
-    { label: "Rahway date", href: "#locations" },
+    { label: "Rahway fair", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -55,7 +55,7 @@ export const rahway = {
     titleAccent: price,
     sub: "For Rahway and the Union and Middlesex County towns around it: a preventive blood panel you book yourself, with no lab order from a doctor and no insurance card to show.",
     primary: { label: `Book for ${price}`, href: book },
-    secondary: { label: "Check the Rahway date", href: "#locations" },
+    secondary: { label: "Check the Rahway fair", href: "#locations" },
     ticks: ["Free Healiam account", `${labCategoryCount} lab categories`, "Results on your phone"],
   },
 
@@ -112,14 +112,14 @@ export const rahway = {
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Check the Rahway date", href: "#locations" },
+      secondary: { label: "Check the Rahway fair", href: "#locations" },
     },
   },
 
   comparison: {
     eyebrow: "Compare",
     title: "How the Rahway fair compares with a clinic",
-    sub: "Six practical ways a morning at the Rahway fair differs from blood work through a medical office.",
+    sub: "Six practical ways a visit to the Rahway fair differs from blood work through a medical office.",
     usualLabel: "Medical office",
     oursLabel: "Rahway fair",
     badge: "CLIA-certified",
@@ -131,8 +131,8 @@ export const rahway = {
         icon: "CalendarDays",
         bar: "Time off work",
         usual: { value: "Weekday office hours", note: "Draws are usually fitted around the working week.", level: 78 },
-        ours: { value: "A Saturday", note: `${fairHours.label} Eastern, with the weekend still ahead.`, level: 14 },
-        cta: { label: "Check the Rahway date", href: "#locations" },
+        ours: { value: "A slot that suits", note: "Book whatever time fits your week.", level: 14 },
+        cta: { label: "Check the Rahway fair", href: "#locations" },
       },
       {
         id: "fees",
@@ -189,7 +189,7 @@ export const rahway = {
     steps: [
       { title: "Reserve your slot", sub: "Free Healiam account" },
       { title: "Fast from the evening", sub: "8 to 12 hours, water allowed" },
-      { title: "Saturday draw in Rahway", sub: "Two vials, a few minutes" },
+      { title: "Draw in Rahway", sub: "Two vials, a few minutes" },
       { title: "Report in the app", sub: "4 to 5 business days later" },
     ],
     tip: "Bring your phone with the Healiam app and a card or HSA card. You won't need an insurance card.",
@@ -267,7 +267,7 @@ export const rahway = {
     items: [
       {
         q: "When does blood testing in Rahway, NJ happen?",
-        a: `On fair days only. Rahway's next is ${rahwayFair.dateLabel}, ${fairHours.label} local time; between fairs, Healiam has no lab of its own in Rahway.`,
+        a: `On fair days only; between fairs, Healiam has no lab of its own in Rahway. The fair card on this page shows the next date.`,
       },
       {
         q: "What does a blood test in Rahway cost with Healiam?",
@@ -286,8 +286,8 @@ export const rahway = {
         a: `Yes. Add each person when you reserve; everyone gets the full panel for ${price} and a report of their own.`,
       },
       {
-        q: `Will Healiam come back to Rahway after ${monthDay}?`,
-        a: `New dates go up on the ${link("fairs page", site.links.fairs)} when they are scheduled, and none after this one is listed yet. ${link("Send us a request", site.links.contact)} if you would like another Rahway morning.`,
+        q: "Will Healiam keep coming back to Rahway?",
+        a: `New dates go up on the ${link("fairs page", site.links.fairs)} when they are scheduled. ${link("Send us a request", site.links.contact)} if you would like another Rahway date.`,
       },
     ],
     help: {
@@ -314,7 +314,7 @@ export const rahway = {
 
   sticky: {
     label: "Blood testing in Rahway",
-    sub: `Next fair ${dayShort} · ${price}`,
+    sub: `${price} · two vials`,
     cta: { label: "Book now", href: book },
   },
 } as const satisfies StateLandingPage;

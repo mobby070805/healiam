@@ -53,7 +53,7 @@ export default function NewYorkBloodTestingPage() {
         <Process process={newYork.process} />
         <Benefits benefits={newYork.benefits} />
         <Panel panel={newYork.panel} />
-        <Locations locations={newYork.locations} cityLinks={false} distanceFrom={newYorkDistances} />
+        <Locations locations={newYork.locations} cityOnly cityLinks={false} distanceFrom={newYorkDistances} />
         <AppDownload app={newYork.app} />
         <Faq faq={newYork.faq} />
         <FinalCta finalCta={newYork.finalCta} />

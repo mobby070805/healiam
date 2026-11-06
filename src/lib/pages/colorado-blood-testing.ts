@@ -35,7 +35,7 @@ export const colorado = {
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "Booking", href: "#how-it-works" },
-    { label: "Colorado dates", href: "#locations" },
+    { label: "Colorado fairs", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -46,10 +46,10 @@ export const colorado = {
   hero: {
     titleLead: "Your complete blood test in Colorado for",
     titleAccent: price,
-    sub: `Healiam runs scheduled testing mornings in the Denver metro, not a walk-in lab. Here are the current Colorado dates, what the ${price} panel covers, and how to book a draw without a doctor's order or insurance.`,
+    sub: `Healiam tests at scheduled fairs in the Denver metro rather than a walk-in lab. Here's what the ${price} panel covers, and how to book a draw without a doctor's order or insurance.`,
     primary: { label: `Book for ${price}`, href: book },
-    secondary: { label: "See Colorado dates", href: "#locations" },
-    ticks: ["Denver metro dates", "8 to 10 AM local time", "No referral or insurance"],
+    secondary: { label: "See Colorado fairs", href: "#locations" },
+    ticks: ["Denver and Centennial", "Results in 4 to 5 days", "No referral or insurance"],
   },
 
   // Hero phone mockup. Illustrative sample only (labelled "Sample"), not a real customer, and
@@ -96,25 +96,25 @@ export const colorado = {
   challenges: {
     eyebrow: "Before you go",
     title: "Before your Colorado blood test",
-    sub: "Six things that make a blood testing morning in Colorado go smoothly, from the night before to the draw.",
+    sub: "Six things that make a Colorado blood test go smoothly, from the night before to the draw.",
     items: [
       "Stop eating 8 to 12 hours before your draw",
       "Water is fine; skip coffee, juice and gum",
       "No hard workouts in the 24 hours before",
-      "Arrive 8 to 10 AM, local time",
+      "Arrive in good time for your slot",
       "Bring the app and a card or HSA card",
       "Two vials, about seven minutes",
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "See Colorado dates", href: "#locations" },
+      secondary: { label: "See Colorado fairs", href: "#locations" },
     },
   },
 
   comparison: {
     eyebrow: "Compare",
     title: "Why choose Healiam in Colorado",
-    sub: "Six ways a Healiam testing morning in Colorado differs from getting blood tests through a clinic.",
+    sub: "Six ways a Healiam fair in Colorado differs from getting blood tests through a clinic.",
     usualLabel: "Clinic route",
     oursLabel: "Healiam",
     badge: "CLIA-certified",
@@ -126,8 +126,8 @@ export const colorado = {
         icon: "CalendarDays",
         bar: "Time off work",
         usual: { value: "A weekday visit", note: "Many draw sites keep weekday hours, which can mean missing work.", level: 82 },
-        ours: { value: "Weekend mornings", note: `Denver on a Saturday, Centennial on a Sunday, both ${fairHours.label}.`, level: 14 },
-        cta: { label: "See Colorado dates", href: "#locations" },
+        ours: { value: "Your choice of fair", note: "Denver or Centennial, whichever suits you.", level: 14 },
+        cta: { label: "See Colorado fairs", href: "#locations" },
       },
       {
         id: "price",
@@ -275,16 +275,16 @@ export const colorado = {
         a: "It can. People who live at higher elevations tend to have higher hemoglobin and hematocrit, because the body makes more red blood cells when there is less oxygen. Mention where you live when you review those two markers with your doctor.",
       },
       {
-        q: "Where is Healiam's Denver fair?",
-        a: "At 3955 Irving St in the Berkeley neighborhood, on Saturday, November 14. Parking is free in the lot next to the building, with ADA spaces nearest the main entrance.",
+        q: "Which Colorado fair is closer to me?",
+        a: `Denver tends to suit the north and west suburbs, Centennial the south metro. The ${link("Denver", "/colorado/blood-testing-in-denver")} and ${link("Aurora", "/colorado/blood-testing-in-aurora")} pages show distances.`,
       },
       {
-        q: "Where is Healiam's Centennial fair?",
-        a: "At Centennial Public Works, 7272 S Eagle Street, on Sunday, November 22. Park free in the lot in front of the building; the ADA spaces are nearest the entrance.",
+        q: "What should I bring to a Colorado fair?",
+        a: "Your phone with the Healiam app and a card or HSA card. Fast for 8 to 12 hours first; water is fine.",
       },
       {
         q: "Is Healiam's Centennial date any different from Denver?",
-        a: `No. Same panel, same ${price} price, same licensed phlebotomists and the same ${fairHours.label} window, local time. Only the day and the place change, so pick the side of the metro that suits you.`,
+        a: `No. Same panel, same ${price} price and the same licensed phlebotomists. Only the place and the date differ, so choose whichever suits you.`,
       },
     ],
     help: {
@@ -295,7 +295,7 @@ export const colorado = {
   },
 
   finalCta: {
-    title: "Book your Colorado testing morning",
+    title: "Choose your Colorado fair",
     sub: `Pick Denver or Centennial, Colorado, fast overnight, and see all ${labMeasurementCount} lab results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
@@ -314,14 +314,14 @@ export const colorado = {
   otherFairs: {
     eyebrow: "Other states",
     title: "Healiam fairs outside Colorado",
-    sub: "Booking for someone outside Colorado? Healiam runs the same morning fairs in these states too.",
+    sub: "Booking for someone outside Colorado? Healiam runs the same panel in these states too.",
     linkLead: "Blood testing in",
     exclude: "Colorado",
   },
 
   sticky: {
-    label: "Colorado testing dates",
-    sub: shortDates,
+    label: "Blood testing in Colorado",
+    sub: `${price} · every test included`,
     cta: { label: "Book now", href: book },
   },
 } as const satisfies StateLandingPage;

@@ -104,7 +104,7 @@ export const newark = {
   comparison: {
     eyebrow: "Compare",
     title: "Newark blood work: the usual route or Rahway",
-    sub: "Six ways a morning at the Rahway fair compares with sorting out blood work through a Newark practice.",
+    sub: "Six ways a visit to the Rahway fair compares with sorting out blood work through a Newark practice.",
     usualLabel: "Newark practice",
     oursLabel: "Rahway fair",
     badge: "CLIA-certified",
@@ -116,7 +116,7 @@ export const newark = {
         icon: "TrainFront",
         bar: "Effort",
         usual: { value: "Two appointments", note: "One to get the order, one for the draw.", level: 72 },
-        ours: { value: "One train ride", note: "NJ Transit from Newark Penn, then a short walk.", level: 24 },
+        ours: { value: "One train ride", note: "NJ Transit from Newark Penn to Rahway.", level: 24 },
         cta: { label: "See the Rahway fair", href: "#locations" },
       },
       {
@@ -170,14 +170,14 @@ export const newark = {
   process: {
     eyebrow: "By train",
     title: "Newark Penn to Rahway, step by step",
-    sub: "Book tonight, catch an early train, and be back in Newark by mid-morning.",
+    sub: "Book tonight, catch the train, and the draw itself takes minutes.",
     steps: [
       { title: "Reserve your time", sub: "Online or in the app" },
       { title: "Nothing but water", sub: "8 to 12 hours before" },
       { title: "Newark Penn to Rahway", sub: "NJ Transit, a few stops" },
       { title: "Results in the app", sub: "4 to 5 business days" },
     ],
-    tip: `The fair runs ${fairHours.label} local time. Check the NJ Transit timetable the night before so you catch a train that gets you there while you're still fasting.`,
+    tip: "Check the NJ Transit timetable against your booked slot the night before.",
     cta: {
       primary: { label: "Reserve your time", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -189,7 +189,7 @@ export const newark = {
     title: "What Newark residents take home",
     sub: "The draw is quick. Here's what follows it.",
     items: [
-      { icon: "TrainFront", title: "A fair you can reach by train", line: "Rahway station is a short walk away." },
+      { icon: "TrainFront", title: "A fair you can reach by train", line: "Rahway is on NJ Transit's main line." },
       { icon: "Bean", title: "Kidney function covered", line: "Creatinine, urea nitrogen and more." },
       { icon: "Gauge", title: "Each range marked", line: "See where every result sits." },
       { icon: "FileText", title: "Reports your doctor can trust", line: "Run by CLIA-certified labs." },
@@ -255,11 +255,11 @@ export const newark = {
       },
       {
         q: "How do I get there without a car?",
-        a: "Take NJ Transit's Northeast Corridor line south from Newark Penn Station to Rahway. The fair is a short walk from Rahway station.",
+        a: "Take NJ Transit's Northeast Corridor line south from Newark Penn Station to Rahway. The fair card on this page has the venue address.",
       },
       {
-        q: "When is the next Rahway fair?",
-        a: `Next up: ${datesIn("NJ")}, ${fairHours.label} local time. New dates go on the ${link("fairs page", site.links.fairs)} as they're scheduled.`,
+        q: "Where can I see Rahway dates?",
+        a: `In the fair card above, and on the ${link("fairs page", site.links.fairs)} as new dates are scheduled.`,
       },
       {
         q: "What's the price?",

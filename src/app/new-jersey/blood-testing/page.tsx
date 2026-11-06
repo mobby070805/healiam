@@ -53,7 +53,7 @@ export default function NewJerseyBloodTestingPage() {
         <Process process={newJersey.process} />
         <Benefits benefits={newJersey.benefits} />
         <Panel panel={newJersey.panel} />
-        <Locations locations={newJersey.locations} cityLinks={false} />
+        <Locations locations={newJersey.locations} cityOnly cityLinks={false} />
         <AppDownload app={newJersey.app} />
         <Faq faq={newJersey.faq} />
         <FinalCta finalCta={newJersey.finalCta} />

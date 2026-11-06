@@ -86,7 +86,7 @@ export const jerseyCity = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "Why Jersey City blood work gets put off",
-    sub: "Six of the usual reasons. One morning at the Rahway fair takes care of them.",
+    sub: "Six of the usual reasons. One visit to the Rahway fair takes care of them.",
     items: [
       "Fitting a lab visit around a commute",
       "A doctor's appointment just for the order",
@@ -104,7 +104,7 @@ export const jerseyCity = {
   comparison: {
     eyebrow: "Compare",
     title: "Jersey City options, side by side",
-    sub: "A Jersey City doctor and lab, against a morning at Healiam's Rahway fair.",
+    sub: "A Jersey City doctor and lab, against a visit to Healiam's Rahway fair.",
     usualLabel: "Doctor and lab",
     oursLabel: "Rahway fair",
     badge: "CLIA-certified",
@@ -148,11 +148,11 @@ export const jerseyCity = {
       },
       {
         id: "day",
-        tab: "Day",
+        tab: "Scheduling",
         icon: "CalendarDays",
         bar: "Time off work",
         usual: { value: "Weekday hours", note: "Labs tend to follow office hours.", level: 74 },
-        ours: { value: "Weekend morning", note: `${fairHours.label} local time.`, level: 14 },
+        ours: { value: "Your choice of slot", note: "Reserve a time that fits.", level: 14 },
         cta: { label: "See the Rahway fair", href: "#locations" },
       },
       {
@@ -170,14 +170,14 @@ export const jerseyCity = {
   process: {
     eyebrow: "Rail or road",
     title: "Jersey City to Rahway, either way",
-    sub: "Pick the route that suits you; the rest of the morning is the same.",
+    sub: "Pick the route that suits you; the rest of the visit is the same.",
     steps: [
       { title: "Book your slot", sub: "Online or in the app" },
       { title: "Fast overnight", sub: "8 to 12 hours" },
       { title: "PATH, then NJ Transit", sub: "Or drive the Turnpike" },
       { title: "See your numbers", sub: "4 to 5 business days" },
     ],
-    tip: "By rail, take PATH to Newark Penn Station and change to NJ Transit for Rahway; the fair is a short walk from Rahway station.",
+    tip: "By rail, take PATH to Newark Penn Station and change to NJ Transit for Rahway.",
     cta: {
       primary: { label: "Book your slot", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -255,7 +255,7 @@ export const jerseyCity = {
       },
       {
         q: "What's the easiest way to get to Rahway?",
-        a: "By rail, take PATH to Newark Penn Station and change to NJ Transit for Rahway; the fair is a short walk from the station. By car, head south on the Turnpike.",
+        a: "By rail, take PATH to Newark Penn Station and change to NJ Transit for Rahway. By car, head south on the Turnpike.",
       },
       {
         q: "Which iron tests are included?",
@@ -266,8 +266,8 @@ export const jerseyCity = {
         a: `${price} for the ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price. Pay by credit card or HSA card.`,
       },
       {
-        q: "When can I go?",
-        a: `The next Rahway date is ${datesIn("NJ").replace(/^Rahway on /, "")}, ${fairHours.label} local time. The ${link("fairs page", site.links.fairs)} lists new dates as they're added.`,
+        q: "Where do I find Rahway dates?",
+        a: `They're in the fair card on this page, and the ${link("fairs page", site.links.fairs)} lists new dates as they're added.`,
       },
       {
         q: "How do I book?",

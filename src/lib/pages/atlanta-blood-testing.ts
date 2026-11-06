@@ -42,7 +42,7 @@ export const atlanta = {
   hero: {
     titleLead: "Blood testing in Atlanta, GA for",
     titleAccent: price,
-    sub: `Healiam's Georgia fair is in Lawrenceville, about ${miles} miles northeast of downtown Atlanta. One morning out there gets you the full preventive panel, with no doctor's order and no insurance claim.`,
+    sub: `Healiam's Georgia fair is in Lawrenceville, about ${miles} miles northeast of downtown Atlanta. One trip out there gets you the full preventive panel, with no doctor's order and no insurance claim.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "See the Lawrenceville fair", href: "#locations" },
     ticks: [`About ${miles} miles northeast`, `${labMeasurementCount} lab measurements`, "Report sent to your phone"],
@@ -86,7 +86,7 @@ export const atlanta = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "Why blood work waits in Atlanta",
-    sub: "Six familiar reasons. A single morning in Lawrenceville takes care of them.",
+    sub: "Six familiar reasons. A single visit to Lawrenceville takes care of them.",
     items: [
       "A primary care visit just to get an order",
       "Several appointments for one set of results",
@@ -104,7 +104,7 @@ export const atlanta = {
   comparison: {
     eyebrow: "Compare",
     title: "Is the drive from Atlanta worth it?",
-    sub: "A local practice is closer. Here's how one morning in Lawrenceville compares.",
+    sub: "A local practice is closer. Here's how one trip to Lawrenceville compares.",
     usualLabel: "Atlanta practice",
     oursLabel: "Lawrenceville fair",
     badge: "CLIA-certified",
@@ -161,7 +161,7 @@ export const atlanta = {
         icon: "CalendarDays",
         bar: "Work missed",
         usual: { value: "Weekday hours", note: "Practices and labs keep office hours.", level: 74 },
-        ours: { value: "A weekend morning", note: `${fairHours.label} local time.`, level: 16 },
+        ours: { value: "A slot you choose", note: "Booked around your week.", level: 16 },
         cta: { label: "See the Lawrenceville fair", href: "#locations" },
       },
     ],
@@ -177,7 +177,7 @@ export const atlanta = {
       { title: "Head northeast", sub: `About ${miles} miles` },
       { title: "Results in the app", sub: "4 to 5 business days" },
     ],
-    tip: `Fair hours are ${fairHours.label} local time. A later slot in that window means you won't have to leave Atlanta at first light.`,
+    tip: "Pick a slot that leaves room for the drive, and keep drinking water while you fast.",
     cta: {
       primary: { label: "Book online", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -186,7 +186,7 @@ export const atlanta = {
 
   benefits: {
     eyebrow: "What you get",
-    title: "What one morning in Lawrenceville gets Atlanta",
+    title: "What one trip to Lawrenceville gets Atlanta",
     sub: "A single draw, and all of this follows.",
     items: [
       { icon: "Sun", title: "Vitamin D measured", line: "In every panel, no add-on." },
@@ -266,8 +266,8 @@ export const atlanta = {
         a: `${price} for the ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price. Pay by credit card or HSA card.`,
       },
       {
-        q: "What's the next Lawrenceville date?",
-        a: `${datesIn("GA").replace(/^Lawrenceville on /, "")}, ${fairHours.label} local time. New dates are added to the ${link("fairs page", site.links.fairs)}.`,
+        q: "Where do I find Lawrenceville dates?",
+        a: `In the fair card on this page, and on the ${link("fairs page", site.links.fairs)} as new dates are added.`,
       },
       {
         q: "How do I book?",
@@ -283,7 +283,7 @@ export const atlanta = {
 
   finalCta: {
     title: "Book your Atlanta blood test",
-    sub: "One morning in Lawrenceville, and your full report on your phone the week after.",
+    sub: "One visit to Lawrenceville, and your full report on your phone the week after.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

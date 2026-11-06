@@ -89,7 +89,7 @@ export const newYorkCity = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "What gets between New Yorkers and a blood test",
-    sub: "Six reasons blood work slides in the city. One morning out at the Rahway fair handles them.",
+    sub: "Six reasons blood work slides in the city. One trip out to the Rahway fair handles them.",
     items: [
       "Finding a doctor with an open slot",
       "Needing an order before a lab will draw",
@@ -106,7 +106,7 @@ export const newYorkCity = {
 
   comparison: {
     eyebrow: "Compare",
-    title: "A city lab, or a morning in Rahway?",
+    title: "A city lab, or a trip to Rahway?",
     sub: "Six ways a trip to Rahway compares with getting blood work done in New York City.",
     usualLabel: "City lab",
     oursLabel: "Rahway fair",
@@ -258,7 +258,7 @@ export const newYorkCity = {
       },
       {
         q: "I'm in Brooklyn or Queens. How do I get there?",
-        a: "Get to Penn Station in Manhattan, then take NJ Transit to Rahway. From Rahway station it's a short walk to the fair.",
+        a: "Get to Penn Station in Manhattan, then take NJ Transit to Rahway. The fair card above has the venue address.",
       },
       {
         q: "And from the Bronx?",
@@ -269,8 +269,8 @@ export const newYorkCity = {
         a: `${price} for the ${site.price.panelName}: one complete panel covering all included tests for a single, transparent price. The same in every borough.`,
       },
       {
-        q: "When is the next fair?",
-        a: `Rahway's next fair is ${datesIn("NJ").replace(/^Rahway on /, "")}, ${fairHours.label} local time. New dates appear on the ${link("fairs page", site.links.fairs)}.`,
+        q: "How do I see upcoming Rahway dates?",
+        a: `Check the fair card on this page, or the ${link("fairs page", site.links.fairs)} for new dates as they're scheduled.`,
       },
       {
         q: "How do I book?",

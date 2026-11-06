@@ -53,7 +53,7 @@ export default function GeorgiaBloodTestingPage() {
         <Process process={georgia.process} />
         <Benefits benefits={georgia.benefits} />
         <Panel panel={georgia.panel} />
-        <Locations locations={georgia.locations} cityLinks={false} />
+        <Locations locations={georgia.locations} cityOnly cityLinks={false} />
         <AppDownload app={georgia.app} />
         <Faq faq={georgia.faq} />
         <FinalCta finalCta={georgia.finalCta} />

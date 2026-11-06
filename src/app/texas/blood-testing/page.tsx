@@ -51,7 +51,7 @@ export default function TexasBloodTestPage() {
         <Process />
         <Benefits />
         <Panel />
-        <Locations cityLinks={false} />
+        <Locations cityOnly cityLinks={false} />
         <AppDownload app={page.app} />
         <Faq faq={page.faq} />
         <FinalCta finalCta={page.finalCta} />

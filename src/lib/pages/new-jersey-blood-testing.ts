@@ -27,12 +27,12 @@ export const newJersey = {
   keyword: "blood testing in New Jersey",
   meta: {
     title: `Blood Testing in New Jersey for ${price} | Rahway | Healiam`,
-    description: `Blood testing in New Jersey for ${price} at Healiam's Rahway fair, a walk from NJ Transit. One ${price} screening panel with every test included.`,
+    description: `Blood testing in New Jersey for ${price} at Healiam's Rahway fair in Union County. One ${price} screening panel with every test included.`,
   },
   nav: [
     { label: "What's tested", href: "#panel" },
     { label: "Your visit", href: "#how-it-works" },
-    { label: "Rahway date", href: "#locations" },
+    { label: "Rahway fair", href: "#locations" },
     { label: "FAQ", href: "#faq" },
   ],
   breadcrumb: [
@@ -43,10 +43,10 @@ export const newJersey = {
   hero: {
     titleLead: "Your complete blood test in New Jersey for",
     titleAccent: price,
-    sub: `Healiam's New Jersey testing morning is at Rahway Pharmacy on Irving Street, a short walk from the NJ Transit station. One ${price} panel, two vials, and no doctor's order or insurance card.`,
+    sub: `Healiam tests New Jersey residents at its Rahway fair in Union County. One ${price} panel, two vials, and you won't need a doctor's order or an insurance card.`,
     primary: { label: `Book for ${price}`, href: book },
-    secondary: { label: "See the Rahway date", href: "#locations" },
-    ticks: ["Walk from the train", "8 to 10 AM local time", "No referral or insurance"],
+    secondary: { label: "See the Rahway fair", href: "#locations" },
+    ticks: ["Rahway, Union County", "Two vials, one panel", "No referral or insurance"],
   },
 
   // Hero phone mockup: same design as every state page, a different illustrative sample on each
@@ -86,26 +86,26 @@ export const newJersey = {
   trust: [
     { icon: "BadgeCheck", label: "CLIA-certified labs" },
     { icon: "ShieldCheck", label: "HIPAA compliant" },
-    { icon: "TrainFront", label: "Near NJ Transit" },
-    { icon: "Accessibility", label: "Step-free entrance" },
+    { icon: "UserCheck", label: "Licensed phlebotomists" },
+    { icon: "CreditCard", label: "Card or HSA card" },
   ],
 
-  // Texas uses this section for pain points; New Jersey uses it for getting to the venue.
+  // Texas uses this section for pain points; New Jersey uses it for getting ready (no venue or timing: they change).
   challenges: {
-    eyebrow: "Getting there",
-    title: "Getting to your New Jersey blood test",
-    sub: "Six things to know before you head to Irving Street in Rahway, New Jersey.",
+    eyebrow: "Before you go",
+    title: "Getting ready for a New Jersey blood test",
+    sub: "Six things to know before your visit to the Rahway fair.",
     items: [
-      "Take NJ Transit to Rahway station",
-      "Walk to 1421 Irving Street",
-      "Or park free on Irving Street",
-      "Public lot one block east",
-      "Street-level, step-free entrance",
-      "Arrive between 8 and 10 AM",
+      "Book a time online or in the app",
+      "Stop eating 8 to 12 hours before",
+      "Keep drinking water while you fast",
+      "Skip hard exercise the day before",
+      "Bring your phone and a card or HSA card",
+      "Add family members to one booking",
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "See the Rahway date", href: "#locations" },
+      secondary: { label: "See the Rahway fair", href: "#locations" },
     },
   },
 
@@ -119,13 +119,13 @@ export const newJersey = {
     note: "The bars are an approximate side by side guide, not measured values. Clinic prices are what a US doctor visit plus lab fees typically cost.",
     factors: [
       {
-        id: "travel",
-        tab: "Getting there",
+        id: "booking",
+        tab: "Booking",
         icon: "MapPin",
-        bar: "Effort to get there",
-        usual: { value: "Drive and park", note: "A trip to a medical office or lab, often with paid parking.", level: 74 },
-        ours: { value: "Train or a short walk", note: "Rahway Pharmacy is a short walk from the NJ Transit station.", level: 20 },
-        cta: { label: "See the Rahway date", href: "#locations" },
+        bar: "Steps to book",
+        usual: { value: "Call around", note: "Phoning offices to find a lab appointment.", level: 74 },
+        ours: { value: "A few taps", note: "Reserve online or in the Healiam app.", level: 20 },
+        cta: { label: "See the Rahway fair", href: "#locations" },
       },
       {
         id: "price",
@@ -185,7 +185,7 @@ export const newJersey = {
       { title: "Draw in Rahway", sub: "Two vials, under 7 min" },
       { title: "Results in the app", sub: "4 to 5 business days" },
     ],
-    tip: "Water is fine while you fast. Rahway station is a short walk away, so leave the car at home if you like.",
+    tip: "Water is fine while you fast, and it makes the draw easier.",
     cta: {
       primary: { label: "Book my visit", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -204,7 +204,7 @@ export const newJersey = {
       { icon: "Lock", title: "Yours alone", line: "Never shared with an employer or any third party." },
       { icon: "Users", title: "Bring the household", line: "Add each person who is getting tested when you book." },
       { icon: "HeartPulse", title: "Vitals next to labs", line: "Log blood pressure and heart rate in the app." },
-      { icon: "Store", title: "A pharmacy setting", line: "A licensed phlebotomist, in a private space." },
+      { icon: "UserCheck", title: "A licensed phlebotomist", line: "Every draw in a private space." },
     ],
     cta: {
       primary: { label: `Book for ${price}`, href: book },
@@ -227,9 +227,9 @@ export const newJersey = {
   },
 
   locations: {
-    eyebrow: "New Jersey date",
+    eyebrow: "Where to test",
     title: "New Jersey fair locations",
-    sub: `Book a slot at Rahway Pharmacy on Irving Street, Rahway, New Jersey, ${fairHours.label} local time. Linden, Clark, Carteret, Roselle and Woodbridge are all within about 3.5 miles in a straight line.`,
+    sub: "Healiam's New Jersey fair is in Rahway, close to Linden, Clark, Carteret, Roselle and Woodbridge.",
     fairs: newJerseyFairs,
     hours: fairHours,
     noFair: {
@@ -262,23 +262,23 @@ export const newJersey = {
     items: [
       {
         q: "Is Rahway the only place for blood testing in New Jersey?",
-        a: `Yes, for now. Healiam's New Jersey fair is at Rahway Pharmacy, 1421 Irving Street. ${link("Send us your town", site.links.contact)} if you need one closer, and we will let you know if a fair is planned.`,
+        a: `Yes, for now: Rahway is Healiam's only New Jersey fair city. ${link("Send us your town", site.links.contact)} if you need one closer, and we will let you know if a fair is planned.`,
       },
       {
         q: "How do blood testing appointments in New Jersey work with Healiam?",
         a: `You reserve a time at the ${link("Rahway fair", "#locations")} yourself, ${link("online", book)} or in the ${link("Healiam app", "#app")}, using a free account. Then you just turn up.`,
       },
       {
-        q: "Can I get to the Rahway fair by train or car?",
-        a: "Both. The fair is a short walk from the Rahway NJ Transit station. Drivers can use free street parking on Irving Street or the public lot one block east.",
+        q: "Do I need to fast before a New Jersey blood test?",
+        a: "Yes, for 8 to 12 hours. Water is fine, and you can eat as soon as the draw is done.",
       },
       {
-        q: "What is Healiam's Rahway venue like?",
-        a: "It is Rahway Pharmacy on Irving Street, with a street-level, ADA-accessible entrance. A licensed phlebotomist draws two vials in a private space, usually in under seven minutes.",
+        q: "Who takes my blood?",
+        a: "A licensed phlebotomist, in a private space. It's two vials and usually takes under seven minutes.",
       },
       {
-        q: "When is Healiam's next New Jersey date?",
-        a: `Saturday, November 14, ${fairHours.label} local time. More Rahway dates are added to the ${link("fairs page", site.links.fairs)}; if none is listed, ${link("send us your town", site.links.contact)} and we will let you know.`,
+        q: "Where can I see upcoming New Jersey dates?",
+        a: `In the fair card above and on the ${link("fairs page", site.links.fairs)}. If none is listed, ${link("send us your town", site.links.contact)} and we will let you know.`,
       },
       {
         q: "Can I bring my family to Healiam's Rahway fair?",
@@ -294,7 +294,7 @@ export const newJersey = {
 
   finalCta: {
     title: "Book your New Jersey blood test",
-    sub: `Take NJ Transit or park on Irving Street in Rahway, New Jersey, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
+    sub: `Book the Rahway fair, give two vials, and read all ${labMeasurementCount} results in the app 4 to 5 business days later.`,
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },
@@ -312,14 +312,14 @@ export const newJersey = {
   otherFairs: {
     eyebrow: "Other states",
     title: "Healiam fairs outside New Jersey",
-    sub: "Not in New Jersey on the day? These Healiam fairs in other states run the same 8 to 10 AM mornings.",
+    sub: "Not in New Jersey? These Healiam fairs in other states run the same panel.",
     linkLead: "Blood testing in",
     exclude: "New Jersey",
   },
 
   sticky: {
-    label: "New Jersey testing date",
-    sub: shortDates,
+    label: "Blood testing in New Jersey",
+    sub: `${price} · every test included`,
     cta: { label: "Book now", href: book },
   },
 } as const satisfies StateLandingPage;

@@ -85,7 +85,7 @@ export const fortWorth = {
   challenges: {
     eyebrow: "Sound familiar?",
     title: "Why Fort Worth blood tests get pushed back",
-    sub: "Six reasons that come up again and again. A drive to Grand Prairie takes care of most of them in one morning.",
+    sub: "Six reasons that come up again and again. One drive to Grand Prairie takes care of most of them.",
     items: [
       "Assuming every option is a doctor's office",
       "A referral before you can even book",
@@ -160,7 +160,7 @@ export const fortWorth = {
         icon: "CalendarDays",
         bar: "Work missed",
         usual: { value: "Often a weekday", note: "Clinic and lab hours follow the workweek.", level: 74 },
-        ours: { value: "A weekend morning", note: `${fairHours.label} local time.`, level: 16 },
+        ours: { value: "A slot you pick", note: "Booked around your week.", level: 16 },
         cta: { label: "Nearest fairs", href: "#locations" },
       },
     ],
@@ -168,7 +168,7 @@ export const fortWorth = {
 
   process: {
     eyebrow: "Planning the trip",
-    title: "Planning a test morning from Fort Worth",
+    title: "Planning a test trip from Fort Worth",
     sub: "Give yourself time for the drive; everything else is quick.",
     steps: [
       { title: "Book a time", sub: "Online or in the app" },
@@ -176,7 +176,7 @@ export const fortWorth = {
       { title: "Drive east", sub: `About ${near.toGrandPrairie} miles` },
       { title: "Results arrive", sub: "4 to 5 business days" },
     ],
-    tip: `Fairs start at 8:00 AM local time. Book a later slot in the ${fairHours.label} window if you'd rather not leave Fort Worth at dawn.`,
+    tip: "Choose a slot that gives you time for the drive east, and keep sipping water while you fast.",
     cta: {
       primary: { label: "Book a time", href: book },
       secondary: { label: "See every marker", href: "#panel" },
@@ -186,7 +186,7 @@ export const fortWorth = {
   benefits: {
     eyebrow: "What you get",
     title: "Worth the drive from Fort Worth",
-    sub: "One morning out, and this is what comes back to you.",
+    sub: "One trip out, and this is what comes back to you.",
     items: [
       { icon: "Layers", title: "A wide panel in one go", line: "Lipids, kidney, liver, thyroid and more." },
       { icon: "Smartphone", title: "No second trip", line: "Results come to the app, not a follow-up visit." },
@@ -258,7 +258,7 @@ export const fortWorth = {
       },
       {
         q: "What if the Grand Prairie date doesn't suit me?",
-        a: `Plano is the other option, though it's about ${near.toPlano} miles away. The next dates are ${dfwDates()}; check the ${link("fairs page", site.links.fairs)} for more as they're added.`,
+        a: `Plano is the other option, though it's about ${near.toPlano} miles away. Check the ${link("fairs page", site.links.fairs)} for upcoming dates as they're added.`,
       },
       {
         q: "How much is the test?",
@@ -282,7 +282,7 @@ export const fortWorth = {
 
   finalCta: {
     title: "Make the trip from Fort Worth",
-    sub: "One morning's drive east, and your full report on your phone the week after.",
+    sub: "One drive east, and your full report on your phone the week after.",
     primary: { label: `Book for ${price}`, href: book },
     secondary: { label: "Get the app", href: site.appDownloadUrl },
   },

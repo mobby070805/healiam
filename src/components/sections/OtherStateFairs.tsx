@@ -41,11 +41,12 @@ export function OtherStateFairs({ otherFairs = page.otherFairs }: { otherFairs?:
                       href={city.href}
                       className="flex items-center gap-3 border-b border-ink/10 py-2 text-[14.5px] text-ink-soft hover:text-ink"
                     >
-                      <VenuePhoto photo={city.photo} className="h-10 w-14 shrink-0 rounded-lg" />
+                      {/* No venue photo or date here: both change from fair to fair (owner, 6 Nov 2026). */}
+                      <VenuePhoto photo={null} className="h-10 w-14 shrink-0 rounded-lg" />
                       <span className="min-w-0 flex-1">
                         {otherFairs.linkLead} {city.label.replace(/,\s*[A-Z]{2}$/, "")}
                       </span>
-                      <span className="shrink-0 text-[13px] text-ink-muted">{city.dateLabel}</span>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-ink-faint" strokeWidth={2} aria-hidden="true" />
                     </a>
                   </li>
                 ))}

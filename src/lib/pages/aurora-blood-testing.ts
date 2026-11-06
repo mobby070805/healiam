@@ -111,7 +111,7 @@ export const aurora = {
   comparison: {
     eyebrow: "Compare",
     title: "Aurora: a clinic visit or a Healiam fair",
-    sub: "How a morning at the Denver or Centennial fair compares with blood work through an Aurora clinic.",
+    sub: "How a visit to the Denver or Centennial fair compares with blood work through an Aurora clinic.",
     usualLabel: "Aurora clinic",
     oursLabel: "Healiam fair",
     badge: "CLIA-certified",
@@ -123,7 +123,7 @@ export const aurora = {
         icon: "CalendarDays",
         bar: "Flexibility",
         usual: { value: "Clinic hours", note: "Usually weekdays.", level: 70 },
-        ours: { value: "Two fairs", note: `Denver on a ${denverDay}, Centennial on a ${centennialDay}.`, level: 22 },
+        ours: { value: "Two fairs", note: "Denver or Centennial, whichever date suits.", level: 22 },
         cta: { label: "Denver or Centennial?", href: "#locations" },
       },
       {
@@ -262,11 +262,11 @@ export const aurora = {
       },
       {
         q: "Denver or Centennial: which should I pick?",
-        a: `Go by the day and by where you live. Denver is on a ${denverDay}, Centennial on a ${centennialDay}, and south Aurora is usually closer to Centennial. Both run the same panel at the same price.`,
+        a: "Go by the date and by where you live: south Aurora is usually closer to Centennial. Both run the same panel at the same price.",
       },
       {
-        q: "When are the next dates?",
-        a: `${datesIn("CO")}, each ${fairHours.label} local time. Later dates appear on the ${link("fairs page", site.links.fairs)}.`,
+        q: "Where are the Colorado dates listed?",
+        a: `In the fair cards on this page, soonest first, and on the ${link("fairs page", site.links.fairs)}.`,
       },
       {
         q: "Is the price the same at both fairs?",
