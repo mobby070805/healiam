@@ -309,6 +309,18 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
     plus "All upcoming fairs". This is what the old Locations menu showed.
   - **Locations:** each state page (bold, green arrow), then that state's city pages from `lib/city-pages.ts`.
     No fair pages and no dates. A fair without a city page (Arlington, Centennial) is not listed here.
+  - **Locations shows states only (owner, 7 Nov 2026).** The panel lists just the state names (each links to
+    its state page). Hovering or focusing a state shows its cities beside it, by city name only (no "Blood
+    testing in"). The hover waits 90ms so a diagonal mouse move doesn't switch states. Keyboard: Right arrow
+    moves from a state into its cities, Left arrow back. Phones have no hover, so each state has a chevron
+    that opens its cities underneath. Built as `StatesPanel` (`layout: "states"` in `locationsMenu()`).
+  - **States first, cities only on hover (owner, 7 Nov 2026).** The panel opens showing the states alone; a
+    state's cities appear beside it only once that state is hovered or focused, and reset when the menu
+    closes. The panel's left edge is pinned (`left: calc(100% - 560px)`), so the cities open to the right
+    and the states never move under the pointer.
+  - **Both header menus open on hover (owner, 7 Nov 2026).** With a mouse, Fairs and Locations open when the
+    pointer is over them and close 180ms after it leaves (the delay covers the gap above the panel). Touch
+    and keyboard still open them with a tap or Enter; a mouse click while hovering keeps the menu open.
 - The homepage's "Health fairs" section link is gone from the middle of the bar; the Fairs menu replaces it.
 - Phones: menu labels, button and logo are a little smaller below 640px so logo, Fairs, Locations and
   Book now fit one row down to 360px. Desktop sizes are unchanged.

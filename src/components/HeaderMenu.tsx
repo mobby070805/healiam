@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
-import { ArrowRight, ChevronDown } from "lucide-react";
-import type { HeaderMenuData, MenuItem } from "@/lib/locations";
+import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
+import type { HeaderMenuData, MenuGroup, MenuItem } from "@/lib/locations";
 
 /** Local "YYYY-MM-DD", to compare with a fair's ISO date. */
 function todayIso() {
@@ -11,7 +11,7 @@ function todayIso() {
 }
 
 // Header mega menu, used twice (owner, 6 Nov 2026): "Fairs" (each fair page with its date) and
-// "Locations" (each state page, bold with an arrow, then its city pages). Grouped by state. Phones: a single-column panel full width under the
+// "Locations" (states only; hovering a state shows its city pages, see StatesPanel below). Grouped by state. Phones: a single-column panel full width under the
 // one-row header. sm up: two columns. md up: a card anchored to the button. Hover changes colour only;
 // open and close is a 150ms fade and lift, switched off by the global reduced-motion rule.
 export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
@@ -23,6 +23,16 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
+  // Mouse users (owner, 7 Nov 2026): the menu opens on hover and closes when the pointer leaves, after a
+  // short grace period so crossing the gap between button and panel doesn't close it. Touch and keyboard
+  // still open it with a tap or Enter.
+  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastPointer = useRef<string | null>(null);
+  const cancelLeave = () => {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current);
+    leaveTimer.current = null;
+  };
+  useEffect(() => cancelLeave, []);
 
   useEffect(() => setToday(todayIso()), []);
 
@@ -45,7 +55,9 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
     };
   }, [open]);
 
-  const links = () => [...(panelRef.current?.querySelectorAll<HTMLAnchorElement>("a[href]") ?? [])];
+  // Only visible links: the states layout renders a phone and a desktop version, one of them hidden.
+  const links = () =>
+    [...(panelRef.current?.querySelectorAll<HTMLAnchorElement>("a[href]") ?? [])].filter((a) => a.offsetParent !== null);
 
   // Arrow Down on the button opens the menu and moves into it.
   const onButtonKey = (e: KeyboardEvent<HTMLButtonElement>) => {
@@ -75,6 +87,16 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
     <div
       ref={wrapRef}
       className="md:relative"
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "mouse") return;
+        cancelLeave();
+        setOpen(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType !== "mouse") return;
+        cancelLeave();
+        leaveTimer.current = setTimeout(() => setOpen(false), 180);
+      }}
       // Tabbing out of the menu closes it. A click on the panel's empty space has no relatedTarget,
       // so it never closes the menu by accident; outside clicks are handled by the pointer listener.
       onBlur={(e) => {
@@ -86,7 +108,15 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => setOpen((o) => !o)}
+        onPointerDown={(e) => {
+          lastPointer.current = e.pointerType;
+        }}
+        // A mouse click while hovering keeps the menu open (hover already opened it); taps and Enter toggle.
+        onClick={() => {
+          if (lastPointer.current === "mouse") setOpen(true);
+          else setOpen((o) => !o);
+          lastPointer.current = null;
+        }}
         onKeyDown={onButtonKey}
         className="inline-flex min-h-[40px] items-center gap-0.5 rounded-full px-1.5 text-[13px] font-medium text-ink-soft transition-colors duration-150 hover:text-ink aria-expanded:text-ink sm:gap-1 sm:px-3 sm:text-[14px]"
       >
@@ -105,7 +135,7 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
         aria-label={menu.label}
         inert={!open}
         onKeyDown={onPanelKey}
-        className={`absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-ink/[0.08] bg-white shadow-[0_28px_60px_-34px_rgba(10,10,15,0.45)] transition-[opacity,transform,visibility] duration-150 ease-out md:inset-x-auto md:right-0 md:mt-3 md:w-[min(600px,calc(100vw-4rem))] md:rounded-2xl md:border ${
+        className={`absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-ink/[0.08] bg-white shadow-[0_28px_60px_-34px_rgba(10,10,15,0.45)] transition-[opacity,transform,visibility] duration-150 ease-out md:inset-x-auto md:mt-3 ${menu.layout === "states" ? "md:left-[calc(100%-560px)] md:w-max" : "md:right-0 md:w-[min(600px,calc(100vw-4rem))]"} md:rounded-2xl md:border ${
           open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
         }`}
       >
@@ -113,36 +143,40 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
           {menu.summary}
         </p>
 
-        <div className="grid grid-cols-1 gap-y-5 px-5 pb-5 pt-3 sm:grid-cols-2 sm:gap-x-8 md:px-6">
-          {groups.map((group) => (
-            <section key={group.state} aria-label={group.state} className="min-w-0">
-              {/* Not a heading: the header is on every page, and headings here would sit above each page's H1. */}
-              <p className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
-                {group.state}
-                <span className="h-px flex-1 bg-ink/[0.08]" aria-hidden="true" />
-              </p>
+        {menu.layout === "states" ? (
+          <StatesPanel groups={groups} open={open} onPick={() => setOpen(false)} />
+        ) : (
+          <div className="grid grid-cols-1 gap-y-5 px-5 pb-5 pt-3 sm:grid-cols-2 sm:gap-x-8 md:px-6">
+            {groups.map((group) => (
+              <section key={group.state} aria-label={group.state} className="min-w-0">
+                {/* Not a heading: the header is on every page, and headings here would sit above each page's H1. */}
+                <p className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
+                  {group.state}
+                  <span className="h-px flex-1 bg-ink/[0.08]" aria-hidden="true" />
+                </p>
 
-              <ul className="mt-1.5">
-                {group.items.map((item) =>
-                  item.strong ? (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        onClick={() => setOpen(false)}
-                        className="-mx-2 flex min-h-[44px] items-center justify-between gap-3 rounded-xl px-2 text-[14.5px] font-semibold text-ink transition-colors duration-150 hover:bg-mist focus-visible:bg-mist"
-                      >
-                        {item.label}
-                        <ArrowRight className="h-4 w-4 shrink-0 text-green" strokeWidth={2} aria-hidden="true" />
-                      </a>
-                    </li>
-                  ) : (
-                    <MenuRow key={item.href} item={item} today={today} onPick={() => setOpen(false)} />
-                  ),
-                )}
-              </ul>
-            </section>
-          ))}
-        </div>
+                <ul className="mt-1.5">
+                  {group.items.map((item) =>
+                    item.strong ? (
+                      <li key={item.href}>
+                        <a
+                          href={item.href}
+                          onClick={() => setOpen(false)}
+                          className="-mx-2 flex min-h-[44px] items-center justify-between gap-3 rounded-xl px-2 text-[14.5px] font-semibold text-ink transition-colors duration-150 hover:bg-mist focus-visible:bg-mist"
+                        >
+                          {item.label}
+                          <ArrowRight className="h-4 w-4 shrink-0 text-green" strokeWidth={2} aria-hidden="true" />
+                        </a>
+                      </li>
+                    ) : (
+                      <MenuRow key={item.href} item={item} today={today} onPick={() => setOpen(false)} />
+                    ),
+                  )}
+                </ul>
+              </section>
+            ))}
+          </div>
+        )}
 
         {menu.footer && (
           <div className="border-t border-ink/[0.07] px-5 py-3 md:px-6">
@@ -185,5 +219,161 @@ function MenuRow({ item, today, onPick }: { item: MenuItem; today: string | null
         )}
       </a>
     </li>
+  );
+}
+
+// Locations menu (owner, 7 Nov 2026): only the states are listed; hovering or focusing a state shows its
+// city pages beside it, by name only. Each state name still links to its state page. Phones have no hover,
+// so there each state gets a chevron that opens its cities underneath. On md up the panel's left edge is
+// pinned (left: 100% - 560px), so the cities open to the right and the states never shift under the pointer.
+function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; open: boolean; onPick: () => void }) {
+  const states = groups.map((g) => ({
+    state: g.state,
+    page: g.items.find((i) => i.strong),
+    cities: g.items.filter((i) => !i.strong),
+  }));
+  // No state is active until one is hovered or focused: the panel opens showing the states alone.
+  const [active, setActive] = useState<number | null>(null);
+  const [expanded, setExpanded] = useState<number | null>(null);
+  const stateLinks = useRef<(HTMLAnchorElement | null)[]>([]);
+  const cityList = useRef<HTMLUListElement>(null);
+  // A short hover delay, so a diagonal move from a lower state to the city list doesn't switch states.
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearHover = () => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+  };
+  useEffect(() => clearHover, []);
+  useEffect(() => {
+    if (!open) setActive(null);
+  }, [open]);
+  const current = active === null ? null : states[active];
+  const cityName = (label: string) => label.replace(/,\s*[A-Z]{2}$/, "");
+
+  return (
+    <>
+      {/* md up: states on the left, the hovered state's cities on the right. */}
+      <div className="hidden px-6 pb-6 pt-3 md:flex md:gap-6">
+        <ul className={`w-[190px] shrink-0 ${current ? "border-r border-ink/[0.07] pr-4" : ""}`}>
+          {states.map((g, i) => (
+            <li key={g.state}>
+              <a
+                ref={(el) => {
+                  stateLinks.current[i] = el;
+                }}
+                href={g.page?.href ?? g.cities[0]?.href}
+                onClick={onPick}
+                onMouseEnter={() => {
+                  clearHover();
+                  if (active === null) setActive(i);
+                  else hoverTimer.current = setTimeout(() => setActive(i), 90);
+                }}
+                onMouseLeave={clearHover}
+                onFocus={() => setActive(i)}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowRight") {
+                    e.preventDefault();
+                    cityList.current?.querySelector("a")?.focus();
+                  }
+                }}
+                className={`-mx-2 flex min-h-[44px] items-center justify-between gap-3 rounded-xl px-3 text-[14.5px] font-semibold transition-colors duration-150 ${
+                  i === active ? "bg-mist text-ink" : "text-ink-soft hover:text-ink"
+                }`}
+              >
+                {g.state}
+                <ChevronRight
+                  className={`h-4 w-4 shrink-0 transition-colors duration-150 ${i === active ? "text-green" : "text-ink-faint"}`}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {current && (
+        <div className="w-[298px] min-w-0" aria-live="polite">
+          <p className="flex items-center gap-2.5 pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
+            {current.state} cities
+            <span className="h-px flex-1 bg-ink/[0.08]" aria-hidden="true" />
+          </p>
+          <ul
+            ref={cityList}
+            className="mt-1.5 grid grid-cols-2 gap-x-6"
+            onKeyDown={(e) => {
+              if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                if (active !== null) stateLinks.current[active]?.focus();
+              }
+            }}
+          >
+            {current.cities.map((c) => (
+              <li key={c.href}>
+                <a
+                  href={c.href}
+                  onClick={onPick}
+                  className="-mx-2 flex min-h-[44px] items-center justify-between gap-3 rounded-xl px-2 text-[14px] text-ink-soft transition-colors duration-150 hover:bg-mist hover:text-ink focus-visible:bg-mist"
+                >
+                  <span className="truncate">{cityName(c.label)}</span>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-ink-faint" strokeWidth={2} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        )}
+      </div>
+
+      {/* Phones: each state with a chevron that opens its cities underneath. */}
+      <ul className="px-5 pb-4 pt-2 md:hidden">
+        {states.map((g, i) => {
+          const open = expanded === i;
+          const listId = `menu-cities-${i}`;
+          return (
+            <li key={g.state} className="border-b border-ink/[0.06] last:border-b-0">
+              <div className="flex items-center">
+                <a
+                  href={g.page?.href ?? g.cities[0]?.href}
+                  onClick={onPick}
+                  className="flex min-h-[48px] flex-1 items-center text-[15px] font-semibold text-ink"
+                >
+                  {g.state}
+                </a>
+                {g.cities.length > 0 && (
+                  <button
+                    type="button"
+                    aria-expanded={open}
+                    aria-controls={listId}
+                    aria-label={`${open ? "Hide" : "Show"} ${g.state} cities`}
+                    onClick={() => setExpanded(open ? null : i)}
+                    className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-ink-muted transition-colors duration-150 hover:bg-mist hover:text-ink"
+                  >
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-150 ${open ? "rotate-180" : ""}`}
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    />
+                  </button>
+                )}
+              </div>
+              {open && (
+                <ul id={listId} className="grid grid-cols-2 gap-x-4 pb-3">
+                  {g.cities.map((c) => (
+                    <li key={c.href}>
+                      <a
+                        href={c.href}
+                        onClick={onPick}
+                        className="flex min-h-[40px] items-center text-[14px] text-ink-soft transition-colors duration-150 hover:text-ink"
+                      >
+                        {cityName(c.label)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }

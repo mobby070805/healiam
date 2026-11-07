@@ -75,6 +75,8 @@ export type HeaderMenuData = {
   readonly summary: string;
   readonly groups: readonly MenuGroup[];
   readonly footer?: LocationLink;
+  /** "states": only the states show; hovering or focusing one shows its cities beside it. */
+  readonly layout?: "states";
 };
 
 const regions = () => [...new Set(fairs.map((f) => f.region))];
@@ -110,5 +112,6 @@ export function locationsMenu(): HeaderMenuData {
     label: "Locations",
     summary: `Blood testing in ${groups.length} states and ${cityCount} cities`,
     groups,
+    layout: "states",
   };
 }
