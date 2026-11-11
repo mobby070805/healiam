@@ -16,6 +16,11 @@ const nextConfig = {
             { source: "/texas", destination: "/texas/blood-testing", permanent: true },
             { source: "/texas/blood-test", destination: "/texas/blood-testing", permanent: true },
             { source: "/texas/blood-test/", destination: "/texas/blood-testing", permanent: true },
+            // Short state addresses (11 Nov 2026), so /colorado works the way /texas always has.
+            { source: "/colorado", destination: "/colorado/blood-testing", permanent: true },
+            { source: "/new-jersey", destination: "/new-jersey/blood-testing", permanent: true },
+            { source: "/georgia", destination: "/georgia/blood-testing", permanent: true },
+            { source: "/new-york", destination: "/new-york/blood-testing", permanent: true },
           ];
         },
       }),

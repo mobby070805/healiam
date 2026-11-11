@@ -15,7 +15,11 @@ export function Breadcrumbs({ crumbs, onDark = false }: { crumbs: readonly Crumb
           <li key={crumb.name} className="flex items-center gap-1">
             {i > 0 && <ChevronRight className={`h-3.5 w-3.5 ${muted}`} strokeWidth={2} aria-hidden="true" />}
             {crumb.href ? (
-              <a href={crumb.href} className={`${muted} transition-colors duration-150 hover:${onDark ? "text-white" : "text-ink"}`}>
+              // The before: box widens the tap area on phones without changing the look.
+              <a
+                href={crumb.href}
+                className={`relative before:absolute before:-inset-x-1 before:-inset-y-3 ${muted} transition-colors duration-150 ${onDark ? "hover:text-white" : "hover:text-ink"}`}
+              >
                 {crumb.name}
               </a>
             ) : (

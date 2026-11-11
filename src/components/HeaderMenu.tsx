@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
-import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import type { HeaderMenuData, MenuGroup, MenuItem } from "@/lib/locations";
 
 /** Local "YYYY-MM-DD", to compare with a fair's ISO date. */
@@ -33,6 +33,45 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
     leaveTimer.current = null;
   };
   useEffect(() => cancelLeave, []);
+
+  // md up, each panel is centered under its button (owner, 11 Nov 2026). Where that would run past the
+  // window edge (the 600px Fairs panel at 1024px and below), nudge it back inside with a 16px gutter.
+  // Measured even while closed: a hidden panel past the edge would still cause a sideways scroll.
+  // Locations: the cities card opens on the right of the states (owner, 11 Nov 2026). If it would run
+  // past the window, the menu moves left by up to half the states card so it still sits under the
+  // button; past that, the cities open on the left instead.
+  const [shift, setShift] = useState(0);
+  const [citySide, setCitySide] = useState<"right" | "left">("right");
+  const shiftRef = useRef(0);
+  const statesLayout = menu.layout === "states";
+  useLayoutEffect(() => {
+    const fit = () => {
+      const panel = panelRef.current;
+      let next = 0;
+      let side: "right" | "left" = "right";
+      if (panel && window.matchMedia("(min-width: 768px)").matches) {
+        const r = panel.getBoundingClientRect();
+        const left = r.left - shiftRef.current;
+        const right = r.right - shiftRef.current;
+        const gutter = 16;
+        const room = window.innerWidth - gutter;
+        if (statesLayout && right + CITY_CARD_SPAN - room <= r.width / 2) {
+          next = Math.min(0, room - (right + CITY_CARD_SPAN));
+        } else {
+          if (statesLayout) side = "left";
+          if (right > room) next = room - right;
+          else if (left < gutter) next = gutter - left;
+        }
+      }
+      next = Math.round(next);
+      shiftRef.current = next;
+      setShift(next);
+      setCitySide(side);
+    };
+    fit();
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [statesLayout]);
 
   useEffect(() => setToday(todayIso()), []);
 
@@ -135,7 +174,8 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
         aria-label={menu.label}
         inert={!open}
         onKeyDown={onPanelKey}
-        className={`absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-ink/[0.08] bg-white shadow-[0_28px_60px_-34px_rgba(10,10,15,0.45)] transition-[opacity,transform,visibility] duration-150 ease-out md:inset-x-auto md:mt-3 ${menu.layout === "states" ? "md:left-[calc(100%-560px)] md:w-max" : "md:right-0 md:w-[min(600px,calc(100vw-4rem))]"} md:rounded-2xl md:border ${
+        style={shift ? { marginLeft: shift } : undefined}
+        className={`absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-ink/[0.08] bg-white shadow-[0_28px_60px_-34px_rgba(10,10,15,0.45)] transition-[opacity,transform,visibility] duration-150 ease-out md:inset-x-auto md:mt-3 md:left-1/2 md:-translate-x-1/2 ${menu.layout === "states" ? "md:w-max md:overflow-visible" : "md:w-[min(600px,calc(100vw-4rem))]"} md:rounded-2xl md:border ${
           open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
         }`}
       >
@@ -144,7 +184,7 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
         </p>
 
         {menu.layout === "states" ? (
-          <StatesPanel groups={groups} open={open} onPick={() => setOpen(false)} />
+          <StatesPanel groups={groups} open={open} side={citySide} onPick={() => setOpen(false)} />
         ) : (
           <div className="grid grid-cols-1 gap-y-5 px-5 pb-5 pt-3 sm:grid-cols-2 sm:gap-x-8 md:px-6">
             {groups.map((group) => (
@@ -224,9 +264,27 @@ function MenuRow({ item, today, onPick }: { item: MenuItem; today: string | null
 
 // Locations menu (owner, 7 Nov 2026): only the states are listed; hovering or focusing a state shows its
 // city pages beside it, by name only. Each state name still links to its state page. Phones have no hover,
-// so there each state gets a chevron that opens its cities underneath. On md up the panel's left edge is
-// pinned (left: 100% - 560px), so the cities open to the right and the states never shift under the pointer.
-function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; open: boolean; onPick: () => void }) {
+// so there each state gets a chevron that opens its cities underneath. On md up the states card sits under
+// the button, and a state's cities open as a second card on its right (left only when the window is too
+// narrow), so the states never shift under the pointer (owner, 11 Nov 2026).
+/** Cities card width (320) plus the 8px bridge between the cards. */
+const CITY_CARD_SPAN = 328;
+
+function StatesPanel({
+  groups,
+  open,
+  side,
+  onPick,
+}: {
+  groups: readonly MenuGroup[];
+  open: boolean;
+  /** Which side of the states card the cities card opens on (md up). */
+  side: "right" | "left";
+  onPick: () => void;
+}) {
+  const intoCities = side === "right" ? "ArrowRight" : "ArrowLeft";
+  const backToStates = side === "right" ? "ArrowLeft" : "ArrowRight";
+  const Chevron = side === "right" ? ChevronRight : ChevronLeft;
   const states = groups.map((g) => ({
     state: g.state,
     page: g.items.find((i) => i.strong),
@@ -251,9 +309,10 @@ function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; o
 
   return (
     <>
-      {/* md up: states on the left, the hovered state's cities on the right. */}
-      <div className="hidden px-6 pb-6 pt-3 md:flex md:gap-6">
-        <ul className={`w-[190px] shrink-0 ${current ? "border-r border-ink/[0.07] pr-4" : ""}`}>
+      {/* md up: the states card sits under the button; the hovered state's cities open as a second card
+          beside it (right when there's room), so the states card never moves or resizes. */}
+      <div className="hidden px-6 pb-6 pt-3 md:block">
+        <ul className="w-[190px]">
           {states.map((g, i) => (
             <li key={g.state}>
               <a
@@ -270,7 +329,7 @@ function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; o
                 onMouseLeave={clearHover}
                 onFocus={() => setActive(i)}
                 onKeyDown={(e) => {
-                  if (e.key === "ArrowRight") {
+                  if (e.key === intoCities) {
                     e.preventDefault();
                     cityList.current?.querySelector("a")?.focus();
                   }
@@ -280,7 +339,7 @@ function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; o
                 }`}
               >
                 {g.state}
-                <ChevronRight
+                <Chevron
                   className={`h-4 w-4 shrink-0 transition-colors duration-150 ${i === active ? "text-green" : "text-ink-faint"}`}
                   strokeWidth={2}
                   aria-hidden="true"
@@ -291,7 +350,13 @@ function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; o
         </ul>
 
         {current && (
-        <div className="w-[298px] min-w-0" aria-live="polite">
+        // The padding is a transparent bridge over the gap between the cards, so the pointer never "leaves".
+        <div
+          data-city-card
+          className={`absolute top-0 ${side === "right" ? "left-full pl-2" : "right-full pr-2"}`}
+          aria-live="polite"
+        >
+        <div className="w-[320px] rounded-2xl border border-ink/[0.08] bg-white px-6 pb-5 pt-2 shadow-[0_28px_60px_-34px_rgba(10,10,15,0.45)]">
           <p className="flex items-center gap-2.5 pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
             {current.state} cities
             <span className="h-px flex-1 bg-ink/[0.08]" aria-hidden="true" />
@@ -300,7 +365,7 @@ function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; o
             ref={cityList}
             className="mt-1.5 grid grid-cols-2 gap-x-6"
             onKeyDown={(e) => {
-              if (e.key === "ArrowLeft") {
+              if (e.key === backToStates) {
                 e.preventDefault();
                 if (active !== null) stateLinks.current[active]?.focus();
               }
@@ -319,6 +384,7 @@ function StatesPanel({ groups, open, onPick }: { groups: readonly MenuGroup[]; o
               </li>
             ))}
           </ul>
+        </div>
         </div>
         )}
       </div>

@@ -316,8 +316,17 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
     that opens its cities underneath. Built as `StatesPanel` (`layout: "states"` in `locationsMenu()`).
   - **States first, cities only on hover (owner, 7 Nov 2026).** The panel opens showing the states alone; a
     state's cities appear beside it only once that state is hovered or focused, and reset when the menu
-    closes. The panel's left edge is pinned (`left: calc(100% - 560px)`), so the cities open to the right
-    and the states never move under the pointer.
+    closes.
+  - **Centered under the button (owner, 11 Nov 2026).** Both menus (Fairs and Locations) now open centered
+    under their own button on md up. The Locations states card sits under "Locations"; a hovered state's
+    cities open as a second card beside it, so the states card never moves or resizes.
+  - **Cities open on the right (owner, 11 Nov 2026).** Chevrons point right; Right arrow moves into the
+    cities, Left arrow back. "Locations" sits near the header's right edge, so when the cities card
+    (320px + 8px) wouldn't fit, the menu moves left by up to half the states card (still under the
+    button). Narrower than that (about 1180px and below), the cities open on the left instead, with
+    chevrons and arrow keys flipped. Decided once on load and on resize (`citySide`), never mid-hover. A transparent 8px bridge between the cards
+    keeps hover from dropping. Where centering would run past the window (the 600px Fairs panel at about
+    1180px and below), the panel is nudged back inside with a 16px gutter, measured on load and resize.
   - **Both header menus open on hover (owner, 7 Nov 2026).** With a mouse, Fairs and Locations open when the
     pointer is over them and close 180ms after it leaves (the delay covers the gap above the panel). Touch
     and keyboard still open them with a tap or Enter; a mouse click while hovering keeps the menu open.
@@ -397,3 +406,18 @@ Production check: `npm run build`. Static export for Cloudflare Pages:
   venue photos; the state pages' city list shows no dates.
 - City-level facts stay: the fair's town, distances to it, and getting to the town (NJ Transit to Rahway).
 - Fair pages (`/fairs/<slug>`) are the one place for venue, address, parking and timing.
+
+## Site check, 11 Nov 2026
+
+A full pass over all 32 pages at 1440px and 390px: every link (63 internal, 91 external), every FAQ
+accordion (209) and tab (114), both header menus on desktop and phones. All passed except two things,
+both fixed:
+
+- **Short state addresses.** `/colorado`, `/new-jersey`, `/georgia` and `/new-york` were 404s while
+  `/texas` redirected. All four now 301 to their `/<state>/blood-testing` page, in `next.config.mjs` and
+  `public/_redirects` (keep the two lists the same).
+- **Small tap targets on phones.** Breadcrumb links (18px tall), fair-card titles on state and city
+  pages (19px) and the Tests page category chips (28px) were hard to tap. Each now has an invisible
+  `before:` box that extends the tap area to about 42px without changing the look. The Tests chip bar
+  scrolls sideways (which clips anything outside it), so it gained `pt-2 pb-3` offset by `-my-2` to
+  make room for the taller tap areas without moving the layout.

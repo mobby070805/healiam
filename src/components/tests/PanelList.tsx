@@ -39,10 +39,10 @@ export function PanelList() {
         {/* Phones and tablets: a jump bar. It scrolls horizontally rather than stacking
             eleven links on top of the list they are meant to shortcut. */}
         <nav aria-label="Panel categories" className="mt-7 lg:hidden">
-          <ul className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-1">
+          <ul className="no-scrollbar -mx-5 -my-2 flex gap-2 overflow-x-auto px-5 pb-3 pt-2">
             {panelCategories.map((cat) => (
               <li key={cat.slug}>
-                <a href={`#${cat.slug}`} className="chip whitespace-nowrap">
+                <a href={`#${cat.slug}`} className="chip relative whitespace-nowrap before:absolute before:inset-x-0 before:-inset-y-2">
                   {cat.short ?? cat.name}
                 </a>
               </li>

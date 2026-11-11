@@ -47,7 +47,7 @@ export function Locations({
                   <MapPin className="h-5 w-5 sm:h-[22px] sm:w-[22px]" strokeWidth={1.7} aria-hidden="true" />
                 </span>
                 <h3 className="h3 mt-3.5 sm:mt-5 sm:!text-[20px]">
-                  <a href={fair.detailsUrl} className="underline-offset-4 hover:text-brand hover:underline">
+                  <a href={fair.detailsUrl} className="relative underline-offset-4 before:absolute before:-inset-x-1 before:-inset-y-3 hover:text-brand hover:underline">
                     {distanceFrom ? `${fair.locality}, ${fair.region}` : fair.city}
                   </a>
                 </h3>

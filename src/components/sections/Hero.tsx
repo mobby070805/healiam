@@ -24,7 +24,7 @@ export function Hero({
                 <li key={crumb.name} className="flex items-center gap-1.5">
                   {i > 0 && <span aria-hidden="true">/</span>}
                   {"href" in crumb ? (
-                    <a href={crumb.href} className="hover:text-ink">
+                    <a href={crumb.href} className="relative before:absolute before:-inset-x-1 before:-inset-y-3 hover:text-ink">
                       {crumb.name}
                     </a>
                   ) : (
