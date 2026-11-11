@@ -5,7 +5,7 @@ import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react
 import type { HeaderMenuData, MenuGroup, MenuItem } from "@/lib/locations";
 
 /** Local "YYYY-MM-DD", to compare with a fair's ISO date. */
-function todayIso() {
+export function todayIso() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
@@ -236,7 +236,7 @@ export function HeaderMenu({ menu }: { menu: HeaderMenuData }) {
 }
 
 // One city row: a fair (with its date, an upcoming dot or "Ended") or a city page (no date).
-function MenuRow({ item, today, onPick }: { item: MenuItem; today: string | null; onPick: () => void }) {
+export function MenuRow({ item, today, onPick }: { item: MenuItem; today: string | null; onPick: () => void }) {
   const upcoming = item.date && today ? item.date >= today : null;
   // The state label above already names the state, so ", TX" is dropped here.
   const name = item.label.replace(/,\s*[A-Z]{2}$/, "");

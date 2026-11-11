@@ -421,3 +421,17 @@ both fixed:
   `before:` box that extends the tap area to about 42px without changing the look. The Tests chip bar
   scrolls sideways (which clips anything outside it), so it gained `pt-2 pb-3` offset by `-my-2` to
   make room for the taller tap areas without moving the layout.
+
+## Phone header: three-bar menu (11 Nov 2026)
+
+- **Owner, 11 Nov 2026:** phones (below md, 768px) get a three-bar menu. The header row is logo, Book now
+  and the menu button; Fairs and Locations move into the menu. md up the header is unchanged.
+- `components/MobileMenu.tsx`. The panel fills the screen under the header and scrolls on its own; the
+  page behind doesn't scroll while it's open. Contents, top to bottom (owner: Fairs and Locations first):
+  Fairs (collapsed; opens to every fair with its date and upcoming dot or "Ended", then "All upcoming
+  fairs"), Locations (collapsed; each state links to its page and its chevron opens its cities), this
+  page's section links (the same `nav` the desktop header shows), the phone number, Book now.
+- Closes on a link tap, Escape, the X button, or widening past md. Fairs and Locations reset to collapsed
+  each time it closes.
+- The panel is `absolute top-full` with `h-[calc(100dvh-4rem)]`, not `fixed`: the header's backdrop blur
+  makes it the containing block for fixed children, so `fixed` would size to the 64px header.
