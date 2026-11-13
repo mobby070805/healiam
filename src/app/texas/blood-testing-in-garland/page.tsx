@@ -43,7 +43,7 @@ export default function GarlandBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(garland, "Garland", "TX")} />
-      <Header nav={garland.nav} />
+      <Header />
       <main>
         <Hero hero={garland.hero} breadcrumb={garland.breadcrumb} heroVisual={garland.heroVisual} />
         <TrustStrip items={garland.trust} />

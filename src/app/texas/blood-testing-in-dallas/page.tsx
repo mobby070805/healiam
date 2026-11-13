@@ -43,7 +43,7 @@ export default function DallasBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(dallas, "Dallas", "TX")} />
-      <Header nav={dallas.nav} />
+      <Header />
       <main>
         <Hero hero={dallas.hero} breadcrumb={dallas.breadcrumb} heroVisual={dallas.heroVisual} />
         <TrustStrip items={dallas.trust} />

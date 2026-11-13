@@ -435,3 +435,109 @@ both fixed:
   each time it closes.
 - The panel is `absolute top-full` with `h-[calc(100dvh-4rem)]`, not `fixed`: the header's backdrop blur
   makes it the containing block for fixed children, so `fixed` would size to the 64px header.
+
+## Blog homepage (13 Nov 2026)
+
+- **Owner, 13 Nov 2026:** the blog moves into this site with a new design, and new posts will be added.
+  The client's existing posts must never be removed. Built here, not in healiam.com's current codebase.
+- `/blog`: dark hero (as /about), the latest post as a large featured card, a topic filter (All, Markers
+  explained, Preventive health, Cost and access, The panel) over a card grid, the black CTA band, footer.
+  **Owner, 13 Nov 2026:** no images on the client's posts; their cards are text only. Posts we write
+  get one banner each (`banner` in `lib/pages/blog.ts`, file in `/public/blog/`, about 1600x900), shown
+  on their card and, when the post is the latest, in the featured card.
+- Data: `lib/pages/blog.ts`. The ten client posts (8–24 Oct 2026) are copied word for word from
+  healiam.com/blog: title, summary, topic, date, read time. New posts go at the top of `posts`.
+- **Open:** the client posts themselves are not rebuilt here yet, so their cards link to
+  `https://healiam.com/blog/<slug>`. Before this site replaces healiam.com, rebuild each one at
+  `/blog/<slug>` (same slug) and switch its `href`, or those links break. The posts use stat cards,
+  tables, numbered steps, tag chips, callouts, blockquotes and a Sources list, so the post template
+  needs all of those.
+- Footer "Blog" now links to `/blog`; `/blog` is in the sitemap; JSON-LD is CollectionPage + Blog with a
+  BlogPosting per post.
+
+## Blog posts we write (13 Nov 2026)
+
+- Post pages: `app/blog/[slug]/page.tsx`, built only for posts with full text in `lib/blog/articles.ts`
+  (each also needs a card entry at the top of `posts` in `lib/pages/blog.ts`, same slug).
+- Layout: light title block (breadcrumb, topic, H1, summary, author/date/read time, banner if set), then
+  the article (720px) with an "On this page" list (xl up) and a sticky $95 booking card (lg up), then
+  Sources, the client's disclaimer, the FAQ (site FAQ component), Keep reading (3 cards), the CTA band.
+- Body blocks: p, h2 (id for the contents list), ul, ol (numbered circles), table (scrolls on its own on
+  phones), callout. `**bold**` for lead-ins; links with `link()`.
+- JSON-LD: BlogPosting + FAQPage + BreadcrumbList.
+- First post: /blog/full-blood-panel-cost-without-insurance (brief row 2). Every price is from the labs'
+  own pages, checked 13 Nov 2026, or from CMS, HealthCare.gov and the IRS. Re-check prices before
+  updating the post. Links to the client's hospital-price post go through `postHref()`, so they switch
+  to the local page once that post is rebuilt here.
+
+### Blog post page layout follows BoldDesk (13 Nov 2026)
+
+Owner asked for the post page to follow bolddesk.com's post pages (example: /blogs/trustworthy-ai-customer-support-webinar),
+every component, in Healiam's colours and fonts.
+
+- Title block: "‹ Blog" back link, H1 left, banner right (drawn cover with the post's key figure until a banner exists;
+  `cover` in lib/blog/articles.ts), "by Healiam • Updated on" with the Healiam mark as avatar.
+- Sticky left column: "In this page" (folds, marks the current section), booking card, "Summarize with" (ChatGPT, Claude,
+  Perplexity, Grok links with a summary prompt), share buttons (Facebook, X, LinkedIn, WhatsApp, email, copy link).
+- Article: summary box with a brand left edge, plain bullets, bordered tables, Sources, Related articles (links),
+  FAQs (line-separated, chevron), About the author, disclaimer. Then "Explore more content" (3 latest posts) and the footer.
+- Reading bar under the header and a back-to-top button with a progress ring.
+- Left out on purpose: BoldDesk's comment form and email subscribe box (the site has no backend to store either), and its
+  RSS share button (no feed; copy link is in its place). The final CTA band was removed to match; the phone sticky bar now
+  works on pages without one.
+- Banner for the first post (13 Nov 2026): public/blog/full-blood-panel-cost-without-insurance.jpg, 1600x900. Owner first
+  asked for the H1 in the banner, then (same day) for no title text: just the Healiam logo and the picture. Healiam black with pink, the same price receipt as the
+  article (Quest list prices, total $225) and a $400+ tag. Banners have text in them, so they always show whole at 16:9
+  and are never cropped (PostBanner).
+- Post page polish (13 Nov 2026, owner: "more creative and attractive"): faint grid and pink glow behind the title block,
+  topic and read-time chips; a three-figure stats row under the TL;DR (`stats` block; removed from the first post the same day at the owner's request, the block type stays available);
+  numbered section headings ("01"…) and matching numbers in "In this page" (both removed the same day, owner: "not good"); numbered lists as question cards; a dark $95
+  booking band closing the Healiam section (`promo` block). Sidebar card picture is a sample results card marked "Sample".
+- Post page sides (13 Nov 2026, owner): article on the left, the sticky side column (contents, booking card, summarize,
+  share) on the right from lg up, since readers look left first. On phones the side column still comes before the article.
+- Sidebar booking card (13 Nov 2026, owner): built like the "What's inside the panel" card on /tests. Healiam black,
+  no pink fill; headline "One panel, 50+ measurements"; the same six icon tiles as /tests (from `tests.hero.card.tiles`);
+  "$95" shown as the price for the full panel; button "Book your spot" (owner: 3 words or fewer). Never "$95 for 50+
+  tests" or "50+ blood tests" (client's price framing, 6 Nov 2026).
+- Article booking box (`promo` block, 13 Nov 2026, owner): same content and look as the sidebar card, wider: "One panel,
+  50+ measurements", six tiles in one row, "$95" shown once with "Price for the full panel", buttons "Book your spot"
+  and "See what's tested". The price never repeats inside a box.
+- Author (13 Nov 2026, owner): the first post is by Madhesh G, SEO Specialist. Profiles live in `authorProfiles`
+  (lib/pages/blog.ts): role, short bio, LinkedIn and website (rulethetop.com/author/madhesh). The byline shows the name
+  and role; the author box shows the photo (public/authors/madhesh.jpg, 320px square from the owner's photo,
+  shown as a circle; initials only if a writer has no photo), bio, "Read more articles by this author" (website) and
+  LinkedIn. Schema marks the post author as a Person. Posts signed "Healiam" (the client's) keep the Healiam box.
+- External links and sources (13 Nov 2026, owner): no separate Sources list under a post. Each post carries 2 external
+  links, inside the text, to its main sources. First post: Quest Health's price page and the CMS 2025 Clinical
+  Laboratory Fee Schedule. Other sources are named in the text without links. Copy is checked for overlap with the
+  pages it draws on (six-word runs); wording that followed HealthCare.gov and IRS Publication 502 was rewritten.
+- No "Related articles" list in the post (13 Nov 2026, owner: it repeats "Explore more content"). The post's `related`
+  slugs now fill the "Explore more content" cards first.
+- Booking box placement (13 Nov 2026, owner): the `promo` block sits mid-article, after "What the totals come to"
+  (readers have just seen the $225 total), not at the end of the post.
+
+## Header: same as the live healiam.com header (13 Nov 2026)
+
+- **Owner, 13 Nov 2026:** use the exact nav bar of the live site, so nothing changes for visitors at launch.
+  This replaces the earlier header notes above (29 Oct, 1 Nov, 6 Nov, 11 Nov): no Fairs dropdown, no
+  page section links, no phone number in the header.
+- Links, in the live order: Home, Our Tests, Fairs, Locations (menu), FAQs, More (menu: Demo, Download,
+  Employer, Blogs, About), Contact; Book Now on the right. Data in `lib/header-nav.ts`; desktop links in
+  `components/HeaderNav.tsx`, phone menu in `components/MobileMenu.tsx`. `HeaderMenu.tsx` was removed.
+- Pages built here use their path; FAQs and Download still open on healiam.com (`site.links.faq`,
+  `site.links.download`).
+- Locations menu, laid out like the live one: "Blood testing near you", one column per state (pin icon,
+  state name linking to the state page), the state's city pages under it, then "Don't see your city? We
+  add fairs regularly." and "Request a fair near you" (/contact). States A to Z. It lists this site's state
+  and city pages (`locationsMenu()` in `lib/locations.ts`), so it has more cities than the live menu, and
+  New York, which the live menu doesn't list.
+- The current page's link is ink and semibold (Locations for state and city pages, More for its pages).
+- From lg (1024px) the links show in the bar; below that, logo, Book Now and a three-bar menu with the
+  same links (Locations opens to states, each state to its cities; More's links under a small label).
+- Left out: the live site's dark-mode switch (this site has no dark theme).
+- Pages still pass a `nav` list in their data files; the header no longer shows it.
+- Title block (13 Nov 2026, owner): no topic or read-time chips above the H1; "‹ Blog", then the H1.
+- Schema (13 Nov 2026, owner: article and author schema): the post is `["Article", "BlogPosting"]` with headline,
+  description, dates, section, wordCount, timeRequired, banner ImageObject, publisher and author. The author is a
+  separate Person node (`@id` = website#person; name, jobTitle, bio, photo, url, sameAs LinkedIn and website),
+  also on /blog. Posts signed "Healiam" point at the Organization.

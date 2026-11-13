@@ -43,7 +43,7 @@ export default function ArlingtonBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(arlington, "Arlington", "TX")} />
-      <Header nav={arlington.nav} />
+      <Header />
       <main>
         <Hero hero={arlington.hero} breadcrumb={arlington.breadcrumb} heroVisual={arlington.heroVisual} />
         <TrustStrip items={arlington.trust} />

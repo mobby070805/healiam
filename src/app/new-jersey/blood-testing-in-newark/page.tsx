@@ -43,7 +43,7 @@ export default function NewarkBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(newark, "Newark", "NJ")} />
-      <Header nav={newark.nav} />
+      <Header />
       <main>
         <Hero hero={newark.hero} breadcrumb={newark.breadcrumb} heroVisual={newark.heroVisual} />
         <TrustStrip items={newark.trust} />

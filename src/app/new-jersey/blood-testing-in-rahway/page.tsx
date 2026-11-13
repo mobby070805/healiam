@@ -43,7 +43,7 @@ export default function RahwayBloodTestingPage() {
   return (
     <>
       <JsonLd data={rahwayGraph()} />
-      <Header nav={rahway.nav} />
+      <Header />
       <main>
         <Hero hero={rahway.hero} breadcrumb={rahway.breadcrumb} heroVisual={rahway.heroVisual} />
         <TrustStrip items={rahway.trust} />

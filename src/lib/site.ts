@@ -47,13 +47,16 @@ export const site = {
     tests: "/tests",
     fairs: "/fairs",
     faq: "https://healiam.com/faq",
+    // Not built on this site yet; the header's More menu links to the live page.
+    download: "https://healiam.com/download",
     about: "/about",
     contact: "/contact",
     demo: "/demo",
     employer: "/employer",
     terms: "https://healiam.com/terms-and-conditions",
     privacy: "https://healiam.com/privacy-policy",
-    blog: "https://healiam.com/blog",
+    // The blog homepage lives on this site (13 Nov 2026); its client posts still open on healiam.com.
+    blog: "/blog",
     sampleReport: "https://healiam.com/faq/sample_results.pdf",
   },
   socials: [

@@ -29,9 +29,11 @@ import { jerseyCity } from "@/lib/pages/jersey-city-blood-testing";
 import { newYorkCity } from "@/lib/pages/new-york-city-blood-testing";
 import { aurora } from "@/lib/pages/aurora-blood-testing";
 import { atlanta } from "@/lib/pages/atlanta-blood-testing";
+import { blog } from "@/lib/pages/blog";
+import { articles } from "@/lib/blog/articles";
 
 // Only live pages. Add new landing pages from their data files here.
-const livePages = [home, tests, fairsPage, about, demo, employer, contact, page, colorado, newJersey, georgia, newYork, plano, denver, rahway, lawrenceville, garland, dallas, irving, arlington, fortWorth, newark, jerseyCity, newYorkCity, aurora, atlanta];
+const livePages = [home, tests, fairsPage, about, demo, employer, contact, page, colorado, newJersey, georgia, newYork, plano, denver, rahway, lawrenceville, garland, dallas, irving, arlington, fortWorth, newark, jerseyCity, newYorkCity, aurora, atlanta, blog];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -40,6 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: p.path === "/" ? 1 : 0.8,
+    })),
+    ...articles.map((a) => ({
+      url: `${site.url}/blog/${a.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
     ...fairs.map((fair) => ({
       url: `${site.url}/fairs/${fair.slug}`,

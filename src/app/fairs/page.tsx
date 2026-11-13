@@ -35,7 +35,7 @@ export default function FairsPage() {
   return (
     <>
       <JsonLd data={fairsGraph()} />
-      <Header nav={fairsPage.nav} />
+      <Header />
       <main>
         <FairsHero />
         <TrustStrip items={home.trust} />

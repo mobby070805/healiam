@@ -32,7 +32,7 @@ export default function EmployerPage() {
   return (
     <>
       <JsonLd data={employerGraph()} />
-      <Header nav={employer.nav} />
+      <Header />
       <main>
         <EmployerHero />
         <TrustStrip items={home.trust} />

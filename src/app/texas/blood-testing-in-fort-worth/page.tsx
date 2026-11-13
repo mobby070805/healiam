@@ -43,7 +43,7 @@ export default function FortWorthBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(fortWorth, "Fort Worth", "TX")} />
-      <Header nav={fortWorth.nav} />
+      <Header />
       <main>
         <Hero hero={fortWorth.hero} breadcrumb={fortWorth.breadcrumb} heroVisual={fortWorth.heroVisual} />
         <TrustStrip items={fortWorth.trust} />

@@ -40,7 +40,7 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={homeGraph()} />
-      <Header nav={home.nav} />
+      <Header />
       <main>
         <HomeHero />
         <TrustStrip items={home.trust} />

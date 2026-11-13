@@ -31,7 +31,7 @@ export default function DemoPage() {
   return (
     <>
       <JsonLd data={demoGraph()} />
-      <Header nav={demo.nav} />
+      <Header />
       <main>
         <DemoHero />
         <DemoJourney />

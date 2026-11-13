@@ -44,7 +44,7 @@ export default function NewJerseyBloodTestingPage() {
   return (
     <>
       <JsonLd data={newJerseyGraph()} />
-      <Header nav={newJersey.nav} />
+      <Header />
       <main>
         <Hero hero={newJersey.hero} breadcrumb={newJersey.breadcrumb} heroVisual={newJersey.heroVisual} />
         <TrustStrip items={newJersey.trust} />

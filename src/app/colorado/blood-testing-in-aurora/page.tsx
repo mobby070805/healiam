@@ -43,7 +43,7 @@ export default function AuroraBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(aurora, "Aurora", "CO")} />
-      <Header nav={aurora.nav} />
+      <Header />
       <main>
         <Hero hero={aurora.hero} breadcrumb={aurora.breadcrumb} heroVisual={aurora.heroVisual} />
         <TrustStrip items={aurora.trust} />

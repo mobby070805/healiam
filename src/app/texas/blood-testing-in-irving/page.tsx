@@ -43,7 +43,7 @@ export default function IrvingBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(irving, "Irving", "TX")} />
-      <Header nav={irving.nav} />
+      <Header />
       <main>
         <Hero hero={irving.hero} breadcrumb={irving.breadcrumb} heroVisual={irving.heroVisual} />
         <TrustStrip items={irving.trust} />

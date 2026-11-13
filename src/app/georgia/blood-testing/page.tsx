@@ -44,7 +44,7 @@ export default function GeorgiaBloodTestingPage() {
   return (
     <>
       <JsonLd data={georgiaGraph()} />
-      <Header nav={georgia.nav} />
+      <Header />
       <main>
         <Hero hero={georgia.hero} breadcrumb={georgia.breadcrumb} heroVisual={georgia.heroVisual} />
         <TrustStrip items={georgia.trust} />

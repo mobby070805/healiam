@@ -30,7 +30,7 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd data={contactGraph()} />
-      <Header nav={contact.nav} />
+      <Header />
       <main>
         <ContactHero />
         <ContactMethods />

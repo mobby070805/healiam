@@ -49,7 +49,7 @@ export default async function FairDetailPage({ params }: Params) {
   return (
     <>
       <JsonLd data={fairDetailGraph(fair)} />
-      <Header nav={fairDetail.nav} />
+      <Header />
       <main>
         <FairDetailHero fair={fair} />
         <FairDirections fair={fair} />

@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import type { StickyData } from "@/lib/types";
 
-// Phones only. Shows once the hero is off screen, hides while the final CTA is visible.
+// Phones only. Shows once the hero is off screen, hides while the final CTA is visible. Pages with no
+// final CTA band (blog posts) keep it on after the hero.
 export function StickyCta({ sticky }: { sticky: StickyData }) {
   const [heroVisible, setHeroVisible] = useState(true);
   const [finalVisible, setFinalVisible] = useState(false);
@@ -11,11 +12,11 @@ export function StickyCta({ sticky }: { sticky: StickyData }) {
   useEffect(() => {
     const hero = document.getElementById("hero");
     const final = document.getElementById("final-cta");
-    if (!hero || !final) return;
+    if (!hero) return;
     const heroObs = new IntersectionObserver(([e]) => setHeroVisible(e.isIntersecting), { threshold: 0 });
     const finalObs = new IntersectionObserver(([e]) => setFinalVisible(e.isIntersecting), { threshold: 0 });
     heroObs.observe(hero);
-    finalObs.observe(final);
+    if (final) finalObs.observe(final);
     return () => {
       heroObs.disconnect();
       finalObs.disconnect();

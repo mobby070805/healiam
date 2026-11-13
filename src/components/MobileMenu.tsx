@@ -1,35 +1,26 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react";
-import { site } from "@/lib/site";
-import type { HeaderMenuData } from "@/lib/locations";
-import type { NavItem } from "@/lib/types";
-import { MenuRow, todayIso } from "@/components/HeaderMenu";
+// Phone and tablet menu (below lg): the header is logo, Book Now and a three-bar button. The panel holds
+// the same links as the desktop header, in the live healiam.com order (owner, 13 Nov 2026): Home, Our
+// Tests, Fairs, Locations (states, each opening to its cities), FAQs, Contact, then More's links under
+// a small label (so Contact doesn't read as one of them), and Book Now.
 
-// Phone menu (owner, 11 Nov 2026): below md the header is logo, Book now and a three-bar button. The
-// button opens a full-screen panel under the header with the Fairs list (with dates) and Locations
-// (states, each opening to its cities) first, then this page's section links, the phone number and Book now.
-// Fairs and Locations start closed so the panel opens short. md up the header is unchanged.
-export function MobileMenu({
-  nav,
-  fairs,
-  locations,
-}: {
-  nav: readonly NavItem[];
-  fairs: HeaderMenuData;
-  locations: HeaderMenuData;
-}) {
+import { useEffect, useId, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { ArrowRight, ChevronDown, MapPin, Menu, X } from "lucide-react";
+import { site } from "@/lib/site";
+import { headerLinks, moreLinks, requestFairLink, type HeaderLink, type LocationsMenuGroup } from "@/lib/header-nav";
+import { isCurrent } from "@/components/HeaderNav";
+
+export function MobileMenu({ locations }: { locations: readonly LocationsMenuGroup[] }) {
+  const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
-  const [section, setSection] = useState<"fairs" | "locations" | null>(null);
+  const [locationsOpen, setLocationsOpen] = useState(false);
   const [state, setState] = useState<number | null>(null);
-  const [today, setToday] = useState<string | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelId = useId();
 
-  useEffect(() => setToday(todayIso()), []);
-
-  // While open: Escape closes, the page behind doesn't scroll, and widening past md closes it.
+  // While open: Escape closes, the page behind doesn't scroll, and widening past lg closes it.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -38,7 +29,7 @@ export function MobileMenu({
         buttonRef.current?.focus();
       }
     };
-    const wide = window.matchMedia("(min-width: 768px)");
+    const wide = window.matchMedia("(min-width: 1024px)");
     const onWide = () => wide.matches && setOpen(false);
     const overflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -54,21 +45,30 @@ export function MobileMenu({
   // Reset to the short view each time it closes.
   useEffect(() => {
     if (!open) {
-      setSection(null);
+      setLocationsOpen(false);
       setState(null);
     }
   }, [open]);
 
   const close = () => setOpen(false);
-  const states = locations.groups.map((g) => ({
-    state: g.state,
-    page: g.items.find((i) => i.strong),
-    cities: g.items.filter((i) => !i.strong),
-  }));
-  const cityName = (label: string) => label.replace(/,\s*[A-Z]{2}$/, "");
+  const row = (l: HeaderLink) => {
+    const on = isCurrent(pathname, l.href);
+    return (
+      <li key={l.href} className="border-b border-ink/[0.07]">
+        <a
+          href={l.href}
+          onClick={close}
+          aria-current={on ? "page" : undefined}
+          className={`flex min-h-[54px] items-center text-[17px] ${on ? "font-semibold text-ink" : "font-medium text-ink-soft"}`}
+        >
+          {l.label}
+        </a>
+      </li>
+    );
+  };
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         ref={buttonRef}
         type="button"
@@ -97,165 +97,104 @@ export function MobileMenu({
           open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
         }`}
       >
-        <div className="shell pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
-
-          {/* Fairs: every fair with its date, then the fairs page. */}
-          <Group
-            label={fairs.label}
-            open={section === "fairs"}
-            onToggle={() => setSection(section === "fairs" ? null : "fairs")}
-          >
-            <p className="pb-1 text-[12.5px] text-ink-muted">{fairs.summary}</p>
-            {fairs.groups.map((g) => (
-              <div key={g.state} className="mt-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted">{g.state}</p>
-                <ul className="mt-1">
-                  {g.items.map((item) => (
-                    <MenuRow key={item.href} item={item} today={today} onPick={close} />
-                  ))}
-                </ul>
-              </div>
-            ))}
-            {fairs.footer && (
-              <a
-                href={fairs.footer.href}
-                onClick={close}
-                className="mt-2 inline-flex min-h-[44px] items-center gap-1.5 text-[14.5px] font-semibold text-ink"
+        <nav aria-label="Main" className="shell pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+          <ul>
+            {row(headerLinks.home)}
+            {row(headerLinks.tests)}
+            {row(headerLinks.fairs)}
+            <li className="border-b border-ink/[0.07]">
+              <button
+                type="button"
+                aria-expanded={locationsOpen}
+                aria-controls={`${panelId}-locations`}
+                onClick={() => setLocationsOpen((o) => !o)}
+                className="flex min-h-[54px] w-full items-center justify-between text-[17px] font-medium text-ink-soft"
               >
-                {fairs.footer.label}
-                <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
-              </a>
-            )}
-          </Group>
-
-          {/* Locations: each state links to its page; its chevron opens the state's cities. */}
-          <Group
-            label={locations.label}
-            open={section === "locations"}
-            onToggle={() => setSection(section === "locations" ? null : "locations")}
-          >
-            <p className="pb-1 text-[12.5px] text-ink-muted">{locations.summary}</p>
-            <ul>
-              {states.map((g, i) => {
-                const expanded = state === i;
-                const listId = `${panelId}-cities-${i}`;
-                return (
-                  <li key={g.state} className="border-b border-ink/[0.06] last:border-b-0">
-                    <div className="flex items-center">
-                      <a
-                        href={g.page?.href ?? g.cities[0]?.href}
-                        onClick={close}
-                        className="flex min-h-[48px] flex-1 items-center text-[15px] font-semibold text-ink"
-                      >
-                        {g.state}
-                      </a>
-                      {g.cities.length > 0 && (
-                        <button
-                          type="button"
-                          aria-expanded={expanded}
-                          aria-controls={listId}
-                          aria-label={`${expanded ? "Hide" : "Show"} ${g.state} cities`}
-                          onClick={() => setState(expanded ? null : i)}
-                          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-ink-muted transition-colors duration-150 hover:bg-mist hover:text-ink"
-                        >
-                          <ChevronDown
-                            className={`h-4 w-4 transition-transform duration-150 ${expanded ? "rotate-180" : ""}`}
-                            strokeWidth={2}
-                            aria-hidden="true"
-                          />
-                        </button>
-                      )}
-                    </div>
-                    {expanded && (
-                      <ul id={listId} className="grid grid-cols-2 gap-x-4 pb-3">
-                        {g.cities.map((c) => (
-                          <li key={c.href}>
+                Locations
+                <ChevronDown
+                  className={`h-5 w-5 text-ink-muted transition-transform duration-150 ${locationsOpen ? "rotate-180" : ""}`}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+              </button>
+              {locationsOpen && (
+                <div id={`${panelId}-locations`} className="pb-4">
+                  <p className="text-[11.5px] font-semibold uppercase tracking-[0.16em] text-brand-deep">Blood testing near you</p>
+                  <ul className="mt-2">
+                    {locations.map((g, i) => {
+                      const expanded = state === i;
+                      const listId = `${panelId}-cities-${i}`;
+                      return (
+                        <li key={g.state} className="border-b border-ink/[0.06] last:border-b-0">
+                          <div className="flex items-center">
                             <a
-                              href={c.href}
+                              href={g.page?.href ?? g.cities[0]?.href}
                               onClick={close}
-                              className="flex min-h-[44px] items-center text-[14.5px] text-ink-soft transition-colors duration-150 hover:text-ink"
+                              className="flex min-h-[48px] flex-1 items-center gap-2 text-[15.5px] font-semibold text-ink"
                             >
-                              {cityName(c.label)}
+                              <MapPin className="h-4 w-4 shrink-0 text-brand-deep" strokeWidth={2} aria-hidden="true" />
+                              {g.state}
                             </a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </Group>
-
-          {/* This page's section links, after Fairs and Locations (owner, 11 Nov 2026). */}
-          {nav.length > 0 && (
-            <ul className="border-b border-ink/[0.07] py-2">
-              {nav.map((item) => (
-                <li key={item.href}>
+                            {g.cities.length > 0 && (
+                              <button
+                                type="button"
+                                aria-expanded={expanded}
+                                aria-controls={listId}
+                                aria-label={`${expanded ? "Hide" : "Show"} ${g.state} cities`}
+                                onClick={() => setState(expanded ? null : i)}
+                                className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-ink-muted transition-colors duration-150 hover:bg-mist hover:text-ink"
+                              >
+                                <ChevronDown
+                                  className={`h-4 w-4 transition-transform duration-150 ${expanded ? "rotate-180" : ""}`}
+                                  strokeWidth={2}
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            )}
+                          </div>
+                          {expanded && (
+                            <ul id={listId} className="grid grid-cols-2 gap-x-4 pb-3 pl-6">
+                              {g.cities.map((c) => (
+                                <li key={c.href}>
+                                  <a
+                                    href={c.href}
+                                    onClick={close}
+                                    className="flex min-h-[44px] items-center text-[14.5px] text-ink-soft transition-colors duration-150 hover:text-ink"
+                                  >
+                                    {c.city}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <p className="mt-3 text-[13px] text-ink-muted">Don’t see your city? We add fairs regularly.</p>
                   <a
-                    href={item.href}
+                    href={requestFairLink.href}
                     onClick={close}
-                    className="flex min-h-[48px] items-center text-[16px] font-medium text-ink-soft transition-colors duration-150 hover:text-ink"
+                    className="inline-flex min-h-[44px] items-center gap-1.5 text-[14.5px] font-semibold text-brand-deep"
                   >
-                    {item.label}
+                    {requestFairLink.label}
+                    <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
                   </a>
-                </li>
-              ))}
-            </ul>
-          )}
-          <div className="mt-6 grid gap-3">
-            <a
-              href={site.phoneHref}
-              onClick={close}
-              className="btn-ghost inline-flex items-center justify-center gap-2"
-            >
-              <Phone className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-              {site.phone}
-            </a>
-            <a href={site.bookingUrl} onClick={close} className="btn-primary">
-              Book now
-            </a>
-          </div>
-        </div>
+                </div>
+              )}
+            </li>
+            {row(headerLinks.faq)}
+            {row(headerLinks.contact)}
+          </ul>
+          <p className="pt-5 text-[11.5px] font-semibold uppercase tracking-[0.16em] text-ink-muted">More</p>
+          <ul>
+            {moreLinks.map(row)}
+          </ul>
+          <a href={site.bookingUrl} onClick={close} className="btn-primary mt-6 w-full">
+            Book Now
+          </a>
+        </nav>
       </div>
-    </div>
-  );
-}
-
-// One collapsible row in the phone menu (Fairs, Locations).
-function Group({
-  label,
-  open,
-  onToggle,
-  children,
-}: {
-  label: string;
-  open: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
-}) {
-  const id = useId();
-  return (
-    <div className="border-b border-ink/[0.07]">
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-controls={id}
-        onClick={onToggle}
-        className="flex min-h-[56px] w-full items-center justify-between text-[17px] font-semibold text-ink"
-      >
-        {label}
-        <ChevronDown
-          className={`h-5 w-5 text-ink-muted transition-transform duration-150 ${open ? "rotate-180" : ""}`}
-          strokeWidth={2}
-          aria-hidden="true"
-        />
-      </button>
-      {open && (
-        <div id={id} className="pb-4">
-          {children}
-        </div>
-      )}
     </div>
   );
 }

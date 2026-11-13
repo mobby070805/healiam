@@ -7,6 +7,8 @@ import { home } from "@/lib/pages/home";
 import { tests } from "@/lib/pages/tests";
 import { fairsPage } from "@/lib/pages/fairs";
 import { about } from "@/lib/pages/about";
+import { authorProfile, blog, posts, type AuthorProfile, type BlogPost } from "@/lib/pages/blog";
+import type { Article } from "@/lib/blog/articles";
 import { contact } from "@/lib/pages/contact";
 import { demo } from "@/lib/pages/demo";
 import { fairDetail } from "@/lib/pages/fair-detail";
@@ -676,5 +678,125 @@ export function nearbyCityGraph(
       })),
       faqPage(url, data.faq.items),
     ],
+  };
+}
+
+// /blog: a CollectionPage holding the Blog, with each article as a BlogPosting. Article URLs are the
+// canonical healiam.com/blog/<slug> addresses, which stay the same when posts move to this site.
+export function blogGraph() {
+  const url = `${site.url}${blog.path}`;
+  const webPage = {
+    "@type": "CollectionPage",
+    "@id": url,
+    url,
+    name: blog.meta.title,
+    description: blog.meta.description,
+    isPartOf: { "@id": siteId },
+    about: { "@id": orgId },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+    mainEntity: { "@id": `${url}#blog` },
+    inLanguage: "en-US",
+  };
+  const blogEntity = {
+    "@type": "Blog",
+    "@id": `${url}#blog`,
+    name: `${site.name} Blog`,
+    url,
+    publisher: { "@id": orgId },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      "@id": `${site.url}/blog/${post.slug}`,
+      url: `${site.url}/blog/${post.slug}`,
+      headline: post.title,
+      description: post.excerpt,
+      datePublished: post.date,
+      articleSection: post.topic,
+      author: postAuthor(post),
+      publisher: { "@id": orgId },
+    })),
+  };
+  return {
+    "@context": "https://schema.org",
+    "@graph": [organization(), website(), webPage, blogEntity, ...authorNodes(posts), breadcrumbList(url, blog.breadcrumb)],
+  };
+}
+
+// A post's author (owner, 13 Nov 2026: author schema): a writer with a profile is a Person node with its
+// own @id, shared by every post they write; posts signed "Healiam" point at the Organization.
+const personId = (p: AuthorProfile) => `${p.website}#person`;
+
+function personNode(p: AuthorProfile) {
+  return {
+    "@type": "Person",
+    "@id": personId(p),
+    name: p.name,
+    jobTitle: p.role,
+    description: p.bio,
+    url: p.website,
+    sameAs: [p.linkedin, p.website],
+    ...(p.photo ? { image: { "@type": "ImageObject", url: `${site.url}${p.photo}`, width: 320, height: 320 } } : {}),
+  };
+}
+
+function postAuthor(post: BlogPost) {
+  const p = authorProfile(post);
+  return { "@id": p ? personId(p) : orgId };
+}
+
+/** Person nodes for the writers of these posts, once each. */
+function authorNodes(list: readonly BlogPost[]) {
+  const seen = new Map<string, AuthorProfile>();
+  for (const post of list) {
+    const p = authorProfile(post);
+    if (p) seen.set(p.name, p);
+  }
+  return [...seen.values()].map(personNode);
+}
+
+/** Words in the article body and FAQ, for wordCount. */
+function wordCount(article: Article) {
+  const text = [
+    ...article.blocks.flatMap((b) => {
+      if (b.type === "p" || b.type === "h2" || b.type === "callout") return [b.text];
+      if (b.type === "ul" || b.type === "ol") return b.items.map((i) => `${i.lead ?? ""} ${i.text}`);
+      if (b.type === "table") return [b.caption, ...b.head, ...b.rows.flat()];
+      return [];
+    }),
+    ...article.faq.flatMap((f) => [f.q, f.a]),
+  ]
+    .join(" ")
+    .replace(/\]\([^)]*\)/g, " ")
+    .replace(/[*[\]]/g, " ");
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+// /blog/<slug> (owner, 13 Nov 2026: article schema): the post as an Article (BlogPosting, its more
+// specific type, too), its author as a Person, its FAQ and breadcrumb.
+export function articleGraph(article: Article, post: BlogPost) {
+  const url = `${site.url}/blog/${article.slug}`;
+  const posting = {
+    "@type": ["Article", "BlogPosting"],
+    "@id": `${url}#article`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    headline: article.h1,
+    description: article.meta.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    articleSection: post.topic,
+    wordCount: wordCount(article),
+    timeRequired: `PT${post.readMinutes}M`,
+    inLanguage: "en-US",
+    author: postAuthor(post),
+    publisher: { "@id": orgId },
+    isPartOf: { "@id": `${site.url}${blog.path}#blog` },
+    ...(post.banner
+      ? { image: { "@type": "ImageObject", url: `${site.url}${post.banner.src}`, width: 1600, height: 900, caption: post.banner.alt } }
+      : {}),
+  };
+  const crumbs = [{ name: "Home", href: "/" }, { name: "Blog", href: blog.path }, { name: article.h1 }];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [organization(), website(), posting, ...authorNodes([post]), faqPage(url, article.faq), breadcrumbList(url, crumbs)],
   };
 }

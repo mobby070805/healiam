@@ -43,7 +43,7 @@ export default function NewYorkCityBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(newYorkCity, "New York City", "NY")} />
-      <Header nav={newYorkCity.nav} />
+      <Header />
       <main>
         <Hero hero={newYorkCity.hero} breadcrumb={newYorkCity.breadcrumb} heroVisual={newYorkCity.heroVisual} />
         <TrustStrip items={newYorkCity.trust} />

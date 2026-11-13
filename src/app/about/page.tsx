@@ -33,7 +33,7 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={aboutGraph()} />
-      <Header nav={about.nav} />
+      <Header />
       <main>
         <AboutHero />
         <TrustStrip items={home.trust} />

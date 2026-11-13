@@ -43,7 +43,7 @@ export default function LawrencevilleBloodTestingPage() {
   return (
     <>
       <JsonLd data={lawrencevilleGraph()} />
-      <Header nav={lawrenceville.nav} />
+      <Header />
       <main>
         <Hero hero={lawrenceville.hero} breadcrumb={lawrenceville.breadcrumb} heroVisual={lawrenceville.heroVisual} />
         <TrustStrip items={lawrenceville.trust} />

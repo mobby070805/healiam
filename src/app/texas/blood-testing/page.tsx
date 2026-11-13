@@ -42,7 +42,7 @@ export default function TexasBloodTestPage() {
   return (
     <>
       <JsonLd data={texasBloodTestGraph()} />
-      <Header nav={page.nav} />
+      <Header />
       <main>
         <Hero />
         <TrustStrip items={page.trust} />

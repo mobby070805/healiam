@@ -43,7 +43,7 @@ export default function JerseyCityBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(jerseyCity, "Jersey City", "NJ")} />
-      <Header nav={jerseyCity.nav} />
+      <Header />
       <main>
         <Hero hero={jerseyCity.hero} breadcrumb={jerseyCity.breadcrumb} heroVisual={jerseyCity.heroVisual} />
         <TrustStrip items={jerseyCity.trust} />

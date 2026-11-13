@@ -43,7 +43,7 @@ export default function AtlantaBloodTestingPage() {
   return (
     <>
       <JsonLd data={nearbyCityGraph(atlanta, "Atlanta", "GA")} />
-      <Header nav={atlanta.nav} />
+      <Header />
       <main>
         <Hero hero={atlanta.hero} breadcrumb={atlanta.breadcrumb} heroVisual={atlanta.heroVisual} />
         <TrustStrip items={atlanta.trust} />

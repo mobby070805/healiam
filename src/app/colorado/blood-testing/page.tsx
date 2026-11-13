@@ -44,7 +44,7 @@ export default function ColoradoBloodTestingPage() {
   return (
     <>
       <JsonLd data={coloradoGraph()} />
-      <Header nav={colorado.nav} />
+      <Header />
       <main>
         <Hero hero={colorado.hero} breadcrumb={colorado.breadcrumb} heroVisual={colorado.heroVisual} />
         <TrustStrip items={colorado.trust} />

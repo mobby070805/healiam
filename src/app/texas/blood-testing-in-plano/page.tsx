@@ -43,7 +43,7 @@ export default function PlanoBloodTestingPage() {
   return (
     <>
       <JsonLd data={planoGraph()} />
-      <Header nav={plano.nav} />
+      <Header />
       <main>
         <Hero hero={plano.hero} breadcrumb={plano.breadcrumb} heroVisual={plano.heroVisual} />
         <TrustStrip items={plano.trust} />

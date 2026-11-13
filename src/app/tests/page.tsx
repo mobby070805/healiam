@@ -35,7 +35,7 @@ export default function TestsPage() {
   return (
     <>
       <JsonLd data={testsGraph()} />
-      <Header nav={tests.nav} />
+      <Header />
       <main>
         <TestsHero />
         <TrustStrip items={home.trust} />

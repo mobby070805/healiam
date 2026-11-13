@@ -43,7 +43,7 @@ export default function DenverBloodTestingPage() {
   return (
     <>
       <JsonLd data={denverGraph()} />
-      <Header nav={denver.nav} />
+      <Header />
       <main>
         <Hero hero={denver.hero} breadcrumb={denver.breadcrumb} heroVisual={denver.heroVisual} />
         <TrustStrip items={denver.trust} />

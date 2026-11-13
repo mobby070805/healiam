@@ -44,7 +44,7 @@ export default function NewYorkBloodTestingPage() {
   return (
     <>
       <JsonLd data={newYorkGraph()} />
-      <Header nav={newYork.nav} />
+      <Header />
       <main>
         <Hero hero={newYork.hero} breadcrumb={newYork.breadcrumb} heroVisual={newYork.heroVisual} />
         <TrustStrip items={newYork.trust} />
