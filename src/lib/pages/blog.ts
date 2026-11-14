@@ -55,7 +55,7 @@ export const authorProfiles: Readonly<Record<string, AuthorProfile>> = {
     role: "SEO Specialist",
     initials: "MG",
     photo: "/authors/madhesh.jpg",
-    bio: "Madhesh G is an SEO Specialist who writes Healiam’s articles on lab test prices and blood work. Each article answers a question people ask before booking a test, and every price and figure in it is checked against the lab’s or agency’s own published numbers.",
+    bio: "Madhesh G is an SEO Specialist at Rule The Top who covers lab testing for Healiam, from test prices and HSA rules to preparing for a blood draw. Every guide is built from official sources such as the IRS, CMS and MedlinePlus.",
     linkedin: "https://www.linkedin.com/in/mobby7805/",
     website: "https://rulethetop.com/author/madhesh",
   },
