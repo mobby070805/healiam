@@ -1,4 +1,4 @@
-// Content for /texas/blood-testing-in-garland, keyword "blood testing in Garland TX". A nearby city page
+// Content for /locations/texas/garland, keyword "blood testing in Garland TX". A nearby city page
 // (owner, 6 Nov 2026): Garland has no Healiam fair, so the page points to the closest fairs with the
 // distance to each, soonest fair first. Same design as the other city pages; the words are Garland's own.
 // Angle: the closest of the five nearby cities to Plano, so the Plano fair is the easy pick. Garland is in
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/texas/blood-testing-in-garland";
+const path = "/locations/texas/garland";
 const near = nearby(path);
 const thyroid = panelCategories.find((c) => c.slug === "thyroid")?.markers ?? [];
 
@@ -34,7 +34,7 @@ export const garland = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Texas", href: "/texas/blood-testing" },
+    { name: "Blood testing in Texas", href: "/locations/texas" },
     { name: "Garland" },
   ],
 
@@ -231,7 +231,7 @@ export const garland = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
+      secondary: { label: "Blood testing across Texas", href: "/locations/texas" },
     },
   },
 

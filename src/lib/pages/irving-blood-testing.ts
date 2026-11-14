@@ -1,4 +1,4 @@
-// Content for /texas/blood-testing-in-irving, keyword "blood testing in Irving TX". A nearby city page
+// Content for /locations/texas/irving, keyword "blood testing in Irving TX". A nearby city page
 // (owner, 6 Nov 2026): no Healiam fair in Irving, so the page points to the two DFW fairs with the
 // distance to each, soonest fair first. Angle: Grand Prairie, Irving's neighbor to the south, is the
 // short trip; Plano is the alternative date. Irving is in Dallas County, between Dallas and Fort Worth,
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/texas/blood-testing-in-irving";
+const path = "/locations/texas/irving";
 const near = nearby(path);
 const cbcCount = panelCategories.find((c) => c.slug === "cbc")?.markers.length ?? 0;
 
@@ -34,7 +34,7 @@ export const irving = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Texas", href: "/texas/blood-testing" },
+    { name: "Blood testing in Texas", href: "/locations/texas" },
     { name: "Irving" },
   ],
 
@@ -230,7 +230,7 @@ export const irving = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
+      secondary: { label: "Blood testing across Texas", href: "/locations/texas" },
     },
   },
 

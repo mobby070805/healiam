@@ -1,4 +1,4 @@
-// Content for /new-jersey/blood-testing-in-rahway, keyword "blood testing in Rahway NJ" (SEO sheet, P1
+// Content for /locations/new-jersey/rahway, keyword "blood testing in Rahway NJ" (SEO sheet, P1
 // core city). Design: the state pages' sections in the state-page order (owner, 5 Nov 2026). A city
 // page first and a fair page second: blood testing in Rahway and the Union and Middlesex County towns
 // near it, then the next fair (Sat Nov 14). Only the city is named, never the venue: it can change from
@@ -32,7 +32,7 @@ const cbcCount = panelCategories.find((c) => c.slug === "cbc")?.markers.length ?
 const kidneyCount = panelCategories.find((c) => c.slug === "kidney")?.markers.length ?? 0;
 
 export const rahway = {
-  path: "/new-jersey/blood-testing-in-rahway",
+  path: "/locations/new-jersey/rahway",
   keyword: "blood testing in Rahway NJ",
   meta: {
     title: `Blood Testing in Rahway, NJ | ${price}, No Insurance | Healiam`,
@@ -46,7 +46,7 @@ export const rahway = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in New Jersey", href: "/new-jersey/blood-testing" },
+    { name: "Blood testing in New Jersey", href: "/locations/new-jersey" },
     { name: "Rahway" },
   ],
 
@@ -246,7 +246,7 @@ export const rahway = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across New Jersey", href: "/new-jersey/blood-testing" },
+      secondary: { label: "Blood testing across New Jersey", href: "/locations/new-jersey" },
     },
   },
 

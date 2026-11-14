@@ -66,6 +66,51 @@ export const authorProfile = (post: BlogPost): AuthorProfile | undefined => auth
 export const posts: readonly BlogPost[] = [
   // Posts we write (newest first). Full text in lib/blog/articles.ts.
   {
+    slug: "health-fair-blood-test-what-to-expect",
+    href: "/blog/health-fair-blood-test-what-to-expect",
+    title: "Health Fair Blood Screening: What to Expect and What’s Tested",
+    excerpt:
+      "First time at a health fair blood test? Booking, fasting, the seven-minute draw, the 56 lab results you get back, and how far to trust them.",
+    topic: "The panel",
+    date: "2026-11-14",
+    readMinutes: 6,
+    author: "Madhesh G",
+    banner: {
+      src: "/blog/health-fair-blood-test-what-to-expect.jpg",
+      alt: "A Healiam health fair booking ticket for a morning slot, two blood collection tubes, a phone showing results arriving, and a tag reading “About 7 min”.",
+    },
+  },
+  {
+    slug: "hsa-fsa-blood-tests",
+    href: "/blog/hsa-fsa-blood-tests",
+    title: "Can You Use HSA or FSA for Blood Tests?",
+    excerpt:
+      "Blood work usually qualifies, symptoms or not. What the IRS rules say, which receipt to keep, and how to spend FSA money before your plan year ends.",
+    topic: "Cost and access",
+    date: "2026-11-14",
+    readMinutes: 7,
+    author: "Madhesh G",
+    banner: {
+      src: "/blog/hsa-fsa-blood-tests.jpg",
+      alt: "An HSA card and an FSA card beside a “Keep for your claim” itemized receipt checklist (provider name, date of test, what was tested, amount paid; lab fees marked as a medical expense) and a December 31 calendar page asking whether the FSA plan year ends.",
+    },
+  },
+  {
+    slug: "what-not-to-do-before-blood-test",
+    href: "/blog/what-not-to-do-before-blood-test",
+    title: "What Not to Do Before a Blood Test: Fasting, Coffee, Water and Exercise",
+    excerpt:
+      "A black coffee, a stick of gum or yesterday’s workout can all nudge your results. Nine things to skip before a blood draw, and what’s still fine.",
+    topic: "Preventive health",
+    date: "2026-11-14",
+    readMinutes: 7,
+    author: "Madhesh G",
+    banner: {
+      src: "/blog/what-not-to-do-before-blood-test.jpg",
+      alt: "A “Before your draw” checklist with plain water ticked and coffee, tea, juice, soda, gum, alcohol the day before and a hard workout crossed out, next to an alarm clock, a glass of water and a tag reading “No food for 8–12 hrs”.",
+    },
+  },
+  {
     slug: "full-blood-panel-cost-without-insurance",
     href: "/blog/full-blood-panel-cost-without-insurance",
     title: "How Much Does a Full Blood Panel Cost Without Insurance?",

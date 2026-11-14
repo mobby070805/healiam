@@ -541,3 +541,81 @@ every component, in Healiam's colours and fonts.
   description, dates, section, wordCount, timeRequired, banner ImageObject, publisher and author. The author is a
   separate Person node (`@id` = website#person; name, jobTitle, bio, photo, url, sameAs LinkedIn and website),
   also on /blog. Posts signed "Healiam" point at the Organization.
+
+## Blog post 2: what not to do before a blood test (14 Nov 2026)
+
+- Owner, 14 Nov 2026: every post we write keeps the first post's design and structure; only the content
+  changes, and it must be unique. This post is data only (lib/blog/articles.ts, a card in lib/pages/blog.ts)
+  plus its banner, public/blog/what-not-to-do-before-blood-test.jpg (no title text: a "Before your draw"
+  checklist, a clock, a glass of water and an "8–12 hrs" tag).
+- Brief row 3. The rules match Healiam's own prep on /tests: 8 to 12 hour fast, water fine, no coffee, tea,
+  juice or gum, no hard exercise for 24 hours, medicines as the doctor advises.
+- Facts checked 14 Nov 2026 on MedlinePlus (fasting for a blood test, lab test prep, CK, cholesterol),
+  Cleveland Clinic (fasting for blood work), UPMC (CBC needs no fast) and the FDA's biotin safety
+  communication (2017, updated 2019; named without a link because the FDA page URLs keep moving).
+- The 2 external links: MedlinePlus "Fasting for a Blood Test" and Cleveland Clinic "Fasting for Blood Work".
+- Overlap check: 0 six-word runs shared with 13 source and competitor pages, apart from the brief's own FAQ
+  questions (search queries) and test names. Lines that repeated the site's prep copy word for word were
+  reworded.
+
+## Blog post 3: HSA and FSA for blood tests (14 Nov 2026)
+
+- Brief row 6, /blog/hsa-fsa-blood-tests. Same structure as the other posts; banner
+  public/blog/hsa-fsa-blood-tests.jpg (HSA and FSA cards, a "Keep for your claim" receipt checklist, a Dec 31 page).
+- Facts checked 14 Nov 2026: IRS Publication 502 (what medical expenses are; lab fees; physical examination,
+  "don't have to be ill"), IRS Publication 969 (HSA records and 20% additional tax, FSA third-party statement,
+  grace period or carryover, 2026 HSA limits $4,400 / $8,750, HDHP minimum deductible $1,700 / $3,400),
+  Rev. Proc. 2025-32 (2026 health FSA $3,400, carryover $680; via benefits-firm summaries).
+- The 2 external links: IRS Publication 502 and IRS Publication 969.
+- Healiam facts used: credit cards and HSA cards accepted, no doctor's order (healiam.com/faq).
+- **Open, needs the client (brief note):** whether Healiam accepts FSA cards and gives itemized receipts. The
+  post claims neither: the Healiam section says "ask us" for FSA, and the FAQ "Does Healiam provide a receipt…"
+  points to /contact. Update both once the client confirms.
+
+## Mid-article booking box redesigned (14 Nov 2026)
+
+- Owner, 14 Nov 2026: the mid-article box and the sidebar card "both look same". The sidebar keeps the dark
+  "One panel, 50+ measurements" card. The `promo` block in posts is now a light card with its own message:
+  "How a Healiam test works" / "Get your numbers at a morning health fair", three steps (book a fair online;
+  two vials, about seven minutes; results in the app in 4 to 5 business days), then $95 for the full panel,
+  "Book your spot" and a "See what's tested" link. No tiles, no "50+ measurements" in it. Applies to every post.
+
+## Blog post 4: health fair blood test, what to expect (14 Nov 2026)
+
+- Brief row 8, /blog/health-fair-blood-test-what-to-expect, topic "The panel". Banner
+  public/blog/health-fair-blood-test-what-to-expect.jpg (booking ticket, two tubes, phone with results, "About 7 min").
+- Healiam facts from healiam.com/faq and the demo walkthrough: booking steps, card or HSA at checkout, licensed
+  phlebotomist, private setting, two vials in under seven minutes, CLIA-certified partner labs on FDA-approved
+  equipment, results in 4 to 5 business days with ranges and graphs, PDF for your doctor. Panel table from
+  lib/panel.ts (56 lab measurements).
+- The 2 external links: CMS's CLIA page and MedlinePlus "How to Understand Your Lab Results".
+- Colorado first (brief): the "near you" section links the Denver city page and the Centennial fair page.
+- **Open, needs the client:** walk-ins. The FAQ says to book ahead and to call 720-761-7869 before coming
+  without a booking. Update once the client confirms whether walk-ins are taken.
+
+## "From the blog" band above the footer (14 Nov 2026)
+
+- Owner, 14 Nov 2026: show the blog posts at the bottom of every page, above the footer. `components/LatestPosts.tsx`
+  ("From the blog" / "Read before your blood test", "See all articles" to /blog, three post cards in the
+  "Explore more content" card style). It shows the three newest posts we wrote (href /blog/…), so it
+  updates itself as new posts are added; client posts (still on healiam.com) aren't shown there.
+- Rendered by `Footer` on every page. `/blog` and the post pages use `<Footer blog={false} />`: they already end with
+  post cards, and the band would repeat them.
+- Owner, 14 Nov 2026: keep the mid-article booking box in the health fair post, even though it overlaps the
+  post's own steps.
+
+## Location pages moved to /locations/ (14 Nov 2026)
+
+- Owner, 14 Nov 2026: location pages use healiam.com's addresses. State pages are `/locations/<state>`
+  (was `/<state>/blood-testing`), city pages `/locations/<state>/<city>` (was `/<state>/blood-testing-in-<city>`).
+  Routes live in `src/app/locations/`. Copy files (`lib/pages/*-blood-testing.ts`) keep their names.
+- Every link, canonical, og:url, breadcrumb and schema URL was updated (97 places in 22 files); no page links
+  to an old address.
+- 301 redirects from every earlier address straight to the new one, in `next.config.mjs` (Vercel) and
+  `public/_redirects` (static export): the short state URLs (`/texas`…), `/<state>/blood-testing`,
+  `/<state>/blood-testing-in-<city>` and Texas's original `/texas/blood-test`. No chains.
+- The push-log Apps Script was updated to read `/locations/` URLs from the sitemap and `src/app/locations/`
+  file paths (the owner installs it).
+- **Open:** healiam.com also has `/locations` (an index of all locations), `/locations/texas/frisco` and
+  `/locations/colorado/centennial`. This site has none of the three yet, so those addresses would 404 after
+  launch unless built or redirected.

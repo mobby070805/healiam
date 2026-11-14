@@ -1,4 +1,4 @@
-// Content for /texas/blood-testing-in-dallas, keyword "blood testing in Dallas TX". A nearby city page
+// Content for /locations/texas/dallas, keyword "blood testing in Dallas TX". A nearby city page
 // (owner, 6 Nov 2026): no Healiam fair inside Dallas, so the page points to the two DFW fairs with the
 // distance from downtown to each, soonest first. Angle: Dallas sits between the two fairs, so which side
 // of the city you live on decides the trip (North Dallas toward Plano, Oak Cliff and the west toward Grand
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/texas/blood-testing-in-dallas";
+const path = "/locations/texas/dallas";
 const near = nearby(path);
 const pancreas = panelCategories.find((c) => c.slug === "pancreas")?.markers ?? [];
 
@@ -34,7 +34,7 @@ export const dallas = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Texas", href: "/texas/blood-testing" },
+    { name: "Blood testing in Texas", href: "/locations/texas" },
     { name: "Dallas" },
   ],
 
@@ -230,7 +230,7 @@ export const dallas = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
+      secondary: { label: "Blood testing across Texas", href: "/locations/texas" },
     },
   },
 

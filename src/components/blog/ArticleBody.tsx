@@ -1,9 +1,8 @@
 import { Fragment } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarCheck, Droplet, Smartphone } from "lucide-react";
 import { site } from "@/lib/site";
 import type { ArticleBlock } from "@/lib/blog/articles";
 import { RichText } from "@/components/RichText";
-import { cardTiles } from "@/components/blog/ArticleParts";
 
 // "**bold**" lead-ins inside a copy string, then RichText for links in what's left.
 function Inline({ text }: { text: string }) {
@@ -26,6 +25,13 @@ function Inline({ text }: { text: string }) {
 }
 
 const para = "text-[16.5px] leading-[1.8] text-ink sm:text-[18px]";
+
+// The three steps in the mid-article booking box (facts as on the city pages and healiam.com/faq).
+const promoSteps = [
+  { Icon: CalendarCheck, title: "Book a fair online", line: "Pick a date and time near you. No referral or insurance card needed." },
+  { Icon: Droplet, title: "Two vials, about seven minutes", line: "Fairs run early in the morning, so you can come straight from your fast." },
+  { Icon: Smartphone, title: "Results in the app", line: "Your numbers reach the Healiam app in 4 to 5 business days." },
+] as const;
 
 // Layout and type follow bolddesk.com's post pages (owner, 13 Nov 2026), in Healiam's colours.
 export function ArticleBody({ blocks }: { blocks: readonly ArticleBlock[] }) {
@@ -77,48 +83,51 @@ export function ArticleBody({ blocks }: { blocks: readonly ArticleBlock[] }) {
               </ul>
             );
           case "promo":
-            // Same content and look as the sidebar booking card (owner, 13 Nov 2026): 50+ measurements in
-            // one panel, the six areas from /tests, and the price shown once.
+            // Mid-article booking box. Owner, 14 Nov 2026: it looked the same as the sidebar card ("both looks
+            // same"), so it now has its own look and message: light card, how a Healiam test works in three
+            // steps, the price once. The dark "One panel, 50+ measurements" card stays in the sidebar only.
             return (
-              <aside key={i} className="on-dark relative isolate !mt-10 overflow-hidden rounded-3xl bg-ink p-6 text-white sm:p-8">
-                <div className="grid-backdrop-dark pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
+              <aside
+                key={i}
+                className="relative isolate !mt-10 overflow-hidden rounded-3xl border border-ink/[0.1] bg-white p-6 shadow-[0_24px_60px_-40px_rgba(10,10,15,0.35)] sm:p-8"
+              >
                 <div
-                  className="pointer-events-none absolute -right-28 -top-32 -z-10 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(232,54,86,0.16),transparent_62%)]"
+                  className="pointer-events-none absolute -right-24 -top-28 -z-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(232,54,86,0.10),transparent_65%)]"
                   aria-hidden="true"
                 />
-                <span className="flex items-center gap-2">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={site.logoMark} alt="" width={24} height={25} className="logo-tint h-5 w-auto" />
-                  <span className="text-[16px] font-bold tracking-tight">{site.name}</span>
-                </span>
-                <p className="mt-4 text-[1.75rem] font-extrabold leading-[1.1] tracking-[-0.03em] sm:text-[2.2rem]">
-                  One panel, <span className="text-brand">50+ measurements</span>
+                <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-brand-deep">How a Healiam test works</p>
+                <p className="mt-2 text-[1.55rem] font-extrabold leading-[1.15] tracking-[-0.03em] text-ink sm:text-[2rem]">
+                  Get your numbers at a morning health fair
                 </p>
-                <p className="mt-2 max-w-[46ch] text-[14.5px] leading-[1.6] text-white/65 sm:text-[15.5px]">
-                  Blood counts, thyroid, electrolytes, lipids, kidney, liver, diabetes and more, from a single draw.
-                </p>
-                <ul className="mt-5 grid grid-cols-3 gap-2 sm:grid-cols-6 sm:gap-2.5">
-                  {cardTiles.map((cat) => (
-                    <li
-                      key={cat.slug}
-                      className="flex flex-col items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-1 py-3 text-center"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={cat.image} alt="" width={512} height={512} className="icon-white h-6 w-6 sm:h-7 sm:w-7" />
-                      <span className="text-[11.5px] font-medium text-white/80 sm:text-[12.5px]">{cat.tile ?? cat.name}</span>
+                <ol className="mt-6 grid gap-3 sm:grid-cols-3 sm:gap-4">
+                  {promoSteps.map(({ Icon, title, line }, n) => (
+                    <li key={title} className="flex gap-3.5 rounded-2xl bg-mist p-4 sm:flex-col sm:gap-3 sm:p-5">
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-brand-deep ring-1 ring-ink/[0.08]">
+                        <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-[15.5px] font-bold leading-snug text-ink sm:text-[16.5px]">
+                          <span className="sr-only">Step {n + 1}: </span>
+                          {title}
+                        </p>
+                        <p className="mt-1 text-[14px] leading-[1.6] text-ink-soft sm:text-[14.5px]">{line}</p>
+                      </div>
                     </li>
                   ))}
-                </ul>
-                <div className="mt-6 flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <p className="text-[2.4rem] font-extrabold leading-none tracking-[-0.04em]">{site.price.display}</p>
-                    <p className="mt-1.5 text-[13.5px] text-white/65">Price for the full panel · No referral or insurance</p>
-                  </div>
-                  <div className="flex flex-col gap-2.5 sm:flex-row">
+                </ol>
+                <div className="mt-6 flex flex-col gap-4 border-t border-ink/[0.08] pt-6 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-[15px] text-ink-soft">
+                    <span className="mr-2 text-[1.9rem] font-extrabold tracking-[-0.04em] text-ink">{site.price.display}</span>
+                    for the full panel
+                  </p>
+                  <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-5">
                     <a href={site.bookingUrl} className="btn-primary">
                       Book your spot
                     </a>
-                    <a href={site.links.tests} className="btn-on-ink">
+                    <a
+                      href={site.links.tests}
+                      className="inline-flex min-h-[44px] items-center justify-center gap-1.5 text-[15px] font-semibold text-brand-deep transition-colors duration-150 hover:text-brand-hover"
+                    >
                       See what’s tested
                       <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
                     </a>

@@ -1,4 +1,4 @@
-// Content for /new-jersey/blood-testing-in-jersey-city, keyword "blood testing in Jersey City NJ". A nearby
+// Content for /locations/new-jersey/jersey-city, keyword "blood testing in Jersey City NJ". A nearby
 // city page (owner, 6 Nov 2026): no Healiam fair in Jersey City; the nearest is Rahway. Angle: two ways
 // down, by rail (PATH to Newark Penn, then NJ Transit south to Rahway) or by car down the Turnpike, and
 // an iron-led sample. Jersey City is the Hudson County seat. Distances: lib/city-pages.ts (straight line,
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/new-jersey/blood-testing-in-jersey-city";
+const path = "/locations/new-jersey/jersey-city";
 const near = nearby(path);
 const miles = near.to("rahway-nj");
 const iron = panelCategories.find((c) => c.slug === "iron")?.markers ?? [];
@@ -35,7 +35,7 @@ export const jerseyCity = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in New Jersey", href: "/new-jersey/blood-testing" },
+    { name: "Blood testing in New Jersey", href: "/locations/new-jersey" },
     { name: "Jersey City" },
   ],
 
@@ -231,7 +231,7 @@ export const jerseyCity = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across New Jersey", href: "/new-jersey/blood-testing" },
+      secondary: { label: "Blood testing across New Jersey", href: "/locations/new-jersey" },
     },
   },
 

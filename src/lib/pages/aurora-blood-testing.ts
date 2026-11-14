@@ -1,4 +1,4 @@
-// Content for /colorado/blood-testing-in-aurora, keyword "blood testing in Aurora CO". A nearby city page
+// Content for /locations/colorado/aurora, keyword "blood testing in Aurora CO". A nearby city page
 // (owner, 6 Nov 2026): no Healiam fair in Aurora. Two Colorado fairs are within reach, Denver (northwest
 // Denver) and Centennial (south metro), on different days, soonest first. Angle: which one suits which
 // side of Aurora. Aurora spans Adams, Arapahoe and Douglas counties. Distances: lib/city-pages.ts
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/colorado/blood-testing-in-aurora";
+const path = "/locations/colorado/aurora";
 const near = nearby(path);
 const toDenver = near.to("denver-co");
 const toCentennial = near.to("centennial-co");
@@ -42,7 +42,7 @@ export const aurora = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Colorado", href: "/colorado/blood-testing" },
+    { name: "Blood testing in Colorado", href: "/locations/colorado" },
     { name: "Aurora" },
   ],
 
@@ -238,7 +238,7 @@ export const aurora = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Colorado", href: "/colorado/blood-testing" },
+      secondary: { label: "Blood testing across Colorado", href: "/locations/colorado" },
     },
   },
 

@@ -1,4 +1,4 @@
-// Content for /colorado/blood-testing, keyword "blood testing in Colorado".
+// Content for /locations/colorado, keyword "blood testing in Colorado".
 // Design: the Texas page's sections, in the Texas order, unchanged (owner, 31 Oct 2026).
 // Content: Colorado's own, written as an availability and booking guide: where Healiam tests in
 // Colorado right now (Denver metro only), how to book, how to prepare, and the altitude note.
@@ -24,7 +24,7 @@ const daysApart =
 const shortDates = coloradoFairs.map((f) => `${f.locality} ${f.dateLabel.replace(/^\w+,\s*|,\s*\d{4}$/g, "")}`).join(" · ");
 
 export const colorado = {
-  path: "/colorado/blood-testing",
+  path: "/locations/colorado",
   // Client's SEO sheet: primary "blood testing in Colorado"; secondary "blood tests in Colorado",
   // "blood testing appointments Colorado", "blood testing near Denver".
   keyword: "blood testing in Colorado",
@@ -276,7 +276,7 @@ export const colorado = {
       },
       {
         q: "Which Colorado fair is closer to me?",
-        a: `Denver tends to suit the north and west suburbs, Centennial the south metro. The ${link("Denver", "/colorado/blood-testing-in-denver")} and ${link("Aurora", "/colorado/blood-testing-in-aurora")} pages show distances.`,
+        a: `Denver tends to suit the north and west suburbs, Centennial the south metro. The ${link("Denver", "/locations/colorado/denver")} and ${link("Aurora", "/locations/colorado/aurora")} pages show distances.`,
       },
       {
         q: "What should I bring to a Colorado fair?",

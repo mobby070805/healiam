@@ -1,4 +1,4 @@
-// Content for /georgia/blood-testing-in-lawrenceville, keyword "blood testing in Lawrenceville GA" (SEO
+// Content for /locations/georgia/lawrenceville, keyword "blood testing in Lawrenceville GA" (SEO
 // sheet, P1 core city). Design: the state pages' sections in the state-page order (owner, 5 Nov 2026). A
 // city page first and a fair page second: blood testing in Lawrenceville and nearby Gwinnett towns, then
 // the next fair (Sat Nov 21). Only the city is named, never the venue: it can change from fair to fair
@@ -33,7 +33,7 @@ const cbcCount = panelCategories.find((c) => c.slug === "cbc")?.markers.length ?
 const kidneyCount = panelCategories.find((c) => c.slug === "kidney")?.markers.length ?? 0;
 
 export const lawrenceville = {
-  path: "/georgia/blood-testing-in-lawrenceville",
+  path: "/locations/georgia/lawrenceville",
   keyword: "blood testing in Lawrenceville GA",
   meta: {
     title: `Blood Testing in Lawrenceville, GA | ${price}, Gwinnett | Healiam`,
@@ -47,7 +47,7 @@ export const lawrenceville = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Georgia", href: "/georgia/blood-testing" },
+    { name: "Blood testing in Georgia", href: "/locations/georgia" },
     { name: "Lawrenceville" },
   ],
 
@@ -247,7 +247,7 @@ export const lawrenceville = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Georgia", href: "/georgia/blood-testing" },
+      secondary: { label: "Blood testing across Georgia", href: "/locations/georgia" },
     },
   },
 

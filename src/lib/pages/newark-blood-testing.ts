@@ -1,4 +1,4 @@
-// Content for /new-jersey/blood-testing-in-newark, keyword "blood testing in Newark NJ". A nearby city page
+// Content for /locations/new-jersey/newark, keyword "blood testing in Newark NJ". A nearby city page
 // (owner, 6 Nov 2026): no Healiam fair in Newark; the nearest is Rahway. Angle: Newark is New Jersey's
 // largest city and the Essex County seat, and Rahway is a few stops south of Newark Penn Station on NJ
 // Transit's Northeast Corridor line; the fair is a short walk from Rahway station (lib/fairs.ts).
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/new-jersey/blood-testing-in-newark";
+const path = "/locations/new-jersey/newark";
 const near = nearby(path);
 const miles = near.to("rahway-nj");
 const kidney = panelCategories.find((c) => c.slug === "kidney")?.markers ?? [];
@@ -35,7 +35,7 @@ export const newark = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in New Jersey", href: "/new-jersey/blood-testing" },
+    { name: "Blood testing in New Jersey", href: "/locations/new-jersey" },
     { name: "Newark" },
   ],
 
@@ -231,7 +231,7 @@ export const newark = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across New Jersey", href: "/new-jersey/blood-testing" },
+      secondary: { label: "Blood testing across New Jersey", href: "/locations/new-jersey" },
     },
   },
 

@@ -1,4 +1,4 @@
-// Content for /georgia/blood-testing, keyword "blood testing in Georgia".
+// Content for /locations/georgia, keyword "blood testing in Georgia".
 // Design: the Texas page's sections, in the Texas order (owner, 31 Oct 2026); the H1 follows the Texas
 // pattern with no city in it (owner, 1 Nov 2026). Content: Georgia's own, built around Healiam's one
 // Georgia fair, 755 Longleaf Blvd in Lawrenceville, Gwinnett County, with free parking on site. Venue,
@@ -21,7 +21,7 @@ export const georgiaFairs = fairs.filter((f) => f.region === "GA");
 const shortDates = georgiaFairs.map((f) => `${f.locality} ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" · ");
 
 export const georgia = {
-  path: "/georgia/blood-testing",
+  path: "/locations/georgia",
   // Client's SEO sheet: primary "blood testing in Georgia"; secondary "blood tests in Georgia",
   // "blood testing appointments Georgia", "blood testing near Lawrenceville".
   keyword: "blood testing in Georgia",

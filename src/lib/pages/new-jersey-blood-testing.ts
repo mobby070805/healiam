@@ -1,4 +1,4 @@
-// Content for /new-jersey/blood-testing, keyword "blood testing in New Jersey".
+// Content for /locations/new-jersey, keyword "blood testing in New Jersey".
 // Design: the Texas page's sections, in the Texas order (owner, 31 Oct 2026). Content: New Jersey's
 // own, built around getting to Healiam's one New Jersey fair, Rahway Pharmacy on Irving Street, which
 // is a short walk from the Rahway NJ Transit station. Venue, date, parking and access come from
@@ -21,7 +21,7 @@ export const newJerseyFairs = fairs.filter((f) => f.region === "NJ");
 const shortDates = newJerseyFairs.map((f) => `${f.locality} ${f.dateLabel.replace(/,\s*\d{4}$/, "")}`).join(" · ");
 
 export const newJersey = {
-  path: "/new-jersey/blood-testing",
+  path: "/locations/new-jersey",
   // Client's SEO sheet: primary "blood testing in New Jersey"; secondary "blood tests in New Jersey",
   // "blood testing appointments New Jersey", "blood testing near Rahway".
   keyword: "blood testing in New Jersey",

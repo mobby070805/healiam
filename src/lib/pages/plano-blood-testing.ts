@@ -1,4 +1,4 @@
-// Content for /texas/blood-testing-in-plano, keyword "blood testing in Plano TX" (SEO sheet, P1 core
+// Content for /locations/texas/plano, keyword "blood testing in Plano TX" (SEO sheet, P1 core
 // city). Design: the state pages' sections in the state-page order (owner, 5 Nov 2026: "design should be
 // like the state pages"). A city page first and a fair page second: blood testing in Plano, then the
 // next Plano fair (Sat Nov 14). Only the city is named, never the venue: it can change from fair to
@@ -34,7 +34,7 @@ const kidneyCount = panelCategories.find((c) => c.slug === "kidney")?.markers.le
 const cbcCount = panelCategories.find((c) => c.slug === "cbc")?.markers.length ?? 0;
 
 export const plano = {
-  path: "/texas/blood-testing-in-plano",
+  path: "/locations/texas/plano",
   keyword: "blood testing in Plano TX",
   meta: {
     title: `Blood Testing in Plano, TX | ${price}, No Referral | Healiam`,
@@ -48,7 +48,7 @@ export const plano = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Texas", href: "/texas/blood-testing" },
+    { name: "Blood testing in Texas", href: "/locations/texas" },
     { name: "Plano" },
   ],
 
@@ -248,7 +248,7 @@ export const plano = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
+      secondary: { label: "Blood testing across Texas", href: "/locations/texas" },
     },
   },
 

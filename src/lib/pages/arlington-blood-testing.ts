@@ -1,4 +1,4 @@
-// Content for /texas/blood-testing-in-arlington, keyword "blood testing in Arlington TX". A nearby city
+// Content for /locations/texas/arlington, keyword "blood testing in Arlington TX". A nearby city
 // page (owner, 6 Nov 2026): Arlington has no fair inside its city limits. Healiam's fair list calls the
 // Grand Prairie fair "Arlington" (/fairs/arlington-tx), and it sits just east of Arlington in Grand
 // Prairie, so this page says so plainly. Arlington is in Tarrant County, between Dallas and Fort Worth.
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/texas/blood-testing-in-arlington";
+const path = "/locations/texas/arlington";
 const near = nearby(path);
 const electrolytes = panelCategories.find((c) => c.slug === "electrolytes")?.markers ?? [];
 
@@ -34,7 +34,7 @@ export const arlington = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Texas", href: "/texas/blood-testing" },
+    { name: "Blood testing in Texas", href: "/locations/texas" },
     { name: "Arlington" },
   ],
 
@@ -230,7 +230,7 @@ export const arlington = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
+      secondary: { label: "Blood testing across Texas", href: "/locations/texas" },
     },
   },
 

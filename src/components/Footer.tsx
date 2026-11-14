@@ -3,13 +3,14 @@ import { site } from "@/lib/site";
 import { fairs } from "@/lib/fairs";
 import { Logo } from "@/components/Logo";
 import { SocialLogo } from "@/components/SocialLogo";
+import { LatestPosts } from "@/components/LatestPosts";
 
 const getTested = [
   { label: "Book an appointment", href: site.bookingUrl },
   { label: "Health fairs", href: site.links.fairs },
   { label: "What's tested", href: site.links.tests },
   { label: "See a sample report", href: site.links.sampleReport },
-  { label: "Blood testing in Texas", href: "/texas/blood-testing" },
+  { label: "Blood testing in Texas", href: "/locations/texas" },
 ];
 
 const company = [
@@ -27,7 +28,20 @@ const storeBadges = [
   { name: "Google Play", href: site.app.playStore, src: "/badges/google-play.svg", alt: "Get it on Google Play" },
 ];
 
-export function Footer() {
+/**
+ * Every page's footer, with the "From the blog" band above it (owner, 14 Nov 2026). `blog={false}` leaves
+ * the band out: the blog listing and post pages end with their own post cards.
+ */
+export function Footer({ blog = true }: { blog?: boolean } = {}) {
+  return (
+    <>
+      {blog && <LatestPosts />}
+      <SiteFooter />
+    </>
+  );
+}
+
+function SiteFooter() {
   return (
     <footer className="border-t border-ink/[0.07] bg-white pb-24 pt-10 sm:pt-14 md:pb-10">
       <div className="shell grid grid-cols-2 gap-8 lg:grid-cols-[1.4fr_1fr_1fr]">

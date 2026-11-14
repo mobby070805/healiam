@@ -38,7 +38,7 @@ export default function BlogPage() {
         <AllArticles />
         <FinalCta finalCta={blog.finalCta} />
       </main>
-      <Footer />
+      <Footer blog={false} />
       <StickyCta sticky={blog.sticky} />
     </>
   );

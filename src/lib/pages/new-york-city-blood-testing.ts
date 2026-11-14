@@ -1,4 +1,4 @@
-// Content for /new-york/blood-testing-in-new-york-city, keyword "blood testing in New York City". A nearby
+// Content for /locations/new-york/new-york-city, keyword "blood testing in New York City". A nearby
 // city page (owner, 6 Nov 2026): no Healiam fair in New York; the nearest is Rahway, NJ. Kept distinct
 // from the New York state page (which covers the train from Penn Station and Staten Island in general):
 // this page goes borough by borough. Distances: straight line from each borough's center to the fair's
@@ -15,7 +15,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/new-york/blood-testing-in-new-york-city";
+const path = "/locations/new-york/new-york-city";
 const near = nearby(path);
 const miles = near.to("rahway-nj");
 
@@ -38,7 +38,7 @@ export const newYorkCity = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in New York", href: "/new-york/blood-testing" },
+    { name: "Blood testing in New York", href: "/locations/new-york" },
     { name: "New York City" },
   ],
 
@@ -234,7 +234,7 @@ export const newYorkCity = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing for New York", href: "/new-york/blood-testing" },
+      secondary: { label: "Blood testing for New York", href: "/locations/new-york" },
     },
   },
 

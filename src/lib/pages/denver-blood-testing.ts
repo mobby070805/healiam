@@ -1,4 +1,4 @@
-// Content for /colorado/blood-testing-in-denver, keyword "blood testing in Denver CO" (SEO sheet, P1
+// Content for /locations/colorado/denver, keyword "blood testing in Denver CO" (SEO sheet, P1
 // core city). Design: the state pages' sections in the state-page order (owner, 5 Nov 2026). A city
 // page first and a fair page second: blood testing in Denver and its west and north suburbs, then the
 // next fair (Sat, Nov 14), with Centennial on Sunday for the south metro. Only the city is named, never
@@ -32,7 +32,7 @@ const kidneyCount = panelCategories.find((c) => c.slug === "kidney")?.markers.le
 const cbcCount = panelCategories.find((c) => c.slug === "cbc")?.markers.length ?? 0;
 
 export const denver = {
-  path: "/colorado/blood-testing-in-denver",
+  path: "/locations/colorado/denver",
   keyword: "blood testing in Denver CO",
   meta: {
     title: `Blood Testing in Denver, CO | ${price} Panel, No Referral | Healiam`,
@@ -46,7 +46,7 @@ export const denver = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Colorado", href: "/colorado/blood-testing" },
+    { name: "Blood testing in Colorado", href: "/locations/colorado" },
     { name: "Denver" },
   ],
 
@@ -246,7 +246,7 @@ export const denver = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Colorado", href: "/colorado/blood-testing" },
+      secondary: { label: "Blood testing across Colorado", href: "/locations/colorado" },
     },
   },
 

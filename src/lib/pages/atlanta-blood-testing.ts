@@ -1,4 +1,4 @@
-// Content for /georgia/blood-testing-in-atlanta, keyword "blood testing in Atlanta GA". A nearby city page
+// Content for /locations/georgia/atlanta, keyword "blood testing in Atlanta GA". A nearby city page
 // (owner, 6 Nov 2026): no Healiam fair in Atlanta; the nearest is Lawrenceville, northeast of the city in
 // Gwinnett County. Angle: honest about the distance (about 26 miles from downtown), worth it for a full
 // panel in one trip, and an easy way to ask for an Atlanta fair. Atlanta is Georgia's capital. Distances:
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/georgia/blood-testing-in-atlanta";
+const path = "/locations/georgia/atlanta";
 const near = nearby(path);
 const miles = near.to("lawrenceville-ga");
 const liver = panelCategories.find((c) => c.slug === "liver")?.markers.length ?? 0;
@@ -35,7 +35,7 @@ export const atlanta = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Georgia", href: "/georgia/blood-testing" },
+    { name: "Blood testing in Georgia", href: "/locations/georgia" },
     { name: "Atlanta" },
   ],
 
@@ -231,7 +231,7 @@ export const atlanta = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Georgia", href: "/georgia/blood-testing" },
+      secondary: { label: "Blood testing across Georgia", href: "/locations/georgia" },
     },
   },
 

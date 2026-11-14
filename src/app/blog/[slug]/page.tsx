@@ -175,7 +175,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer blog={false} />
       <StickyCta sticky={blog.sticky} />
       <BackToTop articleId="article" />
     </>

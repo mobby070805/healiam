@@ -1,4 +1,4 @@
-// Content for /texas/blood-testing. Components only lay this out.
+// Content for /locations/texas. Components only lay this out.
 // (Was /texas/blood-test until 1 Nov 2026; the old path redirects here.)
 // Every fact comes from healiam.com (home, tests, fairs, FAQ and about pages).
 
@@ -13,7 +13,7 @@ const texasFairs = fairs.filter((f) => f.region === "TX");
 const texasCities = texasFairs.map((f) => f.locality).join(" and ");
 
 export const page = {
-  path: "/texas/blood-testing",
+  path: "/locations/texas",
   // Client's SEO sheet: primary "blood testing in Texas"; secondary "blood tests in Texas",
   // "blood testing appointments Texas", "blood testing near Plano".
   keyword: "blood testing in Texas",
@@ -267,11 +267,11 @@ export const page = {
       },
       {
         q: "Plano or Grand Prairie: which fair should I choose?",
-        a: `Whichever is nearer, or whose date suits you. Both run the same panel at the same price. The ${link("Plano page", "/texas/blood-testing-in-plano")} has more on blood testing there.`,
+        a: `Whichever is nearer, or whose date suits you. Both run the same panel at the same price. The ${link("Plano page", "/locations/texas/plano")} has more on blood testing there.`,
       },
       {
         q: "I live in Dallas or Fort Worth. Can I still test?",
-        a: `Yes. There's no fair inside either city yet, but the ${link("Dallas", "/texas/blood-testing-in-dallas")} and ${link("Fort Worth", "/texas/blood-testing-in-fort-worth")} pages show the nearest fairs and how far each one is.`,
+        a: `Yes. There's no fair inside either city yet, but the ${link("Dallas", "/locations/texas/dallas")} and ${link("Fort Worth", "/locations/texas/fort-worth")} pages show the nearest fairs and how far each one is.`,
       },
       {
         q: "Where do I find upcoming Texas dates?",

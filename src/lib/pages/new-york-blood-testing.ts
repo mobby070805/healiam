@@ -1,4 +1,4 @@
-// Content for /new-york/blood-testing, keyword "blood testing in New York". State page (owner, 6 Nov
+// Content for /locations/new-york, keyword "blood testing in New York". State page (owner, 6 Nov
 // 2026), in the state pages' design and order. New York has no Healiam fair of its own: the nearest is
 // Rahway, New Jersey, so the page says so plainly and is about getting there. Rahway's station is on NJ
 // Transit's lines from New York Penn Station, and the fair is a short walk from it (lib/fairs.ts);
@@ -25,7 +25,7 @@ const fromNyc = { "rahway-nj": 16 } as const;
 const fromStatenIsland = 7;
 
 export const newYork = {
-  path: "/new-york/blood-testing",
+  path: "/locations/new-york",
   keyword: "blood testing in New York",
   meta: {
     title: `Blood Testing for New York | ${price} Panel, Rahway NJ | Healiam`,

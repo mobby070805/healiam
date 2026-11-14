@@ -21,20 +21,20 @@ export type CityPage = {
 };
 
 export const cityPageList: readonly CityPage[] = [
-  { city: "Plano", region: "TX", label: "Blood testing in Plano", href: "/texas/blood-testing-in-plano", fair: "plano-tx" },
-  { city: "Garland", region: "TX", label: "Blood testing in Garland", href: "/texas/blood-testing-in-garland", miles: { "plano-tx": 13, "arlington-tx": 25 } },
-  { city: "Dallas", region: "TX", label: "Blood testing in Dallas", href: "/texas/blood-testing-in-dallas", miles: { "plano-tx": 20, "arlington-tx": 13 } },
-  { city: "Irving", region: "TX", label: "Blood testing in Irving", href: "/texas/blood-testing-in-irving", miles: { "plano-tx": 20, "arlington-tx": 6 } },
-  { city: "Arlington", region: "TX", label: "Blood testing in Arlington", href: "/texas/blood-testing-in-arlington", miles: { "plano-tx": 30, "arlington-tx": 5 } },
-  { city: "Fort Worth", region: "TX", label: "Blood testing in Fort Worth", href: "/texas/blood-testing-in-fort-worth", miles: { "plano-tx": 39, "arlington-tx": 18 } },
-  { city: "Denver", region: "CO", label: "Blood testing in Denver", href: "/colorado/blood-testing-in-denver", fair: "denver-co" },
-  { city: "Aurora", region: "CO", label: "Blood testing in Aurora", href: "/colorado/blood-testing-in-aurora", miles: { "denver-co": 9, "centennial-co": 11 } },
-  { city: "Rahway", region: "NJ", label: "Blood testing in Rahway", href: "/new-jersey/blood-testing-in-rahway", fair: "rahway-nj" },
-  { city: "Newark", region: "NJ", label: "Blood testing in Newark", href: "/new-jersey/blood-testing-in-newark", miles: { "rahway-nj": 10 } },
-  { city: "Jersey City", region: "NJ", label: "Blood testing in Jersey City", href: "/new-jersey/blood-testing-in-jersey-city", miles: { "rahway-nj": 14 } },
-  { city: "New York City", region: "NY", label: "Blood testing in New York City", href: "/new-york/blood-testing-in-new-york-city", miles: { "rahway-nj": 16 } },
-  { city: "Lawrenceville", region: "GA", label: "Blood testing in Lawrenceville", href: "/georgia/blood-testing-in-lawrenceville", fair: "lawrenceville-ga" },
-  { city: "Atlanta", region: "GA", label: "Blood testing in Atlanta", href: "/georgia/blood-testing-in-atlanta", miles: { "lawrenceville-ga": 26 } },
+  { city: "Plano", region: "TX", label: "Blood testing in Plano", href: "/locations/texas/plano", fair: "plano-tx" },
+  { city: "Garland", region: "TX", label: "Blood testing in Garland", href: "/locations/texas/garland", miles: { "plano-tx": 13, "arlington-tx": 25 } },
+  { city: "Dallas", region: "TX", label: "Blood testing in Dallas", href: "/locations/texas/dallas", miles: { "plano-tx": 20, "arlington-tx": 13 } },
+  { city: "Irving", region: "TX", label: "Blood testing in Irving", href: "/locations/texas/irving", miles: { "plano-tx": 20, "arlington-tx": 6 } },
+  { city: "Arlington", region: "TX", label: "Blood testing in Arlington", href: "/locations/texas/arlington", miles: { "plano-tx": 30, "arlington-tx": 5 } },
+  { city: "Fort Worth", region: "TX", label: "Blood testing in Fort Worth", href: "/locations/texas/fort-worth", miles: { "plano-tx": 39, "arlington-tx": 18 } },
+  { city: "Denver", region: "CO", label: "Blood testing in Denver", href: "/locations/colorado/denver", fair: "denver-co" },
+  { city: "Aurora", region: "CO", label: "Blood testing in Aurora", href: "/locations/colorado/aurora", miles: { "denver-co": 9, "centennial-co": 11 } },
+  { city: "Rahway", region: "NJ", label: "Blood testing in Rahway", href: "/locations/new-jersey/rahway", fair: "rahway-nj" },
+  { city: "Newark", region: "NJ", label: "Blood testing in Newark", href: "/locations/new-jersey/newark", miles: { "rahway-nj": 10 } },
+  { city: "Jersey City", region: "NJ", label: "Blood testing in Jersey City", href: "/locations/new-jersey/jersey-city", miles: { "rahway-nj": 14 } },
+  { city: "New York City", region: "NY", label: "Blood testing in New York City", href: "/locations/new-york/new-york-city", miles: { "rahway-nj": 16 } },
+  { city: "Lawrenceville", region: "GA", label: "Blood testing in Lawrenceville", href: "/locations/georgia/lawrenceville", fair: "lawrenceville-ga" },
+  { city: "Atlanta", region: "GA", label: "Blood testing in Atlanta", href: "/locations/georgia/atlanta", miles: { "lawrenceville-ga": 26 } },
 ];
 
 /** Fair slug to the city page of the city that hosts it. */

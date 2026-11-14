@@ -1,4 +1,4 @@
-// Content for /texas/blood-testing-in-fort-worth, keyword "blood testing in Fort Worth TX". A nearby city
+// Content for /locations/texas/fort-worth, keyword "blood testing in Fort Worth TX". A nearby city
 // page (owner, 6 Nov 2026): no Healiam fair in Fort Worth. It is the farthest of the five nearby cities,
 // so the page is honest about the drive: Grand Prairie is the shorter trip east, Plano the long one, and
 // asking for a Fort Worth fair is offered plainly. Fort Worth is the Tarrant County seat, at the west end
@@ -14,7 +14,7 @@ import type { StateLandingPage } from "@/lib/pages/texas-blood-test";
 
 const price = site.price.display;
 const book = site.bookingUrl;
-const path = "/texas/blood-testing-in-fort-worth";
+const path = "/locations/texas/fort-worth";
 const near = nearby(path);
 const lipids = panelCategories.find((c) => c.slug === "lipids")?.markers ?? [];
 
@@ -34,7 +34,7 @@ export const fortWorth = {
   ],
   breadcrumb: [
     { name: "Home", href: "/" },
-    { name: "Blood testing in Texas", href: "/texas/blood-testing" },
+    { name: "Blood testing in Texas", href: "/locations/texas" },
     { name: "Fort Worth" },
   ],
 
@@ -230,7 +230,7 @@ export const fortWorth = {
     },
     cta: {
       primary: { label: `Book for ${price}`, href: book },
-      secondary: { label: "Blood testing across Texas", href: "/texas/blood-testing" },
+      secondary: { label: "Blood testing across Texas", href: "/locations/texas" },
     },
   },
 
